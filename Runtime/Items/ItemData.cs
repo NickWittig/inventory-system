@@ -10,7 +10,7 @@ namespace InventorySystem.Items
     /// to extend to more specific items.
     /// </summary>
     [Serializable]
-    [CreateAssetMenu(fileName = "Item", menuName = "Items/Item")]
+    [CreateAssetMenu(fileName = "Item", menuName = "InventorySystem/Items/Item")]
     public class ItemData : ScriptableObject
     {
         [FormerlySerializedAs("id")] public int Uid;

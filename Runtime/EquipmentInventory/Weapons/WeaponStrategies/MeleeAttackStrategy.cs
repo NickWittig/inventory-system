@@ -4,7 +4,7 @@ using UnityEngine;
 namespace InventorySystem.EquipmentInventory.Weapons
 {
     [Serializable]
-    [CreateAssetMenu(fileName = "MeleeAttackStrategy", menuName = "WeaponStrategy/MeleeAttackStrategy")]
+    [CreateAssetMenu(fileName = "MeleeAttackStrategy", menuName = "InventorySystem/WeaponStrategy/MeleeAttackStrategy")]
     public class MeleeAttackStrategy : WeaponAttackStrategy
     {
         public override void Execute()

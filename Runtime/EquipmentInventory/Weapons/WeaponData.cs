@@ -6,7 +6,7 @@ using UnityEngine;
 namespace InventorySystem.EquipmentInventory.Weapons
 {
     [Serializable]
-    [CreateAssetMenu(fileName = "Weapon", menuName = "Items/Weapon")]
+    [CreateAssetMenu(fileName = "Weapon", menuName = "InventorySystem/Items/Weapon")]
     public class WeaponData : ItemData
     {
         internal const EquipmentType _equipmentType = EquipmentType.Weapon;
