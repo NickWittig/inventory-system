@@ -1,0 +1,15 @@
+{
+  "name": "com.nickwittig.inventory-system",
+  "displayName": "Inventory System",
+  "author": {
+    "name": "Nick Wittig",
+    "email": "nick.wittig@uni-due.de"
+  },
+  "version": "1.0.0",
+  "unity": "6000.0",
+  "description": "A basic generic, extensible Unity Inventory System.",
+  "keywords": [
+    "package",
+    "unity"
+  ]
+}
