@@ -29,6 +29,6 @@ namespace InventorySystem.EquipmentInventory.Armors
         }
 
         public ItemData ItemData => _armorData;
-        public EquipmentType equipmentType =>  EquipmentType.Armor;
+        public EquipmentType EquipmentType =>  EquipmentType.Armor;
     }
 }

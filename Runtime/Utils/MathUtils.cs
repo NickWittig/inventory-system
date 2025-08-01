@@ -2,6 +2,9 @@
 
 namespace InventorySystem.Utils
 {
+    /// <summary>
+    /// Static Utility for common math problems.
+    /// </summary>
     public static class MathUtils
     {
         /// <summary>

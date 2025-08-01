@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using InventorySystem.Items;
 
 namespace InventorySystem.Inventory
@@ -8,6 +9,29 @@ namespace InventorySystem.Inventory
     /// </summary>
     public interface IInventory
     {
+
+        /// <summary>
+        /// Event invoked when <see cref="IItem"/>s were successfully added to this.
+        /// Returns the newly added <see cref="IItem"/> and the added quantity.
+        /// </summary>
+        /// <remarks>
+        /// Triggered per slot that receives items; each invocation returns the added <see cref="IItem"/> and
+        /// the quantity placed into that slot. (i.e., if more <see cref="IItem"/>s are added than
+        /// <see cref="ItemData.MaxStackAmount"/> for one slot, and items are added to a second 
+        /// slot, the event will fire again for the second slot.)
+        /// </remarks>
+        public event Action<IItem, int> ItemsAdded;
+
+        /// <summary>
+        /// Event invoked when <see cref="IItem"/>s were successfully removed from this.
+        /// Returns the newly removed <see cref="IItem"/> and the removed quantity.
+        /// </summary>
+        /// <remarks>
+        /// Fired per slot that loses items; each invocation returns the removed <see cref="IItem"/> and
+        /// the quantity taken from that slot.
+        /// </remarks>
+        public event Action<IItem, int> ItemsRemoved;
+
         /// <summary>
         ///     Maximum amount of items that can be inside the <see cref="IInventory" />.
         /// </summary>
@@ -17,6 +41,29 @@ namespace InventorySystem.Inventory
         ///     Whether the entire <see cref="IInventory" /> is empty meaning all <see cref="IInventorySlot" />s are empty.
         /// </summary>
         public bool IsEmpty { get; }
+
+        /// <summary>
+        /// Get all <see cref="IInventorySlot"/>s in this.
+        /// </summary>
+        /// <returns><see cref="IReadOnlyList{IInventorySlot}"/> of all <see cref="IInventorySlot" />s in this <see cref="IInventory" />.
+        /// </returns>
+        /// <remarks>
+        ///     WARNING: Also returns empty <see cref="IInventorySlot"/>s.
+        ///     Thus, always returns a list of size equal to <see cref="Capacity" />.
+        /// </remarks>
+        public IReadOnlyList<IInventorySlot> InventorySlots { get; }
+
+        /// <summary>
+        ///     Get all <see cref="IItem" />s in <see cref="IInventory" />.
+        /// </summary>
+        /// <returns><see cref="IReadOnlyList{IItem}"/> of all <see cref="IItem" />s in this <see cref="IInventory" />.
+        /// </returns>
+        /// <remarks>
+        ///     WARNING: Also returns empty <see cref="IItem"/>s as null.
+        ///     Thus, always returns a list of size equal to <see cref="Capacity" />.
+        /// </remarks>
+        public IReadOnlyList<IItem> Items { get; }
+
 
         /// <summary>
         ///     Try to get the <see cref="IInventorySlot" /> at slotIndex.
@@ -116,16 +163,6 @@ namespace InventorySystem.Inventory
         public IItem TryGetItemAt(int index);
 
         /// <summary>
-        ///     Get all <see cref="IItem" />s in <see cref="IInventory" />.
-        /// </summary>
-        /// <returns>List of all <see cref="IItem" />s in <see cref="Inventory" />.</returns>
-        /// <remarks>
-        ///     WARNING: Also returns empty items as null.
-        ///     Thus, always returns a list of size equal to <see cref="Capacity" />.
-        /// </remarks>
-        public List<IItem> GetAllItems();
-
-        /// <summary>
         ///     Remove <see cref="IItem" /> item from the <see cref="IInventory" />.
         ///     If the <see cref="IItem" /> is in the <see cref="IInventory" />,
         ///     we call <see cref="IInventorySlot.Clear" /> on its <see cref="IInventorySlot" />.
@@ -140,9 +177,8 @@ namespace InventorySystem.Inventory
         public void RemoveItem(IItem item, bool onlyFirstOccurence = false);
 
         /// <summary>
-        ///     Clear all <see cref="InventorySlot" />s.
+        ///     Clear the entire <see cref="IInventory"/> by clearing all <see cref="IInventorySlot"/>s.
         /// </summary>
-        /// <seealso cref="IInventorySlot.Clear" />
         public void Clear();
     }
 }

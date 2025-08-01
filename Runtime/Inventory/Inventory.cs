@@ -9,9 +9,9 @@ namespace InventorySystem.Inventory
     [Serializable]
     public class Inventory : IInventory
     {
-        [SerializeField] private InventorySlot[] slots;
+        [SerializeField] private InventorySlot[] _slots;
         [field: SerializeField] public int Capacity { get; private set; }
-        public bool IsEmpty => slots.All(slot => slot.IsEmpty);
+        public bool IsEmpty => _slots.All(slot => slot.IsEmpty);
 
         /// <summary>
         ///     Whether any Overflow (i.e., adding an <see cref="IItem" />
@@ -19,6 +19,18 @@ namespace InventorySystem.Inventory
         ///     is being handled further or is being discarded.
         /// </summary>
         [SerializeField] private bool _handlesOverflow;
+
+        /// <inheritdoc/>
+        public event Action<IItem, int> ItemsAdded;
+
+        /// <inheritdoc/>
+        public event Action<IItem, int> ItemsRemoved;
+
+        /// <inheritdoc cref="IInventory.Items" />
+        public IReadOnlyList<IItem> Items => _slots.Select(slot => slot.Item).ToList();
+
+        /// <inheritdoc cref="IInventory.InventorySlots" />
+        public IReadOnlyList<IInventorySlot> InventorySlots => _slots;
 
         private Inventory(int capacity = 2, bool handlesOverflow = true)
         {
@@ -37,10 +49,10 @@ namespace InventorySystem.Inventory
         {
             var inventory = new Inventory(capacity, handlesOverflow)
             {
-                slots = new InventorySlot[capacity]
+                _slots = new InventorySlot[capacity]
             };
 
-            for (var i = 0; i < capacity; i++) inventory.slots[i] = new InventorySlot();
+            for (var i = 0; i < capacity; i++) inventory._slots[i] = new InventorySlot();
 
             return inventory;
         }
@@ -59,7 +71,7 @@ namespace InventorySystem.Inventory
         public void TryClearSlotAt(int index)
         {
             if (!IsValidSlotIndex(index)) return;
-            slots[index].Clear();
+            _slots[index].Clear();
         }
 
         /// <inheritdoc cref="IInventory.TryAddItem" />
@@ -77,7 +89,7 @@ namespace InventorySystem.Inventory
                 return false;
             }
 
-            InventorySlot slot = slots[index];
+            InventorySlot slot = _slots[index];
 
             if (!slot.IsEmpty && !slot.Item.IsEquivalentTo(item))
             {
@@ -86,19 +98,16 @@ namespace InventorySystem.Inventory
                 return false;
             }
 
-            var remaining = 0;
-            // if the slot is empty,
-            // we add the item to the slot
-            if (slot.IsEmpty) slot.SetItem(item);
+            // here, the slot now contains the item to be added
+            var overflow = slot.SetItemAndQuantity(item, quantity);
+            var addedItemAmount = quantity - overflow;
+            OnItemsAdded(item, addedItemAmount);
 
-            // the slot now contains the item to be added, so we add the quantity
-            slot.TryAddQuantity(quantity, out var overflow);
-
-            remaining = overflow;
+            int remaining = overflow;
             // if there is any overflow, but don't handle it, we return true (item was added until the slot was filled)
             if (remaining > 0 && !_handlesOverflow) return true;
-            // otherwise, if the overflow is equal or less than 0, we added the entire quantity that was requested
             if (remaining <= 0) return true;
+            // otherwise, if the overflow is equal or less than 0, we added the entire quantity that was requested
 
             // otherwise, there is an overflow, and we do handle it
             // we look for the next available slot
@@ -109,38 +118,37 @@ namespace InventorySystem.Inventory
         /// <inheritdoc cref="IInventory.TryGetItemAt" />
         public IItem TryGetItemAt(int index)
         {
-            return IsValidSlotIndex(index) ? slots[index].Item : null;
+            return IsValidSlotIndex(index) ? _slots[index].Item : null;
         }
 
         /// <inheritdoc cref="IInventory.RemoveItem" />
         public void RemoveItem(IItem item, bool onlyFirstOccurence = false)
         {
-            foreach (InventorySlot slot in slots)
+            foreach (InventorySlot slot in _slots)
             {
                 if (slot.Item != item) continue;
-                slot.Clear();
+                ClearSlotWithEvent(slot);
                 if (onlyFirstOccurence) return;
             }
         }
 
 
-        /// <inheritdoc cref="IInventory.GetAllItems" />
-        public List<IItem> GetAllItems()
-        {
-            return slots.Select(slot => slot.Item).ToList();
-        }
+  
 
         /// <inheritdoc cref="IInventory.Clear" />
         public void Clear()
         {
-            foreach (InventorySlot slot in slots) slot.Clear();
+            foreach (InventorySlot slot in _slots)
+            {
+                ClearSlotWithEvent(slot);
+            }
         }
 
         /// <inheritdoc cref="IInventory.TryInsertItemAtFront" />
         public bool TryInsertItemAtFront(IItem item, int quantity = 1)
         {
             if (!IsSlotAvailable(item, out _)) return false;
-            var existingSlots = slots.Select(slot => slot.DeepCopy()).ToList();
+            var existingSlots = _slots.Select(slot => slot.DeepCopy()).ToList();
             Clear();
             TryAddItem(item, quantity);
             foreach (InventorySlot existingSlot in existingSlots
@@ -153,7 +161,7 @@ namespace InventorySystem.Inventory
         /// <inheritdoc cref="IInventory.TryGetSlotAt" />
         public IInventorySlot TryGetSlotAt(int index)
         {
-            return IsValidSlotIndex(index) ? slots[index] : null;
+            return IsValidSlotIndex(index) ? _slots[index] : null;
         }
 
         /// <summary>
@@ -177,8 +185,8 @@ namespace InventorySystem.Inventory
         /// </returns>
         private int GetFirstNonFullEquivalentSlotIndex(IItem item)
         {
-            for (var i = 0; i < slots.Length; i++)
-                if (!slots[i].IsEmpty && !slots[i].IsFull && slots[i].Item.IsEquivalentTo(item))
+            for (var i = 0; i < _slots.Length; i++)
+                if (!_slots[i].IsEmpty && !_slots[i].IsFull && _slots[i].Item.IsEquivalentTo(item))
                     return i;
 
             return -1;
@@ -193,8 +201,8 @@ namespace InventorySystem.Inventory
         /// </returns>
         private int GetFirstEmptySlotIndex()
         {
-            for (var i = 0; i < slots.Length; i++)
-                if (slots[i].IsEmpty)
+            for (var i = 0; i < _slots.Length; i++)
+                if (_slots[i].IsEmpty)
                     return i;
 
             return -1;
@@ -202,12 +210,51 @@ namespace InventorySystem.Inventory
 
         /// <summary>
         ///     Whether the index is valid (i.e., would not throw a <see cref="ArgumentOutOfRangeException" />) for
-        ///     <see cref="slots" />.
+        ///     <see cref="_slots" />.
         /// </summary>
         /// <param name="index">The index to be checked.</param>
         private bool IsValidSlotIndex(int index)
         {
-            return index >= 0 && index < slots.Length;
+            return index >= 0 && index < _slots.Length;
         }
+
+        /// <summary>
+        /// Clear the <see cref="InventorySlot"/> slot and call the <see cref="OnItemsRemoved(IItem, int)"/> method.
+        /// </summary>
+        /// <param name="slot">The slot to be cleared.</param>
+        /// <remarks>
+        /// Wrapper for <see cref="InventorySlot.Clear"/>
+        /// </remarks>
+        private void ClearSlotWithEvent(InventorySlot slot)
+        {
+            var (slotItem, slotQuantity) = (slot.Item, slot.Quantity);
+            slot.Clear();
+            OnItemsRemoved(slotItem, slotQuantity);
+        }
+
+        /// <summary>
+        /// Trigger the <see cref="ItemsAdded"/> event.
+        /// </summary>
+        /// <param name="item">The <see cref="IItem"/> that was successfully added to this.</param>
+        /// <param name="quantity">The quantity that was successfully added.</param>
+        private void OnItemsAdded(IItem item, int quantity)
+        {
+            if (item == null || quantity < 1) return;
+            ItemsAdded?.Invoke(item, quantity);
+        }
+
+        /// <summary>
+        /// Trigger the <see cref="ItemsRemoved"/> event.
+        /// </summary>
+        /// <param name="item">The <see cref="IItem"/> that was successfully removed from this.</param>
+        /// <param name="quantity">The quantity that was successfully removed.</param>
+        private void OnItemsRemoved(IItem item, int quantity)
+        {
+            if (item == null || quantity < 1) return;
+            ItemsRemoved?.Invoke(item, quantity);
+        }
+
+
+
     }
 }

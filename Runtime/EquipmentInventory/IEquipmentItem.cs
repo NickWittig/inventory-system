@@ -8,8 +8,8 @@ namespace InventorySystem.EquipmentInventory
     public interface IEquipmentItem : IItem
     {
         /// <summary>
-        ///     The <see cref="EquipmentType" /> in which this <see cref="IEquipmentItem" /> can be equipped in.
+        ///     The <see cref="InventorySystem.EquipmentInventory.EquipmentType" /> in which this <see cref="IEquipmentItem" /> can be equipped in.
         /// </summary>
-        public EquipmentType equipmentType { get; }
+        public EquipmentType EquipmentType { get; }
     }
 }

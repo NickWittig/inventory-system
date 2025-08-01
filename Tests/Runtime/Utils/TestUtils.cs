@@ -1,7 +1,7 @@
 using InventorySystem.Items;
 using UnityEngine;
  
-namespace Tests
+namespace InventorySystemTests
 {
     public class TestUtils
     {

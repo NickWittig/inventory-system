@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using InventorySystem.Items;
 
@@ -5,6 +6,20 @@ namespace InventorySystem.EquipmentInventory
 {
     public interface IEquipmentInventory
     {
+
+        /// <summary>
+        /// Event invoked when an <see cref="IItem"/> was successfully equipped.
+        /// Returns the newly equipped <see cref="IItem"/>.
+        /// </summary>
+        event Action<IItem> ItemEquipped;
+
+
+        /// <summary>
+        /// Event invoked when an <see cref="IItem"/> was successfully unequipped.
+        /// Returns the newly unequipped <see cref="IItem"/>.
+        /// </summary>
+        event Action<IItem> ItemUnequipped;
+
         /// <summary>
         ///     List of all currently equipped <see cref="IEquipmentItem" />s.
         /// </summary>
@@ -17,7 +32,7 @@ namespace InventorySystem.EquipmentInventory
         /// <summary>
         ///     Try to equip an <see cref="IItem" />.
         ///     Returns false if the <see cref="IItem" /> is not an <see cref="IEquipmentItem" />.
-        ///     Returns false if the <see cref="IEquipmentItem.equipmentType" /> is not allowed in this
+        ///     Returns false if the <see cref="IEquipmentItem.EquipmentType" /> is not allowed in this
         ///     <see cref="IEquipmentInventory" />.
         ///     Returns false if an <see cref="IItem" /> of the same <see cref="EquipmentType" /> is already equipped.
         /// </summary>

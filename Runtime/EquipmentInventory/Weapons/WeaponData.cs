@@ -9,7 +9,7 @@ namespace InventorySystem.EquipmentInventory.Weapons
     [CreateAssetMenu(fileName = "Weapon", menuName = "InventorySystem/Items/Weapon")]
     public class WeaponData : ItemData
     {
-        internal const EquipmentType _equipmentType = EquipmentType.Weapon;
+        internal const EquipmentType EQUIPMENT_TYPE = EquipmentType.Weapon;
           
         public float Damage; 
         public float Range;

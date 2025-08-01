@@ -31,24 +31,6 @@ namespace InventorySystem.Inventory
         /// </summary>
         bool IsFull { get; }
 
-        /// <summary>
-        ///     Try to add <see cref="Quantity" /> and return overflow amount.
-        /// </summary>
-        /// <param name="quantity"> The quantity that <see cref="Quantity" /> is trying to be added.</param>
-        /// <param name="overflow">
-        ///     The amount of <see cref="IItem" />
-        ///     that exceeds the <see cref="ItemSO.maxStackAmount" /> for <see cref="IInventorySlot.Item" />.
-        ///     Set to 0, if there is no overflow.
-        /// </param>
-        /// <exception cref="NullReferenceException">
-        ///     Thrown, if this <see cref="IInventorySlot" /> has no <see cref="Item" /> assinged.
-        /// </exception>
-        public void TryAddQuantity(int quantity, out int overflow);
 
-        /// <summary>
-        ///     Clear this slot.
-        ///     Sets <see cref="Item" /> to null and <see cref="Quantity" /> to 0.
-        /// </summary>
-        public void Clear();
     }
 }

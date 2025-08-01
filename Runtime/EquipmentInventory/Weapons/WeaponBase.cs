@@ -7,10 +7,10 @@ namespace InventorySystem.EquipmentInventory.Weapons
     [Serializable]
     public class WeaponBase : IWeapon 
     {
-        [SerializeField] protected WeaponData _weaponData; 
+        [SerializeField] private WeaponData _weaponData; 
         public WeaponData WeaponData => _weaponData;
         public ItemData ItemData => _weaponData;
-        public EquipmentType equipmentType { get; }
+        public EquipmentType EquipmentType { get; }
 
         /// <summary>
         /// FIXME: This is a shallow copy regarding <see cref="WeaponData"/>.
@@ -38,7 +38,7 @@ namespace InventorySystem.EquipmentInventory.Weapons
         public WeaponBase(WeaponData weaponData)
         {
             _weaponData = weaponData;
-            equipmentType = WeaponData._equipmentType;
+            EquipmentType = WeaponData.EQUIPMENT_TYPE;
         }
 
         public virtual void Use()
