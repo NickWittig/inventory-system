@@ -1,129 +1,98 @@
 <!DOCTYPE html>
+<!--[if IE]><![endif]-->
 <html>
+
   <head>
     <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
       <title>Class InventorySlotInterfaceTests | Inventory System </title>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="viewport" content="width=device-width">
       <meta name="title" content="Class InventorySlotInterfaceTests | Inventory System ">
-      
-      <meta name="description" content="Behaviour-level tests of the observable contract of , driven exclusively through  operations. Does not assume any internal mutators on the slot itself.">
-      <link rel="icon" href="../favicon.ico">
-      <link rel="stylesheet" href="../public/docfx.min.css">
-      <link rel="stylesheet" href="../public/main.css">
-      <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
-      
-      <meta name="docfx:rel" content="../">
-      
-      
-      <meta name="docfx:docurl" content="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystemTests_InventorySlotInterfaceTests.md&amp;value=---%0Auid%3A%20InventorySystemTests.InventorySlotInterfaceTests%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
-      <meta name="loc:inThisArticle" content="In this article">
-      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
-      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
-      <meta name="loc:tocFilter" content="Filter by title">
-      <meta name="loc:nextArticle" content="Next">
-      <meta name="loc:prevArticle" content="Previous">
-      <meta name="loc:themeLight" content="Light">
-      <meta name="loc:themeDark" content="Dark">
-      <meta name="loc:themeAuto" content="Auto">
-      <meta name="loc:changeTheme" content="Change theme">
-      <meta name="loc:copy" content="Copy">
-      <meta name="loc:downloadPdf" content="Download PDF">
-
-      <script type="module" src="./../public/docfx.min.js"></script>
-
-      <script>
-        const theme = localStorage.getItem('theme') || 'auto'
-        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
-      </script>
-
+    
+    <meta name="description" content="Behaviour-level tests of the observable contract of , driven exclusively through  operations. Does not assume any internal mutators on the slot itself.">
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
   </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
 
-  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
-    <header class="bg-body border-bottom">
-      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
-        <div class="container-xxl flex-nowrap">
-          <a class="navbar-brand" href="../index.html">
-            <img id="logo" class="svg" src="../logo.svg" alt="Inventory System">
-            Inventory System
-          </a>
-          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="bi bi-three-dots"></i>
-          </button>
-          <div class="collapse navbar-collapse" id="navpanel">
-            <div id="navbar">
-              <form class="search" role="search" id="search">
-                <i class="bi bi-search"></i>
-                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="Inventory System">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
               </form>
             </div>
           </div>
-        </div>
-      </nav>
-    </header>
+        </nav>
 
-    <main class="container-xxl">
-      <div class="toc-offcanvas">
-        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
           </div>
-          <div class="offcanvas-body">
-            <nav class="toc" id="toc"></nav>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
         </div>
       </div>
+      <div role="main" class="container body-content hide-when-search">
 
-      <div class="content">
-        <div class="actionbar">
-          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
-            <i class="bi bi-list"></i>
-          </button>
-
-          <nav id="breadcrumb"></nav>
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
         </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="InventorySystemTests.InventorySlotInterfaceTests">
 
-        <article data-uid="InventorySystemTests.InventorySlotInterfaceTests">
 
 
-
-  <h1 id="InventorySystemTests_InventorySlotInterfaceTests" data-uid="InventorySystemTests.InventorySlotInterfaceTests" class="text-break">
-Class InventorySlotInterfaceTests  <a class="header-action link-secondary" title="View source" href="https://github.com/NickWittig/inventory-system/blob/master/Tests/Runtime/InventorySlotTests.cs/#L16"><i class="bi bi-code-slash"></i></a>
-  </h1>
-
-  <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><a class="xref" href="InventorySystemTests.html">InventorySystemTests</a></dd></dl>
-  <dl><dt>Assembly</dt><dd>InventorySystemTests.dll</dd></dl>
-  </div>
-
-  <div class="markdown summary"><p>Behaviour-level tests of the observable contract of <a class="xref" href="InventorySystem.Inventory.IInventorySlot.html">IInventorySlot</a>,
+  <h1 id="InventorySystemTests_InventorySlotInterfaceTests" data-uid="InventorySystemTests.InventorySlotInterfaceTests" class="text-break">Class InventorySlotInterfaceTests</h1>
+  <div class="markdown level0 summary"><p>Behaviour-level tests of the observable contract of <a class="xref" href="InventorySystem.Inventory.IInventorySlot.html">IInventorySlot</a>,
 driven exclusively through <a class="xref" href="InventorySystem.Inventory.IInventory.html">IInventory</a> operations. Does not assume
 any internal mutators on the slot itself.</p>
 </div>
-  <div class="markdown conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TestFixture]
-public class InventorySlotInterfaceTests</code></pre>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level1"><span class="xref">InventorySlotInterfaceTests</span></div>
   </div>
-
-
-
-
-  <dl class="typelist inheritance">
-    <dt>Inheritance</dt>
-    <dd>
-      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-      <div><span class="xref">InventorySlotInterfaceTests</span></div>
-    </dd>
-  </dl>
-
-
-
-  <dl class="typelist inheritedMembers">
-    <dt>Inherited Members</dt>
-    <dd>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
     </div>
@@ -145,310 +114,217 @@ public class InventorySlotInterfaceTests</code></pre>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
     </div>
-  </dd></dl>
-
-
-
-
-
-
-  <h2 class="section" id="methods">Methods
-</h2>
-
-
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="InventorySystemTests.html">InventorySystemTests</a></h6>
+  <h6><strong>Assembly</strong>: InventorySystemTests.dll</h6>
+  <h5 id="InventorySystemTests_InventorySlotInterfaceTests_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TestFixture]
+public class InventorySlotInterfaceTests</code></pre>
+  </div>
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystemTests_InventorySlotInterfaceTests_AddingSingleItem_UpdatesSlotProperties.md&amp;value=---%0Auid%3A%20InventorySystemTests.InventorySlotInterfaceTests.AddingSingleItem_UpdatesSlotProperties%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NickWittig/inventory-system/blob/master/Tests/Runtime/InventorySlotTests.cs/#L51">View Source</a>
+  </span>
   <a id="InventorySystemTests_InventorySlotInterfaceTests_AddingSingleItem_UpdatesSlotProperties_" data-uid="InventorySystemTests.InventorySlotInterfaceTests.AddingSingleItem_UpdatesSlotProperties*"></a>
-
-  <h3 id="InventorySystemTests_InventorySlotInterfaceTests_AddingSingleItem_UpdatesSlotProperties" data-uid="InventorySystemTests.InventorySlotInterfaceTests.AddingSingleItem_UpdatesSlotProperties">
-  AddingSingleItem_UpdatesSlotProperties()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NickWittig/inventory-system/blob/master/Tests/Runtime/InventorySlotTests.cs/#L51"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="InventorySystemTests_InventorySlotInterfaceTests_AddingSingleItem_UpdatesSlotProperties" data-uid="InventorySystemTests.InventorySlotInterfaceTests.AddingSingleItem_UpdatesSlotProperties">AddingSingleItem_UpdatesSlotProperties()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Test]
 public void AddingSingleItem_UpdatesSlotProperties()</code></pre>
   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystemTests_InventorySlotInterfaceTests_ClearingSlotViaInventory_MakesSlotEmpty.md&amp;value=---%0Auid%3A%20InventorySystemTests.InventorySlotInterfaceTests.ClearingSlotViaInventory_MakesSlotEmpty%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NickWittig/inventory-system/blob/master/Tests/Runtime/InventorySlotTests.cs/#L95">View Source</a>
+  </span>
   <a id="InventorySystemTests_InventorySlotInterfaceTests_ClearingSlotViaInventory_MakesSlotEmpty_" data-uid="InventorySystemTests.InventorySlotInterfaceTests.ClearingSlotViaInventory_MakesSlotEmpty*"></a>
-
-  <h3 id="InventorySystemTests_InventorySlotInterfaceTests_ClearingSlotViaInventory_MakesSlotEmpty" data-uid="InventorySystemTests.InventorySlotInterfaceTests.ClearingSlotViaInventory_MakesSlotEmpty">
-  ClearingSlotViaInventory_MakesSlotEmpty()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NickWittig/inventory-system/blob/master/Tests/Runtime/InventorySlotTests.cs/#L95"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="InventorySystemTests_InventorySlotInterfaceTests_ClearingSlotViaInventory_MakesSlotEmpty" data-uid="InventorySystemTests.InventorySlotInterfaceTests.ClearingSlotViaInventory_MakesSlotEmpty">ClearingSlotViaInventory_MakesSlotEmpty()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Test]
 public void ClearingSlotViaInventory_MakesSlotEmpty()</code></pre>
   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystemTests_InventorySlotInterfaceTests_FillingSlot_ToMaxMarksFull.md&amp;value=---%0Auid%3A%20InventorySystemTests.InventorySlotInterfaceTests.FillingSlot_ToMaxMarksFull%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NickWittig/inventory-system/blob/master/Tests/Runtime/InventorySlotTests.cs/#L64">View Source</a>
+  </span>
   <a id="InventorySystemTests_InventorySlotInterfaceTests_FillingSlot_ToMaxMarksFull_" data-uid="InventorySystemTests.InventorySlotInterfaceTests.FillingSlot_ToMaxMarksFull*"></a>
-
-  <h3 id="InventorySystemTests_InventorySlotInterfaceTests_FillingSlot_ToMaxMarksFull" data-uid="InventorySystemTests.InventorySlotInterfaceTests.FillingSlot_ToMaxMarksFull">
-  FillingSlot_ToMaxMarksFull()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NickWittig/inventory-system/blob/master/Tests/Runtime/InventorySlotTests.cs/#L64"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="InventorySystemTests_InventorySlotInterfaceTests_FillingSlot_ToMaxMarksFull" data-uid="InventorySystemTests.InventorySlotInterfaceTests.FillingSlot_ToMaxMarksFull">FillingSlot_ToMaxMarksFull()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Test]
 public void FillingSlot_ToMaxMarksFull()</code></pre>
   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystemTests_InventorySlotInterfaceTests_FullSlot_RemainsFull_WhenAttemptingToAddSameItemWithoutOverflowHandlingDisabled.md&amp;value=---%0Auid%3A%20InventorySystemTests.InventorySlotInterfaceTests.FullSlot_RemainsFull_WhenAttemptingToAddSameItemWithoutOverflowHandlingDisabled%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NickWittig/inventory-system/blob/master/Tests/Runtime/InventorySlotTests.cs/#L152">View Source</a>
+  </span>
   <a id="InventorySystemTests_InventorySlotInterfaceTests_FullSlot_RemainsFull_WhenAttemptingToAddSameItemWithoutOverflowHandlingDisabled_" data-uid="InventorySystemTests.InventorySlotInterfaceTests.FullSlot_RemainsFull_WhenAttemptingToAddSameItemWithoutOverflowHandlingDisabled*"></a>
-
-  <h3 id="InventorySystemTests_InventorySlotInterfaceTests_FullSlot_RemainsFull_WhenAttemptingToAddSameItemWithoutOverflowHandlingDisabled" data-uid="InventorySystemTests.InventorySlotInterfaceTests.FullSlot_RemainsFull_WhenAttemptingToAddSameItemWithoutOverflowHandlingDisabled">
-  FullSlot_RemainsFull_WhenAttemptingToAddSameItemWithoutOverflowHandlingDisabled()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NickWittig/inventory-system/blob/master/Tests/Runtime/InventorySlotTests.cs/#L152"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="InventorySystemTests_InventorySlotInterfaceTests_FullSlot_RemainsFull_WhenAttemptingToAddSameItemWithoutOverflowHandlingDisabled" data-uid="InventorySystemTests.InventorySlotInterfaceTests.FullSlot_RemainsFull_WhenAttemptingToAddSameItemWithoutOverflowHandlingDisabled">FullSlot_RemainsFull_WhenAttemptingToAddSameItemWithoutOverflowHandlingDisabled()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Test]
 public void FullSlot_RemainsFull_WhenAttemptingToAddSameItemWithoutOverflowHandlingDisabled()</code></pre>
   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystemTests_InventorySlotInterfaceTests_InsertAtFront_ShiftsItems_SlotPropertiesFollow.md&amp;value=---%0Auid%3A%20InventorySystemTests.InventorySlotInterfaceTests.InsertAtFront_ShiftsItems_SlotPropertiesFollow%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NickWittig/inventory-system/blob/master/Tests/Runtime/InventorySlotTests.cs/#L124">View Source</a>
+  </span>
   <a id="InventorySystemTests_InventorySlotInterfaceTests_InsertAtFront_ShiftsItems_SlotPropertiesFollow_" data-uid="InventorySystemTests.InventorySlotInterfaceTests.InsertAtFront_ShiftsItems_SlotPropertiesFollow*"></a>
-
-  <h3 id="InventorySystemTests_InventorySlotInterfaceTests_InsertAtFront_ShiftsItems_SlotPropertiesFollow" data-uid="InventorySystemTests.InventorySlotInterfaceTests.InsertAtFront_ShiftsItems_SlotPropertiesFollow">
-  InsertAtFront_ShiftsItems_SlotPropertiesFollow()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NickWittig/inventory-system/blob/master/Tests/Runtime/InventorySlotTests.cs/#L124"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="InventorySystemTests_InventorySlotInterfaceTests_InsertAtFront_ShiftsItems_SlotPropertiesFollow" data-uid="InventorySystemTests.InventorySlotInterfaceTests.InsertAtFront_ShiftsItems_SlotPropertiesFollow">InsertAtFront_ShiftsItems_SlotPropertiesFollow()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Test]
 public void InsertAtFront_ShiftsItems_SlotPropertiesFollow()</code></pre>
   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystemTests_InventorySlotInterfaceTests_IsEmpty_FalseOnlyWhenQuantityPositiveAndItemAssigned.md&amp;value=---%0Auid%3A%20InventorySystemTests.InventorySlotInterfaceTests.IsEmpty_FalseOnlyWhenQuantityPositiveAndItemAssigned%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NickWittig/inventory-system/blob/master/Tests/Runtime/InventorySlotTests.cs/#L168">View Source</a>
+  </span>
   <a id="InventorySystemTests_InventorySlotInterfaceTests_IsEmpty_FalseOnlyWhenQuantityPositiveAndItemAssigned_" data-uid="InventorySystemTests.InventorySlotInterfaceTests.IsEmpty_FalseOnlyWhenQuantityPositiveAndItemAssigned*"></a>
-
-  <h3 id="InventorySystemTests_InventorySlotInterfaceTests_IsEmpty_FalseOnlyWhenQuantityPositiveAndItemAssigned" data-uid="InventorySystemTests.InventorySlotInterfaceTests.IsEmpty_FalseOnlyWhenQuantityPositiveAndItemAssigned">
-  IsEmpty_FalseOnlyWhenQuantityPositiveAndItemAssigned()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NickWittig/inventory-system/blob/master/Tests/Runtime/InventorySlotTests.cs/#L168"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="InventorySystemTests_InventorySlotInterfaceTests_IsEmpty_FalseOnlyWhenQuantityPositiveAndItemAssigned" data-uid="InventorySystemTests.InventorySlotInterfaceTests.IsEmpty_FalseOnlyWhenQuantityPositiveAndItemAssigned">IsEmpty_FalseOnlyWhenQuantityPositiveAndItemAssigned()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Test]
 public void IsEmpty_FalseOnlyWhenQuantityPositiveAndItemAssigned()</code></pre>
   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystemTests_InventorySlotInterfaceTests_NewSlot_IsEmpty_QuantityZero_ItemNull.md&amp;value=---%0Auid%3A%20InventorySystemTests.InventorySlotInterfaceTests.NewSlot_IsEmpty_QuantityZero_ItemNull%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NickWittig/inventory-system/blob/master/Tests/Runtime/InventorySlotTests.cs/#L40">View Source</a>
+  </span>
   <a id="InventorySystemTests_InventorySlotInterfaceTests_NewSlot_IsEmpty_QuantityZero_ItemNull_" data-uid="InventorySystemTests.InventorySlotInterfaceTests.NewSlot_IsEmpty_QuantityZero_ItemNull*"></a>
-
-  <h3 id="InventorySystemTests_InventorySlotInterfaceTests_NewSlot_IsEmpty_QuantityZero_ItemNull" data-uid="InventorySystemTests.InventorySlotInterfaceTests.NewSlot_IsEmpty_QuantityZero_ItemNull">
-  NewSlot_IsEmpty_QuantityZero_ItemNull()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NickWittig/inventory-system/blob/master/Tests/Runtime/InventorySlotTests.cs/#L40"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="InventorySystemTests_InventorySlotInterfaceTests_NewSlot_IsEmpty_QuantityZero_ItemNull" data-uid="InventorySystemTests.InventorySlotInterfaceTests.NewSlot_IsEmpty_QuantityZero_ItemNull">NewSlot_IsEmpty_QuantityZero_ItemNull()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Test]
 public void NewSlot_IsEmpty_QuantityZero_ItemNull()</code></pre>
   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystemTests_InventorySlotInterfaceTests_OverflowDistribution_PopulatesSecondSlotAndFirstIsFull.md&amp;value=---%0Auid%3A%20InventorySystemTests.InventorySlotInterfaceTests.OverflowDistribution_PopulatesSecondSlotAndFirstIsFull%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NickWittig/inventory-system/blob/master/Tests/Runtime/InventorySlotTests.cs/#L75">View Source</a>
+  </span>
   <a id="InventorySystemTests_InventorySlotInterfaceTests_OverflowDistribution_PopulatesSecondSlotAndFirstIsFull_" data-uid="InventorySystemTests.InventorySlotInterfaceTests.OverflowDistribution_PopulatesSecondSlotAndFirstIsFull*"></a>
-
-  <h3 id="InventorySystemTests_InventorySlotInterfaceTests_OverflowDistribution_PopulatesSecondSlotAndFirstIsFull" data-uid="InventorySystemTests.InventorySlotInterfaceTests.OverflowDistribution_PopulatesSecondSlotAndFirstIsFull">
-  OverflowDistribution_PopulatesSecondSlotAndFirstIsFull()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NickWittig/inventory-system/blob/master/Tests/Runtime/InventorySlotTests.cs/#L75"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="InventorySystemTests_InventorySlotInterfaceTests_OverflowDistribution_PopulatesSecondSlotAndFirstIsFull" data-uid="InventorySystemTests.InventorySlotInterfaceTests.OverflowDistribution_PopulatesSecondSlotAndFirstIsFull">OverflowDistribution_PopulatesSecondSlotAndFirstIsFull()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Test]
 public void OverflowDistribution_PopulatesSecondSlotAndFirstIsFull()</code></pre>
   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystemTests_InventorySlotInterfaceTests_RemovingItem_RemovesFromSlotAndReflectsEmpty.md&amp;value=---%0Auid%3A%20InventorySystemTests.InventorySlotInterfaceTests.RemovingItem_RemovesFromSlotAndReflectsEmpty%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NickWittig/inventory-system/blob/master/Tests/Runtime/InventorySlotTests.cs/#L109">View Source</a>
+  </span>
   <a id="InventorySystemTests_InventorySlotInterfaceTests_RemovingItem_RemovesFromSlotAndReflectsEmpty_" data-uid="InventorySystemTests.InventorySlotInterfaceTests.RemovingItem_RemovesFromSlotAndReflectsEmpty*"></a>
-
-  <h3 id="InventorySystemTests_InventorySlotInterfaceTests_RemovingItem_RemovesFromSlotAndReflectsEmpty" data-uid="InventorySystemTests.InventorySlotInterfaceTests.RemovingItem_RemovesFromSlotAndReflectsEmpty">
-  RemovingItem_RemovesFromSlotAndReflectsEmpty()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NickWittig/inventory-system/blob/master/Tests/Runtime/InventorySlotTests.cs/#L109"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="InventorySystemTests_InventorySlotInterfaceTests_RemovingItem_RemovesFromSlotAndReflectsEmpty" data-uid="InventorySystemTests.InventorySlotInterfaceTests.RemovingItem_RemovesFromSlotAndReflectsEmpty">RemovingItem_RemovesFromSlotAndReflectsEmpty()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Test]
 public void RemovingItem_RemovesFromSlotAndReflectsEmpty()</code></pre>
   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystemTests_InventorySlotInterfaceTests_SetUp.md&amp;value=---%0Auid%3A%20InventorySystemTests.InventorySlotInterfaceTests.SetUp%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NickWittig/inventory-system/blob/master/Tests/Runtime/InventorySlotTests.cs/#L26">View Source</a>
+  </span>
   <a id="InventorySystemTests_InventorySlotInterfaceTests_SetUp_" data-uid="InventorySystemTests.InventorySlotInterfaceTests.SetUp*"></a>
-
-  <h3 id="InventorySystemTests_InventorySlotInterfaceTests_SetUp" data-uid="InventorySystemTests.InventorySlotInterfaceTests.SetUp">
-  SetUp()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NickWittig/inventory-system/blob/master/Tests/Runtime/InventorySlotTests.cs/#L26"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="InventorySystemTests_InventorySlotInterfaceTests_SetUp" data-uid="InventorySystemTests.InventorySlotInterfaceTests.SetUp">SetUp()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[SetUp]
 public void SetUp()</code></pre>
   </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 </article>
+          </div>
 
-        <div class="contribution d-print-none">
-          <a href="https://github.com/NickWittig/inventory-system/blob/master/Tests/Runtime/InventorySlotTests.cs/#L16" class="edit-link">Edit this page</a>
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystemTests_InventorySlotInterfaceTests.md&amp;value=---%0Auid%3A%20InventorySystemTests.InventorySlotInterfaceTests%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/NickWittig/inventory-system/blob/master/Tests/Runtime/InventorySlotTests.cs/#L16" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
         </div>
-
-
       </div>
 
-      <div class="affix">
-        <nav id="affix"></nav>
-      </div>
-    </main>
-
-    <div class="container-xxl search-results" id="search-results"></div>
-
-    <footer class="border-top text-secondary">
-      <div class="container-xxl">
-        <div class="flex-fill">
-          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
         </div>
-      </div>
-    </footer>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
   </body>
 </html>

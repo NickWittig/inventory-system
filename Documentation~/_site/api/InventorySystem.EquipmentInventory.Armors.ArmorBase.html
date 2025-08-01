@@ -1,134 +1,102 @@
 <!DOCTYPE html>
+<!--[if IE]><![endif]-->
 <html>
+
   <head>
     <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
       <title>Class ArmorBase | Inventory System </title>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="viewport" content="width=device-width">
       <meta name="title" content="Class ArmorBase | Inventory System ">
-      
-      
-      <link rel="icon" href="../favicon.ico">
-      <link rel="stylesheet" href="../public/docfx.min.css">
-      <link rel="stylesheet" href="../public/main.css">
-      <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
-      
-      <meta name="docfx:rel" content="../">
-      
-      
-      <meta name="docfx:docurl" content="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_EquipmentInventory_Armors_ArmorBase.md&amp;value=---%0Auid%3A%20InventorySystem.EquipmentInventory.Armors.ArmorBase%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
-      <meta name="loc:inThisArticle" content="In this article">
-      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
-      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
-      <meta name="loc:tocFilter" content="Filter by title">
-      <meta name="loc:nextArticle" content="Next">
-      <meta name="loc:prevArticle" content="Previous">
-      <meta name="loc:themeLight" content="Light">
-      <meta name="loc:themeDark" content="Dark">
-      <meta name="loc:themeAuto" content="Auto">
-      <meta name="loc:changeTheme" content="Change theme">
-      <meta name="loc:copy" content="Copy">
-      <meta name="loc:downloadPdf" content="Download PDF">
-
-      <script type="module" src="./../public/docfx.min.js"></script>
-
-      <script>
-        const theme = localStorage.getItem('theme') || 'auto'
-        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
-      </script>
-
+    
+    
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
   </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
 
-  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
-    <header class="bg-body border-bottom">
-      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
-        <div class="container-xxl flex-nowrap">
-          <a class="navbar-brand" href="../index.html">
-            <img id="logo" class="svg" src="../logo.svg" alt="Inventory System">
-            Inventory System
-          </a>
-          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="bi bi-three-dots"></i>
-          </button>
-          <div class="collapse navbar-collapse" id="navpanel">
-            <div id="navbar">
-              <form class="search" role="search" id="search">
-                <i class="bi bi-search"></i>
-                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="Inventory System">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
               </form>
             </div>
           </div>
-        </div>
-      </nav>
-    </header>
+        </nav>
 
-    <main class="container-xxl">
-      <div class="toc-offcanvas">
-        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
           </div>
-          <div class="offcanvas-body">
-            <nav class="toc" id="toc"></nav>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
         </div>
       </div>
+      <div role="main" class="container body-content hide-when-search">
 
-      <div class="content">
-        <div class="actionbar">
-          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
-            <i class="bi bi-list"></i>
-          </button>
-
-          <nav id="breadcrumb"></nav>
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
         </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="InventorySystem.EquipmentInventory.Armors.ArmorBase">
 
-        <article data-uid="InventorySystem.EquipmentInventory.Armors.ArmorBase">
 
 
-
-  <h1 id="InventorySystem_EquipmentInventory_Armors_ArmorBase" data-uid="InventorySystem.EquipmentInventory.Armors.ArmorBase" class="text-break">
-Class ArmorBase  <a class="header-action link-secondary" title="View source" href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/EquipmentInventory/Armors/ArmorBase.cs/#L7"><i class="bi bi-code-slash"></i></a>
-  </h1>
-
-  <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><a class="xref" href="InventorySystem.html">InventorySystem</a>.<a class="xref" href="InventorySystem.EquipmentInventory.html">EquipmentInventory</a>.<a class="xref" href="InventorySystem.EquipmentInventory.Armors.html">Armors</a></dd></dl>
-  <dl><dt>Assembly</dt><dd>InventorySystem.dll</dd></dl>
+  <h1 id="InventorySystem_EquipmentInventory_Armors_ArmorBase" data-uid="InventorySystem.EquipmentInventory.Armors.ArmorBase" class="text-break">Class ArmorBase</h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level1"><span class="xref">ArmorBase</span></div>
   </div>
-
-  <div class="markdown summary"></div>
-  <div class="markdown conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ArmorBase : IEquipmentItem, IItem, ICopyable&lt;IItem&gt;, IEquivalent&lt;IItem&gt;</code></pre>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="InventorySystem.EquipmentInventory.IEquipmentItem.html">IEquipmentItem</a></div>
+    <div><a class="xref" href="InventorySystem.Items.IItem.html">IItem</a></div>
+    <div><a class="xref" href="InventorySystem.Items.ICopyable-1.html">ICopyable</a>&lt;<a class="xref" href="InventorySystem.Items.IItem.html">IItem</a>&gt;</div>
+    <div><a class="xref" href="InventorySystem.Items.IEquivalent-1.html">IEquivalent</a>&lt;<a class="xref" href="InventorySystem.Items.IItem.html">IItem</a>&gt;</div>
   </div>
-
-
-
-
-  <dl class="typelist inheritance">
-    <dt>Inheritance</dt>
-    <dd>
-      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-      <div><span class="xref">ArmorBase</span></div>
-    </dd>
-  </dl>
-
-  <dl class="typelist implements">
-    <dt>Implements</dt>
-    <dd>
-      <div><a class="xref" href="InventorySystem.EquipmentInventory.IEquipmentItem.html">IEquipmentItem</a></div>
-      <div><a class="xref" href="InventorySystem.Items.IItem.html">IItem</a></div>
-      <div><a class="xref" href="InventorySystem.Items.ICopyable-1.html">ICopyable</a>&lt;<a class="xref" href="InventorySystem.Items.IItem.html">IItem</a>&gt;</div>
-      <div><a class="xref" href="InventorySystem.Items.IEquivalent-1.html">IEquivalent</a>&lt;<a class="xref" href="InventorySystem.Items.IItem.html">IItem</a>&gt;</div>
-    </dd>
-  </dl>
-
-
-  <dl class="typelist inheritedMembers">
-    <dt>Inherited Members</dt>
-    <dd>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
     </div>
@@ -150,251 +118,284 @@ Class ArmorBase  <a class="header-action link-secondary" title="View source" hre
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
     </div>
-  </dd></dl>
-
-
-
-
-
-
-  <h2 class="section" id="constructors">Constructors
-</h2>
-
-
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="InventorySystem.html">InventorySystem</a>.<a class="xref" href="InventorySystem.EquipmentInventory.html">EquipmentInventory</a>.<a class="xref" href="InventorySystem.EquipmentInventory.Armors.html">Armors</a></h6>
+  <h6><strong>Assembly</strong>: InventorySystem.dll</h6>
+  <h5 id="InventorySystem_EquipmentInventory_Armors_ArmorBase_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ArmorBase : IEquipmentItem, IItem, ICopyable&lt;IItem&gt;, IEquivalent&lt;IItem&gt;</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_EquipmentInventory_Armors_ArmorBase__ctor_InventorySystem_EquipmentInventory_Armors_ArmorData_.md&amp;value=---%0Auid%3A%20InventorySystem.EquipmentInventory.Armors.ArmorBase.%23ctor(InventorySystem.EquipmentInventory.Armors.ArmorData)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/EquipmentInventory/Armors/ArmorBase.cs/#L11">View Source</a>
+  </span>
   <a id="InventorySystem_EquipmentInventory_Armors_ArmorBase__ctor_" data-uid="InventorySystem.EquipmentInventory.Armors.ArmorBase.#ctor*"></a>
-
-  <h3 id="InventorySystem_EquipmentInventory_Armors_ArmorBase__ctor_InventorySystem_EquipmentInventory_Armors_ArmorData_" data-uid="InventorySystem.EquipmentInventory.Armors.ArmorBase.#ctor(InventorySystem.EquipmentInventory.Armors.ArmorData)">
-  ArmorBase(ArmorData)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/EquipmentInventory/Armors/ArmorBase.cs/#L11"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="InventorySystem_EquipmentInventory_Armors_ArmorBase__ctor_InventorySystem_EquipmentInventory_Armors_ArmorData_" data-uid="InventorySystem.EquipmentInventory.Armors.ArmorBase.#ctor(InventorySystem.EquipmentInventory.Armors.ArmorData)">ArmorBase(ArmorData)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public ArmorBase(ArmorData armorData)</code></pre>
   </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>armorData</code> <a class="xref" href="InventorySystem.EquipmentInventory.Armors.ArmorData.html">ArmorData</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-
-  <h2 class="section" id="properties">Properties
-</h2>
-
-
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="InventorySystem.EquipmentInventory.Armors.ArmorData.html">ArmorData</a></td>
+        <td><span class="parametername">armorData</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_EquipmentInventory_Armors_ArmorBase_EquipmentType.md&amp;value=---%0Auid%3A%20InventorySystem.EquipmentInventory.Armors.ArmorBase.EquipmentType%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/EquipmentInventory/Armors/ArmorBase.cs/#L32">View Source</a>
+  </span>
   <a id="InventorySystem_EquipmentInventory_Armors_ArmorBase_EquipmentType_" data-uid="InventorySystem.EquipmentInventory.Armors.ArmorBase.EquipmentType*"></a>
-
-  <h3 id="InventorySystem_EquipmentInventory_Armors_ArmorBase_EquipmentType" data-uid="InventorySystem.EquipmentInventory.Armors.ArmorBase.EquipmentType">
-  EquipmentType
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/EquipmentInventory/Armors/ArmorBase.cs/#L32"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="InventorySystem_EquipmentInventory_Armors_ArmorBase_EquipmentType" data-uid="InventorySystem.EquipmentInventory.Armors.ArmorBase.EquipmentType">EquipmentType</h4>
   <div class="markdown level1 summary"><p>The <a class="xref" href="InventorySystem.EquipmentInventory.EquipmentType.html">EquipmentType</a> in which this <a class="xref" href="InventorySystem.EquipmentInventory.IEquipmentItem.html">IEquipmentItem</a> can be equipped in.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public EquipmentType EquipmentType { get; }</code></pre>
   </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="InventorySystem.EquipmentInventory.EquipmentType.html">EquipmentType</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="InventorySystem.EquipmentInventory.EquipmentType.html">EquipmentType</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_EquipmentInventory_Armors_ArmorBase_ItemData.md&amp;value=---%0Auid%3A%20InventorySystem.EquipmentInventory.Armors.ArmorBase.ItemData%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/EquipmentInventory/Armors/ArmorBase.cs/#L31">View Source</a>
+  </span>
   <a id="InventorySystem_EquipmentInventory_Armors_ArmorBase_ItemData_" data-uid="InventorySystem.EquipmentInventory.Armors.ArmorBase.ItemData*"></a>
-
-  <h3 id="InventorySystem_EquipmentInventory_Armors_ArmorBase_ItemData" data-uid="InventorySystem.EquipmentInventory.Armors.ArmorBase.ItemData">
-  ItemData
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/EquipmentInventory/Armors/ArmorBase.cs/#L31"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="InventorySystem_EquipmentInventory_Armors_ArmorBase_ItemData" data-uid="InventorySystem.EquipmentInventory.Armors.ArmorBase.ItemData">ItemData</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public ItemData ItemData { get; }</code></pre>
   </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="InventorySystem.Items.ItemData.html">ItemData</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <h2 class="section" id="methods">Methods
-</h2>
-
-
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="InventorySystem.Items.ItemData.html">ItemData</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_EquipmentInventory_Armors_ArmorBase_DeepCopy.md&amp;value=---%0Auid%3A%20InventorySystem.EquipmentInventory.Armors.ArmorBase.DeepCopy%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/EquipmentInventory/Armors/ArmorBase.cs/#L21">View Source</a>
+  </span>
   <a id="InventorySystem_EquipmentInventory_Armors_ArmorBase_DeepCopy_" data-uid="InventorySystem.EquipmentInventory.Armors.ArmorBase.DeepCopy*"></a>
-
-  <h3 id="InventorySystem_EquipmentInventory_Armors_ArmorBase_DeepCopy" data-uid="InventorySystem.EquipmentInventory.Armors.ArmorBase.DeepCopy">
-  DeepCopy()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/EquipmentInventory/Armors/ArmorBase.cs/#L21"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="InventorySystem_EquipmentInventory_Armors_ArmorBase_DeepCopy" data-uid="InventorySystem.EquipmentInventory.Armors.ArmorBase.DeepCopy">DeepCopy()</h4>
   <div class="markdown level1 summary"><p>Create a deep copy of this T.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public IItem DeepCopy()</code></pre>
   </div>
-
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="InventorySystem.Items.IItem.html">IItem</a></dt>
-    <dd><p>A deep copy of this T.</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-  <h4 class="section" id="InventorySystem_EquipmentInventory_Armors_ArmorBase_DeepCopy_remarks">Remarks</h4>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="InventorySystem.Items.IItem.html">IItem</a></td>
+        <td><p>A deep copy of this T.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="InventorySystem_EquipmentInventory_Armors_ArmorBase_DeepCopy_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Deep Copy: A deep copy of an object is a copy whose properties do not share
 the same references (point to the same underlying values)
 as those of the source object from which the copy was made.
 <a href="https://developer.mozilla.org/en-US/docs/Glossary/Deep_copy">https://developer.mozilla.org/en-US/docs/Glossary/Deep_copy</a></p>
 </div>
-
-
-
-
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_EquipmentInventory_Armors_ArmorBase_GetArmorValue.md&amp;value=---%0Auid%3A%20InventorySystem.EquipmentInventory.Armors.ArmorBase.GetArmorValue%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/EquipmentInventory/Armors/ArmorBase.cs/#L16">View Source</a>
+  </span>
   <a id="InventorySystem_EquipmentInventory_Armors_ArmorBase_GetArmorValue_" data-uid="InventorySystem.EquipmentInventory.Armors.ArmorBase.GetArmorValue*"></a>
-
-  <h3 id="InventorySystem_EquipmentInventory_Armors_ArmorBase_GetArmorValue" data-uid="InventorySystem.EquipmentInventory.Armors.ArmorBase.GetArmorValue">
-  GetArmorValue()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/EquipmentInventory/Armors/ArmorBase.cs/#L16"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="InventorySystem_EquipmentInventory_Armors_ArmorBase_GetArmorValue" data-uid="InventorySystem.EquipmentInventory.Armors.ArmorBase.GetArmorValue">GetArmorValue()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public float GetArmorValue()</code></pre>
   </div>
-
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_EquipmentInventory_Armors_ArmorBase_IsEquivalentTo_InventorySystem_Items_IItem_.md&amp;value=---%0Auid%3A%20InventorySystem.EquipmentInventory.Armors.ArmorBase.IsEquivalentTo(InventorySystem.Items.IItem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/EquipmentInventory/Armors/ArmorBase.cs/#L26">View Source</a>
+  </span>
   <a id="InventorySystem_EquipmentInventory_Armors_ArmorBase_IsEquivalentTo_" data-uid="InventorySystem.EquipmentInventory.Armors.ArmorBase.IsEquivalentTo*"></a>
-
-  <h3 id="InventorySystem_EquipmentInventory_Armors_ArmorBase_IsEquivalentTo_InventorySystem_Items_IItem_" data-uid="InventorySystem.EquipmentInventory.Armors.ArmorBase.IsEquivalentTo(InventorySystem.Items.IItem)">
-  IsEquivalentTo(IItem)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/EquipmentInventory/Armors/ArmorBase.cs/#L26"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="InventorySystem_EquipmentInventory_Armors_ArmorBase_IsEquivalentTo_InventorySystem_Items_IItem_" data-uid="InventorySystem.EquipmentInventory.Armors.ArmorBase.IsEquivalentTo(InventorySystem.Items.IItem)">IsEquivalentTo(IItem)</h4>
   <div class="markdown level1 summary"><p>Check if this is the same type T in the same internal state as other T.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public bool IsEquivalentTo(IItem other)</code></pre>
   </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>other</code> <a class="xref" href="InventorySystem.Items.IItem.html">IItem</a></dt>
-    <dd><p>The object T to be compared against.</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>Whether this and other are equivalent in type and internal state.</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="InventorySystem.Items.IItem.html">IItem</a></td>
+        <td><span class="parametername">other</span></td>
+        <td><p>The object T to be compared against.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>Whether this and other are equivalent in type and internal state.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="InventorySystem.EquipmentInventory.IEquipmentItem.html">IEquipmentItem</a>
+  </div>
+  <div>
+      <a class="xref" href="InventorySystem.Items.IItem.html">IItem</a>
+  </div>
+  <div>
+      <a class="xref" href="InventorySystem.Items.ICopyable-1.html">ICopyable&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="InventorySystem.Items.IEquivalent-1.html">IEquivalent&lt;T&gt;</a>
+  </div>
 
 </article>
+          </div>
 
-        <div class="contribution d-print-none">
-          <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/EquipmentInventory/Armors/ArmorBase.cs/#L7" class="edit-link">Edit this page</a>
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_EquipmentInventory_Armors_ArmorBase.md&amp;value=---%0Auid%3A%20InventorySystem.EquipmentInventory.Armors.ArmorBase%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/EquipmentInventory/Armors/ArmorBase.cs/#L7" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
         </div>
-
-
       </div>
 
-      <div class="affix">
-        <nav id="affix"></nav>
-      </div>
-    </main>
-
-    <div class="container-xxl search-results" id="search-results"></div>
-
-    <footer class="border-top text-secondary">
-      <div class="container-xxl">
-        <div class="flex-fill">
-          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
         </div>
-      </div>
-    </footer>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
   </body>
 </html>
