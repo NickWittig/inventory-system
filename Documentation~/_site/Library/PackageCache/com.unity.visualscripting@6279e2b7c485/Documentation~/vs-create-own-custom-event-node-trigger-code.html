@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Trigger a Custom Scripting Event from a C# script | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Trigger a Custom Scripting Event from a C# script | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="trigger-a-custom-scripting-event-from-a-c-script">Trigger a Custom Scripting Event from a C# script</h1>
+
+<p>You can send or trigger a Custom Scripting Event node in a Script Graph with a C# script instead of a Custom Scripting Event Sender node. For more information on how to create a Custom Scripting Event Sender node, see <a href="vs-create-own-custom-event-send-node.html">Create a Custom Scripting Event Sender node</a>.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Before you can trigger a Custom Scripting Event node, you must create your Custom Scripting Event node. The examples below are based on the previous example to create a Custom Scripting Event node. For more information, see <a href="vs-create-own-custom-event-node.html">Create a Custom Scripting Event node</a>.</p>
+</div>
+<p>To trigger an Event from a C# script:</p>
+<ol>
+<li><p>Go to <strong>Window</strong> &gt; <strong>General</strong> &gt; <strong>Project</strong>, or press Ctrl+5 (macOS: Cmd+5) to open the <a href="https://docs.unity3d.com/Manual/ProjectView.html">Project window</a>.</p>
+</li>
+<li><p>Right-click a folder in the Project window's folder list or anywhere in the Project window's preview pane.</p>
+</li>
+<li><p>Go to <strong>Create</strong> &gt; <strong>C# Script</strong>.</p>
+</li>
+<li><p>Enter a name, such as <code>CodeTriggerCustomEvent</code>, for the new script file.</p>
+</li>
+<li><p>Press Enter.</p>
+</li>
+<li><p>Double-click the new C# file. Unity opens the file in the program you specified in your preferences, under <strong>External Script Editor</strong>.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>For more information on script editors in Unity, see the <a href="https://docs.unity3d.com/Manual/ScriptingToolsIDEs.html">Integrated development environment (IDE) support</a> in the Unity User Manual.</p>
+</div>
+</li>
+<li><p>In your external editor, copy and paste the following code into your C# script:</p>
+<pre><code class="lang-csharp">using Unity.VisualScripting;
+using UnityEngine;
+
+    public class CodeTriggerCustomEvent : MonoBehaviour
+    {
+      void Update()
+      {
+         if (Input.anyKeyDown)
+         {
+            //Trigger the previously created Custom Scripting Event MyCustomEvent with the integer value 2.
+            EventBus.Trigger(EventNames.MyCustomEvent, 2);
+         }
+      }
+   }
+</code></pre>
+</li>
+<li><p>Save your script file.</p>
+</li>
+<li><p>Return to the Unity Editor.</p>
+</li>
+<li><p>Go to <strong>Window</strong> &gt; <strong>General</strong> &gt; <strong>Hierarchy</strong>, or press Ctrl+4 (macOS: Cmd+4) to open the <a href="https://docs.unity3d.com/Manual/Hierarchy.html">Hierarchy window</a>.</p>
+</li>
+<li><p>Do one of the following in the Hierarchy window:</p>
+<ul>
+<li>Select an existing GameObject where you want to attach the new script.</li>
+<li>Select <strong>Add New</strong> (+) and in the menu, select a new GameObject to add to your scene from any of the available options. You can also right-click anywhere in the Hierarchy window and select the same options in the context menu.</li>
+</ul>
+</li>
+<li><p>With the GameObject selected in the Hierarchy window, go to <strong>Window</strong> &gt; <strong>General</strong> &gt; <strong>Inspector</strong>, or press Ctrl+3 (macOS: Cmd+3) to open the <a href="https://docs.unity3d.com/Documentation/Manual/UsingTheInspector.html">Inspector window</a>.</p>
+</li>
+<li><p>Select <strong>Add Component</strong>.</p>
+</li>
+<li><p>In the Component menu, enter the name of the script file.</p>
+</li>
+<li><p>Select it to add it to the GameObject.</p>
+<p><img src="images/vs-custom-event-add-code-trigger-script-inspector.png" alt="An image of the Unity Editor's Inspector window with the Add Component menu open. The search bar has filtered the components displayed and the Code Trigger Custom Event C# script is highlighted."></p>
+</li>
+<li><p>Select <strong>Play</strong> from <a href="https://docs.unity3d.com/Manual/Toolbar.html">the Unity Editor's Toolbar</a> to enter Play mode.</p>
+</li>
+<li><p>Press any key on keyboard in the <a href="https://docs.unity3d.com/Manual/GameView.html">Game view</a>.</p>
+<p>Visual Scripting triggers your Event in any Script Graph in the current scene that contains the Custom Scripting Event node.</p>
+</li>
+</ol>
+<h2 id="next-steps">Next steps</h2>
+<p>After you create the script, you can <a href="vs-create-own-custom-event-listen-code.html">create a script to listen to your Event</a>.</p>
+<p>You can also <a href="vs-create-own-custom-event-send-node.html">create an Event Sender node</a> to trigger the Event from another Script Graph or location in the same Script Graph.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

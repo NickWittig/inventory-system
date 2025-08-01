@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Port Bindings | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Port Bindings | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="port-bindings">Port Bindings</h1>
+
+<h2 id="description">Description</h2>
+<p>Some input <a href="Port.html">Ports</a> might have <strong>Port Bindings</strong>. This means there is an expectation of the data that should be supplied to the <a href="Port.html">Port</a>, such as a <strong>Normal Vector</strong> or <strong>UV</strong>. However, a <strong>Port Binding</strong> only affects a <a href="Port.html">Port</a> that does not have a connected <a href="Edge.html">Edge</a>. These <a href="Port.html">Ports</a> still have a regular <a href="Data-Types.html">Data Type</a> that define what <a href="Edge.html">Edges</a> can be connected to them.</p>
+<p>In practice this means that if no <a href="Edge.html">Edge</a> is connected to the <a href="Port.html">Port</a> the default data used in that port will be taken from its <strong>Port Binding</strong>. A full list of <strong>Port Bindings</strong> and their associated default options is found below.</p>
+<h2 id="port-bindings-list">Port Bindings List</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Data Type</th>
+<th style="text-align: left;">Options</th>
+<th style="text-align: left;">Description</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Bitangent</td>
+<td style="text-align: left;">Vector 3</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Vertex or fragment bitangent, label describes expected transform space</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: left;">Color</td>
+<td style="text-align: left;">Vector 4</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">RGBA Color picker</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: left;">ColorRGB</td>
+<td style="text-align: left;">Vector 3</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">RGB Color picker</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: left;">Normal</td>
+<td style="text-align: left;">Vector 3</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Vertex or fragment normal vector, label describes expected transform space</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: left;">Position</td>
+<td style="text-align: left;">Vector 3</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Vertex or fragment position, label describes expected transform space</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: left;">Screen Position</td>
+<td style="text-align: left;">Vector 4</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Default, Raw, Center, Tiled</td>
+<td>Vertex or fragment position in screen space. Dropdown selects mode. See <a href="Screen-Position-Node.html">Screen Position Node</a> for details</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tangent</td>
+<td style="text-align: left;">Vector 3</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Vertex or fragment tangent vector, label describes expected transform space</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: left;">UV</td>
+<td style="text-align: left;">Vector 2</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">UV0, UV1, UV2, UV3</td>
+<td>Mesh UV coordinates. Dropdown selects UV channel.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Vertex Color</td>
+<td style="text-align: left;">Vector 4</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">RGBA vertex color value.</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: left;">View Direction</td>
+<td style="text-align: left;">Vector 3</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Vertex or fragment view direction vector, label describes expected transform space</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

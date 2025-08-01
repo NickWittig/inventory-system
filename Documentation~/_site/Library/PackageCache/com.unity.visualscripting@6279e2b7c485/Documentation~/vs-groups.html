@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Create node groups | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Create node groups | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="create-node-groups">Create node groups</h1>
+
+<p>You can organize the nodes in your Script Graphs and State Graphs with node groups.</p>
+<p><img src="images/vs-groups.png" alt="An image of the Graph window. The Graph Inspector is open, and a group named &quot;Compare gold&quot; is selected. The group is set to the default black color, doesn't have a comment, and contains a Set Variable node that retrieves the value of the Gold Saved variable, a Comparison node, and an Integer node with a value of 5."></p>
+<h2 id="create-a-new-group">Create a new group</h2>
+<p>To create a new group:</p>
+<ol>
+<li><p><a href="vs-open-graph-edit.html">Open the graph</a> where you want to create a new group.</p>
+</li>
+<li><p>In an empty area of the Graph Editor, Ctrl+click (macOS: Cmd+click) and drag to create a selection.</p>
+</li>
+<li><p>Release the mouse to create the group.</p>
+</li>
+</ol>
+<p>After you create a group, you can:</p>
+<ul>
+<li><a href="#change-a-group-name">Change the group name</a></li>
+<li><a href="#add-a-comment-to-a-group">Add a comment to the group</a></li>
+<li><a href="#change-the-color-of-a-group">Change the color of the group</a></li>
+<li><a href="#resize-a-group">Resize the group</a></li>
+<li><a href="#move-a-group">Move the group</a></li>
+</ul>
+<h2 id="change-a-group-name">Change a group name</h2>
+<p>To change the name of the group in your graph:</p>
+<ol start="2">
+<li><p>In the group header, click <strong>Group</strong>.</p>
+</li>
+<li><p>Enter a new name for the group.</p>
+</li>
+<li><p>Press <strong>Enter</strong> to save your changes.</p>
+</li>
+</ol>
+<h2 id="add-a-comment-to-a-group">Add a comment to a group</h2>
+<p>To add a comment to a group in a graph:</p>
+<ol>
+<li><p>Select the group where you want to add a comment.</p>
+</li>
+<li><p>Open the <a href="vs-interface-overview.html#the-graph-inspector">Graph Inspector</a>.</p>
+</li>
+<li><p>In the <strong>(Comment)</strong> field in the Graph Inspector, enter comments or information about the group.</p>
+</li>
+</ol>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Group comments are only visible in the Graph Inspector. To add comments to a graph that are always visible, use a <a href="vs-sticky-notes.html">Sticky Note</a>.</p>
+</div>
+<h2 id="change-the-color-of-a-group">Change the color of a group</h2>
+<p>To change the color of a group in a graph:</p>
+<ol>
+<li><p>Select the group you want to edit.</p>
+</li>
+<li><p>Open the <a href="vs-interface-overview.html#the-graph-inspector">Graph Inspector</a>.</p>
+</li>
+<li><p>In the Graph Inspector, select the <strong>Color</strong> field.</p>
+</li>
+<li><p>Select a new color for your group through one of the following methods:</p>
+<ul>
+<li>Use the color picker.</li>
+<li>Use the sliders or RGBA value fields.</li>
+<li>Enter a hexadecimal color value.</li>
+<li>Select the eyedropper icon and select a color from anywhere on your screen.</li>
+</ul>
+</li>
+</ol>
+<h2 id="resize-a-group">Resize a group</h2>
+<p>To resize a group in a graph:</p>
+<ol>
+<li>Click and drag from any edge or corner on the group.</li>
+</ol>
+<h2 id="move-a-group">Move a group</h2>
+<p>To move a group and its nodes:</p>
+<ol>
+<li>Click and drag the group's header to a new location in the Graph Editor.</li>
+</ol>
+<div class="NOTE">
+<h5>Note</h5>
+<p>You can also move a group without moving any of the nodes inside, but the required input changes based on your chosen control scheme. For more information, see <a href="vs-control-schemes.html">Choose a control scheme</a></p>
+</div>
+<h2 id="next-steps">Next steps</h2>
+<p>After you've created a node group, you can <a href="vs-add-node-to-graph.html">add nodes to your Script Graph</a>, <a href="vs-add-variable-graph.html">create and add variables</a>, or <a href="vs-nesting-add-subgraph.html">add a Subgraph</a>.</p>
+<p>You can also add a <a href="vs-sticky-notes.html">Sticky Note</a> to add comments to a graph.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

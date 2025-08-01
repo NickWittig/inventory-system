@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Decals | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Decals | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="decals">Decals</h1>
+
+<p>Decals allow you to apply local material modifications to specific places in the world. You might think of things like applying graffiti tags to a wall or scattering fallen leaves below a tree. But decals can be used for a lot more. In these examples, we see decals making things look wet, making surfaces appear to have flowing water across them, projecting water caustics, and blending specific materials onto other objects.</p>
+<p>Decals are available to use in both HDRP and URP, but they need to be enabled in both render pipelines. To use decals, refer to the documentation in both <a href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@17.0/manual/decals.html">HDRP</a> and <a href="https://docs.unity3d.com/Manual/urp/renderer-feature-decal.html">URP</a>.</p>
+<h4 id="material-projection">Material Projection</h4>
+<p>This decal uses triplanar projection to project a material in 3D space. It projects materials correctly onto any mesh that intersects the decal volume.  It can be used to apply terrain materials on to other objects like rocks so that they blend in better with the terrain.</p>
+<h4 id="water-caustics">Water Caustics</h4>
+<p>When light shines through rippling water, the water warps and focuses the light, casting really interesting rippling patterns on surfaces under the water.  This shader creates these rippling caustic patterns. If you place decals using this shader under your water planes, you’ll get projected caustics that imitate the behavior of light shining through the water.</p>
+<h4 id="running-water">Running Water</h4>
+<p>This decal creates the appearance of flowing water across whatever surfaces are inside the decal. It can be used on the banks of streams and around waterfalls to support the appearance of water flowing. With material parameters, you can control the speed of the water flow, the opacity of both the wetness and the water, and the strength of the flowing water normals.</p>
+<h4 id="water-wetness">Water Wetness</h4>
+<p>The wetness decal makes surfaces look wet by darkening color and increasing smoothness. It uses very simple math and no texture samples so it is very performance efficient. It can be used along the banks of bodies of water to better integrate the water with the environment.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

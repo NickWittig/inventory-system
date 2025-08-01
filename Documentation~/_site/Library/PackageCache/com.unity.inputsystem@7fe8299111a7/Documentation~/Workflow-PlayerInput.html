@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Workflow Overview - Actions and the PlayerInput Component | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Workflow Overview - Actions and the PlayerInput Component | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="input-system-workflow-player-input">
+<h1 id="workflow-overview---actions-and-the-playerinput-component">Workflow Overview - Actions and the PlayerInput Component</h1>
+
+<img src="Images/Workflow-PlayerInput.png">
+<p>The highest level of abstraction provided by the Input System is when you use <a href="Actions.html">Actions</a> and the <strong>Player Input component</strong> together.</p>
+<p>The Player Input provides a way to make connections between your configured Actions and the C# methods in your own MonoBehaviour scripts, so that your desired C# methods are called when the user performs an input action.</p>
+<p>It allows you to set up these connections using a UI in the inspector using an event-driven model, instead writing code to poll the values of your Actions as described in the <a href="Workflow-Actions.html">previous workflow example</a>).</p>
+<p>The PlayerInput component also helps with local multi-player scenarios. You can use the PlayerInput component along with the PlayerInputManager component to handle automatic instantiation of new players when input occurs on new devices. For example, if you were making a four-player local cooperative game, PlayerInput with PlayerInputManager can handle allowing new players to join when they press start on their respective controller.</p>
+<p><img src="./Images/PlayerInputWithGameplayEvents.png" alt="image alt text"></p>
+<p>In the above example image, you can see the PlayerInput component set up to map the &quot;move&quot;, &quot;jump&quot; actions to <code>OnMove</code> and <code>OnJump</code> methods in a script, via Unity Events.</p>
+<p>This is an example of the script which would provide an implementation of these methods</p>
+<pre><code class="lang-CSharp">using UnityEngine;
+using UnityEngine.InputSystem;
+
+// This script is designed to have the OnMove and
+// OnJump methods called by a PlayerInput component
+
+public class ExampleScript : MonoBehaviour
+{
+    Vector2 moveAmount;
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        // read the value for the &quot;move&quot; action each event call
+        moveAmount = context.ReadValue&lt;Vector2&gt;();
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        // your jump code goes here.
+    }
+
+    public void Update()
+    {
+        // to use the Vector2 value from the &quot;move&quot; action each
+        // frame, use the &quot;moveAmount&quot; variable here.
+    }
+
+}
+</code></pre>
+<blockquote>
+<p><strong>Note</strong>: As a general rule, if you are using the PlayerInput workflow, you should read input through callbacks as described above, however if you need to access the input actions asset directly while using the PlayerInput component, you should access the <a href="../api/UnityEngine.InputSystem.PlayerInput.html#UnityEngine_InputSystem_PlayerInput_actions">PlayerInput component's copy of the actions</a>, not <code>InputSystem.actions</code>.</p>
+<p>This is because the PlayerInput component performs device filtering to automatically assign devices to multiple players, so each instance has its own copy of the actions filtered for each player. If you bypass this by reading <code>InputSystem.actions</code> directly, the automatic device assignment won't work.</p>
+</blockquote>
+<h2 id="pros-and-cons">Pros and Cons</h2>
+<p>This workflow has pros and cons when compared to using <a href="Workflow-Actions.html">Actions without a PlayerInput component</a>. Because it builds on the use of Actions, it comes with all the benefits provided by them, such as Action Maps, Bindings, and the ability to configure them in the Actions Editor. You can also implement <a href="ActionBindings.html#interactive-rebinding">user rebinding at run time</a>.</p>
+<p>This workflow also allows you to set up callbacks in the Editor using an interface in the Inspector, which can sometimes reduce code complexity but can also make debugging more difficult, because the connections between your actions and code are not themselves defined in your code.</p>
+<p>It also provides ready-made handling of the <a href="PlayerInput.html#device-assignments">assignment of devices</a> and <a href="PlayerInputManager.html#split-screen">screen-splitting</a> in local multiplayer scenarios. While these are things you can implement yourself, having a simple solution ready to go can be beneficial. However if you choose this option, the implementation is somewhat of a &quot;black box&quot;, meaning you are less able to customise how it works.</p>
+<p>As with the other workflows described in this section, there is a trade-off between flexibility, simplicity, and speed of implementation.</p>
+<p>To get started using this workflow, <a href="PlayerInput.html">see the documentation for the Player Input component</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

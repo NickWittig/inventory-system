@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Burst menu reference | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Burst menu reference | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="burst-menu-reference">Burst menu reference</h1>
+
+<p>Use the settings in the Burst menu to control how Burst works in the Unity Editor. These settings control Burst complilation in the Editor only. To configure Burst compilation for Player builds, refer to <a href="building-aot-settings.html">Burst AOT Settings reference</a>.</p>
+<p>To access the Burst menu, go to <strong>Jobs &gt; Burst</strong>. The following settings are available:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Setting</strong></th>
+<th><strong>Function</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Enable Compilation</strong></td>
+<td>Enable this setting to activate Burst compilation. When you enable this setting, Burst compiles jobs and Burst custom delegates that you tag with the attribute <code>[BurstCompile]</code>.</td>
+</tr>
+<tr>
+<td><strong>Enable Safety Checks</strong></td>
+<td>Choose what safety checks Burst should use. For more information, refer to <a href="#safety-checks">Enable Safety Checks setting</a>.</td>
+</tr>
+<tr>
+<td>Off</td>
+<td>Disable safety checks across all Burst jobs and function-pointers. Only use this setting if you want more realistic profiling results from in-Editor captures. When you reload the Editor, this setting always resets to <strong>On</strong>.</td>
+</tr>
+<tr>
+<td>On</td>
+<td>Enable safety checks on code that uses collection containers (e.g <code>NativeArray&lt;T&gt;</code>). Checks include job data dependency and container indexes out of bounds. This is the default setting.</td>
+</tr>
+<tr>
+<td>Force On</td>
+<td>Force safety checks on even for jobs and function-pointers that have <a href="xref:Unity.Burst.BurstCompileAttribute.DisableSafetyChecks"><code>DisableSafetyChecks = true</code></a>. Use this setting to rule out any problems that safety checks might have caught.</td>
+</tr>
+<tr>
+<td><strong>Synchronous Compilation</strong></td>
+<td>Enable this setting to compile Burst synchronously. For more information, refer to <a href="compilation-synchronous.html">Synchronous compilation</a>.</td>
+</tr>
+<tr>
+<td><strong>Native Debug Mode Compilation</strong></td>
+<td>Enable this setting to deactivate optimizations on all code that Burst compiles. This makes it easier to debug via a native debugger. For more information, refer to <a href="debugging-profiling-tools.html#native-debugging">Native Debugging tools</a>.</td>
+</tr>
+<tr>
+<td><strong>Show Timings</strong></td>
+<td>Enable this setting to log the time it takes to JIT compile a job in the Editor and display it in the Console. For more information, refer to <a href="#show-timings">Show Timings setting</a>.</td>
+</tr>
+<tr>
+<td><strong>Open Inspector</strong></td>
+<td>Opens the <a href="editor-burst-inspector.html">Burst Inspector window</a>.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="safety-checks"></a></p>
+<h2 id="enable-safety-checks-setting">Enable Safety Checks setting</h2>
+<p>To disable Burst's safety check code, use <a href="xref:Unity.Burst.BurstCompileAttribute.DisableSafetyChecks">DisableSafetyChecks</a>. This results in faster code generation, however make sure that you use containers in a safe fashion.</p>
+<p>To disable safety checks on a job or function-pointer set <code>DisableSafetyChecks</code> to <code>true</code>:</p>
+<pre><code class="lang-c#">[BurstCompile(DisableSafetyChecks = true)]
+public struct MyJob : IJob
+{
+    // ...
+}
+</code></pre>
+<p>Burst ignores code marked explicitly with <code>DisableSafetyChecks = true</code> when it safety checks your code if you set <strong>Enable Safety Checks</strong> to <strong>On</strong> in the Editor. Select <strong>Force On</strong> to make Burst to safety check all code, including code marked with <code>DisableSafetyChecks = true</code>.</p>
+<p><a name="show-timings"></a></p>
+<h2 id="show-timings-setting">Show Timings setting</h2>
+<p>When you enable the <strong>Show Timings</strong> setting, Unity logs an output in the <a href="https://docs.unity3d.com/Manual/Console.html">Console window</a> for each library of entry points that Burst compiles. Burst batches the compilation into units of methods-per-assembly, and groups multiple entry-points together in a single compilation task. This output is useful if you want to report outliers in compilation to the Burst compiler team (via the <a href="https://forum.unity.com/forums/burst.629/">Burst forum</a>).</p>
+<p>Unity splits Burst's output into the following major sections:</p>
+<ul>
+<li>Method discovery (where Burst works out what it needs to compile)</li>
+<li>Front end (where Burst turns C# IL into an LLVM IR module)</li>
+<li>Middle end (where Burst specializes, optimizes, and cleans up the module)</li>
+<li>Back end (where Burst turns the LLVM IR module into a native DLL)</li>
+</ul>
+<p>The compile time in the front end and optimizer is linear to the number of operations that it needs to compile. More functions and more instructions means a longer compile time. The more generic functions you have, the higher the front end performance timings, because generic resolutions have non-zero costs.</p>
+<p>The compile time in the back end scales with the number of entry-points in the module. This is because each entry point is in its own native object file.</p>
+<p>If the optimizer takes a significant amount of time, use <code>[BurstCompile(OptimizeFor = OptimizeFor.FastCompilation)]</code> which reduces the optimizations that Burst does, but compiles things much faster. Profile the job before and after to make sure that this tradeoff is right for that entry-point.</p>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="editor-burst-inspector.html">Burst Inspector window reference</a></li>
+<li><a href="xref:um-job-system">Job system</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

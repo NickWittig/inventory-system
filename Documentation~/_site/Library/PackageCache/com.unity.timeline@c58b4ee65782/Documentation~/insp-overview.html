@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Timeline properties in the Inspector window | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Timeline properties in the Inspector window | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="timeline-properties-in-the-inspector-window">Timeline properties in the Inspector window</h1>
+
+<p>This section describes the properties that display in the Inspector window when you select Timeline assets, tracks, clips, markers, or other Timeline-related items. The displayed properties also depend on whether you select a single item or multiple items. Not all selected items have properties.</p>
+<h2 id="single-selection">Single selection</h2>
+<p>If you select a single Timeline asset, track, clip, or marker, the Inspector window displays the properties for the selected item. For example, if you select an Animation clip in the Timeline window, the Inspector window displays the properties for the selected Animation clip.</p>
+<p><img src="images/insp-clip-anim-common.png" alt=""></p>
+<p><em>Inspector window when selecting an Animation clip in the Timeline window</em></p>
+<p>The following topics provide more information on the properties that display when you select a Timeline asset, track, clip, or marker:</p>
+<ul>
+<li><a href="insp-tl-asset.html">Timeline Asset Properties</a></li>
+<li><a href="insp-trk.html">Track Properties</a></li>
+<li><a href="insp-clip.html">Clip Properties</a></li>
+<li><a href="insp-overview.html">Marker and Signal properties</a></li>
+</ul>
+<h2 id="multiple-selection">Multiple selection</h2>
+<p>If you select multiple Timeline assets, tracks, clips, or markers, the Inspector window lists the properties that apply to the selection as a group followed by properties common to all selected items.</p>
+<p><img src="images/insp-select-multi.png" alt=""></p>
+<p><em>Inspector window when selecting multiple clips, from multiple tracks, in the Timeline window</em></p>
+<p>For example, if you select an Audio clip on one track and an Animation clip on another track, the Inspector window includes <strong>Multiple Clip Timing</strong> properties and <strong>Clip Timing</strong> properties:</p>
+<ul>
+<li>Use the <strong>Multiple Clip Timing</strong> properties to change the <strong>Start</strong> or <strong>End</strong> of the selection as a group. For example, if you change the <strong>Start</strong> to frame 30, the selection of clips start at frame 30. This moves the start of the first clip to frame 30 and the remaining selected clips are placed relative to the first clip, respecting gaps between selected clips.</li>
+<li>Use the <strong>Clip Timing</strong> properties to change the common properties for each selected clip. If the selected clips have different values for the same property, the value is represented with a dash (&quot;-&quot;). If you change the dash to a value, it sets the value for all selected clips. For example, if you change the <strong>Ease In Duration</strong> from a dash to 10 frames, the ease-in of each selected clip changes to 10 frames.</li>
+</ul>
+<p>If your selection does not have common properties, the Inspector window prompts you to narrow the selection. For example, if you select an Animation track and an Audio clip in the Timeline window, you are prompted to narrow the selection:</p>
+<p><img src="images/insp-select-narrow.png" alt=""></p>
+<p><em>The message in the Inspector window when the selection does not have common properties</em></p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

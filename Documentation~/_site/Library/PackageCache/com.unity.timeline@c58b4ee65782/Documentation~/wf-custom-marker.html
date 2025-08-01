@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Create a custom marker | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Create a custom marker | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="create-a-custom-marker">Create a custom marker</h1>
+
+<p>This workflow demonstrates how to create a custom marker that you can use to add notes to your Timeline instance. This workflow also demonstrates how to change the default appearance of a custom marker with scripting and a Unity Style Sheet (USS).</p>
+<p>If you are unfamiliar with markers and signals, it is recommended that you follow <a href="wf-signals.html">the markers and signals workflow</a> before this workflow.</p>
+<p>The custom marker created in this workflow is a simplified version of the custom Annotation marker found in the <a href="samp-custom-samples.html#annosamp">Customization Samples sample</a>. Consult <a href="samp-overview.html">Timeline Samples</a> for information on the available Timeline samples and how to import them into your projects.</p>
+<p>To demonstrate how to create a custom marker, this workflow is divided into the following main tasks:</p>
+<ol>
+<li><a href="#setup-instance">Set up the Timeline instance</a>.</li>
+<li><a href="#add-files">Add folders for scripts and files</a>.</li>
+<li><a href="#note-marker">Create a Notes marker with custom properties</a>.</li>
+<li><a href="#line-overlay">Add a line overlay</a>.</li>
+<li><a href="#marker-uss">Customize the marker's appearance with USS</a>.</li>
+<li><a href="#marker-overlay">Add a marker overlay</a>.</li>
+<li><a href="#tooltip">Override the default tooltip</a>.</li>
+<li><a href="#fullsrc">Check your scripts</a>.</li>
+<li><a href="#more">Add more features</a>.</li>
+</ol>
+<p><a name="setup-instance"></a></p>
+<h2 id="set-up-the-timeline-instance">Set up the Timeline instance</h2>
+<p>The examples in this workflow use the Timeline instance named <code>NotesTL</code> which has a single Animation track bound to the <code>DefaultMale</code> model. The content of this Animation track is the result of following the <a href="wf-anim-human.html">Animate a humanoid</a> workflow.</p>
+<p><img src="images/tl-custom-start.png" alt="">
+<em>The NotesTL Timeline instance before creating a custom marker</em></p>
+<p>It is not necessary to create the same Timeline instance shown in this workflow. You can use any Timeline instance to follow this workflow.</p>
+<p><a name="add-files"></a></p>
+<h2 id="add-folders-for-scripts-and-files">Add folders for scripts and files</h2>
+<p>In a Unity project, you store scripts, images, and other supporting files in the <code>Assets</code> folder. You can keep the <code>Assets</code> folder organized by adding additional folders and sub-folders. To ensure that some scripts, images, and assets are recognized by the Unity Editor, some folders must have specific names, be placed in a specific folder structure, or both.</p>
+<p>To organize the <code>Assets</code> folder and create a recognized folder structure, follow these steps:</p>
+<ol>
+<li><p>In the Project view, right-click the <code>Assets</code> folder and choose <strong>Create</strong> &gt; <strong>Folder</strong> from the context menu.</p>
+</li>
+<li><p>Name this new folder <code>Notes</code>.
+This folder will store the scripts, assets, and images for overriding the default marker behavior and appearance.</p>
+</li>
+<li><p>In the <code>Notes</code> folder, add a new folder and name it <code>Editor</code>.
+This folder will store a custom script that overrides the default marker behavior and creates a custom editor. This folder must be named <code>Editor</code>.</p>
+</li>
+<li><p>In the <code>Editor</code> folder, add a new folder and name it <code>Stylesheets</code>.</p>
+</li>
+<li><p>In the <code>Stylesheets</code> folder, add two new folders. Name one folder <code>Extensions</code> and the other <code>Resources</code>.
+The <code>Extensions</code> folder will store a Unity Style Sheet. This file must be in the path <code>Editor/Stylesheets/Extensions</code> to be recognized.
+The <code>Resources</code> folder will store the image resource files used by the Unity Style Sheet. Resource images must be in the path <code>Editor/Stylesheets/Resources</code> to be recognized.</p>
+<p><img src="images/proj-notes-folders.png" alt=""></p>
+<p><em>Project window with the <code>Notes</code> folder and its paths expanded.</em></p>
+</li>
+</ol>
+<p><a name="note-marker"></a></p>
+<h2 id="create-a-notes-marker-with-custom-properties">Create a Notes marker with custom properties</h2>
+<p>To create a custom Notes marker with custom properties, you must write a script with a class that inherits from the <code>Marker</code> class. To do this, follow these steps:</p>
+<ol>
+<li><p>In the Project window, right-click the <code>Notes</code> folder and choose <strong>Create</strong> &gt; <strong>C# Script</strong> from the context menu. This adds a <code>NewBehaviourScript</code> file to the <code>Notes</code> folder.</p>
+</li>
+<li><p>Rename the file <code>NotesMarker.cs</code>.
+For Unity to recognize this script, the file name must match the class name.</p>
+</li>
+<li><p>Select the <code>NotesMarker</code> file in the <code>Notes</code> folder and choose <strong>Open</strong> in the Inspector window.
+The <code>NotesMarker</code> script opens for editing in your <a href="https://docs.unity3d.com/Manual/Preferences.html#external-tools">External Script Editor</a>.</p>
+</li>
+<li><p>In your script editor, replace the contents of the <code>NotesMarker</code> file with the following:</p>
+<pre><code class="lang-cs">using System.ComponentModel;
+using UnityEngine;
+using UnityEngine.Timeline;
+
+public class NotesMarker : Marker
+{
+   public string title = &quot;empty&quot;;
+   public Color color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+   public bool showLineOverlay = false;
+   [TextArea(10, 15)] public string note;
+}
+</code></pre>
+</li>
+<li><p>Save the script and switch to the Unity Editor.
+When you save a script and switch to the Unity Editor, it recompiles the script and checks for errors or warnings. If found, errors and warnings are written to the Console window. To view the Console window, select <strong>Window</strong> &gt; <strong>General</strong> &gt; <strong>Console</strong>.</p>
+</li>
+<li><p>When the script is corrected and recompiled, you can add the Notes marker to your Timeline instance.</p>
+<p>For example, to add the custom Notes marker to the expanded Timeline Marker track, right-click on the Marker track and select <strong>Add Notes Marker</strong> from the context menu.</p>
+<p><img src="images/tl-custom-first.png" alt="">
+<em>Notes marker added to the Marker track. The Notes marker has the same appearance as the default marker.</em></p>
+<p>The added marker is selected and its custom properties display in the Inspector window. Modifying the custom properties does not affect the selected marker.</p>
+<p><img src="images/insp-custom-first.png" alt="">
+<em>Except for the Time property, the Notes marker properties are not connected to the selected marker</em></p>
+<p>For example, if you enable <strong>Show Line Overlay</strong>, a line overlay is not drawn. If you change the <strong>Color</strong> property, the color of the selected Notes marker does not change. More scripting is necessary before modifying a custom property in the Inspector window affects the selected Notes marker.</p>
+</li>
+</ol>
+<p><a name="line-overlay"></a></p>
+<h2 id="add-a-line-overlay">Add a line overlay</h2>
+<p>For the custom properties in the Inspector window to affect the selected Notes marker, you must write a script with a class that inherits from the <code>MarkerEditor</code> class.</p>
+<p>The <code>MarkerEditor</code> class is similar to a <a href="https://docs.unity3d.com/ScriptReference/CustomEditor.html">custom Inspector</a>. You override methods in the <code>MarkerEditor</code> class to perform actions such as drawing a colored line overlay.</p>
+<p>To do this, follow these steps:</p>
+<ol>
+<li><p>In the Project window, right-click the <code>Editor</code> folder and choose <strong>Create</strong> &gt; <strong>C# Script</strong> from the context menu.</p>
+</li>
+<li><p>Name the script <code>NotesMarkerEditor.cs</code>.</p>
+</li>
+<li><p>Select the <code>NotesMarkerEditor</code> file in the <code>Editor</code> folder and choose <strong>Open</strong> in the Inspector window to open this file for editing.</p>
+</li>
+<li><p>In the script editor, replace the contents of the <code>NotesMarkerEditor.cs</code> file with the following code snippet:</p>
+<pre><code class="lang-cs">using System;
+using UnityEditor;
+using UnityEditor.Timeline;
+using UnityEngine;
+using UnityEngine.Timeline;
+
+// Editor used by the Timeline window to customize the appearance of a NotesMarker
+
+[CustomTimelineEditor(typeof(NotesMarker))]
+public class NotesMarkerEditor : MarkerEditor
+{
+    // Set a constant for the transparency of overlays
+    const float k_OverlayAlpha = 0.5f;
+
+    // Override this method to draw a vertical line over the Timeline window's contents.
+    public override void DrawOverlay(IMarker marker, MarkerUIStates uiState, MarkerOverlayRegion region)
+    {
+        // Check if marker is not NotesMarker. Set notes as local variable.
+        if (marker is not NotesMarker notes)
+        {
+            return; // If not, return without drawing an overlay
+        }
+
+        // If NotesMarker, check if Show Line Overlay property is true
+        if (notes.showLineOverlay)
+        {
+            DrawLineOverlay(notes.color, region); // if Show Line Overlay is true, call function to draw vertical line
+        }
+    }
+
+    static void DrawLineOverlay(Color color, MarkerOverlayRegion region)
+    {
+        // Calculate a rectangle that uses the full timeline region's height and marker width
+        Rect overlayLineRect = new Rect(region.markerRegion.x,
+            region.timelineRegion.y,
+            region.markerRegion.width,
+            region.timelineRegion.height);
+
+        // Set the color with an extra alpha value adjustment, then draw the rectangle
+        Color overlayLineColor = new Color(color.r, color.g, color.b, color.a * k_OverlayAlpha);
+        EditorGUI.DrawRect(overlayLineRect, overlayLineColor);
+    }
+}
+</code></pre>
+<p>In the <code>NotesMarkerEditor</code> script, the <a href="xref:UnityEditor.Timeline.CustomTimelineEditorAttribute">CustomTimelineEditor attribute</a> associates <code>NotesMarker</code> with the <code>NotesMarkerEditor</code>.</p>
+<p>The <code>NotesMarkerEditor</code> script overrides the <a href="xref:UnityEditor.Timeline.MarkerEditor#UnityEditor_Timeline_MarkerEditor_DrawOverlay_UnityEngine_Timeline_IMarker_UnityEditor_Timeline_MarkerUIStates_UnityEditor_Timeline_MarkerOverlayRegion_">DrawOverlay</a> method. This overridden method checks the type of marker. If the marker is not a <code>NotesMarker</code>, the method returns without drawing an overlay.</p>
+<p>If the marker is a <code>NotesMarker</code> and the <code>notes.showLineOverlay</code> property is true, the <code>DrawOverlay</code> method calls the <code>DrawLineOverlay</code> method. The <code>DrawLineOverlay</code> method draws a colored line overlay based on the <code>notes.color</code> property and  <a href="xref:UnityEditor.Timeline.MarkerOverlayRegion">MarkerOverlayRegion</a>. This region includes two sub-regions that you can use to calculate the rectangle for the line overlay:</p>
+</li>
+</ol>
+<ul>
+<li><code>markerRegion</code>: The region of the marker. You can use this rectangle to draw directly on the marker itself.</li>
+<li><code>timelineRegion</code>: The region of <a href="tl-window.html">the Content view in the Timeline window</a>. The height of the Timeline window is derived from <code>region.timelineRegion.y</code>.</li>
+</ul>
+<ol>
+<li><p>Save the script, switch to the Unity Editor, and correct any errors or warnings.
+Errors and warnings are written to the Console window. To view the Console window, select <strong>Window</strong> &gt; <strong>General</strong> &gt; <strong>Console</strong>.</p>
+</li>
+<li><p>In the Timeline window, select the Notes marker on frame 30.</p>
+</li>
+<li><p>In the Inspector window, enable <strong>Show Line Overlay</strong> and modify the <strong>Color</strong> property to change the color overlay from white to red.</p>
+</li>
+</ol>
+<p><img src="images/tl-custom-red-overlay.png" alt="">
+<em>Notes marker at frame 30 is drawn with a red line overlay.</em></p>
+<p><a name="marker-uss"></a></p>
+<h2 id="customize-the-markers-appearance-with-uss">Customize the marker's appearance with USS</h2>
+<p>When you create a custom marker, it uses the same images as the default Signal Emitter marker. This makes it difficult to visually distinguish a custom marker from a default marker.</p>
+<p>In this workflow, the Notes marker uses the same images as the default Signal Emitter marker. To change the appearance of the Notes marker, you can use a Unity Stylesheet (USS).</p>
+<p>Before creating the USS file, you should have an image for each state of the Notes marker. This workflow uses three states: collapsed, expanded, and selected. The following table provides an image for each Notes marker state:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Image/State</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><img src="images/notes_collapsed.png" alt=""><br>collapsed</td>
+<td style="text-align: left;">The <code>notes_collapsed.png</code> image displays when the Notes marker is collapsed.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/notes_expanded.png" alt=""><br>expanded</td>
+<td style="text-align: left;">The <code>notes_expanded.png</code> image displays when the Notes marker is expanded but not selected.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/notes_selected.png" alt=""><br>selected</td>
+<td style="text-align: left;">The <code>notes_selected.png</code> image displays when the Notes marker is expanded and selected.</td>
+</tr>
+</tbody>
+</table>
+<p>To modify the Notes marker to use these images, follow these steps:</p>
+<ol>
+<li><p>Copy the three images from the table above to the <code>Assets/Notes/Editor/Stylesheets/Resources</code> folder.
+These images must be located in the <code>Resources</code> folder to be recognized by the USS file.</p>
+</li>
+<li><p>In the Project window, right-click the <code>Extensions</code> folder in the <code>Assets/Notes/Editor/Stylesheets</code> path and choose <strong>Create</strong> &gt; <strong>UI Toolkit</strong> &gt; <strong>Style Sheet</strong> from the context menu.
+A <code>NewUSSFile.uss</code> is created in the <code>Extensions</code> folder.</p>
+</li>
+<li><p>Rename the <code>NewUSSFile</code> file as <code>common</code>.
+This USS file must be named <code>common.uss</code> and must be saved in the <code>Editor/Stylesheets/Extensions</code> path for it to be recognized by Unity.</p>
+</li>
+<li><p>Select the <code>common</code> USS file in the <code>Extensions</code> folder and choose <strong>Open</strong> in the Inspector window.
+The <code>common.uss</code> file opens for editing in your <a href="https://docs.unity3d.com/Manual/Preferences.html#external-tools">External Script Editor</a>.</p>
+</li>
+<li><p>In the script editor, replace the contents of the <code>common.uss</code> file with the following:</p>
+<pre><code class="lang-css">/* Custom USS stylesheet. */
+
+/* NotesMarker uses this style and image when marker is collapsed.*/
+.NotesStyle
+{
+    width:16px;
+    height:16px;
+    background-image: resource(&quot;notes_collapsed&quot;);
+}
+
+/* NotesMarker uses this style and image when the marker is selected.*/
+.NotesStyle:hover:focus:checked
+{
+    background-image: resource(&quot;notes_selected&quot;);
+}
+
+/* NotesMarker uses this style and image when the marker is not selected.*/
+.NotesStyle:checked
+{
+    background-image: resource(&quot;notes_expanded&quot;);
+}
+</code></pre>
+<p>USS styles support <a href="https://docs.unity3d.com/Manual/UIE-USS-Selectors.html">pseudo-states</a>, which are similar to <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes">pseudo-classes in CSS</a>. Timeline markers use pseudo-states to set its image depending on whether the marker is collapsed, expanded, or selected:</p>
+</li>
+</ol>
+<ul>
+<li><p>Collapsed: no pseudo-state</p>
+</li>
+<li><p>Expanded: <code>checked</code> pseudo-state</p>
+</li>
+<li><p>Selected: combination <code>hover:focus:checked</code> pseudo-states</p>
+<p>The <code>common.uss</code> file defines USS styles for both the light and dark <a href="https://docs.unity3d.com/Manual/Preferences.html#external-tools">Editor Theme</a>.</p>
+<p>If you want to define specific styles for the Unity light and dark themes, in the same folder as the <code>common.uss</code> file, add the <code>light.uss</code> and <code>dark.uss</code> style sheets. The styles defined in these USS files will override styles in the <code>common.uss</code> file.</p>
+</li>
+</ul>
+<ol>
+<li><p>To associate the Notes marker with the custom <code>NotesStyle</code> style, add the <code>CustomStyle</code> attribute to the <code>NotesMaker</code> script. Add the attribute to the script before the class definition:</p>
+<pre><code class="lang-cs">...
+[CustomStyle(&quot;NotesStyle&quot;)]
+public class NotesMarker : Marker
+{
+...
+}
+</code></pre>
+</li>
+<li><p>Save the <code>NotesMarker</code> script, switch to the Unity Editor, and correct any errors or warnings.
+Errors and warnings are written to the Console window. To view the Console window, select <strong>Window</strong> &gt; <strong>General</strong> &gt; <strong>Console</strong>.</p>
+</li>
+<li><p>When the script is corrected and recompiled, the appearance of each Notes marker changes depending on whether the marker is selected, not selected, or collapsed:</p>
+<p><img src="images/tl-custom-states.png" alt="">
+<strong>(A)</strong> The Notes marker at frame 30 is selected.
+<strong>(B)</strong> The Notes marker at frame 60 is not selected.
+<strong>(C)</strong> The Notes markers at frames 90 and 150, on the Animation track, are collapsed.</p>
+</li>
+</ol>
+<p><a name="marker-overlay"></a></p>
+<h2 id="add-a-marker-overlay">Add a marker overlay</h2>
+<p>At this point in the workflow, the Notes marker uses custom images and uses the Color property when the Show Line Overlay property is enabled. The Color property is not used when the Show Line Overlay is disabled.</p>
+<p>To use the Color property to add color to the Notes marker in all states, expand the conditional statement for the Show Line Overlay property to include a draw marker overlay method. This method draws an overlay for the size of the Notes marker.</p>
+<p>To do this, follow these steps:</p>
+<ol>
+<li><p>Select the <code>NotesMarkerEditor</code> script in the <code>Assets/Notes/Editor</code> folder and choose <strong>Open</strong> in the Inspector window.
+This script opens for editing in your <a href="https://docs.unity3d.com/Manual/Preferences.html#external-tools">External Script Editor</a>.</p>
+</li>
+<li><p>In the <code>NotesMarkerEditor</code> script, expand the <code>if</code> statement to include an <code>else</code> statement which calls a new function named <code>DrawMarkerOverlay</code>:</p>
+<pre><code class="lang-cs">// If NotesMarker, check if Show Line Overlay is true
+if (notes.showLineOverlay)
+{
+    DrawLineOverlay(notes.color, region); // if Show Line Overlay is true, draw vertical line
+}
+else // If NotesMarker and Show Line Overlay is false, draw marker overlay
+{
+    DrawMarkerOverlay(notes.color, region, uiState);
+}
+</code></pre>
+<p>If the marker is a <code>NotesMarker</code> and the <code>notes.showLineOverlay</code> property is false, the <code>DrawOverlay</code> method calls the <code>DrawMarkerOverlay</code> function. The <code>DrawMarkerOverlay</code> function is similar to <code>DrawLineOverlay</code> except an additional parameter is included to check the UI state of the Notes marker.</p>
+</li>
+<li><p>In the <code>NotesMarkerEditor</code> script, after the <code>DrawLineOverlay</code> function, add the new <code>DrawMarkerOverlay</code> function:</p>
+<pre><code class="lang-cs">static void DrawMarkerOverlay(Color color, MarkerOverlayRegion region, MarkerUIStates state)
+{
+    // By default, set the height to the markerRegion's height
+    float markerHeight = region.markerRegion.height;
+
+    // If marker is collapsed, set the height to 2/3 the markerRegion's height
+    if (state.HasFlag(MarkerUIStates.Collapsed))
+    {
+        markerHeight = region.markerRegion.height / 1.5f;
+    }
+
+    // Calculate a rectangle that uses the marker region and variable markerHeight
+    Rect overlayMarkerRect = new Rect(region.markerRegion.x,
+        region.markerRegion.y,
+        region.markerRegion.width,
+        markerHeight);
+
+    Color overlayMarkerColor = new Color(color.r, color.g, color.b, color.a * k_OverlayAlpha);
+    EditorGUI.DrawRect(overlayMarkerRect, overlayMarkerColor);
+}
+</code></pre>
+<p>The <code>DrawMarkerOverlay</code> function draws a colored rectangle based on the <code>notes.color</code> property and the  <a href="xref:UnityEditor.Timeline.MarkerOverlayRegion">MarkerOverlayRegion</a>. The function uses the <code>markerRegion</code> region and the UI state to calculate the size of the overlay.</p>
+<p>For example, if the Notes marker is collapsed (<code>state.HasFlag(MarkerUIStates.Collapsed)</code>) then the rectangle is set to two-thirds the height of the marker region. This matches the height of the <code>notes_collapsed.png</code> file. When the Notes marker is not collapsed, the marker overlay uses the full height of the Notes marker.</p>
+</li>
+<li><p>Save the <code>NotesMarkerEditor</code> script, switch to the Unity Editor, and correct any errors or warnings.
+Errors and warnings are written to the Console window. To view the Console window, select <strong>Window</strong> &gt; <strong>General</strong> &gt; <strong>Console</strong>.</p>
+</li>
+<li><p>After the script is corrected and recompiled, each Notes marker is drawn using its Color property. For example, if</p>
+<p><img src="images/tl-custom-colors.png" alt="">
+<strong>(A)</strong> The Notes marker at frame 30 is red.
+<strong>(B)</strong> The Notes marker at frame 60 is green.
+<strong>(C)</strong> The Notes markers at frames 90 and 150, on the Animation track, are collapsed and blue.</p>
+</li>
+</ol>
+<p><a name="tooltip"></a></p>
+<h2 id="override-the-default-tooltip">Override the default tooltip</h2>
+<p>A tooltip is a brief two or three sentence description that displays when you hover the cursor over an interface element such as a property name, a button, or an option.</p>
+<p>If you hover the cursor over the default Timeline marker, the tooltip displays the name of its Signal asset. Because the custom Notes marker does not emit a signal, when you hover over the Notes marker, nothing displays.</p>
+<p>You can override the <code>MarkerDrawOptions</code> function in the <code>NotesMarkerEditor</code> script to use the tooltip to display the title of the Notes marker. To do this, follow these steps:</p>
+<ol>
+<li><p>In the Project window, select the <code>NotesMarkerEditor</code> script in the <code>Assets/Notes/Editor</code> folder and choose <strong>Open</strong> in the Inspector window.
+The script opens for editing in your <a href="https://docs.unity3d.com/Manual/Preferences.html#external-tools">External Script Editor</a>.</p>
+</li>
+<li><p>Override the <code>GetMarkerOptions</code> method by inserting the following code snippet after the <code>const float k_OverlayAlpha = 0.5f</code> assignment:</p>
+<pre><code class="lang-cs">// Use MarkerDrawOptions to override the marker's tooltip if the marker is of type NotesMarker.
+public override MarkerDrawOptions GetMarkerOptions(IMarker marker)
+{
+    // Check if marker is not NotesMarker and assign it to notes
+    if (marker is not NotesMarker notes)
+    {
+        return base.GetMarkerOptions(marker); // If not, return with no tooltip override
+    }
+
+    return new MarkerDrawOptions { tooltip = notes.title }; // If NotesMarker, replace tooltip with contents of notes.title
+}
+</code></pre>
+<p>The <a href="xref:UnityEditor.Timeline.MarkerEditor#UnityEditor_Timeline_MarkerEditor_GetMarkerOptions_UnityEngine_Timeline_IMarker_">GetMarkerOptions</a> method provides information about the marker through the MarkerEditor class.</p>
+</li>
+<li><p>Save the <code>NotesMarkerEditor</code> script, switch to the Unity Editor, and correct any errors or warnings.
+Errors and warnings are written to the Console window. To view the Console window, select <strong>Window</strong> &gt; <strong>General</strong> &gt; <strong>Console</strong>.</p>
+</li>
+<li><p>After the script is corrected and recompiled, when you hover over a Notes marker, the title of the Notes marker displays as a tooltip.
+By default, each Notes marker tooltip displays &quot;empty&quot;. You can change the default title in the <code>NotesMarker</code> script. The tooltip also displays for collapsed Notes markers.</p>
+</li>
+</ol>
+<p><a name="fullsrc"></a></p>
+<h2 id="check-your-scripts">Check your scripts</h2>
+<p>This topic provides the complete scripts that you created and modified during this workflow. Use these listings to ensure that you have entered and edited the following scripts correctly:</p>
+<ul>
+<li><a href="#allnotesmarker">NotesMarker script</a>.</li>
+<li><a href="#allnotesmarkereditor">NotesMarkerEditor script</a>.</li>
+</ul>
+<p>Use these listings to ensure that your</p>
+<p><a name="allnotesmarker"></a></p>
+<h3 id="notesmarker-script"><code>NotesMarker</code> script</h3>
+<p>The complete <code>NotesMarker.</code>cs script:</p>
+<pre><code class="lang-cs">using System.ComponentModel;
+using UnityEngine;
+using UnityEngine.Timeline;
+
+[CustomStyle(&quot;NotesStyle&quot;)]
+public class NotesMarker : Marker
+{
+  public string title = &quot;empty&quot;;
+  public Color color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+  public bool showLineOverlay = false;
+  [TextArea(10, 15)] public string note;
+}
+</code></pre>
+<p><a name="allnotesmarkereditor"></a></p>
+<h3 id="notesmarkereditor-script"><code>NotesMarkerEditor</code> script</h3>
+<p>The complete <code>NotesMarkerEditor.cs</code> file:</p>
+<pre><code class="lang-cs">using System;
+using UnityEditor;
+using UnityEditor.Timeline;
+using UnityEngine;
+using UnityEngine.Timeline;
+
+// Editor used by the Timeline window to customize the appearance of a NotesMarker
+
+[CustomTimelineEditor(typeof(NotesMarker))]
+public class NotesMarkerEditor : MarkerEditor
+{
+    // Set a constant for the transparency of overlays
+    const float k_OverlayAlpha = 0.5f;
+
+    // Use MarkerDrawOptions to override the marker's tooltip if the marker is of type NotesMarker.
+    public override MarkerDrawOptions GetMarkerOptions(IMarker marker)
+    {
+        // Check if marker is not NotesMarker and assign it to notes
+        if (marker is not NotesMarker notes)
+        {
+            return base.GetMarkerOptions(marker); // If not, return with no tooltip override
+        }
+
+        return new MarkerDrawOptions { tooltip = notes.title }; // If NotesMarker, replace tooltip with contents of notes.title
+    }
+
+    // Override this method to draw a vertical line over the Timeline window's contents.
+    public override void DrawOverlay(IMarker marker, MarkerUIStates uiState, MarkerOverlayRegion region)
+    {
+        // Check if marker is not NotesMarker. Set notes as local variable.
+        if (marker is not NotesMarker notes)
+        {
+            return; // If not, return without drawing an overlay
+        }
+
+        // If NotesMarker, check if Show Line Overlay property is true
+        if (notes.showLineOverlay)
+        {
+            DrawLineOverlay(notes.color, region); // if Show Line Overlay is true, call function to draw vertical line
+        }
+        else // If NotesMarker and Show Line Overlay is false, draw marker overlay
+        {
+            DrawMarkerOverlay(notes.color, region, uiState);
+        }
+    }
+
+    static void DrawLineOverlay(Color color, MarkerOverlayRegion region)
+    {
+        // Calculate a rectangle that uses the full timeline region's height and marker width
+        Rect overlayLineRect = new Rect(region.markerRegion.x,
+            region.timelineRegion.y,
+            region.markerRegion.width,
+            region.timelineRegion.height);
+
+        // Set the color with an extra alpha value adjustment, then draw the rectangle
+        Color overlayLineColor = new Color(color.r, color.g, color.b, color.a * k_OverlayAlpha);
+        EditorGUI.DrawRect(overlayLineRect, overlayLineColor);
+    }
+    static void DrawMarkerOverlay(Color color, MarkerOverlayRegion region, MarkerUIStates state)
+    {
+        // By default, set the height to the markerRegion's height
+        float markerHeight = region.markerRegion.height;
+
+        // If marker is collapsed, set the height to 2/3 the markerRegion's height
+        if (state.HasFlag(MarkerUIStates.Collapsed))
+        {
+            markerHeight = region.markerRegion.height / 1.5f;
+        }
+
+        // Calculate a rectangle that uses the marker region and variable markerHeight
+        Rect overlayMarkerRect = new Rect(region.markerRegion.x,
+            region.markerRegion.y,
+            region.markerRegion.width,
+            markerHeight);
+
+        Color overlayMarkerColor = new Color(color.r, color.g, color.b, color.a * k_OverlayAlpha);
+        EditorGUI.DrawRect(overlayMarkerRect, overlayMarkerColor);
+    }
+}
+</code></pre>
+<p><a name="more"></a></p>
+<h2 id="add-more-features">Add more features</h2>
+<p>The Notes marker is complete but you can continue adding features. Here are some suggestions:</p>
+<ul>
+<li>In the <a href="#marker-overlay">add a marker overlay</a> step, you draw a colored overlay for the Notes marker. This changes the background color of the Notes marker but does not draw the image using color. To do this, you could load each marker image as a 2D texture and draw these images with the marker's color. Consult the <a href="samp-custom-samples.html#annosamp">custom Annotation marker sample</a> for more on how to load 2D textures and draw them with a specific color.</li>
+<li>In the <a href="#marker-uss">customize the marker's appearance with USS</a> step, you use the <code>common.uss</code> file to define USS styles for both the light and dark <a href="https://docs.unity3d.com/Manual/Preferences.html#external-tools">Editor Theme</a>. To define specific styles for the light and dark themes, you can create USS files named <code>light.uss</code> and  <code>dark.uss</code>. These files, if present at the same path as <code>common.uss</code>, overrides styles with the same name and pseudo-states.</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

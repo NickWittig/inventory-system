@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Create a NavMesh | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Create a NavMesh | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="create-a-navmesh">Create a NavMesh</h1>
+
+<p>You need to create a <a href="Glossary.html#NavMesh" title="A mesh that Unity generates to approximate the walkable areas and obstacles in your environment for path finding and AI-controlled navigation."><strong>NavMesh</strong></a> to define an area of your scene within which a character can navigate intelligently.</p>
+<p>To create a NavMesh do the following:</p>
+<ol>
+<li>Select the scene geometry where you want to add the NavMesh.</li>
+<li>In the Inspector window, click <strong>Add Component</strong>.</li>
+<li>Select <strong>Navigation</strong> &gt; <strong>NavMesh Surface</strong>.</li>
+<li>In the NavMesh Surface component, specify the necessary settings. For details on the available settings, refer to <a href="NavMeshSurface.html">NavMesh Surface component</a>.</li>
+<li>When you are finished, click <strong>Bake</strong>. <br>
+The NavMesh is generated and displayed in the scene as a blue overlay on the underlying scene geometry whenever the Navigation window is open and visible.</li>
+</ol>
+<p>You can bake the NavMesh again to update it each time you make changes to either the scene geometry, the NavMesh <a href="NavMeshModifier.html">modifiers</a>, the properties of the <strong>NavMesh Surface</strong> component, or <a href="NavigationWindow.html#agents-tab">the settings</a> of <a href="NavMeshSurface.html#navmesh-surface-main-settings">the selected agent type</a>.</p>
+<p>To permanently remove a NavMesh from your project, do one of the following:</p>
+<ul>
+<li>Click the <strong>Clear</strong> button in the <strong>NavMesh Surface</strong> inspector.</li>
+<li>Delete <a href="NavMeshSurface.html#navmesh-surface-asset-file">the NavMesh asset file</a> in the <strong>Project</strong> window. If you choose to remove the <strong>NavMesh Surface</strong> component itself from the GameObject, the asset file is not deleted, even though the NavMesh is no longer present in the scene.</li>
+</ul>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="NavigationWindow.html">Navigation window</a></li>
+<li><a href="CreateNavMeshAgent.html">Create a NavMeshAgent</a></li>
+<li><a href="NavMeshSurface.html">NavMesh Surface component</a></li>
+<li><a href="AreasAndCosts.html">Navigation Areas and Costs</a></li>
+<li><a href="HeightMesh.html">Build a HeightMesh for Accurate Character Placement</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

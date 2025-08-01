@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Audio clip properties | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Audio clip properties | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="audio-clip-properties">Audio clip properties</h1>
+
+<p>Use the Inspector window to change the properties of an Audio clip. An Audio clip has two sets of properties:</p>
+<ul>
+<li><a href="#audiocommon">Common properties</a></li>
+<li><a href="#audioplayable">Audio Playable Asset properties</a></li>
+</ul>
+<p><a name="audiocommon"></a></p>
+<h2 id="common-properties">Common properties</h2>
+<p>The common properties of an Audio clip include its display name, clip timing, and blend curves.</p>
+<p><img src="images/insp-clip-audio-common.png" alt=""></p>
+<p><em>Inspector window when selecting an Audio clip in the Timeline window</em></p>
+<h3 id="display-name">Display Name</h3>
+<p>The name of the Audio clip displayed in the Timeline window. This is not the name of the audio file that Unity uses for the waveform. For information on audio file properties, consult <a href="#audioplayable">Audio Playable Asset properties</a>.</p>
+<h3 id="clip-timing-properties">Clip Timing properties</h3>
+<p>Use the <strong>Clip Timing</strong> properties to position, change the duration, change the ease-in and ease-out duration, and adjust the play speed of the Audio clip.</p>
+<p>Most timing properties are expressed in both seconds (<strong>s</strong>) and frames (<strong>f</strong>). When specifying seconds, a <strong>Clip Timing</strong> property accepts decimal values. When specifying frames, a property only accepts integer values. For example, if you attempt to enter 12.5 in a frames (f) field, the Inspector window sets the value to 12 frames.</p>
+<p>Depending on <a href="clip-overview.html">the selected Edit mode</a>, changing the <strong>Start</strong>, <strong>End</strong>, or <strong>Duration</strong> may blend, ripple, or replace Audio clips on the same track.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Property</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Start</strong></td>
+<td style="text-align: left;">The frame or time (in seconds) when the clip starts. Changing the Start property changes the position of the clip on its track in the Timeline asset.<br>Changing the Start also affects the End. Changing the Start sets the End to the new Start value plus the Duration.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>End</strong></td>
+<td style="text-align: left;">The frame or time (in seconds) when the clip ends.<br>Changing the End also affects the Start. Changing the End sets the Start to the new End value minus the Duration.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Duration</strong></td>
+<td style="text-align: left;">The duration of the clip in frames or seconds.<br>Changing the Duration also affects the End. Changing the Duration sets the End to the Start value plus the new Duration.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Ease In Duration</strong><br>or<br><strong>Blend In Duration</strong></td>
+<td style="text-align: left;">Sets the number of seconds or frames that it takes for the Audio clip to ease in (fade in).<br><br>If the beginning of the clip overlaps and blends with another clip, the name of this property changes to <strong>Blend In Duration</strong> and it displays the duration of the crossfade between Audio clips. The <strong>Blend In Duration</strong> can only be edited in the Content view. Consult <a href="clip-blend.html">Blending clips</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Ease Out Duration</strong><br>or<br><strong>Blend Out Duration</strong></td>
+<td style="text-align: left;">Sets the number of seconds or frames that it takes for the Audio clip to ease out (fade out).<br><br>If the end of the clip overlaps and blends with another Audio clip, the name of this property changes to <strong>Blend Out Duration</strong> and it displays the duration of the crossfade between Audio clips. The <strong>Blend Out Duration</strong> can only be edited in the Content view.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Clip In</strong></td>
+<td style="text-align: left;">Sets the offset for when the source waveform starts playing. Use Clip In to skip silence at the beginning of a source waveform. For example, if the source waveform has 2 seconds of silence before the theme music begins, set Clip In to 2 seconds to skip the silence.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Speed Multiplier</strong></td>
+<td style="text-align: left;">A multiplier that effects the playback speed of the Audio clip. This value must be greater than 0. Changing this value changes the duration of the Audio clip. You cannot use this property to play an Audio clip backwards.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="blend-curves">Blend Curves</h3>
+<p>Use the <strong>Blend Curves</strong> to customize the fade-in and fade-out between the outgoing and incoming Audio clips. Consult <a href="clip-blend.html">Blending clips</a> for details on how to blend clips and customize blend curves.</p>
+<p>When easing-in or easing-out Audio clips, use the <strong>Blend Curves</strong> to customize the curve that fades-in or fades-out an Audio clip. Consult <a href="clip-ease.html">Easing-in and Easing-out clips</a> for details.</p>
+<p><a name="audioplayable"></a></p>
+<h2 id="audio-playable-asset-properties">Audio Playable Asset properties</h2>
+<p>Use the <strong>Audio Playable Asset</strong> properties to select the Audio file used by the Audio clip, set whether the Audio clip loops, and to adjust its volume.</p>
+<p><img src="images/insp-clip-audio-playable.png" alt=""></p>
+<p><em>Inspector window when selecting an Audio clip in the Timeline window</em></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Property</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Clip</strong></td>
+<td style="text-align: left;">This is the name of the audio file associated with the Audio clip.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Loop</strong></td>
+<td style="text-align: left;">Sets how Timeline handles the extra clip area when the Audio clip is longer than its source audio file (specified by <strong>Clip</strong>).<br><br>Enable <strong>Loop</strong> to loop from the start of the source audio file. Each full loop is labelled sequentially as L1, L2, L3, and so on.<br><br>Disable <strong>Loop</strong> to play the audio file once. The label <code>Hold</code> displays in the extra clip area.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Volume</strong></td>
+<td style="text-align: left;">The volume for the Audio clip. The value is a number between 0 and 1 (default). When changed from its default value, the volume for the Audio clip is calculated based on the <a href="insp-trk-audio.html">Audio track volume</a>, this volume value, and the volume of the [Audio Source]<a href="https://docs.unity3d.com/Manual/class-AudioSource.html"></a> bound to the Audio track.</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

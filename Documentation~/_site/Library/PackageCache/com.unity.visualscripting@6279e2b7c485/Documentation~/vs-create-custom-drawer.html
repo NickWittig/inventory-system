@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Create a custom PropertyDrawer for a custom type | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Create a custom PropertyDrawer for a custom type | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="create-a-custom-propertydrawer-for-a-custom-type">Create a custom PropertyDrawer for a custom type</h1>
+
+<p>If you want to use a custom type from a custom class in Visual Scripting, and you don't have access to its source code, you must create a custom PropertyDrawer.</p>
+<p>You can't assign a value to a custom type inside the Editor or initialize the value for a variable with a custom type if it doesn't have a PropertyDrawer.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The class for your custom type must have the <code>[Serializable]</code> tag in its source code to create a custom PropertyDrawer.</p>
+</div>
+<p>To create a custom PropertyDrawer:</p>
+<ol>
+<li><p>Go to <strong>Window</strong> &gt; <strong>General</strong> &gt; <strong>Project</strong>, or press Ctrl+5 (macOS: Cmd+5) to open the <a href="https://docs.unity3d.com/Manual/ProjectView.html">Project window</a>.</p>
+</li>
+<li><p>Go to <strong>Create</strong> &gt; <strong>C# Script</strong>.</p>
+</li>
+<li><p>Enter a name, such as <code>CounterDrawer</code>, for the new script file.</p>
+</li>
+<li><p>Press Enter.</p>
+</li>
+<li><p>Double-click the new C# file. Unity opens the file in the program you specified in your preferences, under <strong>External Script Editor</strong>.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>For more information on script editors in Unity, see the <a href="https://docs.unity3d.com/Manual/ScriptingToolsIDEs.html">Integrated development environment (IDE) support</a> in the Unity User Manual.</p>
+</div>
+</li>
+<li><p>Remove the <code>Start</code> and <code>Update</code> functions and their comments from the script file.</p>
+</li>
+<li><p>Above the line that defines your new <code>public class</code>, add a <code>[CustomPropertyDrawer]</code> attribute.</p>
+</li>
+<li><p>In the parameters for the <code>[CustomPropertyDrawer]</code> attribute, specify a <code>type of</code> parameter with the name of the type you want to assign to this PropertyDrawer, exactly as it appears in Unity.</p>
+</li>
+<li><p>Change the <code>MonoBehaviour</code> class at the end of your <code>public class</code> definition to <code>PropertyDrawer</code>.</p>
+</li>
+</ol>
+<div class="NOTE">
+<h5>Note</h5>
+<p>After you create a custom PropertyDrawer, you must generate the required property provider scripts from your Visual Scripting Project Settings. For more information, see <a href="vs-configuration.html">Configure project settings</a>.</p>
+</div>
+<p>The following is an example of a finished PropertyDrawer script:</p>
+<pre><code class="lang-csharp">    using UnityEditor;
+    using UnityEngine;
+    [CustomPropertyDrawer(type of(&lt;Counter&gt;))]
+    public class CounterDrawer : PropertyDrawer
+    {
+        // Draw the property inside the given rect
+        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+        {
+            // Using BeginProperty / EndProperty on the parent property means that
+            // prefab override logic works on the entire property.
+            EditorGUI.BeginProperty(position, label, property);
+    
+            // Draw label
+            position = EditorGUI.PrefixLabel(position, GUIUtility.GetControlID(FocusType.Passive), label);
+    
+            // Don't indent child fields
+            var indent = EditorGUI.indentLevel;
+            EditorGUI.indentLevel = 0;
+    
+            // Calculate rects
+            var amountRect = new Rect(position.x, position.y, 30, position.height);
+            var unitRect = new Rect(position.x + 35, position.y, 50, position.height);
+            var nameRect = new Rect(position.x + 90, position.y, position.width - 90, position.height);
+    
+            // Draw fields - passs GUIContent.none to each so they are drawn without labels
+            EditorGUI.PropertyField(amountRect, property.FindPropertyRelative(&quot;amount&quot;), GUIContent.none);
+            EditorGUI.PropertyField(unitRect, property.FindPropertyRelative(&quot;unit&quot;), GUIContent.none);
+            EditorGUI.PropertyField(nameRect, property.FindPropertyRelative(&quot;name&quot;), GUIContent.none);
+    
+            // Set indent back to what it was
+            EditorGUI.indentLevel = indent;
+    
+            EditorGUI.EndProperty();
+        }
+    }
+</code></pre>
+<p>To create the rest of your custom PropertyDrawer, you must decide what fields you must display, and how you want them to display in the Editor's interface. For example, you might want to use the UIElements module to create your PropertyDrawer, or decide to use Unity's IMGUI module.</p>
+<p>For more information on how to create and design a custom PropertyDrawer, see the <a href="https://docs.unity3d.com/ScriptReference/PropertyDrawer.html">PropertyDrawer class</a> in the main Unity Scripting API and its related methods.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

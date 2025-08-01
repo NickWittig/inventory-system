@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Collection types | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Collection types | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="collection-types">Collection types</h1>
+
+<p>The collection types in this package extend and compliment the collections available in the Unity engine. This section outlines some key collection types you might want to use in your jobs and Burst compiled code.</p>
+<h2 id="array-like-types">Array-like types</h2>
+<p>The array-like types in this package extend the key array types in the <a href="https://docs.unity3d.com/ScriptReference/UnityEngine.CoreModule"><code>UnityEngine.CoreModule</code></a> namespace, which include <a href="xref:Unity.Collections.NativeArray%601"><code>Unity.Collections.NativeArray&lt;T&gt;</code></a> and <a href="xref:Unity.Collections.NativeSlice%601"><code>Unity.Collections.NativeSlice&lt;T&gt;</code></a>.  This package has the following array-like types:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Data structure</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="xref:Unity.Collections.NativeList%601"><code>NativeList&lt;T&gt;</code></a></td>
+<td>A resizable list. Has thread and disposal safety checks.</td>
+</tr>
+<tr>
+<td><a href="xref:Unity.Collections.LowLevel.Unsafe.UnsafeList%601"><code>UnsafeList&lt;T&gt;</code></a></td>
+<td>A resizable list.</td>
+</tr>
+<tr>
+<td><a href="xref:Unity.Collections.LowLevel.Unsafe.UnsafePtrList%601"><code>UnsafePtrList&lt;T&gt;</code></a></td>
+<td>A resizable list of pointers.</td>
+</tr>
+<tr>
+<td><a href="xref:Unity.Collections.NativeStream"><code>NativeStream</code></a></td>
+<td>A set of append-only, untyped buffers. Has thread and disposal safety checks.</td>
+</tr>
+<tr>
+<td><a href="xref:Unity.Collections.LowLevel.Unsafe.UnsafeStream"><code>UnsafeStream</code></a></td>
+<td>A set of append-only, untyped buffers.</td>
+</tr>
+<tr>
+<td><a href="xref:Unity.Collections.LowLevel.Unsafe.UnsafeAppendBuffer"><code>UnsafeAppendBuffer</code></a></td>
+<td>An append-only untyped buffer.</td>
+</tr>
+<tr>
+<td><a href="xref:Unity.Collections.NativeQueue%601"><code>NativeQueue&lt;T&gt;</code></a></td>
+<td>A resizable queue. Has thread and disposal safety checks.</td>
+</tr>
+<tr>
+<td><a href="xref:Unity.Collections.NativeRingQueue%601"><code>NativeRingQueue&lt;T&gt;</code></a></td>
+<td>A fixed-size circular buffer. Has disposal safety checks.</td>
+</tr>
+<tr>
+<td><a href="xref:Unity.Collections.LowLevel.Unsafe.UnsafeRingQueue%601"><code>UnsafeRingQueue&lt;T&gt;</code></a></td>
+<td>A fixed-size circular buffer.</td>
+</tr>
+<tr>
+<td><a href="xref:Unity.Collections.FixedList32Bytes%601"><code>FixedList32Bytes&lt;T&gt;</code></a></td>
+<td>A 32-byte list, which includes 2 bytes of overhead, so 30 bytes are available for storage. Max capacity depends upon <code>T</code>. <code>FixedList32Bytes&lt;T&gt;</code> has variants of larger sizes:<br>- <code>FixedList64Bytes&lt;T&gt;</code><br>- <code>FixedList128Bytes&lt;T&gt;</code><br>- <code>FixedList512Bytes&lt;T&gt;</code><br>- <code>FixedList4096Bytes&lt;T&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p>There aren't any multi-dimensional array types, but you can pack all the data into a single dimension. For example, for an <code>int[4][5]</code> array, use an <code>int[20]</code> array instead (because <code>4 * 5</code> is <code>20</code>).</p>
+<p>Additionally, there are various extension methods in <a href="xref:Unity.Collections.NativeArrayExtensions"><code>NativeArrayExtensions</code></a>, <a href="xref:Unity.Collections.ListExtensions"><code>ListExtensions</code></a>, and <a href="xref:Unity.Collections.NativeSortExtension"><code>NativeSortExtension</code></a>.</p>
+<h2 id="map-and-set-types">Map and set types</h2>
+<p>Use these collection types in single threads when there is a low memory overhead:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Data structure</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="xref:Unity.Collections.NativeHashMap%602"><code>NativeHashMap&lt;TKey, TValue&gt;</code></a></td>
+<td>An unordered associative array of key-value pairs. Has thread and disposal safety checks.</td>
+</tr>
+<tr>
+<td><a href="xref:Unity.Collections.LowLevel.Unsafe.UnsafeHashMap%602"><code>UnsafeHashMap&lt;TKey, TValue&gt;</code></a></td>
+<td>An unordered associative array of key-value pairs.</td>
+</tr>
+<tr>
+<td><a href="xref:Unity.Collections.NativeHashSet%601"><code>NativeHashSet&lt;T&gt;</code></a></td>
+<td>A set of unique values. Has thread and disposal safety checks.</td>
+</tr>
+<tr>
+<td><a href="xref:Unity.Collections.LowLevel.Unsafe.UnsafeHashSet%601"><code>UnsafeHashSet&lt;T&gt;</code></a></td>
+<td>A set of unique values.</td>
+</tr>
+</tbody>
+</table>
+<p>Use these collection types in multithreaded situations, when there is a high memory overhead.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Data structure</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="xref:Unity.Collections.NativeParallelHashMap%602"><code>NativeParallelHashMap&lt;TKey, TValue&gt;</code></a></td>
+<td>An unordered associative array of key-value pairs. Has thread and disposal safety checks.</td>
+</tr>
+<tr>
+<td><a href="xref:Unity.Collections.LowLevel.Unsafe.UnsafeParallelHashMap%602"><code>UnsafeParallelHashMap&lt;TKey, TValue&gt;</code></a></td>
+<td>An unordered associative array of key value pairs.</td>
+</tr>
+<tr>
+<td><a href="xref:Unity.Collections.NativeParallelHashSet%601"><code>NativeParallelHashSet&lt;T&gt;</code></a></td>
+<td>A set of unique values. Has thread and disposal safety checks.</td>
+</tr>
+<tr>
+<td><a href="xref:Unity.Collections.LowLevel.Unsafe.UnsafeParallelHashSet%601"><code>UnsafeParallelHashSet&lt;T&gt;</code></a></td>
+<td>A set of unique values.</td>
+</tr>
+<tr>
+<td><a href="xref:Unity.Collections.NativeParallelMultiHashMap%602"><code>NativeParallelMultiHashMap&lt;TKey, TValue&gt;</code></a></td>
+<td>An unordered associative array of key value pairs. The keys don't have to be unique. For example, two pairs can have equal keys. Has thread and disposal safety checks.</td>
+</tr>
+<tr>
+<td><a href="xref:Unity.Collections.LowLevel.Unsafe.UnsafeParallelMultiHashMap%602"><code>UnsafeParallelMultiHashMap&lt;TKey, TValue&gt;</code></a></td>
+<td>An unordered associative array of key value pairs. The keys don't have to be unique. For example, two pairs can have equal keys.</td>
+</tr>
+</tbody>
+</table>
+<p>Additionally, there are various extension methods in <a href="xref:Unity.Collections.NotBurstCompatible.Extensions"><code>NotBurstCompatible.Extensions</code></a> and <a href="xref:Unity.Collections.LowLevel.Unsafe.NotBurstCompatible.Extensions"><code>Unsafe.NotBurstCompatible.Extensions</code></a>.</p>
+<h2 id="bit-arrays-and-bit-fields">Bit arrays and bit fields</h2>
+<p>The following are arrays of bits:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Data structure</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="xref:Unity.Collections.BitField32"><code>BitField32</code></a></td>
+<td>A fixed-size array of 32 bits.</td>
+</tr>
+<tr>
+<td><a href="xref:Unity.Collections.BitField64"><code>BitField64</code></a></td>
+<td>A fixed-size array of 64 bits.</td>
+</tr>
+<tr>
+<td><a href="xref:Unity.Collections.NativeBitArray"><code>NativeBitArray</code></a></td>
+<td>An arbitrary sized array of bits. Has thread and disposal safety checks.</td>
+</tr>
+<tr>
+<td><a href="xref:Unity.Collections.LowLevel.Unsafe.UnsafeBitArray"><code>UnsafeBitArray</code></a></td>
+<td>An arbitrary-sized array of bits.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="string-types">String types</h2>
+<p>The following are string types:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Data structure</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="xref:Unity.Collections.NativeText"><code>NativeText</code></a></td>
+<td>A UTF-8 encoded string. Mutable and resizable. Has thread and disposal safety checks.</td>
+</tr>
+<tr>
+<td><a href="xref:Unity.Collections.LowLevel.Unsafe.UnsafeText"><code>UnsafeText</code></a></td>
+<td>A UTF-8 encoded string. Mutable and resizable.</td>
+</tr>
+<tr>
+<td><a href="xref:Unity.Collections.FixedString32Bytes"><code>FixedString32Bytes</code></a></td>
+<td>A 32-byte UTF-8 encoded string, including 3 bytes of overhead, so 29 bytes available for storage.</td>
+</tr>
+<tr>
+<td><a href="xref:Unity.Collections.FixedString64Bytes"><code>FixedString64Bytes</code></a></td>
+<td>A 64-byte UTF-8 encoded string, including 3 bytes of overhead, so 61 bytes available for storage.</td>
+</tr>
+<tr>
+<td><a href="xref:Unity.Collections.FixedString128Bytes"><code>FixedString128Bytes</code></a></td>
+<td>A 128-byte UTF-8 encoded string, including 3 bytes of overhead, so 125 bytes available for storage.</td>
+</tr>
+<tr>
+<td><a href="xref:Unity.Collections.FixedString512Bytes"><code>FixedString512Bytes</code></a></td>
+<td>A 512-byte UTF-8 encoded string, including 3 bytes of overhead, so 509 bytes available for storage.</td>
+</tr>
+<tr>
+<td><a href="xref:Unity.Collections.FixedString4096Bytes"><code>FixedString4096Bytes</code></a></td>
+<td>A 4096-byte UTF-8 encoded string, including 3 bytes of overhead, so 4093 bytes available for storage.</td>
+</tr>
+</tbody>
+</table>
+<p>There are further extension methods in <a href="xref:Unity.Collections.FixedStringMethods"><code>FixedStringMethods</code></a>.</p>
+<h2 id="other-types">Other types</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Data structure</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="xref:Unity.Collections.NativeReference%601"><code>NativeReference&lt;T&gt;</code></a></td>
+<td>A reference to a single value. Functionally equivalent to an array of length 1. Has thread and disposal safety checks.</td>
+</tr>
+<tr>
+<td><a href="xref:Unity.Collections.LowLevel.Unsafe.UnsafeAtomicCounter32"><code>UnsafeAtomicCounter32</code></a></td>
+<td>A 32-bit atomic counter.</td>
+</tr>
+<tr>
+<td><a href="xref:Unity.Collections.LowLevel.Unsafe.UnsafeAtomicCounter64"><code>UnsafeAtomicCounter64</code></a></td>
+<td>A 64-bit atomic counter.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="enumerators">Enumerators</h2>
+<p>Most of the collections have a <code>GetEnumerator</code> method, which returns an implementation of <code>IEnumerator&lt;T&gt;</code>. The enumerator's <code>MoveNext</code> method advances its <code>Current</code> property to the next element:</p>
+<pre><code class="lang-cs" name="enumerator">NativeList&lt;int&gt; nums = new NativeList&lt;int&gt;(10, Allocator.Temp);
+
+// Calculate the sum of all elements in the list.
+int sum = 0;
+var enumerator = nums.GetEnumerator();
+
+// The first MoveNext call advances the enumerator to the first element.
+// MoveNext returns false when the enumerator has advanced past the last element.
+while (enumerator.MoveNext())
+{
+    sum += enumerator.Current;
+}
+
+// The enumerator is no longer valid to use after the array is disposed.
+nums.Dispose();
+</code></pre>
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

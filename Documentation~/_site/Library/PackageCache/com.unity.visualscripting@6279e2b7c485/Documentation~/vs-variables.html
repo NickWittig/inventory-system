@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Variables | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Variables | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="variables">Variables</h1>
+
+<p>Variables act as a container for a piece of information that might change as an application runs. To define a variable, you need to provide:</p>
+<ul>
+<li>A name for the variable, such as <code>MyVariable</code>.</li>
+<li>The type of data the variable holds, such as <code>int</code> or <code>string</code> .</li>
+<li>A value for the variable, such as <code>1</code> or <code>cat</code>.</li>
+</ul>
+<p>In Visual Scripting, you can give a node the name of a variable, instead of a fixed value or text. Your Script Graph uses the variable's name to access its value. For example, you can use a variable called <code>Count</code>, with an <code>int</code> type and a value of <code>1</code>. You can use an Add node in Visual Scripting to add 1 to the value of <code>Count</code>, and save the new value in <code>Count</code> to use again in another part of your Script Graph, or a different Script Graph.</p>
+<p>Variables also have scopes. A variable's scope determines what parts of your Script Graph can access which variables to read or modify their values. The scope can also decide whether another Script Graph can access a variable.</p>
+<p>You can create and manage variables in a graph from the Blackboard. For more information on the Blackboard, see <a href="vs-interface-overview.html#the-blackboard">The Blackboard</a>. For more information on how to use variables, see <a href="vs-add-variable-graph.html">Create and add a variable to a Script Graph</a>.</p>
+<h2 id="variable-scopes">Variable scopes</h2>
+<p>Each variable scope has its own tab on the Blackboard, except Flow variables. Visual Scripting has six variable scopes.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Variable Scope</strong></th>
+<th><strong>Property</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Flow Variables</strong></td>
+<td>Flow variables are like local variables in a scripting language: they have the smallest scope. You can't use a Flow variable if:<br>
+<ul>
+<li>The Flow variable doesn’t have a direct or indirect connection to the nodes where you want to use its value. The node where the variable is defined must be a part of the logical flow where you want to use its value.</li>
+<li>The Flow variable hasn’t been set before Visual Scripting tries to run any logic that needs its value. The node where the variable is defined must come before any other logic in your graph.</li>
+</ul>
+You can't create a Flow variable from the Blackboard - you can create one with a Set Variable node and set the <strong>Scope</strong> to <strong>Flow</strong>.
+</td>
+</tr>
+<tr>
+<td><strong>Graph Variables</strong></td>
+<td>Graph variables belong to a specific Script Graph. You can't access or modify Graph variables outside the specific Script Graph where they're defined. <br>You also can't create a new Graph variable unless you have a Script Graph open in the Graph window.</td>
+</tr>
+<tr>
+<td><strong>Object Variables</strong></td>
+<td>Object variables belong to a specific GameObject. You can edit an Object variable from the Unity Editor's Inspector for the GameObject, and the Object variable is accessible in all graphs attached to the GameObject. <br>You can't create a new Object variable unless you've opened your Script Graph from a Script Machine component on a GameObject.</td>
+</tr>
+<tr>
+<td><strong>Scene Variables</strong></td>
+<td>Scene variables belong to the current scene. Visual Scripting creates a new GameObject in your scene to hold references to your Scene variables. You can access your Scene variables from any Script Graph attached to a different GameObject in a single scene, but can't access a Scene variable in another scene in your project.</td>
+</tr>
+<tr>
+<td><strong>App or Application Variables</strong></td>
+<td>Application variables belong to your entire application. You can access an Application variable across multiple scenes while your application runs, and the Application variable would hold your changes. <br>Any values held in an Application variable reset to their default values after your application quits.</td>
+</tr>
+<tr>
+<td><strong>Saved Variables</strong></td>
+<td>Saved variables are like Application variables, but they persist even after your application quits. You can use a Saved variable as a simple but powerful save system. Unity stores Saved variables in its <code>PlayerPrefs</code>, and they don't refer to Unity objects, like GameObjects and components. For more information on <code>PlayerPrefs</code>, see <a href="https://docs.unity3d.com/ScriptReference/PlayerPrefs.html">PlayerPrefs</a> in the Unity User Manual Scripting Reference.</td>
+</tr>
+</tbody>
+</table>
+<div class="NOTE">
+<h5>Note</h5>
+<p>You can still access the Blackboard and create new variables with a State Graph open in the Graph window, but you can't add a variable node and use it inside a State Graph.</p>
+</div>
+<p>For Saved variables, there are two additional tabs on the Blackboard: <strong>Initial</strong> and <strong>Saved</strong>:</p>
+<ul>
+<li><p>Values defined in the <strong>Initial</strong> tab apply to all new instances of your application as default values.</p>
+</li>
+<li><p>Values defined in the <strong>Saved</strong> tab are the last modified values for those variables, based on when you last ran your application. You can edit them manually, or delete the values to reset them to the values defined in the <strong>Initial</strong> tab.</p>
+</li>
+</ul>
+<p><img src="images/vs-saved-variables.png" alt="An image that displays a comparison between the Initial and Saved tabs for a set of defined Saved variables. The values for the Saved variables are different across the Initial and Saved tabs."></p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Touch support | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Touch support | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="input-system-touch">
+<h1 id="touch-support">Touch support</h1>
+
+<ul>
+<li><a href="#touch-support">Touch support</a>
+<ul>
+<li><a href="#touchscreen-device"><code>Touchscreen</code> Device</a>
+<ul>
+<li><a href="#controls">Controls</a></li>
+<li><a href="#using-touch-with-actions">Using touch with Actions</a></li>
+</ul>
+</li>
+<li><a href="#enhancedtouchtouch-class"><code>EnhancedTouch.Touch</code> Class</a></li>
+<li><a href="#touch-simulation">Touch Simulation</a></li>
+<li><a href="#reading-all-touches">Reading all touches</a></li>
+</ul>
+</li>
+</ul>
+<p>Touch support is divided into:</p>
+<ul>
+<li>low-level support implemented in the <a href="#touchscreen-device"><code>Touchscreen</code></a> class.</li>
+<li>high-level support implemented in the <a href="#enhancedtouchtouch-class"><code>EnhancedTouch.Touch</code></a> class.</li>
+</ul>
+<blockquote>
+<p><strong>Note</strong>: You should not use <a href="#touchscreen-device"><code>Touchscreen</code></a> for polling. If you want to read out touches similar to <a href="https://docs.unity3d.com/ScriptReference/Input-touches.html"><code>UnityEngine.Input.touches</code></a>, see <a href="#enhancedtouchtouch-class"><code>EnhancedTouch</code></a>. If you read out touch state from <a href="#touchscreen-device"><code>Touchscreen</code></a> directly inside of the <code>Update</code> or <code>FixedUpdate</code> methods, your app will miss changes in touch state.</p>
+</blockquote>
+<p>Touch input is supported on Android, iOS, Windows, and the Universal Windows Platform (UWP).</p>
+<blockquote>
+<p><strong>Note</strong>: To test your app on iOS or Android in the editor with touch input from your mobile device, you can use the Unity Remote as described <a href="Debugging.html#unity-remote">here</a>.</p>
+</blockquote>
+<h2 id="touchscreen-device"><code>Touchscreen</code> Device</h2>
+<p>At the lowest level, a touch screen is represented by an <a href="../api/UnityEngine.InputSystem.Touchscreen.html"><code>InputSystem.Touchscreen</code></a> Device which captures the touch screen's raw state. Touch screens are based on the <a href="Pointers.html"><code>Pointer</code></a> layout.</p>
+<p>To query the touch screen that was last used or last added, use <a href="../api/UnityEngine.InputSystem.Touchscreen.html#UnityEngine_InputSystem_Touchscreen_current"><code>Touchscreen.current</code></a>.</p>
+<h3 id="controls">Controls</h3>
+<p>Additional to the <a href="Pointers.html#controls">Controls inherited from <code>Pointer</code></a>, touch screen Devices implement the following Controls:</p>
+<table>
+<thead>
+<tr>
+<th>Control</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.Touchscreen.html#UnityEngine_InputSystem_Touchscreen_primaryTouch"><code>primaryTouch</code></a></td>
+<td><a href="../api/UnityEngine.InputSystem.Controls.TouchControl.html"><code>TouchControl</code></a></td>
+<td>A touch Control that represents the primary touch of the screen. The primary touch drives the <a href="Pointers.html"><code>Pointer</code></a> representation on the Device.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.Touchscreen.html#UnityEngine_InputSystem_Touchscreen_touches"><code>touches</code></a></td>
+<td><a href="../api/UnityEngine.InputSystem.Controls.TouchControl.html"><code>ReadOnlyArray&lt;TouchControl&gt;</code></a></td>
+<td>An array of touch Controls that represents all the touches on the Device.</td>
+</tr>
+</tbody>
+</table>
+<p>A touch screen Device consists of multiple <a href="../api/UnityEngine.InputSystem.Controls.TouchControl.html"><code>TouchControls</code></a>. Each of these represents a potential finger touching the Device. The <a href="../api/UnityEngine.InputSystem.Touchscreen.html#UnityEngine_InputSystem_Touchscreen_primaryTouch"><code>primaryTouch</code></a> Control represents the touch which is currently driving the <a href="Pointers.html"><code>Pointer</code></a> representation, and which should be used to interact with the UI. This is usually the first finger that touches the screen.</p>
+<p><a href="../api/UnityEngine.InputSystem.Touchscreen.html#UnityEngine_InputSystem_Touchscreen_primaryTouch"><code>primaryTouch</code></a> is always identical to one of the entries in the <a href="../api/UnityEngine.InputSystem.Touchscreen.html#UnityEngine_InputSystem_Touchscreen_touches"><code>touches</code></a> array. The <a href="../api/UnityEngine.InputSystem.Touchscreen.html#UnityEngine_InputSystem_Touchscreen_touches"><code>touches</code></a> array contains all the touches that the system can track. This array has a fixed size, regardless of how many touches are currently active. If you need an API that only represents active touches, see the higher-level <a href="#enhancedtouchtouch-class"><code>EnhancedTouch.Touch</code> class</a>.</p>
+<p>Each <a href="../api/UnityEngine.InputSystem.Controls.TouchControl.html"><code>TouchControl</code></a> on the Device, including <a href="../api/UnityEngine.InputSystem.Touchscreen.html#UnityEngine_InputSystem_Touchscreen_primaryTouch"><code>primaryTouch</code></a>, is made up of the following child Controls:</p>
+<table>
+<thead>
+<tr>
+<th>Control</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.Controls.TouchControl.html#UnityEngine_InputSystem_Controls_TouchControl_position"><code>position</code></a></td>
+<td><a href="../api/UnityEngine.InputSystem.Controls.Vector2Control.html"><code>Vector2Control</code></a></td>
+<td>Absolute position on the touch surface.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.Controls.TouchControl.html#UnityEngine_InputSystem_Controls_TouchControl_delta"><code>delta</code></a></td>
+<td><a href="../api/UnityEngine.InputSystem.Controls.Vector2Control.html"><code>Vector2Control</code></a></td>
+<td>The difference in <code>position</code> since the last frame.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.Controls.TouchControl.html#UnityEngine_InputSystem_Controls_TouchControl_startPosition"><code>startPosition</code></a></td>
+<td><a href="../api/UnityEngine.InputSystem.Controls.Vector2Control.html"><code>Vector2Control</code></a></td>
+<td>The <code>position</code> where the finger first touched the surface.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.Controls.TouchControl.html#UnityEngine_InputSystem_Controls_TouchControl_startTime"><code>startTime</code></a></td>
+<td><a href="../api/UnityEngine.InputSystem.Controls.IntegerControl.html"><code>DoubleControl</code></a></td>
+<td>The time when the finger first touched the surface.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.Controls.TouchControl.html#UnityEngine_InputSystem_Controls_TouchControl_press"><code>press</code></a></td>
+<td><a href="../api/UnityEngine.InputSystem.Controls.ButtonControl.html"><code>ButtonControl</code></a></td>
+<td>Whether the finger is pressed down.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.Controls.TouchControl.html#UnityEngine_InputSystem_Controls_TouchControl_pressure"><code>pressure</code></a></td>
+<td><a href="../api/UnityEngine.InputSystem.Controls.AxisControl.html"><code>AxisControl</code></a></td>
+<td>Normalized pressure with which the finger is currently pressed while in contact with the pointer surface.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.Controls.TouchControl.html#UnityEngine_InputSystem_Controls_TouchControl_radius"><code>radius</code></a></td>
+<td><a href="../api/UnityEngine.InputSystem.Controls.Vector2Control.html"><code>Vector2Control</code></a></td>
+<td>The size of the area where the finger touches the surface.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.Controls.TouchControl.html#UnityEngine_InputSystem_Controls_TouchControl_touchId"><code>touchId</code></a></td>
+<td><a href="../api/UnityEngine.InputSystem.Controls.IntegerControl.html"><code>IntegerControl</code></a></td>
+<td>The ID of the touch. This allows you to distinguish individual touches.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.Controls.TouchControl.html#UnityEngine_InputSystem_Controls_TouchControl_phase"><code>phase</code></a></td>
+<td><a href="../api/UnityEngine.InputSystem.Controls.TouchPhaseControl.html"><code>TouchPhaseControl</code></a></td>
+<td>A Control that reports the current  <a href="../api/UnityEngine.InputSystem.TouchPhase.html"><code>TouchPhase</code></a> of the touch.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.Controls.TouchControl.html#UnityEngine_InputSystem_Controls_TouchControl_tap"><code>tap</code></a></td>
+<td><a href="../api/UnityEngine.InputSystem.Controls.ButtonControl.html"><code>ButtonControl</code></a></td>
+<td>A button Control that reports whether the OS recognizes a tap gesture from this touch.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.Controls.TouchControl.html#UnityEngine_InputSystem_Controls_TouchControl_tapCount"><code>tapCount</code></a></td>
+<td><a href="../api/UnityEngine.InputSystem.Controls.ButtonControl.html"><code>IntegerControl</code></a></td>
+<td>Reports the number of consecutive <a href="../api/UnityEngine.InputSystem.Controls.TouchControl.html#UnityEngine_InputSystem_Controls_TouchControl_tap"><code>tap</code></a> reports from the OS. You can use this to detect double- and multi-tap gestures.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="using-touch-with-actions">Using touch with Actions</h3>
+<p>You can use touch input with Actions, like any other <a href="Pointers.html"><code>Pointer</code></a> Device. To do this, <a href="ActionBindings.html">bind</a> to the <a href="Pointers.html#controls">pointer Controls</a>, like <code>&lt;Pointer&gt;/press</code> or <code>&lt;Pointer&gt;/delta</code>. This gets input from the primary touch, and any other non-touch pointer Devices.</p>
+<p>However, if you want to get input from multiple touches in your Action, you can bind to individual touches by using Bindings like <code>&lt;Touchscreen&gt;/touch3/press</code>. Alternatively, use a wildcard Binding to bind one Action to all touches: <code>&lt;Touchscreen&gt;/touch*/press</code>.</p>
+<p>If you bind a single Action to input from multiple touches, you should set the Action type to <a href="RespondingToActions.html#pass-through">pass-through</a> so the Action gets callbacks for each touch, instead of just one.</p>
+<h2 id="enhancedtouchtouch-class"><code>EnhancedTouch.Touch</code> Class</h2>
+<p>The <a href="../api/UnityEngine.InputSystem.EnhancedTouch.Touch.html"><code>EnhancedTouch.Touch</code></a> class provides a polling API for touches similar to <a href="https://docs.unity3d.com/ScriptReference/Input-touches.html"><code>UnityEngine.Input.touches</code></a>. You can use it to query touches on a frame-by-frame basis.</p>
+<p>Because the API comes with a certain overhead due to having to record touches as they happen, you must explicitly enable it. To do this, call <a href="../api/UnityEngine.InputSystem.EnhancedTouch.EnhancedTouchSupport.html#UnityEngine_InputSystem_EnhancedTouch_EnhancedTouchSupport_Enable"><code>EnhancedTouchSupport.Enable()</code></a>:</p>
+<pre><code>    using UnityEngine.InputSystem.EnhancedTouch;
+    // ...
+    // Can be called from MonoBehaviour.Awake(), for example. Also from any
+    // RuntimeInitializeOnLoadMethod code.
+    EnhancedTouchSupport.Enable();
+</code></pre>
+<blockquote>
+<p><strong>Note</strong>: <a href="../api/UnityEngine.InputSystem.Touchscreen.html"><code>Touchscreen</code></a> does not require <a href="../api/UnityEngine.InputSystem.EnhancedTouch.EnhancedTouchSupport.html"><code>EnhancedTouchSupport</code></a> to be enabled. You only need to call <a href="../api/UnityEngine.InputSystem.EnhancedTouch.EnhancedTouchSupport.html#UnityEngine_InputSystem_EnhancedTouch_EnhancedTouchSupport_Enable"><code>EnhancedTouchSupport.Enable()</code></a> if you want to use the <a href="../api/UnityEngine.InputSystem.EnhancedTouch.Touch.html"><code>EnhancedTouch.Touch</code></a> API.</p>
+</blockquote>
+<p>The <a href="../api/UnityEngine.InputSystem.EnhancedTouch.Touch.html"><code>EnhancedTouch.Touch</code></a> API is designed to provide access to touch information along two dimensions:</p>
+<ol>
+<li><p>By finger: Each finger is defined as the Nth contact source on a <a href="../api/UnityEngine.InputSystem.Touchscreen.html"><code>Touchscreen</code></a>. You can use  <a href="../api/UnityEngine.InputSystem.EnhancedTouch.Touch.html#UnityEngine_InputSystem_EnhancedTouch_Touch_activeFingers">Touch.activeFingers</a> to get an array of all currently active fingers.</p>
+</li>
+<li><p>By touch: Each touch is a single finger contact with at least a beginning point (<a href="../api/UnityEngine.InputSystem.TouchPhase.html"><code>PointerPhase.Began</code></a>) and an endpoint (<a href="../api/UnityEngine.InputSystem.TouchPhase.html"><code>PointerPhase.Ended</code></a> or <a href="../api/UnityEngine.InputSystem.TouchPhase.html"><code>PointerPhase.Cancelled</code></a>). Between those two points, an arbitrary number of <a href="../api/UnityEngine.InputSystem.TouchPhase.html"><code>PointerPhase.Moved</code></a> and/or <a href="../api/UnityEngine.InputSystem.TouchPhase.html"><code>PointerPhase.Stationary</code></a> records exist. All records in a touch have the same <a href="../api/UnityEngine.InputSystem.Controls.TouchControl.html#UnityEngine_InputSystem_Controls_TouchControl_touchId"><code>touchId</code></a>. You can use  <a href="../api/UnityEngine.InputSystem.EnhancedTouch.Touch.html#UnityEngine_InputSystem_EnhancedTouch_Touch_activeTouches">Touch.activeTouches</a> to get an array of all currently active touches. This lets you track how a specific touch moves over the screen, which is useful if you want to implement recognition of specific gestures.</p>
+</li>
+</ol>
+<p>See <a href="../api/UnityEngine.InputSystem.EnhancedTouch.Touch.html"><code>EnhancedTouch.Touch</code> API documentation</a> for more details.</p>
+<blockquote>
+<p><strong>Note</strong>: The <a href="../api/UnityEngine.InputSystem.EnhancedTouch.Touch.html"><code>Touch</code></a> and <a href="../api/UnityEngine.InputSystem.EnhancedTouch.Finger.html"><code>Finger</code></a> APIs don't generate GC garbage. The bulk of the data is stored in unmanaged memory that is indexed by wrapper structs. All arrays are pre-allocated.</p>
+</blockquote>
+<h2 id="touch-simulation">Touch Simulation</h2>
+<p>Touch input can be simulated from input on other kinds of <a href="Pointers.html">Pointer</a> devices such as <a href="Mouse.html">Mouse</a> and <a href="Pen.html">Pen</a> devices. To enable this, you can either add the <a href="../api/UnityEngine.InputSystem.EnhancedTouch.TouchSimulation.html"><code>TouchSimulation</code></a> <code>MonoBehaviour</code> to a <code>GameObject</code> in your scene or simply call <a href="../api/UnityEngine.InputSystem.EnhancedTouch.TouchSimulation.html#UnityEngine_InputSystem_EnhancedTouch_TouchSimulation_Enable"><code>TouchSimulation.Enable</code></a> somewhere in your startup code.</p>
+<pre><code class="lang-CSharp">    void OnEnable()
+    {
+        TouchSimulation.Enable();
+    }
+</code></pre>
+<p>In the editor, you can also enable touch simulation by toggling &quot;Simulate Touch Input From Mouse or Pen&quot; on in the &quot;Options&quot; dropdown of the <a href="Debugging.html">Input Debugger</a>.</p>
+<p><a href="../api/UnityEngine.InputSystem.EnhancedTouch.TouchSimulation.html"><code>TouchSimulation</code></a> will add a <a href="../api/UnityEngine.InputSystem.Touchscreen.html"><code>Touchscreen</code></a> device and automatically mirror input on any <a href="../api/UnityEngine.InputSystem.Pointer.html"><code>Pointer</code></a> device to the virtual touchscreen device.</p>
+<h2 id="reading-all-touches">Reading all touches</h2>
+<p>To get all current touches from the touchscreen, use <a href="../api/UnityEngine.InputSystem.EnhancedTouch.Touch.html#UnityEngine_InputSystem_EnhancedTouch_Touch_activeTouches"><code>EnhancedTouch.Touch.activeTouches</code></a>, as in this example:</p>
+<pre><code class="lang-C#">    using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
+
+    public void Update()
+    {
+        foreach (var touch in Touch.activeTouches)
+            Debug.Log($&quot;{touch.touchId}: {touch.screenPosition},{touch.phase}&quot;);
+    }
+</code></pre>
+<blockquote>
+<p><strong>Note</strong>: You must first enable enhanced touch support by calling  <a href="../api/UnityEngine.InputSystem.EnhancedTouch.EnhancedTouchSupport.html#UnityEngine_InputSystem_EnhancedTouch_EnhancedTouchSupport_Enable"><code>InputSystem.EnhancedTouchSupport.Enable()</code></a>.</p>
+</blockquote>
+<p>You can also use the lower-level <a href="../api/UnityEngine.InputSystem.Touchscreen.html#UnityEngine_InputSystem_Touchscreen_touches"><code>Touchscreen.current.touches</code></a> API.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

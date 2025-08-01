@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>NavMesh Obstacle component reference | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="NavMesh Obstacle component reference | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="navmesh-obstacle-component-reference">NavMesh Obstacle component reference</h1>
+
+<p>The NavMesh Obstacle component allows you to define obstacles that <a href="AboutAgents.html">NavMesh Agents</a> should avoid as they navigate the world (for example, barrels or crates controlled by the physics system). It contains properties that allow you to define the size, shape, and behavior of the obstacle.</p>
+<p>To use the NavMesh component you need to add it to a game object as follows:</p>
+<ol>
+<li>Select the GameObject you want to use as an obstacle.</li>
+<li>In the Inspector select <strong>Add Component</strong>, then select <strong>Navigation</strong> &gt; <strong>NavMesh Obstacle</strong>. <br> The NavMesh Obstacle component is displayed in the Inspector window.</li>
+</ol>
+<p>You can use this component to create NavMesh obstacles. For more information, see <a href="CreateNavMeshObstacle.html">Create a NavMesh Obstacle</a>. For more information on NavMesh obstacles and how to use them, see <a href="AboutObstacles.html">About NavMesh obstacles</a>.</p>
+<p>The following table describes the properties available in the NavMesh Obstacle component.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Shape</strong></td>
+<td>Specify the shape of the obstacle geometry. Choose whichever one best fits the shape of the object.</td>
+</tr>
+<tr>
+<td><strong>Shape</strong> &gt; <strong>Box</strong></td>
+<td>Select a cube-shaped geometry for the obstacle.</td>
+</tr>
+<tr>
+<td><strong>Shape</strong> &gt; <strong>Capsule</strong></td>
+<td>Select a 3D oval-shaped geometry for the obstacle.</td>
+</tr>
+<tr>
+<td><strong>Center</strong></td>
+<td>Specify the center of the box relative to the transform position.</td>
+</tr>
+<tr>
+<td><strong>Size</strong></td>
+<td>Specify the size of the box. This property is visible only when Shape is set to Box.</td>
+</tr>
+<tr>
+<td><strong>Center</strong></td>
+<td>Specify the center of the capsule relative to the transform position.</td>
+</tr>
+<tr>
+<td><strong>Radius</strong></td>
+<td>Specify the radius of the capsule. This property is visible only when Shape is set to Capsule.</td>
+</tr>
+<tr>
+<td><strong>Height</strong></td>
+<td>Specify the height of the capsule. This property is visible only when Shape is set to Capsule.</td>
+</tr>
+<tr>
+<td><strong>Carve</strong></td>
+<td>Allow the NavMesh Obstacle to create a hole in the NavMesh. When selected, the NavMesh obstacle carves a hole in the NavMesh. When deselected, the NavMesh obstacle does not carve a hole in the NavMesh.</td>
+</tr>
+<tr>
+<td><strong>Carve</strong> &gt; <strong>Move Threshold</strong></td>
+<td>Set the threshold distance for updating a moving carved hole. Unity treats the NavMesh obstacle as moving when it has moved more than the distance set by the Move Threshold. This property is available only when Carve is selected.</td>
+</tr>
+<tr>
+<td><strong>Carve</strong> &gt; <strong>Time To Stationary</strong></td>
+<td>Specify the time (in seconds) to wait until the obstacle is treated as stationary. This property is available only when Carve is selected.</td>
+</tr>
+<tr>
+<td><strong>Carve</strong> &gt; <strong>Carve Only Stationary</strong></td>
+<td>Specify when the obstacle is carved. This property is available only when Carve is selected.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="AboutObstacles.html" title="Details on how to use NavMesh obstacles.">About NavMesh obstacles</a></li>
+<li><a href="CreateNavMeshObstacle.html" title="Guidance on creating NavMesh obstacles.">Create a NavMesh Obstacle</a></li>
+<li><a href="NavInnerWorkings.html#two-cases-for-obstacles" title="Learn more about how NavMesh Obstacles are used as part of navigation.">Inner Workings of the Navigation System</a></li>
+<li><a href="https://docs.unity3d.com/6000.0/Documentation/ScriptReference/AI.NavMeshObstacle.html" title="Full description of the NavMesh Obstacle scripting API.">NavMesh Obstacle scripting reference</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Timing and Latency | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Timing and Latency | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="timing-latency">
+<h1 id="timing-and-latency">Timing and Latency</h1>
+
+<p>Input Timing refers to the topic of exactly when the Input System receives and processes input from devices.</p>
+<p>Latency is the amount of time between the user providing some input, and the user receiving a response to that input. For example, the time between a button press and your game’s character moving on-screen. In fast-paced input scenarios such as action games, even tiny delays between the user's input and your game responding can be noticeable and affect the feel of your gameplay.</p>
+<p>In addition to the effects of latency, timing can affect one-off discrete events such as when a button press starts or finishes. Checking for these at the wrong time can result in missed or duplicate events.</p>
+<p>To minimize input latency, and to avoid missed or duplicate events, it helps to understand how the Input System processes events in relation to Unity's frame updates, physics updates, and fixed updates. This will help you make decisions about how to read and respond to input in your game or app.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Topic</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong><a href="timing-input-events-queue.html">Input events queue</a></strong></td>
+<td style="text-align: left;">Understand how and when the Input System receives and processes input from devices.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><a href="timing-select-mode.html">Select an input processing mode</a></strong></td>
+<td style="text-align: left;">How to select an appropriate <strong>Update Mode</strong> which controls when the Input System processes queued input events.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><a href="timing-optimize-dynamic-update.html">Optimize for dynamic update</a></strong></td>
+<td style="text-align: left;">How to optimize input for use in <code>Update</code> calls.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><a href="timing-optimize-fixed-update.html">Optimize for fixed update</a></strong></td>
+<td style="text-align: left;">How to optimize input for use in <code>FixedUpdate</code> calls.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><a href="timing-missed-duplicate-events.html">Avoid missed or duplicate events</a></strong></td>
+<td style="text-align: left;">How to avoid missing or duplicated discrete input events like when a button was pressed or released.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><a href="timing-mixed-scenarios.html">Mixed timing scenarios</a></strong></td>
+<td style="text-align: left;">How to optimize and avoid problems when using input in both <code>Update</code> and <code>FixedUpdate</code> calls.</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

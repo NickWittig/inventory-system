@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Add a settings group | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Add a settings group | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="add-a-settings-group">Add a settings group</h1>
+
+<p>To add a custom graphics settings group to a Scriptable Render Pipeline, implement the <code>IRenderPipelineGraphicsSettings</code> interface.</p>
+<p>Follow these steps:</p>
+<ol>
+<li><p>Create a class that implements the <code>IRenderPipelineGraphicsSettings</code> interface, then add a <code>[Serializable]</code> attribute.</p>
+</li>
+<li><p>To set which render pipeline the setting applies to, add a <code>[SupportedOnRenderPipeline]</code> attribute and pass in a <code>RenderPipelineAsset</code> type.</p>
+<p><strong>Note:</strong> If you don't add a <code>[SupportedOnRenderPipeline]</code> attribute, the setting applies to any Scriptable Render Pipeline. However each Scriptable Render Pipeline stores its own value for the setting.</p>
+</li>
+<li><p>Implement the <code>version</code> property. Unity doesn't currently use the <code>version</code> property, but you must implement it.</p>
+</li>
+</ol>
+<p>Unity adds the new settings group to the <strong>Edit</strong> &gt; <strong>Project Settings</strong> &gt; <strong>Graphics</strong> window.</p>
+<p>For example, the following script adds a settings group called <strong>My Settings</strong> in the <strong>Graphics</strong> settings window of the Universal Render Pipeline (URP).</p>
+<pre><code class="lang-c#">using System;
+using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+
+[Serializable]
+[SupportedOnRenderPipeline(typeof(UniversalRenderPipelineAsset))] 
+
+// Create a new settings group by implementing the IRenderPipelineGraphicsSettings interface
+public class MySettings : IRenderPipelineGraphicsSettings
+{
+  // Add a private field for the version property
+  int internalVersion = 1;
+
+  // Implement the public version property
+  public int version =&gt; internalVersion;
+
+}
+</code></pre>
+<p><img src="Images/customsettings-settingsgroup.png" alt="Screenshot of the Project Settings window. The Graphics section contains the new custom settings group from the example script."><br>
+The <strong>Edit</strong> &gt; <strong>Project Settings</strong> &gt; <strong>Graphics</strong> window with the new custom settings group from the example script.</p>
+<h2 id="change-the-display-order-of-settings-groups">Change the display order of settings groups</h2>
+<p>To change where a settings group appears, use the <code>[UnityEngine.Categorization.CategoryInfo]</code> attribute. For example, the following code gives the settings group the name <strong>My Settings</strong> and moves the group to the top of the graphics settings window.</p>
+<pre><code class="lang-c#">[UnityEngine.Categorization.CategoryInfo(Name = &quot;My Settings&quot;, Order = 0)]
+public class MySettings : IRenderPipelineGraphicsSettings
+{
+  ...
+}
+</code></pre>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="add-custom-graphics-setting.html">Add a setting</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

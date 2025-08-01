@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Fresnel Equation Node | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Fresnel Equation Node | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="fresnel-equation-node">Fresnel Equation Node</h1>
+
+<h2 id="description">Description</h2>
+<p>The Fresnel Equation Node adds equations that affect Material interactions to the Fresnel Component. You can select an equation in the <strong>Mode</strong> dropdown.</p>
+<p>You can find Numerical values of refractive indices at <a href="https://refractiveindex.info/">refractiveindex.info</a>.</p>
+<h2 id="ports-schlick">Ports (Schlick)</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Direction</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Binding</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">f0</td>
+<td style="text-align: left;">Input</td>
+<td style="text-align: left;">Vector{1, 2, 3}</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">Represente the reflection of the surface when we face typically 0.02-0.08 for a dielectric material.</td>
+</tr>
+<tr>
+<td style="text-align: left;">DotVector</td>
+<td style="text-align: left;">Input</td>
+<td style="text-align: left;">Float</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">The dot product between the normal and the surface.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Fresnel</td>
+<td style="text-align: left;">Output</td>
+<td style="text-align: left;">same as f0</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">Fresnel coefficient, which describe the amount of light reflected or transmitted.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ports-dielectric">Ports (Dielectric)</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Direction</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Binding</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">IOR Source</td>
+<td style="text-align: left;">Input</td>
+<td style="text-align: left;">Vector</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">The refractive index of the medium the light source originates in.</td>
+</tr>
+<tr>
+<td style="text-align: left;">IOR Medium</td>
+<td style="text-align: left;">Input</td>
+<td style="text-align: left;">Vector</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">The refractive index of the medium that the light refracts into.</td>
+</tr>
+<tr>
+<td style="text-align: left;">DotVector</td>
+<td style="text-align: left;">Input</td>
+<td style="text-align: left;">Float</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">The dot product between the normal and the surface.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Fresnel</td>
+<td style="text-align: left;">Output</td>
+<td style="text-align: left;">same as f0</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">The fresnel coefficient, which describe the amount of light reflected or transmitted.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ports-dielectricgeneric">Ports (DielectricGeneric)</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Direction</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Binding</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">IOR Source</td>
+<td style="text-align: left;">Input</td>
+<td style="text-align: left;">Vector</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">The refractive index of the medium the light source originates in.</td>
+</tr>
+<tr>
+<td style="text-align: left;">IOR Medium</td>
+<td style="text-align: left;">Input</td>
+<td style="text-align: left;">Vector</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">The refractive index of the medium that the light refracts into.</td>
+</tr>
+<tr>
+<td style="text-align: left;">IOR MediumK</td>
+<td style="text-align: left;">Input</td>
+<td style="text-align: left;">Vector</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">The refractive index Medium (imaginary part), or the medium causing the refraction.</td>
+</tr>
+<tr>
+<td style="text-align: left;">DotVector</td>
+<td style="text-align: left;">Input</td>
+<td style="text-align: left;">Float</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">The dot product between the normal and the surface.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Fresnel</td>
+<td style="text-align: left;">Output</td>
+<td style="text-align: left;">same as f0</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">Fresnel coefficient, which describe the amount of light reflected or transmitted.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="controls">Controls</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Options</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Mode</td>
+<td style="text-align: left;">Dropdown</td>
+<td style="text-align: left;">• <strong>Schlick</strong>: This mode produces an approximation based on <a href="https://en.wikipedia.org/wiki/Schlick%27s_approximation">Schlick's Approximation</a>. Use the Schlick mode for interactions between air and dielectric materials. <br>• <strong>Dielectric</strong>: Use this mode for interactions between two dielectric Materials. For example, air to glass, glass to water, or water to air.<br>• <strong>DielectricGeneric</strong>: This mode computes a <a href="https://seblagarde.wordpress.com/2013/04/29/memo-on-fresnel-equations">Fresnel equation</a> for interactions between a dielectric and a metal. For example, clear-coat- to metal, glass to metal, or water to metal. <br><strong>Note:</strong> if the <strong>IORMediumK</strong> value is 0, <strong>DielectricGeneric</strong> behaves in the same way as the <strong>Dielectric</strong> mode.</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="generated-code-example">Generated Code Example</h2>
+<p>The following example code represents one possible outcome of this node.</p>
+<pre><code>void Unity_FresnelEquation_Schlick(out float Fresnel, float cos0, float f0)
+{
+    Fresnel = F_Schlick(f0, cos0);
+}
+
+void Unity_FresnelEquation_Dielectric(out float3 Fresnel, float cos0, float3 iorSource, float3 iorMedium)
+{
+    FresnelValue = F_FresnelDielectric(iorMedium/iorSource, cos0);
+}
+
+void Unity_FresnelEquation_DielectricGeneric(out float3 Fresnel, float cos0, float3 iorSource, float3 iorMedium, float3 iorMediumK)
+{
+    FresnelValue = F_FresnelConductor(iorMedium/iorSource, iorMediumK/iorSource, cos0);
+}
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

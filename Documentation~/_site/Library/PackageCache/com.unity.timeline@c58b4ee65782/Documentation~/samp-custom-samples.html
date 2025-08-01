@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Customization Samples | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Customization Samples | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="customization-samples">Customization Samples</h1>
+
+<p>The Customization Samples sample includes track groups, tracks, clips, markers, signals, and actions that demonstrate how to extend and customize Unity's Timeline.</p>
+<p>To import the Customization Samples scene and open its Timeline instance, do the following:</p>
+<ol>
+<li><a href="samp-overview.html">Import the Customization Samples sample</a> into your project.</li>
+<li>In the Project window, go to <code>Assets/Samples/Timeline/&lt;version&gt;/Customization Samples/Demo/Scenes</code>, where <code>&lt;version&gt;</code> is your installed Timeline package version.</li>
+<li>Double-click the scene named <code>Timeline_CustomTracks</code>.</li>
+<li>To open the Timeline instance, in the Hierarchy window, select the <code>Timeline</code> GameObject. The Timeline instance named <code>CustomTracks</code> displays in the Timeline window.</li>
+<li>If the Timeline window is not open, go to <strong>Window</strong> &gt; <strong>Sequencing</strong> &gt; <strong>Timeline</strong>.</li>
+</ol>
+<p><img src="images/tl-samp-ct-instance.png" alt="CustomTracks Timeline instance"></p>
+<p><em><code>CustomTracks</code> Timeline instance associated with the <code>Timeline</code> GameObject</em></p>
+<p>This sample uses the <code>CustomTracks</code> Timeline instance to demonstrate different custom markers, tracks, scripts, and menu items. These customizations play as a single sequence with captions from the custom Text track and annotations from custom annotation markers.</p>
+<p>The main customizations in this Timeline instance are as follows:</p>
+<ul>
+<li><a href="#annosamp">Annotation marker</a>: This custom marker annotates the custom tracks, text, video, and animation clips. These markers are placed on the Markers track, on custom tracks, and on animation tracks.</li>
+<li><a href="#timesamp">Time dilation track</a>: This custom track creates a time dilation effect that slows down animation for emphasis.</li>
+<li><a href="#videosamp">Video track</a>: This custom track plays video clips.</li>
+<li><a href="#textsamp">Text track</a>: This custom track uses the TextMeshPro component describe the other custom tracks with captions.</li>
+<li><a href="#tweensamp">Tween track</a>: This custom track  provides a track that can be used for simple transform movements.</li>
+</ul>
+<p><a name="annosamp"></a></p>
+<h2 id="annotation-marker">Annotation marker</h2>
+<p>This custom marker annotates the custom tracks, text, video, and animation clips. These markers are placed on the Markers track, on custom tracks, and on animation tracks.</p>
+<p>The custom Annotation marker uses scripts to override the default Timeline marker behavior and USS (Unity style sheets) to default marker appearance. There are also custom scripts for adding menu items that add annotation markers and copy text from the clipboard.</p>
+<p><a name="timesamp"></a></p>
+<h2 id="time-dilation-track">Time Dilation Track</h2>
+<p>The Time Dilation Track provides track and clip scripts that adjust Unity's <code>Time.timeScale</code> global. The most common usage for modifying this global is to create a time warp effect where the animation slows down for emphasize. This is referred to as a <strong>bullet time</strong> effect.</p>
+<p>This sample demonstrates how to:</p>
+<ul>
+<li>Create a custom TrackMixer <code>PlayableBehaviour</code> that performs custom blending of clip values.</li>
+<li>Set and restore Unity global values in a <code>PlayableBehaviour</code>.</li>
+<li>Support blending and extrapolation on custom clips.</li>
+<li>Animate custom clip data using the Curves view with a <code>PlayableBehaviour</code> template.</li>
+</ul>
+<h3 id="usage">Usage</h3>
+<p>Select the <strong>Add</strong> (<strong>+</strong>) menu <img src="images/button-add-track-menu.png" alt=""> and choose <strong>Timeline.Samples</strong> &gt; <strong>Time Dilation Track</strong> to add a new Time Dilation Track.</p>
+<p>Add clips to the track, and use the Inspector window to set timescale values for the clip. You can also use the Curves view in the Timeline window to animate the timescale. Blend clips to create transitions.</p>
+<p><a name="videosamp"></a></p>
+<h2 id="video-track-sample">Video Track sample</h2>
+<p>The Video Track sample provides a track that plays video clips. This sample demonstrates how to:</p>
+<ul>
+<li>Use blending, speed, and clip-in with custom clips.</li>
+<li>Use many <code>ClipEditor</code>s to customize clip drawing.</li>
+<li>Use a mixer <code>PlayableBehaviour</code> to perform look-ahead operations.</li>
+<li>Manage the <code>UnityEngine.Object</code> lifetime (<code>VideoPlayer</code>) with a <code>PlayableBehaviour</code>.</li>
+<li>Use ExposedReferences to reference scene components from a <code>PlayableAsset</code>.</li>
+</ul>
+<h3 id="usage-1">Usage</h3>
+<p>Drag an imported video from the Project window into a Timeline instance to create a video track and video clip.</p>
+<p>The video clip provides several playback options including selecting which camera renders the video and which audio source plays the audio. If a camera is not specified, the video clip uses the main camera. If an audio source is not specified, the audio plays directly.</p>
+<p>The video playback options are set per clip in the Inspector window. To view these options, select the video clip and expand <strong>Video Playable Asset</strong>.</p>
+<h3 id="known-issues">Known Issues</h3>
+<ul>
+<li>The video track supports ease-in and ease-out, but blending between videos is not supported and may give unexpected results.</li>
+<li>Editing a Timeline instance with video clips may cause the blended result to flicker or change unexpectedly.</li>
+<li>Looping a Timeline instance with video clips could de-synchronize the video.</li>
+</ul>
+<p><a name="textsamp"></a></p>
+<h2 id="text-track">Text Track</h2>
+<p>The Text track requires the TextMeshPro package. The Text track provides track and clip scripts that display subtitles or other similar types of messages.</p>
+<p>This sample demonstrates how to:</p>
+<ul>
+<li>Register custom properties in a custom track.</li>
+<li>Perform custom clip blending with a mixer (<code>PlayableBehaviour</code>).</li>
+<li>Animate custom clip properties in the Curves view through a <code>PlayableBehaviour</code> template.</li>
+<li>Use a <code>ClipEditor</code> to react to changes in a clip.</li>
+</ul>
+<p><a name="tweensamp"></a></p>
+<h2 id="transform-tween-track-sample">Transform Tween track sample</h2>
+<p>The Transform Tween Track provides a track for simple transform movements between two points. This track demonstrates how to:</p>
+<ul>
+<li>Create a custom clip, custom track, and mixer.</li>
+<li>Use the PlayableGraph API to transform a GameObject.</li>
+<li>Customize a clip with a <code>ClipEditor</code>.</li>
+</ul>
+<h3 id="usage-2">Usage</h3>
+<p>Use the Transform Tween track for simple transform movements. All translation happens in a straight line but you can control the speed with an animation curve. The Tween track binds to the scene <code>Transform</code> you want to move.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Property</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Start Location</strong></td>
+<td style="text-align: left;">A GameObject in the scene that the playable uses as a starting reference. This reference is the starting position, rotation, or both. If the Start Location is set to null, the Transform uses its own position, rotation, or both when the playable starts.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>End Location</strong></td>
+<td style="text-align: left;">A GameObject in the scene that the playable uses as an ending reference. This reference is the ending position, rotation, or both. If the End Location is set to null, the Transform uses its own position, rotation, or both when the playable finishes.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Tween Position</strong></td>
+<td style="text-align: left;">Whether the position of the Transform changes.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Tween Rotation</strong></td>
+<td style="text-align: left;">Whether the rotation of the Transform changes.</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

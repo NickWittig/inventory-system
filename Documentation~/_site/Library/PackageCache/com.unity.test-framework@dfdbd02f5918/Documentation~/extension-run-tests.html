@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>How to run tests programmatically | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="How to run tests programmatically | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="how-to-run-tests-programmatically">How to run tests programmatically</h1>
+
+<h2 id="filters">Filters</h2>
+<p>Run tests by calling <code>Execute</code> on the <a href="reference-test-runner-api.html">TestRunnerApi</a>, and provide some execution settings that consists of a <a href="reference-filter.html">Filter</a>. The <code>Filter</code> specifies what tests to run.</p>
+<h3 id="example">Example</h3>
+<p>The following is an example of how to run all <strong>Play Mode</strong> tests in a project:</p>
+<pre><code class="lang-C#">var testRunnerApi = ScriptableObject.CreateInstance&lt;TestRunnerApi&gt;();
+var filter = new Filter()
+{
+    testMode = TestMode.PlayMode
+};
+testRunnerApi.Execute(new ExecutionSettings(filter));
+</code></pre>
+<h2 id="multiple-filter-values">Multiple filter values</h2>
+<p>It is possible to specify a more specific filter by filling out the fields on the <code>Filter</code> class in more detail.</p>
+<p>Many of the fields allow for multiple values. The runner tries to match tests against at least one of the values provided and then runs any tests that match.</p>
+<h3 id="example-1">Example</h3>
+<p>In this example, the API runs tests with full names that fit either of the two names provided:</p>
+<pre><code class="lang-C#">var api = ScriptableObject.CreateInstance&lt;TestRunnerApi&gt;();
+api.Execute(new ExecutionSettings(new Filter()
+{
+    testNames = new[] {&quot;MyTestClass.NameOfMyTest&quot;, &quot;SpecificTestFixture.NameOfAnotherTest&quot;}
+}));
+</code></pre>
+<h2 id="multiple-filter-fields">Multiple filter fields</h2>
+<p>If using multiple different fields on the filter, then it matches against tests that fulfill all the different fields.</p>
+<h3 id="example-2">Example</h3>
+<p>In this example, it runs any test that fits either of the two test names, and that also belongs to a test assembly that fits the given name.</p>
+<pre><code class="lang-C#">var api = ScriptableObject.CreateInstance&lt;TestRunnerApi&gt;();
+api.Execute(new ExecutionSettings(new Filter()
+{
+    assemblyNames = new [] {&quot;MyTestAssembly&quot;},
+    testNames = new [] {&quot;MyTestClass.NameOfMyTest&quot;, &quot;MyTestClass.AnotherNameOfATest&quot;}
+}));
+</code></pre>
+<h2 id="multiple-constructor-filters">Multiple constructor filters</h2>
+<p>The execution settings take one or more filters in its constructor. If there is no filter provided, then it runs all <strong>Edit Mode</strong> tests by default. If there are multiple filters provided, then a test runs if it matches any of the filters.</p>
+<h3 id="example-3">Example</h3>
+<p>In this example, it runs any tests that are either in the assembly named <code>MyTestAssembly</code> or if the full name of the test matches either of the two provided test names:</p>
+<pre><code class="lang-C#">var api = ScriptableObject.CreateInstance&lt;TestRunnerApi&gt;();
+api.Execute(new ExecutionSettings(
+    new Filter()
+    {
+        assemblyNames = new[] {&quot;MyTestAssembly&quot;},
+    },
+    new Filter()
+    {
+        testNames = new[] {&quot;MyTestClass.NameOfMyTest&quot;, &quot;MyTestClass.AnotherNameOfATest&quot;}
+    }
+));
+</code></pre>
+<blockquote>
+<p><strong>Note</strong>: Specifying different test modes or platforms in each <code>Filter</code> is not currently supported. The test mode and platform is from the first <code>Filter</code> only and defaults to Edit Mode, if not supplied.</p>
+</blockquote>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

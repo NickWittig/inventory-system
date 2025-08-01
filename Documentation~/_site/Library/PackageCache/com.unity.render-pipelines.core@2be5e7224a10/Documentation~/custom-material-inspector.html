@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Custom Material Inspector | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Custom Material Inspector | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="custom-material-inspector">Custom Material Inspector</h1>
+
+<p>Custom Material Inspectors enable you to define how Unity displays properties in the Material Inspector for a particular shader. This is useful if a shader includes a lot of properties and you want to organize them in the Inspector. The Universal Render Pipeline (URP) and High Definition Render Pipeline (HDRP) both support custom Material Inspectors, but the method to create them is slightly different.</p>
+<h2 id="creating-a-custom-material-inspector">Creating a custom Material Inspector</h2>
+<p>The implementation for custom Material Inspectors differs between URP and HDRP. For example, for compatibility purposes, every custom Material Inspector in HDRP must inherit from <code>HDShaderGUI</code> which does not exist in URP. For information on how to create custom Material Inspectors for the respective render pipelines, see:</p>
+<ul>
+<li><strong>HDRP</strong>: <a href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@latest?subfolder=/manual/custom-material-inspectors.html">HDRP custom Material Inspectors</a>.</li>
+<li><strong>URP</strong>: <a href="https://docs.unity3d.com/Manual/SL-CustomShaderGUI.html">Unity Custom Shader GUI</a>.</li>
+</ul>
+<h2 id="assigning-a-custom-material-inspector">Assigning a custom Material Inspector</h2>
+<p>When you create a shader, either hand-written or using Shader Graph, both URP and HDRP provide a default editor for it to use. To override this default and provide your own custom Material Inspector, the method differs depending on whether you hand-wrote the shader or used Shader Graph.</p>
+<h3 id="using-hand-written-shaders">Using hand-written shaders</h3>
+<p>To set a custom Material Inspector for a hand-written shader:</p>
+<ol>
+<li>Open the shader source file.</li>
+<li>Assign a string that contains the class name of the custom Material Inspector to the <strong>CustomEditor</strong> shader instruction.</li>
+</ol>
+<p>This is the same method as for the Built-in Renderer's <a href="https://docs.unity3d.com/Manual/SL-CustomShaderGUI.html">custom shader GUI</a>.</p>
+<p>For an example of how to do this, see the following shader code sample. In this example, the name of the custom Material Inspector class is <strong>ExampleCustomMaterialInspector</strong>:</p>
+<pre><code class="lang-c#">Shader &quot;Custom/Example&quot;
+{
+    Properties
+    {
+        // Shader properties
+    }
+    SubShader
+    {
+        // Shader code
+    }
+    CustomEditor &quot;ExampleCustomMaterialInspector&quot;
+}
+</code></pre>
+<h3 id="using-shader-graph">Using Shader Graph</h3>
+<p>To set a custom Material Inspector for a Shader Graph shader:</p>
+<ol>
+<li>Open the Shader Graph.</li>
+<li>In the <a href="https://docs.unity3d.com/Packages/com.unity.shadergraph@latest?subfolder=/manual/Internal-Inspector.html">Graph Inspector</a>, open the Graph Settings tab.</li>
+<li>If <strong>Active Targets</strong> does not include the render pipeline your project uses, click the <strong>plus</strong> button then, in the drop-down, click the render pipeline.</li>
+<li>In the render pipeline section (<strong>HDRP</strong> or <strong>URP</strong> depending on the render pipeline your project uses) find the <strong>Custom Editor GUI</strong> property and provide it the name of the custom Material Inspector.</li>
+</ol>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

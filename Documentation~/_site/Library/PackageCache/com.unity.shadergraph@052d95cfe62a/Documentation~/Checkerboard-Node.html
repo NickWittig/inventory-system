@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Checkerboard Node | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Checkerboard Node | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="checkerboard-node">Checkerboard Node</h1>
+
+<h2 id="description">Description</h2>
+<p>Generates a checkerboard of alternating colors between inputs <strong>Color A</strong> and <strong>Color B</strong> based on input <strong>UV</strong>. The checkerboard scale is defined by input <strong>Frequency</strong>.</p>
+<h2 id="ports">Ports</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Direction</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Binding</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">UV</td>
+<td style="text-align: left;">Input</td>
+<td style="text-align: left;">Vector 2</td>
+<td style="text-align: left;">UV</td>
+<td style="text-align: left;">Input UV value</td>
+</tr>
+<tr>
+<td style="text-align: left;">Color A</td>
+<td style="text-align: left;">Input</td>
+<td style="text-align: left;">Color RGB</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">First checker color</td>
+</tr>
+<tr>
+<td style="text-align: left;">Color B</td>
+<td style="text-align: left;">Input</td>
+<td style="text-align: left;">Color RGB</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">Second checker color</td>
+</tr>
+<tr>
+<td style="text-align: left;">Frequency</td>
+<td style="text-align: left;">Input</td>
+<td style="text-align: left;">Vector 2</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">Scale of checkerboard per axis</td>
+</tr>
+<tr>
+<td style="text-align: left;">Out</td>
+<td style="text-align: left;">Output</td>
+<td style="text-align: left;">Vector 2</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">Output UV value</td>
+</tr>
+</tbody>
+</table>
+<h2 id="generated-code-example">Generated Code Example</h2>
+<p>The following example code represents one possible outcome of this node.</p>
+<pre><code>void Unity_Checkerboard_float(float2 UV, float3 ColorA, float3 ColorB, float2 Frequency, out float3 Out)
+{
+    UV = (UV.xy + 0.5) * Frequency;
+    float4 derivatives = float4(ddx(UV), ddy(UV));
+    float2 duv_length = sqrt(float2(dot(derivatives.xz, derivatives.xz), dot(derivatives.yw, derivatives.yw)));
+    float width = 1.0;
+    float2 distance3 = 4.0 * abs(frac(UV + 0.25) - 0.5) - width;
+    float2 scale = 0.35 / duv_length.xy;
+    float freqLimiter = sqrt(clamp(1.1f - max(duv_length.x, duv_length.y), 0.0, 1.0));
+    float2 vector_alpha = clamp(distance3 * scale.xy, -1.0, 1.0);
+    float alpha = saturate(0.5f + 0.5f * vector_alpha.x * vector_alpha.y * freqLimiter);
+    Out = lerp(ColorA, ColorB, alpha.xxx);
+}
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

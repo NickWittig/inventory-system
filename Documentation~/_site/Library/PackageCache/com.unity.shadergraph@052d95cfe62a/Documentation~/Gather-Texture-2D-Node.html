@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Gather Texture 2D node | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Gather Texture 2D node | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="gather-texture-2d-node">Gather Texture 2D node</h1>
+
+<p>The Gather Texture 2D node samples the red channel of four neighboring pixels from a sample point. It returns a value of <code>RRRR</code>, and takes each <code>R</code> value from a different neighbor. Normal Texture sampling reads all four channels (RGBA) of a Texture.</p>
+<p>This node is useful when you want to modify the bilinear interpolation between pixels, such as when you want to create custom blends.</p>
+<p><img src="images/sg-gather-Texture-2d-node.png" alt="An image of the Graph window, with a Gather Texture 2D node."></p>
+<p>This node uses the <a href="https://docs.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-to-gather">Gather</a> HLSL intrinsic function. For platforms where this intrinsic function doesn't exist, Shader Graph uses an appropriate approximation, instead.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>When you use the Metal graphics API, the <code>sample</code>, <code>sample_compare</code>, <code>gather</code>, and <code>gather_compare</code> intrinsics use an integer (int2) <code>offset</code> argument when sampling or gathering from a 2D Texture. The intrinsics apply this value to Texture coordinates before looking up each pixel. The <code>offset</code> value must be in the range of <code>-8</code> to <code>+7</code>, or the Metal API clamps the <code>offset</code> value.</p>
+</div>
+<p>The pixels that the Gather Texture 2D samples are always from the top mip level of the Texture, from a 2×2 block of pixels around the sample point. Rather than blending the 2×2 sample, it returns the sampled pixels in counter-clockwise order. It starts with the sample to the lower left of the query location:</p>
+<p><img src="images/sg-gather-Texture-2d-node-sample-order.png" alt="An image that shows 4 quadrants, numbered 1 to 4, to display the order that the Gather Texture 2D node collects its samples: (-,+), (+,+), (-,+), (-,-)."></p>
+<h2 id="create-node-menu-category">Create Node menu category</h2>
+<p>The Gather Texture 2D node is under the <strong>Input</strong> &gt; <strong>Texture</strong> category in the Create Node menu.</p>
+<h2 id="compatibility">Compatibility</h2>
+<p>The Gather Texture 2D node is supported on the following render pipelines:<table>
+<thead>
+<tr>
+<th><strong>Built-In Render Pipeline</strong></th>
+<th><strong>Universal Render Pipeline (URP)</strong></th>
+<th><strong>High Definition Render Pipeline (HDRP)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>    <!-- ALL PIPELINES INCLUDE  -->
+<p>The Gather Texture 2D node can only be connected to a Block node in the <strong>Fragment</strong> Context. For more information on Block nodes and Contexts, refer to <a href="Master-Stack.html">Master Stack</a>.       <!-- FRAGMENT ONLY INCLUDE  --></p>
+<h2 id="inputs">Inputs</h2>
+<p>The Gather Texture 2D node has the following input ports: <!-- MULTIPLE INPUT PORTS INCLUDE --></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Name</strong></th>
+<th style="text-align: left;"><strong>Type</strong></th>
+<th style="text-align: left;"><strong>Binding</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Texture</td>
+<td style="text-align: left;">Texture 2D</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">The Texture to sample.</td>
+</tr>
+<tr>
+<td style="text-align: left;">UV</td>
+<td style="text-align: left;">Vector 2</td>
+<td style="text-align: left;">UV</td>
+<td style="text-align: left;">The UV coordinates to use to take the sample.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Sampler</td>
+<td style="text-align: left;">SamplerState</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">The Sampler State and its corresponding settings to use for the sample.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Offset</td>
+<td style="text-align: left;">Vector 2</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">The pixel offset to apply to the sample's UV coordinates. The <strong>Offset</strong> value is in pixels, not UV space.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="outputs">Outputs</h2>
+<p>The Gather Texture 2D node has the following output ports: <!-- MULTIPLE OUTPUT PORTS INCLUDE --></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Name</strong></th>
+<th style="text-align: left;"><strong>Type</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">RGBA</td>
+<td style="text-align: left;">Vector 4</td>
+<td style="text-align: left;">The sample value. This is the red channels of the 4 neighboring pixels from the specified sample position on the given Texture.</td>
+</tr>
+<tr>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">Float</td>
+<td style="text-align: left;">The first neighboring pixel's red channel.</td>
+</tr>
+<tr>
+<td style="text-align: left;">G</td>
+<td style="text-align: left;">Float</td>
+<td style="text-align: left;">The second neighboring pixel's red channel.</td>
+</tr>
+<tr>
+<td style="text-align: left;">B</td>
+<td style="text-align: left;">Float</td>
+<td style="text-align: left;">The third neighboring pixel's red channel.</td>
+</tr>
+<tr>
+<td style="text-align: left;">A</td>
+<td style="text-align: left;">Float</td>
+<td style="text-align: left;">The fourth neighboring pixel's red channel.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="example-graph-usage">Example graph usage</h2>
+<p>In the following example, a Gather Texture 2D node creates a blurred version of a Texture by averaging its 4 samples:</p>
+<p><img src="images/sg-gather-Texture-2d-node-example.png" alt="An image of the Graph window, that displays a Gather Texture 2D node with its R &amp; G ports connected to one Add node, its B port connected to another Add node, and its A port connected to another. The Add nodes add all the Gather Texture 2D node's ports together, then uses a Divide node to divide them by 4."></p>
+<p>Then, the rest of the Shader Graph uses a Sample Texture 2D node to sample the Texture again, and uses a Lerp node to determine when to use the blurred Texture and when to use the regular Texture:</p>
+<p><img src="images/sg-gather-Texture-2d-node-example-2.png" alt="An image of the Graph window, that displays a Sample Texture 2D node with its R port connected to the B port on a Lerp node. The Lerp node takes the result of the Divide node from the previous image and sends its Output port result to the Fragment Stage's Base Color and Emission nodes."></p>
+<p>By changing the value provided to the T port on the Lerp node, you can change whether you want to blur or sharpen the Texture in your Shader Graph:</p>
+<p><img src="images/sg-gather-Texture-2d-node-example-3.png" alt="An image of the Graph window, that displays the full graph from the previous two example images."></p>
+<h2 id="related-nodes">Related nodes</h2>
+<p>The following nodes are related or similar to the Gather Texture 2D node:</p>
+<ul>
+<li><a href="Sample-Texture-2D-Node.html">Sample Texture 2D node</a></li>
+<li><a href="Sample-Texture-2D-LOD-Node.html">Sample Texture 2D LOD node</a></li>
+<li><a href="Sampler-State-Node.html">Sampler State node</a></li>
+<li><a href="Texture-2D-Asset-Node.html">Texture 2D Asset node</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Debugging and profiling tools | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Debugging and profiling tools | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="debugging-and-profiling-tools">Debugging and profiling tools</h1>
+
+<p>The following sections describe how to debug and profile your Burst-compiled code in the Editor and in Player builds.</p>
+<div class="TIP">
+<h5>Tip</h5>
+<p>Before attempting to debug Burst-compiled code, enable script debugging for the Editor, or a Player build by following the steps in <a href="xref:ManagedCodeDebugging">Debug C# code in Unity</a>. Although you can theoretically debug Burst-compiled code even when the script compilation mode is set to Release, in practice it doesn't work reliably. Breakpoints might be skipped, and variables might not appear in the Locals window, for example.</p>
+</div>
+<p><a name="debugging-in-editor"></a></p>
+<h2 id="debugging-burst-compiled-code-in-the-editor">Debugging Burst-compiled code in the Editor</h2>
+<p>To debug Burst-compiled code in the Editor, you can either use a managed debugger or a native debugger. This section explains both options.</p>
+<h3 id="attach-a-managed-debugger">Attach a managed debugger</h3>
+<p>You can attach a managed debugger such as Visual Studio or JetBrains Rider. This is the same type of debugger you can use to debug regular managed C# code in your Unity project.</p>
+<p>When you place a breakpoint inside Burst-compiled code, and you have a managed debugger attached, Unity disables Burst automatically for that code path. This allows you to use a managed debugger to debug the managed version of your code. When you remove all breakpoints from that code path, Unity re-enables Burst for that code path.</p>
+<h3 id="attach-a-native-debugger">Attach a native debugger</h3>
+<p>You can attach a native debugger such as Visual Studio or Xcode. Before doing so, you need to disable Burst optimizations. You can do this in the following ways:</p>
+<ul>
+<li><p>Use the <strong>Native Debug Mode Compilation</strong> setting in the Editor <a href="editor-burst-menu.html">Burst menu</a> (<strong>Jobs</strong> &gt; <strong>Burst</strong> &gt; <strong>Native Debug Mode Compilation</strong>). <strong>Important:</strong> This setting disables optimizations across all jobs, which impacts the performance of Burst code. If you want to disable optimizations only for a specific job, use the other option in this list.</p>
+</li>
+<li><p>Add the <code>Debug = true</code> flag to your job, which disables optimizations and enables debugging on that specific job:</p>
+<pre><code class="lang-c#">[BurstCompile(Debug = true)]
+public struct MyJob : IJob
+{
+    // ...
+}
+</code></pre>
+<div class="TIP">
+<h5>Tip</h5>
+<p>Player builds pick up the <code>Debug</code> flag, so you can also use this to debug a Player build.</p>
+</div>
+</li>
+</ul>
+<p>To attach a native debugger to the Unity Editor process, refer to <a href="#native-debugging">native debugging</a>.</p>
+<p><a name="debugging-in-player"></a></p>
+<h2 id="debugging-burst-compiled-code-in-a-player-build">Debugging Burst-compiled code in a Player build</h2>
+<p>Because of how Unity builds the code for a Player, you need to tell the debugging tool where to find the symbols. To do this, point the tool to the folder that contains the <code>lib_burst_generated</code> files, which is usually in the <code>Plugins</code> folder.</p>
+<p>To debug Burst-compiled code in a Player build, you need to attach a native debugger (such as Visual Studio or Xcode) to the player process. Before doing so, you need to:</p>
+<ul>
+<li><p>Enable symbol generation. You can do this in either of two ways:</p>
+<ul>
+<li><p>Enable the <strong>Development Build</strong> option before you build the Player, or</p>
+</li>
+<li><p>Enable the <strong>Force Debug Information</strong> option in <a href="building-aot-settings.html">Burst AOT Player Settings</a></p>
+</li>
+</ul>
+</li>
+<li><p>Disable Burst optimizations. You can do this in either of two ways:</p>
+<ul>
+<li><p>Disable the <strong>Enable Optimizations</strong> option in <a href="building-aot-settings.html">Burst AOT Player Settings</a>. <strong>Important:</strong> This setting disables optimizations across all jobs, which impacts the performance of Burst code.  If you want to disable optimizations only for a specific job, use the other option in this list.</p>
+</li>
+<li><p>Add the <code>Debug = true</code> flag to your job, which disables optimizations and enables debugging on that specific job:</p>
+<pre><code class="lang-c#">[BurstCompile(Debug = true)]
+public struct MyJob : IJob
+{
+    // ...
+}
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p>To attach a native debugger to the player process, refer to <a href="#native-debugging">native debugging</a>.</p>
+<p><a name="native-debugging"></a></p>
+<h2 id="native-debugging">Native debugging</h2>
+<p>Follow the previous instructions to set up native debugging correctly for the <a href="#debugging-in-editor">Editor</a> or a <a href="#debugging-in-player">Player build</a>. Then, attach a native debugger such as Visual Studio or Xcode.</p>
+<h3 id="native-debugging-limitations">Native debugging limitations</h3>
+<ul>
+<li>Native debuggers can't discover lambda captures on <code>Entity.ForEach</code>, so you can't inspect variables originating from these.</li>
+<li>Structs that use <a href="https://docs.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.layoutkind?view=net-6.0"><code>[StructLayout(LayoutKind=Explicit)]</code></a> and have overlapping fields are represented by a struct that hides one of the overlaps.</li>
+</ul>
+<p>Types that are nested, are namespaced in C/C++ style. e.g.</p>
+<pre><code class="lang-c#">namespace Pillow
+{
+	public struct Spot
+	{
+		public struct SubSpot
+		{
+            public int a;
+            public int b;
+        }
+		public int a;
+		public int b;
+		public SubSpot sub;
+	}
+</code></pre>
+<p>You would refer to SubSpot as Pillow::Spot::SubSpot in this case (for instance if you were trying to cast a pointer in a debugger watch window).</p>
+<h3 id="code-based-breakpoints">Code-based breakpoints</h3>
+<p>Burst supports code-based breakpoints through the <a href="https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics.debugger.break?view=net-6.0"><code>System.Diagnostics.Debugger.Break</code></a> method. This method generates a debug trap in your code. You must attach a debugger to your code so that it can intercept the break. Breakpoints trigger whether you've attached a debugger or not.</p>
+<p>Burst adds information to track local variables, function parameters and breakpoints. If your debugger supports conditional breakpoints, use these over adding breakpoints in your code, because they only fire when you've attached a debugger.</p>
+<h2 id="profiling-burst-compiled-code">Profiling Burst-compiled code</h2>
+<h3 id="profiling-using-standalone-profiling-tools">Profiling using standalone profiling tools</h3>
+<p>You can use profiling tools (such as Instruments or Superluminal) to profile Burst-compiled code in a Player build. Because of how Unity builds the code for a Player, you need to tell the profiling tool where to find the symbols. To do this, point the tool to the folder that contains the <code>lib_burst_generated</code> files, which is usually in the <code>Plugins</code> folder.</p>
+<p><a name="profiler-markers"></a></p>
+<h3 id="unity-profiler-markers">Unity Profiler markers</h3>
+<p>To improve the data you get from Unity Profiler (either for Burst-compiled code running in the Editor or in an attached player), you can create Unity Profiler markers from Burst code by calling <code>new ProfilerMarker(&quot;MarkerName&quot;)</code>:</p>
+<pre><code class="lang-c#">[BurstCompile]
+private static class ProfilerMarkerWrapper
+{
+    private static readonly ProfilerMarker StaticMarker = new ProfilerMarker(&quot;TestStaticBurst&quot;);
+
+    [BurstCompile(CompileSynchronously = true)]
+    public static int CreateAndUseProfilerMarker(int start)
+    {
+        using (StaticMarker.Auto())
+        {
+            var p = new ProfilerMarker(&quot;TestBurst&quot;);
+            p.Begin();
+            var result = 0;
+            for (var i = start; i &lt; start + 100000; i++)
+            {
+                result += i;
+            }
+            p.End();
+            return result;
+        }
+    }
+}
+</code></pre>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="xref:um-managed-code-debugging">Debug C# code in Unity</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

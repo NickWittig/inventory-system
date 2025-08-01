@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Predictive and Live Debugging | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Predictive and Live Debugging | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="predictive-and-live-debugging">Predictive and Live Debugging</h1>
+
+<div class="NOTE">
+<h5>Note</h5>
+<p>For versions 2019/2020 LTS, download the Visual Scripting package from the <a href="https://assetstore.unity.com/packages/tools/visual-bolt-163802">Unity Asset Store</a>.</p>
+</div>
+<p>Visual scripting can predict and indicate nodes in the script that can cause an error before entering play mode. It also analyzes your graphs to anticipate missing components or null references. If an error occurs at runtime, visual scripting  pin-points the source of the error by highlighting it in the graph.</p>
+<h2 id="predictive-debugging">Predictive Debugging</h2>
+<p>When a node is not properly configured or may cause an error, it is colored yellow. When a node is certain to cause an error, it is colored orange. In both cases you should examine the node and make the required changes until it turns back to its normal color.</p>
+<p>Example: The Log node is colored orange because it's missing the Message that it should output to the console.</p>
+<p><img src="images/vs-debug-log-node-error.png" alt=""></p>
+<p>If you connect the result of A + B to Message, the Log node goes back to normal. However, the Add node  turns orange, because it's missing its first operand, A.</p>
+<p><img src="images/vs-debug-add-node-error.png" alt=""></p>
+<p>If values are provided for both operands, all colors return to normal.</p>
+<p><img src="images/vs-debug-nodes-correct.png" alt=""></p>
+<p>The B input port does not need to be connected as it has a default inline value.</p>
+<h3 id="null-references">Null References</h3>
+<p>Null reference exceptions are very common. They happen when a parameter expects a value, but it receives &quot;nothing&quot;, or in scripting lingo, &quot;null&quot;.</p>
+<p>Visual scripting attempts to predict null references if the Predict Potential Null References option is checked in <strong>Unity</strong> &gt; <strong>Preferences</strong> &gt; <strong>Visual Scripting</strong> &gt; <strong>Flow Graph</strong>.</p>
+<p>Example: Even though the Destroy node has an inline value, as it is set to &quot;None&quot; (null), it is colored orange.</p>
+<p><img src="images/vs-debug-null-reference.png" alt=""></p>
+<p>There are some rarer nodes that allow for null parameters. Unfortunately, because there is no way to know that from codebase analysis, visual scripting colors them orange as a false positive. If this is a recurring issue, turn off Predict Potential Null References.</p>
+<h3 id="missing-components">Missing Components</h3>
+<p>When nodes are used that require components and pass a game object or a component that does not have the specified component, the node is colored yellow as a warning. For example, even though there are default values for each value input of the Add Force node, visual scripting detects that the owner game object does not have a rigidbody and provides a warning.</p>
+<p><img src="images/vs-debug-missing-component.png" alt=""></p>
+<p>Visual scripting does not color the node orange because it is possible to add components to game objects at runtime, so the node is not guaranteed to cause a crash if you add the required component before calling it. If this use case happens often in the project, you can disable Predict Potential Missing Components debugging from <strong>Unity</strong> &gt; <strong>Preferences</strong> &gt; <strong>Visual Scripting</strong> &gt; <strong>Flow Graphs</strong>.</p>
+<h2 id="live-debugging">Live Debugging</h2>
+<p>When in play mode, the currently active nodes are highlighted in blue. If an error occurs, the node that caused it is highlighted in red.</p>
+<p>Example: The following is an example of a faulty graph. The result logs &quot;my 3rd third favorite fruit&quot; to the console when you press space.</p>
+<p><img src="images/vs-debug-faulty-node-example.png" alt=""></p>
+<p>Here's what happens when play is selected and the object is clicked.</p>
+<p><img src="images/vs-debug-faulty-node-highlighted.png" alt=""></p>
+<p>All nodes are highlighted in blue as soon as you click because they were activated. However, there was an error in the console.</p>
+<p><img src="images/vs-debug-faulty-node-console-error.png" alt=""></p>
+<p>Visual scripting highlights the faulty node in red.</p>
+<p>A common mistake is to assume array indices start at 1, whereas they actually start at 0. In scripting, indices are always zero-based; the first item is at index 0, the second at index 1, the third at index 2, etc. To get third item, write 2 in the field.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

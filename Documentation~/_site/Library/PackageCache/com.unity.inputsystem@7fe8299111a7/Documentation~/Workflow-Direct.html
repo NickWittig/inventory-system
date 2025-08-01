@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Workflow Overview - Directly Reading Device States | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Workflow Overview - Directly Reading Device States | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="input-system-workflow-direct">
+<h1 id="workflow-overview---directly-reading-device-states">Workflow Overview - Directly Reading Device States</h1>
+
+<img src="Images/Workflow-Direct.png" height="200px">
+<p>This is the simplest and most direct input workflow, but the least flexible. It bypasses the <a href="ActionsEditor.html">Input Actions editor</a>, so you do not benefit from all the features come with <a href="Actions.html">Actions</a>.</p>
+<p>It can be useful if you want a quick implementation with one specific type of device. It's generally not the best choice if you want to provide your users with multiple types of input or if you want to target multiple platforms.</p>
+<p>You can directly read the values from connected devices by referring to the device’s <a href="Controls.html">controls</a> and reading the values they are currently generating, using code like this:</p>
+<pre><code class="lang-CSharp">using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class MyPlayerScript : MonoBehaviour
+{
+    void Update()
+    {
+        var gamepad = Gamepad.current;
+        if (gamepad == null)
+        {
+            return; // No gamepad connected.
+        }
+
+        if (gamepad.rightTrigger.wasPressedThisFrame)
+        {
+            // 'Use' code here
+        }
+
+        Vector2 move = gamepad.leftStick.ReadValue();
+        {
+            // 'Move' code here
+        }
+    }
+}
+</code></pre>
+<p>The example above reads values directly from  the right trigger, and the left stick, of the currently connected <a href="Gamepad.html">gamepad</a>. It does not use the input system’s &quot;Action&quot; class, and instead the conceptual actions in your game or app, such as &quot;move&quot; and &quot;use&quot;, are implicitly defined by what your code does in response to the input. You can use the same approach for other Device types such as the <a href="../api/UnityEngine.InputSystem.Keyboard.html">keyboard</a> or <a href="../api/UnityEngine.InputSystem.Mouse.html">mouse</a>.</p>
+<h2 id="pros-and-cons">Pros and Cons</h2>
+<p>This can be the fastest way to set up some code which responds to input, but it is the least flexible because there is no abstraction between your code and the values generated by a specific device.</p>
+<p>If you choose to use this technique:</p>
+<ul>
+<li><p>You won’t benefit from Unity’s management of <a href="Actions.html">actions</a> and <a href="Interactions.html">interactions</a>.</p>
+</li>
+<li><p>It is harder to make your game or app work with multiple types of <a href="Devices.html">input device</a>.</p>
+</li>
+<li><p>Your input bindings are hard-coded in your script, so any changes to bindings require changes to the code.</p>
+</li>
+<li><p>It is harder to allow the user to <a href="ActionBindings.html#interactive-rebinding">remap their own controls to different actions at run time</a>.</p>
+</li>
+</ul>
+<p>You can find an example of this workflow in the sample projects included with the input system package. To find it, in the Project window, look in <strong>Assets &gt; Samples &gt; SimpleDemo</strong> and open the scene: <strong>SimpleDemo_UsingState</strong>.</p>
+<p>See <a href="SupportedDevices.html">Supported Devices</a> for more information about devices supported by the input system, and the API to read their states.</p>
+<p>For more a more flexible workflow, see the <a href="Workflow-Actions.html">Actions Workflow</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Timeline Playback Controls | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Timeline Playback Controls | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="timeline-playback-controls">Timeline Playback Controls</h1>
+
+<p>To play the Timeline instance and to control the location of the Timeline Playhead, use the Timeline Playback Controls and the Playhead Location field.</p>
+<p><img src="images/spec-playback-ctrls.png" alt=""></p>
+<p><em>Timeline Playback Controls and the Playhead Location field</em></p>
+<h2 id="-timeline-start"><img src="images/button-tl-start.png" alt=""> Timeline Start</h2>
+<p>To move the Timeline Playhead to the start of the Timeline instance, click the Timeline Start button, or hold Shift and press Comma (,).</p>
+<h2 id="-previous-frame"><img src="images/button-tl-prev-frame.png" alt=""> Previous Frame</h2>
+<p>To move the Timeline Playhead to the previous frame, click the Previous Frame button, or press Comma (,).</p>
+<p><a name="playbutton"></a></p>
+<h2 id="-timeline-play"><img src="images/button-tl-play.png" alt=""> Timeline Play</h2>
+<p>To preview the Timeline instance in Timeline Playback mode, click the Timeline Play button, or press the Spacebar. Timeline Playback mode does the following:</p>
+<ul>
+<li>Begins playback at the current location of the Timeline Playhead and continues to the end of the Timeline instance. If the Play Range toggle is enabled, playback is restricted to a specified time range.</li>
+<li>The Timeline Playhead moves along the Timeline instance. The Playhead Location field displays the position of the Timeline Playhead in either frames, timecode, or seconds, depending on the <a href="tl-options.html">Timeline settings</a>.</li>
+<li>To pause playback, click the Timeline Play button again, or press the Spacebar.</li>
+<li>When playback reaches the end of the Timeline instance, the Wrap Mode determines whether playback should hold, loop, or do nothing. The Wrap Mode property is in the <a href="playable-director.html">Playable Director component</a>.</li>
+</ul>
+<p>Timeline Playback mode provides a preview of the Timeline instance while in the Timeline window. Timeline Playback mode is only a simulation of <a href="https://docs.unity3d.com/Manual/GameView.html">Play mode in the Game View</a>.</p>
+<p>The Timeline Playback mode does not support audio playback. To preview a Timeline instance with audio, enable the Play on Awake option in the <a href="playable-director.html">Playable Director component</a> and preview gameplay in Play mode.</p>
+<h2 id="-next-frame"><img src="images/button-tl-next-frame.png" alt=""> Next Frame</h2>
+<p>To move the Timeline Playhead to the next frame, click the Next Frame button, or press Period (.).</p>
+<h2 id="-timeline-end"><img src="images/button-tl-end.png" alt=""> Timeline End</h2>
+<p>To move the Timeline Playhead to the end of the Timeline instance, click the Timeline End button, or hold Shift and press Period (.).</p>
+<p><a name="playrange"></a></p>
+<h2 id="-play-range"><img src="images/button-tl-play-range.png" alt=""> Play Range</h2>
+<p>Enable the <strong>Play Range</strong> toggle to continuously loop playback within a specific range. You can only set a play range when previewing a Timeline instance within the Timeline window. Unity ignores the play range in <a href="https://docs.unity3d.com/Manual/GameView.html">Play mode</a>.</p>
+<p><img src="images/tl-play-range.png" alt=""></p>
+<p><em>Play Range enabled with loop points and highlighted area defining range</em></p>
+<p><strong>(A)</strong> Play Range enabled<br>
+<strong>(B)</strong> The Timeline ruler highlights the play range and indicates its start and end with loop points. To modify the play range, drag either border of the play range.<br></p>
+<p><a name="playheadlocation"></a></p>
+<h2 id="timeline-playhead-and-playhead-location-field">Timeline Playhead and Playhead Location field</h2>
+<p>The Timeline Playhead indicates the exact point in time being previewed in the Timeline window. The Playhead Location field expresses the location of the Timeline Playhead in frames, timecode, or seconds.</p>
+<p><img src="images/tl-playhead-location.png" alt=""></p>
+<p><em>Use the Playhead Location field to move the Timeline Playhead</em></p>
+<p><strong>(A)</strong> Playhead Location field<br>
+<strong>(B)</strong> Timeline Playhead<br>
+<strong>(C)</strong> Timeline Playhead on the Zoombar<br></p>
+<p>Use the <a href="clip-pan-zoom.html">Zoombar to navigate, scroll, and zoom</a> the Content view. A white line indicates the location of the Timeline Playhead in relation to the entire Timeline instance.</p>
+<p>To jump the Timeline Playhead to a specific time, click the Timeline ruler. You can also enter the time value in the Playhead Location field and press Enter. This value is converted to frames, timecode, or seconds based on the <a href="tl-options.html">Timeline Options</a>.</p>
+<p>For example, if the Timeline ruler is expressed as seconds with a frame rate of 30 frames per second, entering 180 in the Playhead Location field converts the value to seconds and moves the Timeline Playhead to 6:00. Use the <a href="tl-options.html">Timeline Options</a> to set the time format and choose the frame rate.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

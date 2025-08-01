@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Position clips | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Position clips | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="position-clips">Position clips</h1>
+
+<p>To position a clip, select Mix mode as the Edit mode. Select a clip and hover over it. When the cursor is a standard arrow cursor, click and drag the clip to its new position.</p>
+<p>While dragging, black lines indicate the selection of clips being positioned. The Timeline ruler displays the start time and end time of the selected clips being positioned.</p>
+<p><img src="images/tl-clip-mix-positioning.png" alt=""></p>
+<p><em>Select Mix mode (A). Select and drag to position a clip (B).</em></p>
+<p>By default, when you drag to position clips, both Snap to Frame and Edge Snap are enabled in the Content view. You can change these snap settings in the <a href="tl-options.html">Timeline Options</a> menu.</p>
+<p>You can also move a clip to another track of the same type. Drag the clip off of its current track and a white ghost indicates where the clip will be moved. If you drag a clip to an area where the clip cannot be placed, the ghost changes to red indicating that you cannot release the clip in that area. For example, you cannot drag a clip where there is no track.</p>
+<p><img src="images/tl-clip-position-invalid.png" alt=""></p>
+<p><em>The ghost of the selection being moved is drawn in red if you attempt to move a clip to an invalid area</em></p>
+<p>You can position a selection of clips on the same track, or on different tracks. You are not limited to positioning one clip at a time. The same edge snapping rules and invalid area restrictions apply when positioning a selection of clips on many tracks.</p>
+<h2 id="position-clips-with-the-inspector-window">Position clips with the Inspector window</h2>
+<p>Use the <a href="insp-clip.html">Inspector window to accurately position clips</a>. To position a clip with the Inspector window, select a clip and use the Clip Timing properties to change its <strong>Start</strong> property.</p>
+<p><img src="images/insp-clip-anim-timing.png" alt=""></p>
+<p><em>Clip Timing properties for an Animation clip</em></p>
+<p>The impact that changing the Start value has on adjacent clips depends on the selected Edit mode.</p>
+<h2 id="position-clips-in-different-edit-modes">Position clips in different Edit modes</h2>
+<p>You are not restricted to positioning clips with Mix mode as the selected Edit mode. You can also position clips in Ripple mode and in Replace mode. The difference is the impact each Edit mode has on adjacent clips on the tracks where clips are being moved:</p>
+<ul>
+<li>Position clips in Mix mode to create blends between intersecting clips.</li>
+<li>Position clips in Ripple mode to ripple subsequent clips, respecting the gaps between clips.</li>
+<li>Position clips in Replace mode to cut or replace intersecting clips.</li>
+</ul>
+<h2 id="position-clips-with-the-timeline-playhead">Position clips with the Timeline Playhead</h2>
+<p>You can position clips by inserting frames at the position of the Timeline Playhead. To do this, follow these steps:</p>
+<ol>
+<li>move the Timeline Playhead to where you want to insert frames.</li>
+</ol>
+<p><img src="images/tl-playhead-insert-before.png" alt=""></p>
+<p><em>For example, to insert frames starting at frame 40, move the Timeline Playhead to frame 40</em></p>
+<ol start="2">
+<li>Right-click the Timeline Playhead on the Timeline ruler above the Content view, select <strong>Insert</strong> &gt; <strong>Frame</strong>, and a number of frames.</li>
+</ol>
+<p><img src="images/tl-playhead-insert-menu.png" alt=""></p>
+<p><em>To insert 25 frames, right-click the Timeline Playhead and choose <strong>Insert</strong> &gt; <strong>Frame</strong> &gt; <strong>25 Frames</strong></em></p>
+<p>This inserts frames in the Timeline instance at the position of the Timeline Playhead. Inserting frames only repositions the clips that start after the position of the Timeline Playhead.</p>
+<p><img src="images/tl-playhead-insert-25-after.png" alt=""></p>
+<p><em>In this example, inserting 25 frames at frame 40 affects Clip <code>1B</code>, Clip <code>2B</code>, and Clip <code>2C</code>.</em></p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

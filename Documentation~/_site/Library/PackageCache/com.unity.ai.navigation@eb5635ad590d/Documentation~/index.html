@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>AI Navigation | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="AI Navigation | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="ai-navigation">AI Navigation</h1>
+
+<p>The navigation system allows you to create characters that can intelligently move around the game world. These characters use navigation meshes that are created automatically from your <a href="Glossary.html#scene" title="A Scene contains the environments and menus of your game. Think of each unique Scene file as a unique level. In each Scene, you place your environments, obstacles, and decorations, essentially designing and building your game in pieces."><strong>Scene</strong></a> geometry. Dynamic obstacles allow you to alter the navigation of the characters at runtime, while NavMesh links let you build specific actions like opening doors or jumping over gaps or down from a ledge. This section describes Unity's navigation and pathfinding systems in detail.</p>
+<p>The following table describes the main topics of the AI Navigation package documentation.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Topic</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><a href="whats-new.html"><strong>What's new</strong></a></td>
+<td style="text-align: left;">See what's changed in the latest version of the AI Navigation package.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="UpgradeGuide.html"><strong>Upgrade</strong></a></td>
+<td style="text-align: left;">Convert your projects to work with the new navigation system.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="NavigationSystem.html"><strong>Navigation System</strong></a></td>
+<td style="text-align: left;">Understand the key concepts necessary to use AI Navigation in Unity.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="NavigationOverview.html"><strong>Navigation Overview</strong></a></td>
+<td style="text-align: left;">Create NavMeshes, agents, links, and obstacles with this package.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="Reference.html"><strong>Navigation Interface</strong></a></td>
+<td style="text-align: left;">Learn about the interface of the Navigation components in this package.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="Samples.html"><strong>Samples</strong></a></td>
+<td style="text-align: left;">Learn about the sample projects included with this package.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="Glossary.html"><strong>Glossary</strong></a></td>
+<td style="text-align: left;">View AI Navigation terminology definitions.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="https://discussions.unity.com/t/a-guide-on-using-the-new-ai-navigation-package-in-unity-2022-lts-and-above">A guide on using the new AI Navigation package in Unity 2022 LTS and above</a></li>
+<li><a href="http://unity3d.com/learn/tutorials/topics/navigation">Navigation tutorials</a>
+<ul>
+<li><a href="https://learn.unity.com/project/beginner-ai-pathfinding">Getting Started with AI Pathfinding</a></li>
+<li><a href="https://learn.unity.com/project/navigation-meshes">Navigation Meshes</a></li>
+<li><a href="https://learn.unity.com/tutorial/working-with-navmesh-agents">Working with NavMesh Agents</a></li>
+</ul>
+</li>
+<li><a href="https://assetstore.unity.com/packages/templates/tutorials/unity-learn-3d-game-kit-115747">3D Game Kit</a> and <a href="https://assetstore.unity.com/packages/templates/tutorials/3d-game-kit-lite-135162">3D Game Kit Lite</a> - Sample projects that include navigation</li>
+<li><a href="https://learn.unity.com/project/3d-game-kit?uv=2020.3">The Explorer: 3D Game Kit</a> - Tutorial about the sample project
+<ul>
+<li><a href="https://learn.unity.com/tutorial/quick-start?uv=2020.3&amp;projectId=5c514897edbc2a001fd5bdd0#5c7f8528edbc2a002053b746">Enemies in the 3D Game Kit</a></li>
+<li><a href="https://learn.unity.com/tutorial/3d-game-kit-walkthrough?uv=2020.3&amp;projectId=5c514897edbc2a001fd5bdd0#5c7f8528edbc2a002053b753">A Deeper Look at Enemies</a></li>
+<li><a href="https://learn.unity.com/tutorial/quick-start?uv=2020.3&amp;projectId=5c514897edbc2a001fd5bdd0#5c7f8528edbc2a002053b746">Decorating in 3D Game Kit</a></li>
+</ul>
+</li>
+<li><a href="https://discussions.unity.com/tag/navigation">Unity Discussions</a> - Navigation topics on the Unity forums</li>
+<li><a href="https://support.unity3d.com/hc/en-us">Unity Knowledge Base</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Building your project | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Building your project | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="building-your-project">Building your project</h1>
+
+<p>When you build your project, Burst compiles your code and creates a single dynamic library in the Plugins folder for the platform you're targeting. For example, on Windows, the path is <code>Data/Plugins/lib_burst_generated.dll</code>.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>If your target platform is iOS, Unity instead generates a static library to meet Apple's submission requirements for TestFlight.</p>
+</div>
+<p>The job system runtime loads the generated library the first time a Burst compiled method is invoked.</p>
+<p>To control Burst's AOT compilation, use the settings in the <strong>Burst AOT Settings</strong> section of the Player Settings window (<strong>Edit &gt; Player Settings &gt; Burst AOT Settings</strong>). For more information, refer to <a href="building-aot-settings.html">Burst AOT Settings reference</a>.</p>
+<p><a name="cross-compilation"></a></p>
+<h2 id="platforms-without-cross-compilation">Platforms without cross compilation</h2>
+<p>If you're compiling for a non-desktop platform, Burst compilation requires specific platform compilation tools (similar to <a href="https://docs.unity3d.com/Manual/IL2CPP.html">IL2CPP</a>). By default, desktop platforms (macOS, Linux, Windows) don't need external toolchain support, unless you enable the <strong>Use Platform SDK Linker</strong> setting in the <a href="building-aot-settings.html">Burst AOT Settings</a>.</p>
+<p>The table below lists the level of support for AOT compilation on each platform. If you select an invalid target (one with missing tools, or unsupported), Unity doesn't use Burst compilation, but still builds the target without Burst optimizations.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Burst supports cross-compilation between desktop platforms (macOS/Linux/Windows) by default.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th><strong>Host Editor platform</strong></th>
+<th><strong>Target Player platform</strong></th>
+<th><strong>Supported CPU architectures</strong></th>
+<th><strong>External toolchain requirements</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows</td>
+<td>Windows</td>
+<td>x86 (SSE2, SSE4)<br> x64 (SSE2, SSE4, AVX, AVX2)</td>
+<td>None</td>
+</tr>
+<tr>
+<td>Windows</td>
+<td>Universal Windows Platform</td>
+<td>x86 (SSE2, SSE4)<br> x64 (SSE2, SSE4, AVX, AVX2)<br>ARM32 (Thumb2, Neon32)<br>ARMV8 AARCH64<br><br><strong>Note:</strong> A UWP build always compiles all four targets.</td>
+<td>Visual Studio 2017<br>Universal Windows Platform Development Workflow<br>C++ Universal Platform Tools</td>
+</tr>
+<tr>
+<td>Windows</td>
+<td>Android</td>
+<td>x86 SSE2<br> ARMV7 (Thumb2, Neon32)<br> ARMV8 AARCH64 (ARMV8A, ARMV8A_HALFFP, ARMV9A)</td>
+<td>Android NDK<br><br><strong>Important:</strong> Use the Android NDK that you install through Unity Hub (via <strong>Add Component</strong>). Burst falls back to the one that the <code>ANDROID_NDK_ROOT</code> environment variable specifies if the Unity external tools settings aren't configured.</td>
+</tr>
+<tr>
+<td>Windows</td>
+<td>Magic Leap 2</td>
+<td>ARMV8 AARCH64</td>
+<td>From Unity 6, Magic Leap 2 requires the <a href="https://docs.unity3d.com/Packages/com.unity.xr.openxr@latest">OpenXR plugin</a>.</td>
+</tr>
+<tr>
+<td>Windows</td>
+<td>Xbox One</td>
+<td>x64 SSE4</td>
+<td>Microsoft GDK</td>
+</tr>
+<tr>
+<td>Windows</td>
+<td>Xbox Series</td>
+<td>x64 AVX2</td>
+<td>Microsoft GDK</td>
+</tr>
+<tr>
+<td>Windows</td>
+<td>PlayStation 4</td>
+<td>x64 SSE4</td>
+<td>Minimum PS4 SDK version 8.00</td>
+</tr>
+<tr>
+<td>Windows</td>
+<td>PlayStation 5</td>
+<td>x64 AVX2</td>
+<td>Minimum PS5 SDK version 2.00</td>
+</tr>
+<tr>
+<td>Windows</td>
+<td>Nintendo Switch</td>
+<td>ARMV8 AARCH64</td>
+<td>None</td>
+</tr>
+<tr>
+<td>macOS</td>
+<td>macOS</td>
+<td>x64 (SSE2, SSE4, AVX, AVX2), Apple Silicon</td>
+<td>None</td>
+</tr>
+<tr>
+<td>macOS</td>
+<td>iOS</td>
+<td>ARM32 Thumb2/Neon32, ARMV8 AARCH64</td>
+<td>Xcode with command line tools installed (<code>xcode-select --install</code>)</td>
+</tr>
+<tr>
+<td>macOS</td>
+<td>Android</td>
+<td>x86 SSE2<br> ARMV7 (Thumb2, Neon32)<br> ARMV8 AARCH64 (ARMV8A, ARMV8A_HALFFP, ARMV9A)</td>
+<td>Android NDK<br><br><strong>Important:</strong> Use the Android NDK that you install through Unity Hub (via <strong>Add Component</strong>). Burst falls back to the one that the <code>ANDROID_NDK_ROOT</code> environment variable specifies if the Unity external tools settings aren't configured.</td>
+</tr>
+<tr>
+<td>macOS</td>
+<td>Magic Leap 2</td>
+<td>ARMV8 AARCH64</td>
+<td>From Unity 6, Magic Leap 2 requires the <a href="https://docs.unity3d.com/Packages/com.unity.xr.openxr@latest">OpenXR plugin</a>.</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>Linux</td>
+<td>x64 (SSE2, SSE4, AVX, AVX2)</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<p>The maximum target CPU is hardcoded per platform. For standalone builds that target desktop platforms (Windows/Linux/macOS) you can choose the supported targets via the <a href="building-aot-settings.html">Burst AOT Settings</a></p>
+<h3 id="projects-that-dont-use-burst">Projects that don't use Burst</h3>
+<p>Some projects can't use Burst as the compiler:</p>
+<ul>
+<li>iOS projects from the Windows Editor</li>
+<li>Android projects from the Linux Editor</li>
+<li>Xcode projects generated from the <strong>Create Xcode Project</strong> option</li>
+</ul>
+<h2 id="multiple-burst-targets">Multiple Burst targets</h2>
+<p>When Burst compiles multiple target platforms during a build, it has to perform separate compilations. For example, if you want to compile <code>X64_SSE2</code> and <code>X64_SSE4</code>, Burst has to do two separate compilations to generate code for each of the targets you choose.</p>
+<p>To keep the combinations of targets to a minimum, Burst target platforms require multiple processor instruction sets underneath:</p>
+<ul>
+<li><code>SSE4.2</code> is gated on having <code>SSE4.2</code> and <code>POPCNT</code> instruction sets.</li>
+<li><code>AVX2</code> is gated on having <code>AVX2</code>, <code>FMA</code>, <code>F16C</code>, <code>BMI1</code>, and <code>BMI2</code> instruction sets.</li>
+<li><code>ARMV8A</code> is a basic Armv8-A CPU target</li>
+<li><code>ARMV8A_HALFFP</code> is <code>ARMV8A</code> plus the following extensions: <code>fullfp16</code>, <code>dotprod</code>, <code>crypto</code>, <code>crc</code>, <code>rdm</code>, <code>lse</code>. In practice, this means Cortex A75/A55 and later cores.</li>
+<li><code>ARMV9A</code> is <code>ARMV8A_HALFFP</code> plus SVE2 support. In practice, this means Cortex X2/A710/A510 and later cores. <strong>Important:</strong> this target is currently experimental.</li>
+</ul>
+<h2 id="dynamic-dispatch-based-on-runtime-cpu-features">Dynamic dispatch based on runtime CPU features</h2>
+<p>For all <code>x86</code>/<code>x64</code> CPU desktop platforms, as well as for 64-bit Arm on Android, Burst takes into account the CPU features available at runtime to dispatch jobs to different versions it compiles.</p>
+<p>For <code>x86</code> and <code>x64</code> CPUs, Burst supports <code>SSE2</code> and <code>SSE4</code> instruction sets at runtime only.</p>
+<p>For example, with dynamic CPU dispatch, if your CPU supports <code>SSE3</code> and below, Burst selects <code>SSE2</code> automatically.</p>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="building-aot-settings.html">Burst AOT Settings reference</a></li>
+<li><a href="editor-reference-overview.html">Editor reference</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

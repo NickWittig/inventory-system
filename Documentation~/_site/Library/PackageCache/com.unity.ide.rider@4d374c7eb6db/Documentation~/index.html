@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>About JetBrains Rider Editor | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="About JetBrains Rider Editor | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="about-jetbrains-rider-editor">About JetBrains Rider Editor</h1>
+
+<p>The JetBrains Rider editor package integrates support for the <a href="https://www.jetbrains.com/rider/">JetBrains Rider</a> .NET Integrated Development Environment (IDE), into the Unity Editor. This package provides an end-point for Rider to call different Unity APIs and to generate .csproj and .sln files, which Rider uses to implement support for Unity in its <a href="https://github.com/JetBrains/resharper-unity">plug-in</a>.</p>
+<p>This package ensures that IDE features like autocomplete suggestions and flagging dependency conflicts work in Rider. It uses .cproj and .sln files which store information about your project such as:</p>
+<ul>
+<li>Versioning information</li>
+<li>Build files</li>
+<li>Platform requirements</li>
+<li>Web server or database settings</li>
+</ul>
+<p>Not all code in Unity is directly visible to code editors, particularly when using packages. This is because packages don’t provide their own .csproj files, and Unity doesn’t create them for installed packages by default. This means that IDE features like autocomplete suggestions and flagging dependency conflicts do not work with code in these packages. The purpose of this package is to produce the .csproj files that make these features possible by default when you use Rider.</p>
+<h2 id="installation">Installation</h2>
+<p>As of Unity version 2019.2, this package comes as a part of the default Unity installation. If you are updating your project from an older version of Unity, you might need to install this package via the Package Manager.</p>
+<h2 id="requirements">Requirements</h2>
+<p>This version of the JetBrains Rider editor package is compatible with the following versions of the Unity Editor:</p>
+<ul>
+<li>2019.2.6 or later</li>
+</ul>
+<p>To use this package, you must have the following third-party products installed:</p>
+<ul>
+<li>JetBrains Rider version 2019.3 or newer</li>
+</ul>
+<p>For more information about the Rider IDE, see the <a href="https://www.jetbrains.com/rider/documentation/">JetBrains Rider documentation</a>.</p>
+<h3 id="submitting-issues">Submitting issues</h3>
+<p>This package is maintained by JetBrains and Unity. Submit issues to the <a href="https://github.com/JetBrains/resharper-unity/issues">JetBrains/resharper-unity/issues GitHub page</a>. Unity intends for this package to become accessible to the public on GitHub in the future.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

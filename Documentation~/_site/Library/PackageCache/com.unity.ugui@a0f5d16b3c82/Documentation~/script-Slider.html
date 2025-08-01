@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Slider | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Slider | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="slider">Slider</h1>
+
+<p>The <strong>Slider</strong> control allows the user to select a numeric value from a predetermined range by dragging the mouse. Note that the similar <a href="script-Scrollbar.html">ScrollBar</a> control is used for scrolling rather than selecting numeric values. Familiar examples include difficulty settings in games and brightness settings in image editors.</p>
+<p><img src="images/UI_SliderExample.png" alt="A Slider."></p>
+<p><img src="images/UI_SliderInspector.png" alt=""></p>
+<h2 id="properties">Properties</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Property:</strong></th>
+<th style="text-align: left;"><strong>Function:</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Interactable</strong></td>
+<td style="text-align: left;">Will this component accept input? See <a href="script-Selectable.html">Interactable</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Transition</strong></td>
+<td style="text-align: left;">Properties that determine the way the control responds visually to user actions. See <a href="script-SelectableTransition.html">Transition Options</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Navigation</strong></td>
+<td style="text-align: left;">Properties that determine the sequence of controls. See <a href="script-SelectableNavigation.html">Navigation Options</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Fill Rect</strong></td>
+<td style="text-align: left;">The graphic used for the fill area of the control.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Handle Rect</strong></td>
+<td style="text-align: left;">The graphic used for the sliding &quot;handle&quot; part of the control</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Direction</strong></td>
+<td style="text-align: left;">The direction in which the slider's value will increase when the handle is dragged. The options are <em>Left To Right</em>, <em>Right To Left</em>, <em>Bottom To Top</em> and <em>Top To Bottom</em>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Min Value</strong></td>
+<td style="text-align: left;">The value of the slider when the handle is at its extreme lower end (determined by the <em>Direction</em> property).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Max Value</strong></td>
+<td style="text-align: left;">The value of the slider when the handle is at its extreme upper end (determined by the <em>Direction</em> property).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Whole Numbers</strong></td>
+<td style="text-align: left;">Should the slider be constrained to integer values?</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Value</strong></td>
+<td style="text-align: left;">Current numeric value of the slider.  If the value is set in the inspector it will be used as the initial value, but this will change at runtime when the value changes.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="events">Events</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Property:</strong></th>
+<th style="text-align: left;"><strong>Function:</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>On Value Changed</strong></td>
+<td style="text-align: left;">A <a href="https://docs.unity3d.com/Manual/UnityEvents.html">UnityEvent</a> that is invoked when the current value of the Slider has changed. The event can send the current value as a <code>float</code> type dynamic argument. The value is passed as a float type regardless of whether the <em>Whole Numbers</em> property is enabled.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="details">Details</h2>
+<p>The value of a Slider is determined by the position of the handle along its length. The value increases from the <em>Min Value</em> up to the <em>Max Value</em> in proportion to the distance the handle is dragged. The default behaviour is for the slider to increase from left to right but it is also possible to reverse this behavior using the <em>Direction</em> property. You can also set the slider to increase vertically by selecting <em>Bottom To Top</em> or <em>Top To Bottom</em> for the <em>Direction</em> property.</p>
+<p>The slider has a single event called <em>On Value Changed</em> that responds as the user drags the handle. The current numeric value of the slider is passed to the function as a <code>float</code> parameter. Typical use cases include:</p>
+<ul>
+<li>Choosing a level of difficulty in a game, brightness of a light, etc.</li>
+<li>Setting a distance, size, time or angle.</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

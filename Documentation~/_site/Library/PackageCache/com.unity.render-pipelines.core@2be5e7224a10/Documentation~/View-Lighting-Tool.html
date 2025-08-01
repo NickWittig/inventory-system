@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title> | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content=" | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+
+<h2 id="light-anchor">Light Anchor</h2>
+<p>The Light Anchor can help to place light sources around subjects, in relation to a Camera and an anchor point. It's particularly effective for cinematic lighting, which often requires multiple light sources orbiting a subject.</p>
+<h2 id="using-the-light-anchor-component">Using the Light Anchor Component</h2>
+<p>To add a Light Anchor component to a GameObject in your Scene:</p>
+<ol>
+<li>Select a Light GameObject in the hierarchy to open its Inspector window.</li>
+<li>Go to <strong>Add Component</strong> &gt; <strong>Rendering</strong> &gt; <strong>Light Anchor</strong></li>
+</ol>
+<p>By default, the Anchor's position is the same as the position of the GameObject the Light Anchor Component is attached to.</p>
+<p><strong>Note</strong>: To use the Light Anchor, you must set the Tag of at least one Camera to &quot;MainCamera&quot;.</p>
+<p>Use the <strong>Orbit</strong> and <strong>Elevation</strong> to control the orientation of the light, in degrees, relative to the main Camera's and Anchor's positions. If the Light has a Cookie or an IES Profile, use the <strong>Roll</strong> to change their orientation. Use the <strong>Distance</strong> to control how far from the anchor, in meters, you want to place the Light.</p>
+<p>You can use the <strong>Anchor Position Override</strong> to provide a GameObject’s <a href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a> as an anchor point for the Light. This is useful if you want the Light to follow a specific GameObject in the Scene.</p>
+<p><video title="A light uses the main camera as the reference GamObject that controls the rotation of the light. The light rotates synchronously with the camera." src="Images/videos/light-anchor-animation.mp4" width="100%" height="auto" autoplay="true" loop="true" controls></video></p>
+<p><strong>Note</strong>: The above example uses the Main Camera as the reference Camera that adjusts the light rotation. The Common presets might create a different result in the Scene View if your view isn't aligned with the Main Camera.</p>
+<p>You can set a <strong>Position Offset</strong> for this custom Anchor. This is useful if the Transform position of the custom Anchor isn't centered appropriately for the light to orbit correctly around the custom Anchor.</p>
+<p><img src="Images/LightAnchor0.png" alt="Light Anchor component screenshot. Orbit and Elevation properties display example values that change the orientation of a light."></p>
+<p>The Light Anchor component also includes a list of <strong>Presets</strong> that you can use to set the Light's orientation relative to the main Camera.</p>
+<h2 id="properties">Properties</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Property</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Orbit</strong></td>
+<td>Use the left icon to control the Orbit of the light. This tool becomes green when you move the icon.</td>
+</tr>
+<tr>
+<td><strong>Elevation</strong></td>
+<td>Use the middle icon to control the Elevation of the light. This tool becomes blue when you move the icon.</td>
+</tr>
+<tr>
+<td><strong>Roll</strong></td>
+<td>Use the right icon to control the Roll of the light. This tool becomes gray when you move the icon. This is useful if the light has an IES or a Cookie.</td>
+</tr>
+<tr>
+<td><strong>Distance</strong></td>
+<td>Controls the distance between the light and its anchor in world space.</td>
+</tr>
+<tr>
+<td><strong>Up Direction</strong></td>
+<td>Defines the space of the up direction of the anchor. When you set this value to Local, the Up Direction is relative to the Camera.</td>
+</tr>
+<tr>
+<td><strong>Anchor Position Override</strong></td>
+<td>Allows you to use a GameObject's <a href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a> as anchor position instead of the LightAnchor's Transform. When the Transform of the GameObject you assigned to this property changes, the Light Anchor's Transform also changes.</td>
+</tr>
+<tr>
+<td><strong>Common</strong></td>
+<td>Assigns a preset to the light component based on the behavior of studio lights.</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

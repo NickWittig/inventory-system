@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Input Action Assets | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Input Action Assets | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="input-system-action-assets">
+<h1 id="input-action-assets">Input Action Assets</h1>
+
+<ul>
+<li><a href="#creating-input-action-assets">Creating Input Action Assets</a></li>
+<li><a href="#editing-input-action-assets">Editing Input Action Assets</a></li>
+<li><a href="#using-input-action-assets">Using Input Action Assets</a></li>
+<li><a href="#type-safe-c-api-generation">Type-safe C# API Generation</a></li>
+</ul>
+<p>An Input Action Asset is an Asset which contains a set of <a href="Actions.html">Input Actions</a> definitions and their associated <a href="ActionBindings.html">Bindings</a> and <a href="ActionBindings.html#control-schemes">Control Schemes</a>. These Assets have the <code>.inputactions</code> file extension and are stored in a plain JSON format.</p>
+<p>The input system creates an Action Asset when you set up the <a href="ProjectWideActions.html">default project-wide actions</a>, but you can also create new Action Assets directly in the Project window.</p>
+<p>For most common scenarios, you do not need to use more than one Input Action Asset. It is usually simpler to configure your project-wide action definition in the Project Settings window.</p>
+<h2 id="creating-input-action-assets">Creating Input Action Assets</h2>
+<p>To create an Asset that contains <a href="Actions.html">Input Actions</a> in Unity, right-click in the <strong>Project</strong> window or go to <strong>Assets &gt; Create &gt; Input Actions</strong> from Unity's main menu.</p>
+<h2 id="editing-input-action-assets">Editing Input Action Assets</h2>
+<p>To bring up the Action editor, double-click an <code>.inputactions</code> Asset in the Project Browser, or select the <strong>Edit Asset</strong> button in the Inspector for that Asset. You can have more than one editor window open at the same time, but not for the same Asset.</p>
+<p>The Actions Editor which opens is identical to the <a href="ActionsEditor.html">Actions Editor in the Project Settings window</a>.</p>
+<h2 id="using-input-action-assets">Using Input Action Assets</h2>
+<h2 id="type-safe-c-api-generation">Type-safe C# API Generation</h2>
+<p>Input Action Assets allow you to <strong>generate a C# class</strong> from your action definitions, which allow you to refer to your actions in a type-safe manner from code. This means you can avoid looking up your actions by string.</p>
+<h3 id="auto-generating-script-code-for-actions">Auto-generating script code for Actions</h3>
+<p>One of the most convenient ways to work with <code>.inputactions</code> Assets in scripts is to automatically generate a C# wrapper class for them. This removes the need to manually look up Actions and Action Maps using their names, and also provides an easier way to set up callbacks.</p>
+<p>To enable this option, tick the <strong>Generate C# Class</strong> checkbox in the importer properties in the Inspector of the <code>.inputactions</code> Asset, then select <strong>Apply</strong>.</p>
+<p><img src="Images/FireActionInputAssetInspector.png" alt="MyPlayerControls Importer Settings"></p>
+<p>You can optionally choose a path name, class name, and namespace for the generated script, or keep the default values.</p>
+<p>This generates a C# script that simplifies working with the Asset.</p>
+<pre><code class="lang-CSharp">using UnityEngine;
+using UnityEngine.InputSystem;
+
+// IGameplayActions is an interface generated from the &quot;gameplay&quot; action map
+// we added (note that if you called the action map differently, the name of
+// the interface will be different). This was triggered by the &quot;Generate Interfaces&quot;
+// checkbox.
+public class MyPlayerScript : MonoBehaviour, IGameplayActions
+{
+    // MyPlayerControls is the C# class that Unity generated.
+    // It encapsulates the data from the .inputactions asset we created
+    // and automatically looks up all the maps and actions for us.
+    MyPlayerControls controls;
+
+    public void OnEnable()
+    {
+        if (controls == null)
+        {
+            controls = new MyPlayerControls();
+            // Tell the &quot;gameplay&quot; action map that we want to get told about
+            // when actions get triggered.
+            controls.gameplay.SetCallbacks(this);
+        }
+        controls.gameplay.Enable();
+    }
+
+    public void OnDisable()
+    {
+        controls.gameplay.Disable();
+    }
+
+    public void OnUse(InputAction.CallbackContext context)
+    {
+        // 'Use' code here.
+    }
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        // 'Move' code here.
+    }
+
+}
+</code></pre>
+<blockquote>
+<p><strong>Note</strong>: To regenerate the .cs file, right-click the .inputactions asset in the Project Browser and choose &quot;Reimport&quot;.</p>
+</blockquote>
+<h3 id="using-action-assets-with-playerinput">Using Action Assets with <code>PlayerInput</code></h3>
+<p>The <a href="PlayerInput.html">Player Input</a> component provides a convenient way to handle input for one or multiple players. You can assign your Action Asset to the Player Input component so that it can then automatically handle activating Action Maps and selecting Control Schemes for you.</p>
+<p><img src="Images/PlayerInput.png" alt="PlayerInput"></p>
+<h3 id="modifying-input-action-assets-at-runtime">Modifying Input Action Assets at runtime</h3>
+<p>There are several ways to modify an Input Action Asset at runtime. Any modifications that you make during Play mode to an Input Action Asset do not persist in the Input Action Asset after you exit Play mode. This means you can test your application in a realistic manner in the Editor without having to worry about inadvertently modifying the asset. For examples on how to modify an Input Action Asset, see the documentation on <a href="Actions.html#creating-actions-in-code">Creating Actions in code</a> and <a href="ActionBindings.html#changing-bindings">Changing Bindings</a>.</p>
+<h3 id="the-default-actions-asset">The Default Actions Asset</h3>
+<p>An asset called <code>DefaultInputActions.inputactions</code> containing a default setup of Actions comes with the Input System Package. You can reference this asset directly in your projects like any other Unity asset. However, the asset is also available in code form through the <a href="../api/UnityEngine.InputSystem.DefaultInputActions.html"><code>DefaultInputActions</code></a> class.</p>
+<pre><code class="lang-CSharp">void Start()
+{
+    // Create an instance of the default actions.
+    var actions = new DefaultInputActions();
+    actions.Player.Look.performed += OnLook;
+    actions.Player.Move.performed += OnMove;
+    actions.Enable();
+}
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> This default actions asset is older than, and entirely separate from the <a href="ProjectWideActions.html">default project-wide actions</a>. It is a legacy asset that remains included in the package for backward compatibility.</p>
+</blockquote>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

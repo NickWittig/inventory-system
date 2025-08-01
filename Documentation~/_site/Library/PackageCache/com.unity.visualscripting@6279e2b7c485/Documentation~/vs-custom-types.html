@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Custom types | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Custom types | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="custom-types">Custom types</h1>
+
+<p>Use a C# script file to create your own object types in Unity. These types are called classes.</p>
+<p>Classes are a blueprint for objects in your code. They decide what kind of data an object holds and what your code can do with that object. A class can hold multiple variables with different data types in a single object.</p>
+<p>Create a custom class to use it as a type for variables and other objects in a Visual Scripting Script graph. For more information on how to add and use your own custom types in Visual Scripting, see <a href="vs-using-custom-types.html">Use a custom type</a>. The code you include in a C# script can also create new nodes to manipulate the data in your class.</p>
+<p>For example, you might write code to keep track of the characteristics of different player characters in your application. You can create a class, <code>Player</code>, and have different variables in that class for name, character type, favorite color, or player level:</p>
+<pre><code class="lang-csharp">using System;
+using UnityEngine;
+using Unity.VisualScripting;
+
+[Serializable, Inspectable]
+public class PlayerCharacter
+{
+    [Inspectable]
+    public string name; 
+    [Inspectable]
+    public string type;
+    [Inspectable]
+    public string color;
+    [Inspectable]
+    public int level;
+}
+
+</code></pre>
+<div class="TIP">
+<h5>Tip</h5>
+<p>The variables in the example script above use the <code>[Inspectable]</code> attribute so they can display in Unity's <a href="https://docs.unity3d.com/Manual/UsingTheInspector.html">Inspector window</a> and the Visual Scripting <a href="vs-interface-overview.html#the-graph-inspector">Graph Inspector</a>. Without the attribute, you can't assign a value to any variables that use the <code>PlayerCharacter</code> class in a Script Graph. For more information about the <code>[Inspectable]</code> attribute, see <a href="vs-using-custom-types.html">Use a custom type</a>.</p>
+</div>
+<p>These values can be different across different instances of <code>Player</code> objects in your code. <code>Player1</code> can be Erin, a bard, who loves green and is level 5, and <code>Player2</code> can be Sam, a mage, who loves black and is level 15.</p>
+<p><img src="images/vs-custom-class-example-players.png" alt="An image of the Graph window with the Blackboard open. The Blackboard displays two variables created with a custom class to represent two different characters."></p>
+<p>If you tried to represent the same data with basic variables, you must create a lot of nodes, as in the following example. With a custom class, you can create a single node to represent a player character's information, instead of four separate nodes.</p>
+<p><img src="images/vs-custom-class-example.png" alt="An image of the Graph Editor. A Get Variable node set to get the value of Player1 is compared to a group of four nodes that represent the same information captured in the single variable node: Player1Name, Player1Color, Player1Type, and Player1Level. A second Get Variable node set to get the value of Player2 is compared to another group of four nodes. "></p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

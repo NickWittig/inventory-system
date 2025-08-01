@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title> | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content=" | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+
+<ul>
+<li><a href="index.html">Burst compiler</a></li>
+<li><a href="getting-started.html">Get started</a></li>
+<li><a href="csharp-language-support.html">C# language support</a>
+<ul>
+<li><a href="csharp-hpc-overview.html">HPC# overview</a></li>
+<li><a href="csharp-static-read-only-support.html">Static read-only fields and static constructor support</a></li>
+<li><a href="csharp-string-support.html">String support</a></li>
+<li><a href="csharp-calling-burst-code.html">Calling Burst-compiled code</a></li>
+<li><a href="csharp-function-pointers.html">Function pointers</a></li>
+<li><a href="csharp-type-support.html">C#/.NET type support</a></li>
+<li><a href="csharp-system-support.html">C#/.NET System namespace support</a></li>
+<li><a href="csharp-burst-intrinsics-dllimport.html">DllImport and internal calls</a></li>
+<li><a href="csharp-shared-static.html">SharedStatic struct</a></li>
+</ul>
+</li>
+<li><a href="compilation.html">Burst compilation</a>
+<ul>
+<li><a href="compilation-burstcompile.html">Marking code for Burst compilation</a></li>
+<li><a href="compilation-burstdiscard.html">Excluding code from Burst compilation</a></li>
+<li><a href="compilation-burstcompile-assembly.html">Defining Burst options for an assembly</a></li>
+<li><a href="compilation-synchronous.html">Burst compilation in Play mode</a></li>
+<li><a href="compilation-generic-jobs.html">Generic jobs</a></li>
+<li><a href="compilation-warnings.html">Compilation warnings reference</a></li>
+</ul>
+</li>
+<li><a href="csharp-burst-intrinsics.html">Burst intrinsics</a>
+<ul>
+<li><a href="csharp-burst-intrinsics-common.html">Burst intrinsics Common class</a></li>
+<li><a href="csharp-burst-intrinsics-processors.html">Processor specific SIMD extensions</a>
+<ul>
+<li><a href="csharp-burst-intrinsics-neon.html">Arm Neon intrinsics reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="editor-reference-overview.html">Editor reference</a>
+<ul>
+<li><a href="editor-burst-menu.html">Burst menu reference</a></li>
+<li><a href="editor-burst-inspector.html">Burst Inspector window reference</a></li>
+</ul>
+</li>
+<li><a href="building-projects.html">Building your project</a>
+<ul>
+<li><a href="building-aot-settings.html">Burst AOT Settings reference</a></li>
+</ul>
+</li>
+<li><a href="optimization-overview.html">Optimization</a>
+<ul>
+<li><a href="debugging-profiling-tools.html">Debugging and profiling tools</a></li>
+<li><a href="optimization-loop-vectorization.html">Loop vectorization</a></li>
+<li><a href="aliasing.html">Memory aliasing</a>
+<ul>
+<li><a href="aliasing-noalias.html">NoAlias attribute</a></li>
+<li><a href="aliasing-job-system.html">Aliasing and the job system</a></li>
+</ul>
+</li>
+<li><a href="optimization-assumerange.html">AssumeRange attribute</a></li>
+<li><a href="optimization-hint.html">Hint intrinsic</a></li>
+<li><a href="optimization-constant.html">Constant intrinsic</a></li>
+<li><a href="optimization-skiplocalsinit.html">SkipLocalsInit attribute</a></li>
+</ul>
+</li>
+<li><a href="modding-support.html">Modding support</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Font Asset Properties | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Font Asset Properties | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../../index.html">
+            <img id="logo" class="svg" src="../../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="font-asset-properties">Font Asset Properties</h1>
+
+<h2 id="properties">Properties</h2>
+<p><img src="../images/TMP_FontAsset_Inspector.png" alt="Example image"></p>
+<p>Properties are divided into the following sections:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A</strong></td>
+<td><strong><a href="#face-info">Face Info</a></strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>B</strong></td>
+<td><strong><a href="#generation-settings">Generation Settings</a></strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>C</strong></td>
+<td><strong><a href="#atlas-material">Atlas &amp; Material</a></strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>D</strong></td>
+<td><strong><a href="#font-weights">Font Weights</a></strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>E</strong></td>
+<td><strong><a href="#fallback-font-assets">Fallback Font Assets</a></strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>F</strong></td>
+<td><strong><a href="#character-table">Character Table</a></strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>G</strong></td>
+<td><strong><a href="#glyph-table">Glyph Table</a></strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>H</strong></td>
+<td><strong><a href="#glyph-adjustment-table">Glyph Adjustment Table</a></strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="face-info">Face Info</h3>
+<p>The Face Info properties control the font's line metrics. They also include read-only properties that the <a href="FontAssetsCreator.html">Font Asset Creator</a> generates when you create the Asset.</p>
+<p><img src="../images/TMP_FontAssetLineMetrics.png" alt="Example image">
+<em>Line metrics</em></p>
+<table>
+<thead>
+<tr>
+<th>Property:</th>
+<th>Function:</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Update Texture Atlas</strong></td>
+<td>Open the <a href="FontAssetsCreator.html">Font Asset Creator</a> pre-configured to modify and regenerate this font Asset.</td>
+</tr>
+<tr>
+<td><strong>Family Name</strong></td>
+<td>The name of the font used to create this font Asset.<br><br>TextMesh Pro sets this value when you generate the font Asset. You cannot change it manually.</td>
+</tr>
+<tr>
+<td><strong>Style Name</strong></td>
+<td>The style of the font used to create this font Asset. For example, <strong>Regular</strong>, <strong>Bold</strong>, <strong>Italic</strong>, and so on.<br><br>TextMesh Pro sets this value when you generate the font Asset. You cannot change it manually.</td>
+</tr>
+<tr>
+<td><strong>Point Size</strong></td>
+<td>The font size in points.<br><br>TextMesh Pro bakes this value into the atlas texture when you generate the font Asset. You cannot change it manually.</td>
+</tr>
+<tr>
+<td><strong>Scale</strong></td>
+<td>Scales the font by this amount. For example, a value of <strong>1.5</strong> scales glyphs to 150% of their normal size.</td>
+</tr>
+<tr>
+<td><strong>Line Height</strong></td>
+<td>Controls the distance between the tops of consecutive lines.<br><br>If you set a line height greater than the sum of the <strong>Ascent Line</strong> and <strong>Descent Line</strong> values, it creates in a gap between lines.<br><br>If you set a line height greater than the sum of the <strong>Ascent Line</strong> and <strong>Descent Line</strong> values, characters on different lines might overlap.</td>
+</tr>
+<tr>
+<td><strong>Ascent Line</strong></td>
+<td>Controls the maximum distance that glyphs can extend above the baseline. It corresponds to the top of a line.</td>
+</tr>
+<tr>
+<td><strong>Cap Line</strong></td>
+<td>Controls the distance between the base line and the tops of uppercase glyphs.</td>
+</tr>
+<tr>
+<td><strong>Mean Line</strong></td>
+<td>Controls the maximum height for non-ascending lowercase glyphs (for example. &quot;a&quot; and &quot;c&quot;, but not &quot;b&quot; and &quot;d,&quot; which have ascenders).<br><br>The tops of rounded glyphs sometimes extend a slightly above the mean line.</td>
+</tr>
+<tr>
+<td><strong>Baseline</strong></td>
+<td>Controls the height of the baseline.<br><br>The baseline is the horizontal line that characters sit on.</td>
+</tr>
+<tr>
+<td><strong>Descent Line</strong></td>
+<td>Controls the maximum distance that glyphs can extend below the baseline.</td>
+</tr>
+<tr>
+<td><strong>Underline Offset</strong></td>
+<td>Controls the position of underlines relative to the baseline.</td>
+</tr>
+<tr>
+<td><strong>Underline Thickness</strong></td>
+<td>Controls the thickness of underlines.</td>
+</tr>
+<tr>
+<td><strong>Strikethrough Offset</strong></td>
+<td>Controls the position of strikethrough lines relative to the baseline.</td>
+</tr>
+<tr>
+<td><strong>Superscript Offset</strong></td>
+<td>Offsets superscript text from the baseline.</td>
+</tr>
+<tr>
+<td><strong>Superscript Size</strong></td>
+<td>Scales superscript text relative to the normal font size.</td>
+</tr>
+<tr>
+<td><strong>Subscript Offset</strong></td>
+<td>Offsets subscript text from the baseline.</td>
+</tr>
+<tr>
+<td><strong>Subscript Size</strong></td>
+<td>Scales subscript text relative to the normal font size.</td>
+</tr>
+<tr>
+<td><strong>Tab Width</strong></td>
+<td>Specifies the width of a TAB character.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="generation-settings">Generation Settings</h3>
+<p>The <a href="FontAssetsCreator.html">Font Asset Creator</a> generates these values when you generate the Font Asset.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>When the <strong>Atlas Population Mode</strong> is set to <strong>Dynamic</strong>, you can change the atlas size without regenerating the atlas.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Property:</th>
+<th></th>
+<th>Function:</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Source Font File</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Atlas Population Mode</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Dynamic</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Static</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Atlas Render Mode</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>SMOOTH</td>
+<td>Renders the atlas to an antialiased bitmap.</td>
+</tr>
+<tr>
+<td></td>
+<td>RASTER</td>
+<td>Renders the atlas to a non-antialiased bitmap.</td>
+</tr>
+<tr>
+<td></td>
+<td>SMOOTH_HINTED</td>
+<td>Renders the atlas to an antialiased bitmap, and aligns character pixels with texture pixels for a crisper result.</td>
+</tr>
+<tr>
+<td></td>
+<td>RASTER_HINTED</td>
+<td>Renders the atlas to a non-antialiased bitmap and aligns character pixels with texture pixels for a crisper result.</td>
+</tr>
+<tr>
+<td></td>
+<td>SDF</td>
+<td>Renders the atlas using a slower, but more accurate SDF generation mode, and  no oversampling.</td>
+</tr>
+<tr>
+<td></td>
+<td>SDFAA</td>
+<td>Renders the atlas using a faster, but less accurate SDF generation mode. It produces font atlases that are sufficient for most situations.</td>
+</tr>
+<tr>
+<td></td>
+<td>SDFAA_HINTED</td>
+<td>Renders the atlas using a faster, but less accurate SDF generation mode, and aligns character pixels with texture pixels for a crisper result.. It produces font atlases that are sufficient for most situations</td>
+</tr>
+<tr>
+<td></td>
+<td>SDF8</td>
+<td>Renders the atlas using a slower, but more accurate SDF generation mode, and  8x oversampling.</td>
+</tr>
+<tr>
+<td></td>
+<td>SDF16</td>
+<td>Renders the atlas using a slower, but more accurate SDF generation mode, and  16x oversampling.</td>
+</tr>
+<tr>
+<td></td>
+<td>SDF32</td>
+<td>Renders the atlas using a slower, but more accurate SDF generation mode, and  32x oversampling. Use this setting for fonts with complex or small characters.</td>
+</tr>
+<tr>
+<td><strong>Sampling Point Size</strong></td>
+<td></td>
+<td>The size, in points, of characters in the font texture.</td>
+</tr>
+<tr>
+<td><strong>Padding</strong></td>
+<td></td>
+<td>The amount of padding between characters in the font atlas texture.<br><br>This value is set when you generate the font Asset, and is not editable.</td>
+</tr>
+<tr>
+<td><strong>Atlas Width/Height</strong></td>
+<td></td>
+<td>The width and height the font atlas texture.<br><br>Choose for each dimension, choose one of the available values from the drop-down menu.</td>
+</tr>
+<tr>
+<td><strong>Multi Atlas Textures</strong></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="atlas--material">Atlas &amp; Material</h3>
+<p>This section lists the sub-assets that the <a href="FontAssetsCreator.html">Font Asset Creator</a> creates when you generate the Asset. Do not edit these directly.</p>
+<table>
+<thead>
+<tr>
+<th>Property:</th>
+<th>Function:</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Font Atlas</td>
+<td>The font texture atlas created when you generated the font Asset.</td>
+</tr>
+<tr>
+<td>Font Material</td>
+<td>The font material created when you generated the font Asset.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="font-weights">Font Weights</h3>
+<p>The Font Weights options control the appearance of bold and italicized text. There are two ways of doing this:</p>
+<ol>
+<li><p>Create different bold and italic variants of the font Asset, and add them to the <strong>Font Table</strong>.<br><br>You can specify regular and italic fonts for weights ranging from 100 (Thin) to 900 (Black).</p>
+</li>
+<li><p>Define &quot;fake&quot; bolding and italicization by setting the <strong>Font Weight &gt; Italic Style</strong> and <strong>Bold Weight</strong> properties.<br><br>These settings tell TextMesh Pro how to adjust characters in the current font Asset when you bold or italicize text.</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Property:</th>
+<th></th>
+<th>Function:</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Font Table</strong></td>
+<td></td>
+<td>Specify font assets to use for the following font variants.<br><br>100 - Thin<br>200 - Extra-Light<br>300 - Light<br>400 - Regular (italic only)<br>500 - Medium<br>600 - Semi-Bold<br>700 - Bold<br>800 - Heavy<br>900 - Black <br><br> * <strong>400 - Regular &gt; Regular Typeface</strong> is the current font Asset. You cannot change it.<br><br> If you don't specify font assets, TextMesh Pro &quot;fakes&quot; bolding and italicization according to the rest of the the <strong>Font Weights</strong> settings. Using &quot;faked&quot; font weights limits you to regular and italic versions of normal and bold text (equivalent to weights of 400 and 700 respectively).</td>
+</tr>
+<tr>
+<td><strong>Normal Weight</strong></td>
+<td></td>
+<td>Set the regular font weight to use when no font Asset is available.</td>
+</tr>
+<tr>
+<td><strong>Bold Weight</strong></td>
+<td></td>
+<td>Set the bold font weight assumed when no font Asset is available.</td>
+</tr>
+<tr>
+<td><strong>Spacing Offset</strong></td>
+<td></td>
+<td>Add space between characters when using the normal text style.</td>
+</tr>
+<tr>
+<td><strong>Bold Spacing</strong></td>
+<td></td>
+<td>Add space between characters when using the fake bold text style (meaning you haven’t specified a Bold font Asset).</td>
+</tr>
+<tr>
+<td><strong>Italic Style</strong></td>
+<td></td>
+<td>If you don’t specify a font Asset for <strong>400 - Regular &gt; Italic Style</strong> variant, TextMeshPro slanting the character sprites in the Normal Style font Asset by an amount defined in the <strong>Italic Style</strong> setting.<br><br>Set this value to control the</td>
+</tr>
+<tr>
+<td><strong>Tab Multiple</strong></td>
+<td></td>
+<td>Set the tab size. This value is multiplied by the width of the font's space character to calculate the tab size used.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="FallbackFontAssets"></a></p>
+<h3 id="fallback-font-assets">Fallback Font Assets</h3>
+<p>Each font Asset contains a limited number of characters. When you use a character that the current Font Asset does not contain, TextMesh Pro searches the fallback font list until it finds a font Asset that includes it. The text object then uses that font to render the character.</p>
+<p>You can use this feature to distribute fonts over multiple textures, or use different fonts for specific characters. Be aware that searching the list for missing characters requires extra computing resources, and that using additional fonts requires additional draw calls.</p>
+<p>For more information about how fallback fonts work, see <a href="FontAssetsFallback.html">The Fallback font chain</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Property:</th>
+<th>Function:</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Fallback Font Asset list</strong></td>
+<td>Manage the fallback fonts for this font Asset.<br><br>Click <strong>+</strong> and <strong>-</strong> to add and remove font slots.<br><br>Click the circle icon next to a font to open an Object Picker where you can choose a font Asset.<br><br>Drag the handles on the left side of any font Asset to reorder the list.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="character-table">Character Table</h3>
+<h3 id="glyph-table">Glyph Table</h3>
+<p>The glyph table contains information about each of the glyphs in the Font Asset. You can adjust the attributes of individual glyphs, which is useful when you need to correct problems that can occur when TextMesh Pro imports font data.</p>
+<table>
+<thead>
+<tr>
+<th>Property:</th>
+<th></th>
+<th>Function:</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Glyph Search</strong></td>
+<td></td>
+<td>Search the character list by character, ASCII value, or Hex value.<br><br>Search results are ordered by ASCII value, lowest to highest.</td>
+</tr>
+<tr>
+<td><strong>Previous Page/Next Page</strong></td>
+<td></td>
+<td>Long character lists are split into pages, which you can navigate using these buttons (also located at the bottom of the section).</td>
+</tr>
+<tr>
+<td><strong>Glyph Properties</strong></td>
+<td></td>
+<td>Displays a single glyph’s properties. Each glyph has its own entry.<br><br>Click an entry to make it active. You can then edit the glyph, copy it, or remove it from the list.</td>
+</tr>
+<tr>
+<td></td>
+<td>Ascii</td>
+<td>Displays the character’s ASCII decimal value.</td>
+</tr>
+<tr>
+<td></td>
+<td>Hex</td>
+<td>Displays the character’s Unicode Hex value.</td>
+</tr>
+<tr>
+<td></td>
+<td>Char</td>
+<td>Displays the character.</td>
+</tr>
+<tr>
+<td></td>
+<td>X, Y, W, H</td>
+<td>Define the rectangular area the character occupies in the font atlas.</td>
+</tr>
+<tr>
+<td></td>
+<td>OX, OY</td>
+<td>Control the placement of the character's sprite, defined at its top-left corner relative to its origin on the baseline.</td>
+</tr>
+<tr>
+<td></td>
+<td>ADV</td>
+<td>Specify  how far to advance along the baseline before placing the next character.</td>
+</tr>
+<tr>
+<td></td>
+<td>SF</td>
+<td>Change this scaling factor value to adjust the size of the character.</td>
+</tr>
+<tr>
+<td><strong>Copy to</strong></td>
+<td></td>
+<td>Duplicate this glyph.<br><br>To make a copy, enter an unused Unicode (Hex) ID in the text field and click <strong>Copy to</strong>.</td>
+</tr>
+<tr>
+<td><strong>Remove</strong></td>
+<td></td>
+<td>Remove this glyph from the list.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="glyph-adjustment-table">Glyph Adjustment Table</h3>
+<p>The glyph adjustment table controls spacing between specific pairs of characters. Some  fonts include kerning information, which is imported automatically. You can add kerning pairs for fonts that don’t include them.</p>
+<table>
+<thead>
+<tr>
+<th>Property:</th>
+<th></th>
+<th>Function:</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Adjustment Pair Search</strong></td>
+<td></td>
+<td>Search the adjustment table by character or ASCII value.<br><br>Search results include entries where either the left or right character matches the search string.<br><br>Search results are ordered by the ASCII value of the left character, lowest to highest.</td>
+</tr>
+<tr>
+<td><strong>Previous Page/Next Page</strong></td>
+<td></td>
+<td>Long adjustment tables are split into pages, which you can navigate using these buttons (also located at the bottom of the section).</td>
+</tr>
+<tr>
+<td><strong>Glyph Properties</strong></td>
+<td></td>
+<td>Displays a single glyph’s properties. Each glyph has its own entry.<br><br>Click an entry to make it active. You can then edit the glyph, copy it, or remove it from the list.</td>
+</tr>
+<tr>
+<td></td>
+<td>Char (left and right)</td>
+<td>Display the left and right characters for the kerning pair.<br><br>When you add anew kerning pair, you can specify the left and right characters to use by typing them in these fields.</td>
+</tr>
+<tr>
+<td></td>
+<td>ID (left and right)</td>
+<td>Display the left and right characters’ ASCII decimal values.<br><br>When you add anew kerning pair, you can specify the left and right characters to use by typing their ASCII values in these fields.</td>
+</tr>
+<tr>
+<td></td>
+<td>OX, OY</td>
+<td>For each character in the kerning pair, set the horizontal (<strong>X</strong>) and vertical (<strong>Y</strong>) offset relative to the character's initial position.</td>
+</tr>
+<tr>
+<td></td>
+<td>AX</td>
+<td>For each character in the kerning pair, specify how far to advance along the baseline before placing the next character.<br><br>Practically speaking, the left <strong>AX</strong> value controls the distance between the characters in the kerning pair, while the right <strong>AX</strong> value controls the distance between the kerning pair and the next character.</td>
+</tr>
+<tr>
+<td><strong>Add New Kerning Pair</strong></td>
+<td></td>
+<td>Add a new entry to the Glyph Adjustment Table.<br><br>You cannot duplicate an existing entry.</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

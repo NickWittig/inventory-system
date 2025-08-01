@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Mouse support | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Mouse support | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="input-system-mouse">
+<h1 id="mouse-support">Mouse support</h1>
+
+<p>The Input System represents mouse input with the <a href="../api/UnityEngine.InputSystem.Mouse.html"><code>Mouse</code></a> Device layout that the <a href="../api/UnityEngine.InputSystem.Mouse.html"><code>Mouse</code></a> class implements. Mice are based on the <a href="Pointers.html"><code>Pointer</code></a> layout.</p>
+<p>To query the last used or last added mouse, use <a href="../api/UnityEngine.InputSystem.Mouse.html#UnityEngine_InputSystem_Mouse_current"><code>Mouse.current</code></a>.</p>
+<pre><code>    var mouse = Mouse.current;
+</code></pre>
+<blockquote>
+<p><strong>Note</strong>: The Input System does not currently support:</p>
+<ul>
+<li>Input from multiple mice at the platform level.</li>
+<li>Identifying the current display a mouse is on.</li>
+</ul>
+</blockquote>
+<h2 id="controls">Controls</h2>
+<p>In addition to the <a href="Pointers.html#controls">Controls inherited from <code>Pointer</code></a>, Mouse devices implement the following Controls:</p>
+<table>
+<thead>
+<tr>
+<th>Control</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.Mouse.html#UnityEngine_InputSystem_Mouse_leftButton"><code>leftButton</code></a></td>
+<td><a href="../api/UnityEngine.InputSystem.Controls.ButtonControl.html"><code>ButtonControl</code></a></td>
+<td>The left mouse button. Same as the inherited <a href="../api/UnityEngine.InputSystem.Pointer.html#UnityEngine_InputSystem_Pointer_press"><code>Pointer.press</code></a>.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.Mouse.html#UnityEngine_InputSystem_Mouse_rightButton"><code>rightButton</code></a></td>
+<td><a href="../api/UnityEngine.InputSystem.Controls.ButtonControl.html"><code>ButtonControl</code></a></td>
+<td>The right mouse button.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.Mouse.html#UnityEngine_InputSystem_Mouse_middleButton"><code>middleButton</code></a></td>
+<td><a href="../api/UnityEngine.InputSystem.Controls.ButtonControl.html"><code>ButtonControl</code></a></td>
+<td>The middle mouse button.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.Mouse.html#UnityEngine_InputSystem_Mouse_forwardButton"><code>forwardButton</code></a></td>
+<td><a href="../api/UnityEngine.InputSystem.Controls.ButtonControl.html"><code>ButtonControl</code></a></td>
+<td>Used for other mouse buttons where applicable.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.Mouse.html#UnityEngine_InputSystem_Mouse_backButton"><code>backButton</code></a></td>
+<td><a href="../api/UnityEngine.InputSystem.Controls.ButtonControl.html"><code>ButtonControl</code></a></td>
+<td>Used for other mouse buttons where applicable.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.Mouse.html#UnityEngine_InputSystem_Mouse_clickCount"><code>clickCount</code></a></td>
+<td><a href="../api/UnityEngine.InputSystem.Controls.IntegerControl.html"><code>IntegerControl</code></a></td>
+<td>A Control which lets you read the number of consecutive clicks the last mouse click belonged to, as reported by the OS. Use this to distinguish double- or multi-clicks.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.Mouse.html#UnityEngine_InputSystem_Mouse_scroll"><code>scroll</code></a></td>
+<td><a href="../api/UnityEngine.InputSystem.Controls.Vector2Control.html"><code>Vector2Control</code></a></td>
+<td>The input from the mouse scrolling control expressed as a delta in pixels since the last frame. Can come from a physical scroll wheel, or from touchpad gestures.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cursor-warping">Cursor warping</h2>
+<p>On desktop platforms (Windows, Mac, Linux, and UWP), you can move the mouse cursor via code. Note that this moves the system's actual mouse cursor, not just Unity's internally-stored mouse position. This means that the user sees the cursor jumping to a different position, which is generally considered to be bad UX practice. It's advisable to only do this if the cursor is hidden (see the <a href="https://docs.unity3d.com/ScriptReference/Cursor.html"><code>Cursor</code> API documentation</a> for more information).</p>
+<p>To move the cursor to a different position, use <a href="../api/UnityEngine.InputSystem.Mouse.html#UnityEngine_InputSystem_Mouse_WarpCursorPosition_UnityEngine_Vector2_"><code>Mouse.WarpCursorPosition</code></a>. The coordinates are expressed as Unity screen coordinates, just like <a href="../api/UnityEngine.InputSystem.Pointer.html#UnityEngine_InputSystem_Pointer_position"><code>Mouse.position</code></a>.</p>
+<pre><code>    Mouse.current.WarpCursorPosition(new Vector2(123, 234));
+</code></pre>
+<blockquote>
+<p><strong>Note</strong>: If the cursor is locked, warping the mouse position is only temporary and Unity resets the cursor to the center of the window every frame.</p>
+</blockquote>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

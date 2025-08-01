@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Use the Multiplayer Center window | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Use the Multiplayer Center window | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="use-the-multiplayer-center-window">Use the Multiplayer Center window</h1>
+
+<p>Open the Unity Multiplayer Center window by selecting <strong>Window</strong> &gt; <strong>Multiplayer</strong> &gt; <strong>Multiplayer Center</strong>.
+To use the Multiplayer Center, do the following:</p>
+<ol>
+<li>Select <strong>Game Specifications</strong> to generate recommended packages and solutions in the  <strong>Recommendation</strong> tab</li>
+<li>Install the packages the Multiplayer Center recommends.</li>
+<li>Follow the examples and resources in the <strong>Quickstart</strong> tab to use the packages you installed.</li>
+</ol>
+<h2 id="generate-a-list-of-recommended-packages-for-a-multiplayer-game">Generate a list of recommended packages for a multiplayer game</h2>
+<p>To generate a list of packages that meet the needs of the multiplayer game you want to make, do the following:</p>
+<ol>
+<li>Select a value in each <strong>Game Specification</strong> field.</li>
+<li>Examine the packages that the Multiplayer Center suggests are the best solutions for your game.</li>
+</ol>
+<p>Hover over each package name in the <strong>Recommended Multiplayer Packages</strong> section to learn why each package is useful for the game specifications you selected.</p>
+<p>The recommendations that appear in the <strong>Recommendation</strong> tab change immediately when you change any of the <strong>Game Specifications</strong> properties.</p>
+<p>You can select which packages to install or ignore. However, you can't deselect packages that are essential for the netcode solution or hosting model you selected.</p>
+<h2 id="install-recommended-packages">Install recommended packages</h2>
+<p>To install the packages the Multiplayer Center recommended, select <strong>Install Packages</strong>. Unity then installs these packages and their dependencies in your project and automatically opens the <strong>Quickstart</strong> tab.
+To remove a package from the install process, deselect the checkbox next to the package name before you select <strong>Install Packages</strong>.</p>
+<p>When a tick appears next to a package name, hover over it to learn which version of this package exists in your project.</p>
+<p>To install an individual package:</p>
+<ol>
+<li>Select the Open Package Manager icon next to the package you want to install.</li>
+<li>In the Package Manager window that appears, select <strong>Install</strong>.</li>
+</ol>
+<p><strong>Important</strong>: If the Multiplayer Center detects that any other multiplayer package is already installed, a warning dialog appears to cancel the installation of those packages. To avoid breaking changes, backup your project before you continue. If you continue with the installation, Unity installs or upgrades the selected packages but doesn't remove existing packages. This can cause compatibility issues. To fix them, remove the conflicting packages from your project in the <a href="https://docs.unity3d.com/Manual/upm-ui.html">Package Manager window</a>.</p>
+<h2 id="get-started-with-the-recommended-packages">Get started with the recommended packages</h2>
+<p>The <strong>Quickstart</strong> tab includes guidance, examples, and links to resources about the packages that the Multiplayer Center installs. Follow this guidance to set up and use these packages. The <strong>Quickstart</strong> content sometimes changes based on the recommendations you selected in the <strong>Recommendation</strong> tab.</p>
+<p>The Quickstart tab organises this guidance into categories. Follow the instructions in each category from top to bottom to set up each package in your project.</p>
+<p>Some packages have the option to import example setups to help you get started with their functionality. To modify a script asset that the Multiplayer Center imports, copy the contents of the script to a new file and change the namespace.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

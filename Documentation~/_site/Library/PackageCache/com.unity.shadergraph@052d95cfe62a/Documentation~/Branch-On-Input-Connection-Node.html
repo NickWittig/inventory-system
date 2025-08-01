@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Branch On Input Connection node | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Branch On Input Connection node | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="branch-on-input-connection-node">Branch On Input Connection node</h1>
+
+<p>The Branch On Input Connection node allows you to change the behavior of a Subgraph based on the connected state of an input property in the parent Shader Graph. You should use the Branch On Input Connection node when you want to create a default input for a port</p>
+<p>Shader Graph determines whether the property in the parent Shader Graph is connected, or not connected, and chooses a value to use as an output based on that connection state.</p>
+<p><img src="images/sg-branch-on-input-connection-node.png" alt="An image of the Graph window, that shows the Branch on Input Connection node."></p>
+<p>Shader Graph uses two ports when it determines the node's connection state:</p>
+<ul>
+<li><p>The Branch On Input Connection node's <strong>Input</strong> port.</p>
+</li>
+<li><p>The Subgraph node's matching Property port in the parent Shader Graph. For more information on Subgraph nodes, see <a href="Sub-graph-Node">Subgraph node</a>.</p>
+</li>
+</ul>
+<p>The Branch On Input Connection node's functionality is based on the <a href="Branch-Node.html">Branch node</a>.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>You can't use the Branch On Input Connection node with a Streaming Virtual Texture Property. For more information on Streaming Virtual Texturing, see <a href="https://docs.unity3d.com/Documentation/Manual/svt-use-in-shader-graph.html">Using Streaming Virtual Texturing in Shader Graph</a>.</p>
+</div>
+<p>The Branch On Input Connection node generates branching HLSL source code, but during compilation, the branch is optimized out of your shader.</p>
+<h2 id="create-node-menu-category">Create Node menu category</h2>
+<p>The Branch On Input Connection node is under the <strong>Utility</strong> &gt; <strong>Logic</strong> category in the Create Node menu. You can only use it in a Shader Subgraph.</p>
+<p>To use the Branch On Input Connection node in a Subgraph:</p>
+<ol>
+<li><p>Open the Subgraph where you want to add a Branch On Input Connection node.</p>
+</li>
+<li><p>In the Blackboard, do one of the following:</p>
+<ul>
+<li><p>To add a new property, select <strong>Add</strong> (+), then select a property type from the menu. Enter a name for your new property and press Enter. Then, select your property in the Blackboard and drag it onto your graph to create a Property node.</p>
+</li>
+<li><p>Select an existing property in the Blackboard and drag it onto your graph to create a Property node.</p>
+</li>
+</ul>
+</li>
+<li><p>With your Property node selected, in the Graph Inspector, enable <strong>Use Custom Binding</strong>.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>If you disable <strong>Use Custom Binding</strong>, you can't connect your Property node to the Branch On Input Connection node. If you've already made a connection, the Unity Editor breaks the connection and displays a warning on the node.</p>
+</div>
+</li>
+<li><p>In the <strong>Label</strong> field, enter the label for the default value that displays on your Subgraph node's port binding in its parent Shader Graph. For more information on port bindings, see <a href="Port-Bindings.html">Port Bindings</a>.</p>
+</li>
+<li><p>Press Spacebar or right-click and select <strong>Create Node</strong>. Find the <strong>Branch On Input Connection</strong> node in the Create Node Menu, then double-click or press Enter with the node selected to add it to your Subgraph.</p>
+</li>
+<li><p>On your Property node, select the output port and drag its new connection to the Branch On Connection node's <strong>Input</strong> port.</p>
+</li>
+<li><p>To specify the value Shader Graph uses when the <strong>Input</strong> port is connected on the Subgraph node in the parent Shader Graph, connect a node to the <strong>Connected</strong> port. To specify the value that Shader Graph uses when the <strong>Input</strong> port isn't connected, connect another node to the <strong>NotConnected</strong> port.</p>
+</li>
+<li><p>To specify how Shader Graph uses your <strong>Connected</strong> or <strong>NotConnected</strong> values in your shader, connect any valid node to the <strong>Output</strong> port on the Branch On Input Connection node.</p>
+</li>
+</ol>
+<h2 id="compatibility">Compatibility</h2>
+<p>The Branch On Input Connection node is supported on the following render pipelines:<table>
+<thead>
+<tr>
+<th><strong>Built-In Render Pipeline</strong></th>
+<th><strong>Universal Render Pipeline (URP)</strong></th>
+<th><strong>High Definition Render Pipeline (HDRP)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>    <!-- ALL PIPELINES INCLUDE  -->
+<h2 id="inputs">Inputs</h2>
+<p>The Branch On Input Connection node has the following input ports: <!-- MULTIPLE INPUT PORTS INCLUDE --></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Name</strong></th>
+<th style="text-align: left;"><strong>Type</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Input</strong></td>
+<td style="text-align: left;">Property</td>
+<td style="text-align: left;">The property that determines the branching logic in the node, based on its connection state in the parent Shader Graph.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Connected</strong></td>
+<td style="text-align: left;">Dynamic Vector</td>
+<td style="text-align: left;">The value to send to the <strong>Out</strong> port when <strong>Input</strong> is connected in the parent Shader Graph.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>NotConnected</strong></td>
+<td style="text-align: left;">Dynamic Vector</td>
+<td style="text-align: left;">The value to send to the <strong>Out</strong> port when <strong>Input</strong> isn't connected in the parent Shader Graph.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="outputs">Outputs</h2>
+<p>The Branch On Input Connection node has one output port: <!-- SINGLE OUTPUT PORT INCLUDE --></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Name</strong></th>
+<th style="text-align: left;"><strong>Type</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Out</strong></td>
+<td style="text-align: left;">Dynamic Vector</td>
+<td style="text-align: left;">Outputs the value of either <strong>Connected</strong> or <strong>NotConnected</strong>, based on the <strong>Input</strong> property's connection state in the parent Shader Graph.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="example-subgraph-usage">Example Subgraph usage</h2>
+<p>In the following example, a Branch On Input Connection node specifies the default behavior for a UV Subgraph input property. When a value for the <strong>UV</strong> property is connected in the parent graph, then the value from that property is passed to the Checkerboard node to determine the UV coordinates for the checkerboard pattern. When the <strong>UV</strong> property isn't connected, then the Branch On Input Connection node uses the <strong>UV0</strong> channel from the UV node for the Checkerboard node's UV coordinates:</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>When you preview a Subgraph, the Branch On Input Connection node always uses its NotConnected value.</p>
+</div>
+<p><img src="images/sg-branch-on-input-connection-node-example.png" alt="An image of the Graph window. A UV property is connected to the Input port on a Branch On Input Connection node. The property also connects to the Branch On Input Connection node's Connected input port, while a UV node with its channel set to UV0 connects to the NotConnected port. The Branch On Input Connection node's Out port connects to a Checkerboard node's UV input port."></p>
+<h2 id="related-nodes">Related nodes</h2>
+<!-- OPTIONAL. Any nodes that may be related to this node in some way that's worth mentioning -->
+<p>The following nodes are related or similar to the Branch On Input Connection node:</p>
+<ul>
+<li><a href="Branch-Node.html">Branch node</a></li>
+<li><a href="Sub-graph-Node.html">Subgraph node</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

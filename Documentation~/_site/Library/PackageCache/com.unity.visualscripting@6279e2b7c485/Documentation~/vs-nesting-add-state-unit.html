@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Add a State Unit to a Script Graph | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Add a State Unit to a Script Graph | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="add-a-state-unit-to-a-script-graph">Add a State Unit to a Script Graph</h1>
+
+<p>Add a State Unit to a Script Graph to trigger a change of state. A state is any set of behaviors that you want a GameObject to perform. For more information on state in Visual Scripting, see <a href="vs-graph-types.html">Graphs</a>.</p>
+<p>You can add a new State Graph to a State Unit node, or use an existing State Graph from the project. For more information on the State Unit node, see <a href="vs-nesting-state-unit-node.html">State Unit node</a>.</p>
+<h2 id="add-a-new-state-graph-as-a-state-unit-node">Add a new State Graph as a State Unit node</h2>
+<p>To add a new blank State Graph as a State Unit node to a Script Graph:</p>
+<ol>
+<li><p>[!include[vs-with-graph-open-ff](./snippets/vs-with-graph-open-ff.md)]</p></li>
+<li><p>Go to <strong>Nesting</strong>.</p></li>
+<li><p>Select <strong>State Unit</strong> to add a State Unit node to the graph.</p></li>
+<li><p>Open the <a href="vs-interface-overview.html#the-graph-inspector">Graph Inspector</a>.</p></li>
+<li><p>In the Graph Inspector, choose the source for the State Unit:</p>
+<ul>
+    <li><p><strong>Embed</strong>: The State Graph only exists on the State Unit node. You can only change the State Graph from the node in its parent graph.</p></li>
+    <li><p><strong>Graph</strong>: The State Graph exists in a separate file. You can change the State Graph outside of its parent graph and reuse the graph in other areas of an application.</p></li>
+</ul>
+</li>
+<li><p>If you chose <strong>Graph</strong>:</p>
+<ol type="a">
+    <li><p>In the Graph Inspector, select <strong>New</strong>.</p></li>
+    <li><p>Enter a name for the graph file.</p></li>
+    <li><p>Choose where you want to save the graph file in the project.</p></li>
+    <li><p>Select <strong>Save</strong>.</p></li>
+</ol>
+</li>
+</ol>
+<p><img src="images/vs-state-unit-new-state-graph.png" alt="An image of the Graph window that displays a new blank State Unit node added to a Script Graph."></p>
+<h2 id="add-an-existing-state-graph-as-a-state-unit-node">Add an existing State Graph as a State Unit node</h2>
+<p>To add an existing State Graph file as a State Unit node in a Script Graph:</p>
+<ol>
+<li><p>With a Script Graph <a href="vs-open-graph-edit.html">open in the Graph window</a>, right-click on an empty space in the Graph Editor to open the fuzzy finder.</p>
+</li>
+<li><p>Go to <strong>Nesting</strong>.</p>
+</li>
+<li><p>Select <strong>State Unit</strong> to add a State Unit node to the graph.</p>
+</li>
+<li><p>Open the <a href="vs-interface-overview.html#the-graph-inspector">Graph Inspector</a>.</p>
+</li>
+<li><p>In the Graph Inspector, set the <strong>Source</strong> to <strong>Graph</strong>.</p>
+</li>
+<li><p>Do one of the following:</p>
+<ul>
+<li>In the <strong>Graph</strong> field, select the object picker (circle icon) and choose a compatible State Graph from the project.</li>
+<li>Click and drag a State Graph file from the Project window and release on the <strong>Graph</strong> field.</li>
+</ul>
+</li>
+</ol>
+<div class="TIP">
+<h5>Tip</h5>
+<p>For a faster way to add a State Graph as a State Unit node:</p>
+<ul>
+<li>Click and drag a State Graph asset from the Project window into the Graph Editor to automatically create a State Unit node.</li>
+<li>Right-click to open the fuzzy finder. Go to <strong>Graphs</strong> and select a graph file.</li>
+</ul>
+</div>
+<p><img src="images/vs-existing-graph-example-state-unit.png" alt="An image of the Graph window, with a new Super Unit node created from an existing State Graph added to a Script Graph."></p>
+<h2 id="next-steps">Next steps</h2>
+<p>Select <strong>Edit Graph</strong> in the Graph Inspector to edit the graph. For more information on how to create a State Graph, see <a href="vs-state-graphs-intro.html">Develop logic transitions with State Graphs</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

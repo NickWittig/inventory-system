@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Debugging | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Debugging | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="input-system-debugging">
+<h1 id="debugging">Debugging</h1>
+
+<ul>
+<li><a href="#debugging">Debugging</a>
+<ul>
+<li><a href="#input-debugger">Input Debugger</a>
+<ul>
+<li><a href="#debugging-devices">Debugging Devices</a></li>
+<li><a href="#debugging-actions">Debugging Actions</a></li>
+<li><a href="#debugging-users-and-playerinput">Debugging users and PlayerInput</a></li>
+<li><a href="#debugging-layouts">Debugging layouts</a></li>
+<li><a href="#debugging-remotely">Debugging remotely</a></li>
+</ul>
+</li>
+<li><a href="#input-visualizers">Input visualizers</a>
+<ul>
+<li><a href="#inputcontrolvisualizer"><code>InputControlVisualizer</code></a></li>
+<li><a href="#inputactionvisualizer"><code>InputActionVisualizer</code></a></li>
+</ul>
+</li>
+<li><a href="#device-simulator">Device Simulator</a></li>
+<li><a href="#unity-remote">Unity Remote (iOS, Android)</a></li>
+<li><a href="#other-tips">Other tips:</a></li>
+</ul>
+</li>
+</ul>
+<p>When something isn't working as expected, the quickest way to troubleshoot what's wrong is the Input Debugger in the Unity Editor. The Input Debugger provides access to the activity of the Input System in both the Editor and the connected Players.</p>
+<p>To open the Input Debugger, go to <strong>Window &gt; Analysis &gt; Input Debugger</strong> from Unity's main menu.</p>
+<h2 id="input-debugger">Input Debugger</h2>
+<p><img src="Images/InputDebugger.png" alt="Input Debugger"></p>
+<p>The Input Debugger displays a tree breakdown of the state of the Input System.</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Devices</td>
+<td>A list of all <a href="Devices.html">Input Devices</a> that are currently in the system, and a list of unsupported/unrecognized Devices.</td>
+</tr>
+<tr>
+<td>Layouts</td>
+<td>A list of all registered Control and Device layouts. This is the database of supported hardware, and information on how to represent a given piece of input hardware.</td>
+</tr>
+<tr>
+<td>Actions</td>
+<td>Only visible in Play mode, and only if at least one <a href="Actions.html">Action</a> is enabled.<br><br>A list of all currently enabled Actions, and the Controls they are bound to.<br><br>See <a href="#debugging-actions">Debugging Actions</a>.</td>
+</tr>
+<tr>
+<td>Users</td>
+<td>Only visible when one or more <code>InputUser</code> instances exist. See documentation on <a href="UserManagement.html">user management</a>.<br><br>A list of all currently active users, along with their active Control Schemes and Devices, all their associated Actions, and the Controls these Actions are bound to.<br><br>Note that <code>PlayerInput</code> uses <code>InputUser</code> to run. When using <code>PlayerInput</code> components, each player has an entry in this list.<br><br>See <a href="#debugging-users-and-playerinput">Debugging users and PlayerInput</a>.</td>
+</tr>
+<tr>
+<td>Settings</td>
+<td>The currently active Input System <a href="Settings.html">settings</a>.</td>
+</tr>
+<tr>
+<td>Metrics</td>
+<td>Statistics about Input System resource usage.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="debugging-devices">Debugging Devices</h3>
+<p>In the Input Debugger window, navigate to the <strong>Devices</strong> list and double-click any <a href="Devices.html">Input Device</a>. This opens a window that displays information about the Device, including real-time state information for its Controls.</p>
+<p><img src="Images/DeviceInDebugger.png" alt="Device in Input Debugger"></p>
+<p>The top of the Device window displays general information about the specific Device, such as name, manufacturer, associated layout, device flags, device ID and serial number.  In addition, this section also display the current <strong>sample frequency</strong> and <strong>processing delay</strong> of the deivce.</p>
+<p><strong>Sample frequency</strong> indicates the frequency in Hertz (Hz) at which the Input System is currently processing samples or events. For devices receiving events this reflects the current flow of events received by the system. For devices receiving periodic readings this reflects the achievable sample rate of the system. The latter may be compared to the globally configured target sampling frequency, while achievable event frequency is uncorrelated to the sample polling frequency setting.</p>
+<p><strong>Processing delay</strong> indicates the average, minimum and maximum latency contribution from creating an input event or reading until the Input System has processed the same input event. Note that this excludes any additional input delay caused by OS, drivers or device communication. Also note that this excludes any additional output latency that may be caused by additional processing, rendering, GPU swap-chains or display refresh rate.</p>
+<p>The <strong>Controls</strong> section lists the Device's Controls and their individual states. This is useful when debugging input issues, because you can verify whether the data that the Input System receives from the Input Device is what you expect it to be. There are two buttons at the top of this panel:</p>
+<ul>
+<li><p><strong>HID Descriptor</strong>: Only displayed for devices that use the HID protocol to connect. This opens a window that displays the detailed <a href="HID.html">HID</a> specifications for the Device and each of it's logical controls.</p>
+</li>
+<li><p><strong>State</strong>: Display the current state of the Device in a new window. This is identical to the information displayed in this view, but doesn't update in real time, so you can take a snapshot of input state data and take the time to inspect it as needed.</p>
+</li>
+</ul>
+<p>The <strong>Events</strong> section lists all <a href="Events.html">input events</a> generated by the Device. You can double-click any event in the list to inspect the full Device state at the time the event occurred. To get a side-by-side difference between the state of the Device at different points in time, select multiple events, right-click them, and click <strong>Compare</strong> from the context menu.</p>
+<h3 id="debugging-actions">Debugging Actions</h3>
+<p>The Input Debugger window lists all enabled <a href="Actions.html">Actions</a> in the <strong>Actions</strong> list. This list only appears if at least one Action is active and the Editor is in Play mode. If an Action has actively bound Controls, you can click the arrow next to the Action to see a list of the Controls. This is useful to debug whether your Bindings correctly map to the Controls you want them to bind to. See documentation on <a href="ActionBindings.html#binding-resolution">Binding resolution</a> for more information about how Unity maps Bindings to Controls.</p>
+<blockquote>
+<p><strong>Note</strong>: Actions that belong to <a href="UserManagement.html"><code>InputUsers</code></a> don't appear here. They appear in the <a href="#debugging-users-and-playerinput"><strong>Users</strong></a> list instead.</p>
+</blockquote>
+<h3 id="debugging-users-and-playerinput">Debugging users and PlayerInput</h3>
+<p>When there are <a href="UserManagement.html"><code>InputUser</code></a> instances (if you use <code>PlayerInput</code>, each <code>PlayerInput</code> instance implicitly creates one), the Input Debugger's <strong>Users</strong> list displays each instance along with its paired Devices and active Actions. The listed Devices and Actions work the same way as those displayed in the <a href="#debugging-devices"><strong>Devices</strong></a> and <a href="#debugging-actions"><strong>Actions</strong></a> lists in the debugging window.</p>
+<p><img src="Images/UsersInputDebugger.png" alt="Users in Input Debugger"></p>
+<h3 id="debugging-layouts">Debugging layouts</h3>
+<p>The <a href="Layouts.html"><strong>Layouts</strong></a> list in the Input Debugger window displays a breakdown of all registered <a href="Layouts.html">Control and Device layouts</a>. This is the database of supported hardware and the knowledge of how to represent a given piece of input hardware. It's useful when you want to <a href="HID.html#creating-a-custom-device-layout">create a new Device mapping</a> and see how the Input System represents it.</p>
+<p><img src="Images/LayoutsInDebugger.png" alt="Layouts in Input Debugger"></p>
+<h3 id="debugging-remotely">Debugging remotely</h3>
+<p>You can connect the Input Debugger to a Player that runs on a remote computer or device. This makes it possible to observe input activity from the Player in the Editor. This connection uses the <code>PlayerConnection</code> mechanism, which is the same one the Unity profiler uses to connect to a Player.</p>
+<blockquote>
+<p><strong>Note</strong>: At the moment, debugging input in Players is restricted to seeing Devices and events from connected Players. There is no support for seeing other input-related data such as Actions and input users from Players.</p>
+</blockquote>
+<p>To see remote Devices from built Players, open the Input Debugger window's <strong>Remote Devices</strong> drop-down list. This list displays the remote Player instance you can connect to (if there are any). The same list appears in the Profiler and Console windows, and any connections are shared between those windows. If any Player(s) are connected, you can enable <strong>Show remote devices</strong> in the same drop-down list. If Players are connected, and <strong>Show remote devices</strong> is enabled, the <a href="#debugging-devices"><strong>Devices</strong></a> list in the Input Debugger window splits into a <strong>Local</strong> section and a <strong>Remote</strong> section. The <strong>Remote</strong> section displays any Input Device from any connected Player, and lets you inspect Device state and events in real time, as if it were a local Device.</p>
+<h2 id="input-visualizers">Input visualizers</h2>
+<p>The Input System package comes with a <strong>Visualizers</strong> sample, which provides various components which let you monitor the state of various Input System elements in real time using on-screen visualizers.</p>
+<p>To install the sample, navigate to the Input System package in the Package Manager window (see <a href="Installation.html">Installation</a>), and next to the <strong>Visualizers</strong> sample, click <strong>Import in project</strong>.</p>
+<p>The sample provides two visualizer components:</p>
+<h3 id="inputcontrolvisualizer"><code>InputControlVisualizer</code></h3>
+<p>Visualizes the current state of a single Control in real time. You can have multiple Control visualizers to visualize the state of multiple Controls. Check the <code>GamepadVisualizer</code>, <code>MouseVisualizer</code>, or <code>PenVisualizer</code> Scenes in the sample for examples.</p>
+<p><img src="Images/InputControlVisualizer.png" alt="InputControlVisualizer"></p>
+<h3 id="inputactionvisualizer"><code>InputActionVisualizer</code></h3>
+<p>Visualizes the current state of a single Action in real time. You can have multiple Action visualizers to visualize the state of multiple Actions. This can also display the current value of the Action and the Control currently driving the Action, and track the state of <a href="Interactions.html">Interactions</a> over time. Check the <code>SimpleControlsVisualizer</code> Scene in the sample for examples.</p>
+<p><img src="Images/InputActionVisualizer.png" alt="InputActionVisualizer"></p>
+<h2 id="device-simulator">Device Simulator</h2>
+<p>When Device Simulator window is in use, mouse and pen inputs on the simulated device screen are turned into touchscreen inputs. Device Simulator uses its own touchscreen device, which it creates and destroys together with the Device Simulator window.</p>
+<p>To prevent conflicts between simulated touchscreen inputs and native mouse and pen inputs, Device Simulator disables all native mouse and pen devices.</p>
+<h2 id="unity-remote">Unity Remote</h2>
+<p>The Unity Remote is an app available for iOS and Android which allows using a mobile device for input while running in the Unity Editor. You can find details about the app and how to install it in the <a href="https://docs.unity3d.com/Manual/UnityRemote5.html">Unity manual</a>.</p>
+<p>If you would like to try out the Unity Remote app, you can <a href="Installation.html#installing-samples">install</a> the &quot;Unity Remote&quot; sample that is provided with the Input System package.</p>
+<blockquote>
+<p><strong>Note</strong>: Joysticks/gamepads are not yet supported over the Unity Remote. No joystick/gamepad input from the mobile device will come through in the editor.</p>
+</blockquote>
+<blockquote>
+<p><strong>Note</strong>: This requires Unity 2021.2.18 or later.</p>
+</blockquote>
+<p>When in play mode in the Editor and connected to the Unity Remote app, you will see a number of Devices have been added with the <a href="../api/UnityEngine.InputSystem.InputDevice.html#UnityEngine_InputSystem_InputDevice_remote"><code>InputDevice.remote</code></a> flag set to true:</p>
+<ul>
+<li><a href="../api/UnityEngine.InputSystem.Touchscreen.html"><code>Touchscreen</code></a></li>
+<li><a href="../api/UnityEngine.InputSystem.Accelerometer.html"><code>Accelerometer</code></a></li>
+</ul>
+<p>If a gyro is present on the mobile device:</p>
+<ul>
+<li><a href="../api/UnityEngine.InputSystem.Gyroscope.html"><code>Gyroscope</code></a></li>
+<li><a href="../api/UnityEngine.InputSystem.AttitudeSensor.html"><code>AttitudeSensor</code></a></li>
+<li><a href="../api/UnityEngine.InputSystem.LinearAccelerationSensor.html"><code>LinearAccelerationSensor</code></a></li>
+<li><a href="../api/UnityEngine.InputSystem.GravitySensor.html"><code>GravitySensor</code></a></li>
+</ul>
+<p>These Devices can be used just like local Devices. They will receive input from the connected mobile device which in turn will receive the rendered output of the game running in the editor.</p>
+<p>The <a href="../api/UnityEngine.InputSystem.Accelerometer.html"><code>Accelerometer</code></a> device will automatically be enabled and will not need you to call <a href="../api/UnityEngine.InputSystem.InputSystem.html#UnityEngine_InputSystem_InputSystem_EnableDevice_UnityEngine_InputSystem_InputDevice_"><code>InputSystem.EnableDevice</code></a> explicitly. Setting the sampling frequency on the accelerometer from the Unity Remote using <a href="../api/UnityEngine.InputSystem.Sensor.html#UnityEngine_InputSystem_Sensor_samplingFrequency"><code>Sensor.samplingFrequency</code></a> has no effect.</p>
+<p>The remaining sensors listed above will need to be explicitly enabled via <a href="../api/UnityEngine.InputSystem.InputSystem.html#UnityEngine_InputSystem_InputSystem_EnableDevice_UnityEngine_InputSystem_InputDevice_"><code>InputSystem.EnableDevice</code></a> just like local sensors. Setting the sampling frequency on these sensors from the Unity Remote using <a href="../api/UnityEngine.InputSystem.Sensor.html#UnityEngine_InputSystem_Sensor_samplingFrequency"><code>Sensor.samplingFrequency</code></a> will be relayed to the device but note that setting the frequency on one of them will set it for all of them.</p>
+<p>Touch coordinates from the device will be translated to the screen coordinates of the Game View inside the Editor.</p>
+<h2 id="other-tips">Other tips:</h2>
+<p>To record events flowing through the system, use this code:</p>
+<pre><code class="lang-C#">
+    // You can also provide a device ID to only
+    // trace events for a specific device.
+    var trace = new InputEventTrace();
+
+    trace.Enable();
+
+    var current = new InputEventPtr();
+    while (trace.GetNextEvent(ref current))
+    {
+        Debug.Log(&quot;Got some event: &quot; + current);
+    }
+
+    // Also supports IEnumerable.
+    foreach (var eventPtr in trace)
+        Debug.Log(&quot;Got some event: &quot; + eventPtr);
+
+    // Trace consumes unmanaged resources. Make sure you dispose it correctly to avoid memory leaks.
+    trace.Dispose();
+
+</code></pre>
+<p>To see events as they're processed, use this code:</p>
+<pre><code class="lang-C#">
+    InputSystem.onEvent +=
+        (eventPtr, device) =&gt;
+        {
+            // Can handle events yourself, for example, and then stop them
+            // from further processing by marking them as handled.
+            eventPtr.handled = true;
+        };
+
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

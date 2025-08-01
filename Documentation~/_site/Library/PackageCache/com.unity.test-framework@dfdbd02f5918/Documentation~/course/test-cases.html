@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>15. Test cases | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="15. Test cases | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../../index.html">
+            <img id="logo" class="svg" src="../../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="15-test-cases">15. Test cases</h1>
+
+<h2 id="learning-objectives">Learning objectives</h2>
+<p>This section will cover <code>[TestCase]</code> and similar NUnit attributes and how to work with them in UnityTests.</p>
+<h2 id="intro-and-motivation">Intro and motivation</h2>
+<p>NUnit has a few tools for parameterized tests, which can be used to specify test cases with variating parameters. This can drastically reduce the amount of repeated code and make the test cleaner to use.</p>
+<p>An example of a parameterized test using the <code>[TestCase]</code> attribute:</p>
+<pre><code>[Test]
+[TestCase(49, &quot;a string&quot;, true)]
+[TestCase(9, &quot;something&quot;, false)]
+public void MyTest(int firstValue, string secondValue, bool expectedOutcome)
+{
+ ...
+}  
+</code></pre>
+<p>This will generate two tests, each with a different input to the method body.</p>
+<p>In addition to the <code>[TestCase]</code> attribute, NUnit also has a <code>[Values]</code> attribute, which specifies a set of values on each individual input. An example of such is:</p>
+<pre><code>[Test]
+public void MyTest([Values(49, 9)]int firstValue, [Values(&quot;a string&quot;, &quot;something&quot;)]string secondValue)
+{
+ ...
+}  
+</code></pre>
+<p>When specifying multiple input parameters, they are treated as combinatorial. That means that each combination of them will be tested. For the above example, that will result in a total of 4 cases:</p>
+<pre><code>MyTest(49, &quot;a string&quot;)
+MyTest(49, &quot;something&quot;)
+MyTest(9, &quot;a string&quot;)
+MyTest(9, &quot;something&quot;) 
+</code></pre>
+<p>This can easily explode into many combinations. The combinations might not all be valuable and would just waste time, so use this with care.</p>
+<p>For both the <code>[TestCase]</code> and <code>[Values]</code> attributes, there is a more dynamic version called <code>[TestCaseSource]</code> and <code>[ValueSource]</code> accordingly. These each take in a static method or array, returning a collection of objects.</p>
+<p>Of these 4 methods, the <code>[ValueSource]</code> attribute is currently the only one supported by <code>[UnityTest]</code>. Since this would produce combinational tests, if multiple arguments with <code>[ValueSource]</code> are provided, then it is recommended to make a test case struct, if multiple arguments are needed for the test. An example of such could look like this:</p>
+<pre><code>[UnityTest]
+public IEnumerator AddAsyncCalculatesCorrectValue([ValueSource(nameof(TestCases))] TestCase testCase)
+{
+ ...
+}
+
+private static IEnumerable TestCases()
+{
+ yield return new TestCase {value1 = 4, value2 = &quot;a string&quot;};
+ yield return new TestCase {value1 = 8, value2 = &quot;another string&quot;};
+}
+
+public struct TestCase
+{
+ public int value1;
+ public string value2;
+
+ public override string ToString()
+ {
+  return $&quot;{value1}, {value2}&quot;;
+ }
+}
+</code></pre>
+<h2 id="exercise">Exercise</h2>
+<p>In the <a href="welcome.html#import-samples">sample</a> <code>15_TestCases</code> a class is set up with some basic math. It has two methods:</p>
+<ul>
+<li><p><code>Add</code> which takes two integers and adds them together.</p>
+</li>
+<li><p><code>AddAsync</code> also adds two integers together, but does so asynchronously, yielding back an <code>IEnumerator</code></p>
+</li>
+</ul>
+<p>The task is to add tests for the two methods. The <code>AddAsync</code> method first returns the result after a few frames, so that will be best suited for a <code>[UnityTest]</code>. Note that it is not enough to yield back the <code>IEnumerator</code>, as the test framework does not curently support nested yields. Instead, create a loop to move over each element until it's done. At each step of the while loop, let the test yield back null.</p>
+<h2 id="hints">Hints</h2>
+<ul>
+<li>The <code>ToString()</code> implementation in the struct is there to provide readable info in the test runner treeview. Without it, it would just show the struct name as the test argument for every case.</li>
+</ul>
+<h2 id="solution">Solution</h2>
+<p>A solution for the exercise is available in the sample <code>15_TestCases_Solution</code>. Tests for both methods can be implemented as follows:</p>
+<pre><code>[Test]
+[TestCase(24, 80, 104)]
+[TestCase(10, -15, -5)]
+[TestCase(int.MaxValue, 10, int.MinValue + 9)]
+public void AddCalculatesCorrectValue(int valueA, int valueB, int expectedResult)
+{
+ var myClass = new MyClass();
+
+ var result = myClass.Add(valueA, valueB);
+ 
+ Assert.That(result, Is.EqualTo(expectedResult));
+}
+
+[UnityTest]
+public IEnumerator AddAsyncCalculatesCorrectValue([ValueSource(nameof(AdditionCases))] AddCase addCase)
+{
+ var myClass = new MyClass();
+
+ var enumerator = myClass.AddAsync(addCase.valueA, addCase.valueB);
+ while (enumerator.MoveNext())
+ {
+  yield return null;
+ }
+ var result = enumerator.Current;
+ 
+ Assert.That(result, Is.EqualTo(addCase.expectedResult));
+}
+
+private static IEnumerable AdditionCases()
+{
+ yield return new AddCase {valueA = 24, valueB = 80, expectedResult = 104};
+ yield return new AddCase {valueA = 10, valueB = -15, expectedResult = -5};
+ yield return new AddCase {valueA = int.MaxValue, valueB = 10, expectedResult = int.MinValue + 9};
+}
+
+public struct AddCase
+{
+ public int valueA;
+ public int valueB;
+ public int expectedResult;
+
+ public override string ToString()
+ {
+  return $&quot;{valueA} + {valueB} = {expectedResult}&quot;;
+ }
+}
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Actions outside of tests | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Actions outside of tests | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="actions-outside-of-tests">Actions outside of tests</h1>
+
+<p>When writing tests, it is possible to avoid duplication of code by using the <a href="https://docs.nunit.org/articles/nunit/technical-notes/usage/SetUp-and-TearDown.html">SetUp and TearDown</a> methods built into <a href="http://www.nunit.org/">NUnit</a>. The Unity Test Framework has extended these methods with extra functionality, which can yield commands and skip frames, in the same way as <a href="reference-attribute-unitytest.html">UnityTest</a>.</p>
+<h2 id="action-execution-order">Action execution order</h2>
+<p>The actions related to a test run in the following order:</p>
+<ul>
+<li>Attributes implementing <a href="https://docs.nunit.org/articles/nunit/extending-nunit/IApplyToContext-Interface.html">IApplyToContext</a></li>
+<li>Any attribute implementing <a href="reference-outerunitytestaction.html">OuterUnityTestAction</a> has its <code>BeforeTest</code> invoked</li>
+<li>Tests with <a href="reference-unitysetup-and-unityteardown.html">UnitySetUp</a> methods in their test class</li>
+<li>Attributes implementing <a href="https://docs.nunit.org/articles/nunit/extending-nunit/ICommandWrapper-Interface.html">IWrapSetUpTearDown</a></li>
+<li>Any method with the [SetUp]) attribute</li>
+<li><a href="https://nunit.org/docs/2.6/actionAttributes.html">Action attributes</a> have their <code>BeforeTest</code> method invoked</li>
+<li>Attributes implementing <a href="https://docs.nunit.org/articles/nunit/extending-nunit/ICommandWrapper-Interface.html">IWrapTestMethod</a></li>
+<li><strong>The test itself runs</strong></li>
+<li><a href="https://nunit.org/docs/2.6/actionAttributes.html">Action attributes</a> have their <code>AfterTest</code> method invoked</li>
+<li>Any method with the <a href="https://docs.nunit.org/articles/nunit/technical-notes/usage/SetUp-and-TearDown.html">TearDown</a> attribute</li>
+<li>Tests with <a href="reference-unitysetup-and-unityteardown.html">UnityTearDown</a> methods in their test class</li>
+<li>Any <a href="reference-outerunitytestaction.html">OuterUnityTestAction</a> has its <code>AfterTest</code> invoked</li>
+</ul>
+<p>The list of actions is the same for both <code>Test</code> and <code>UnityTest</code>.</p>
+<h3 id="execution-order-flow">Execution order flow</h3>
+<p><img src="./images/execution-order-full.svg" alt="Action Execution Order"></p>
+<blockquote>
+<p><strong>Note</strong>: Some browsers do not support SVG image files. If the image above does not display properly (for example, if you cannot see any text), please try another browser, such as <a href="https://www.google.com/chrome/">Google Chrome</a> or <a href="https://www.mozilla.org">Mozilla Firefox</a>.</p>
+</blockquote>
+<h2 id="domain-reloads">Domain Reloads</h2>
+<p>In <strong>Edit Mode</strong> tests it is possible to yield instructions that can result in a domain reload, such as entering or exiting <strong>Play Mode</strong> (see <a href="reference-custom-yield-instructions.html">Custom yield instructions</a>). When a domain reload happens, all non-Unity actions (such as <code>OneTimeSetup</code> and <code>Setup</code>) are rerun before the code, which initiated the domain reload, continues. Unity actions (such as <code>UnitySetup</code>) are not rerun. If the Unity action is the code that initiated the domain reload, then the rest of the code in the <code>UnitySetup</code> method runs after the domain reload.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

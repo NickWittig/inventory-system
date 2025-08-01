@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Edit Mode vs. Play Mode tests | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Edit Mode vs. Play Mode tests | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="edit-mode-vs-play-mode-tests">Edit Mode vs. Play Mode tests</h1>
+
+<p>Let’s clarify a bit what Play Mode and Edit Mode test means from the Unity Test Framework perspective:</p>
+<h2 id="edit-mode-tests">Edit Mode tests</h2>
+<p><strong>Edit Mode</strong> tests (also known as Editor tests) are only run in the Unity Editor and have access to the Editor code in addition to the game code.</p>
+<p>With Edit Mode tests it is possible to test any of your <a href="https://docs.unity3d.com/Manual/ExtendingTheEditor.html">Editor extensions</a> using the <a href="reference-attribute-unitytest.html">UnityTest</a> attribute. For Edit Mode tests, your test code runs in the <a href="https://docs.unity3d.com/ScriptReference/EditorApplication-update.html">EditorApplication.update</a> callback loop.</p>
+<blockquote>
+<p><strong>Note</strong>: You can also control entering and exiting Play Mode from your Edit Mode test. This allow your test to make changes before entering Play Mode.</p>
+</blockquote>
+<p>Edit Mode tests should meet one of the following conditions:</p>
+<ul>
+<li>They should have an <a href="workflow-create-test-assembly.html">assembly definition</a> with reference to <em>nunit.framework.dll</em> and has only the Editor as a target platform:</li>
+</ul>
+<pre><code class="lang-assembly">    &quot;includePlatforms&quot;: [
+        &quot;Editor&quot;
+    ],
+</code></pre>
+<ul>
+<li>Legacy condition: put tests in the project’s <a href="https://docs.unity3d.com/Manual/SpecialFolders.html">Editor</a> folder.</li>
+</ul>
+<h2 id="play-mode-tests">Play Mode tests</h2>
+<p>You can run <strong>Play Mode</strong> tests as a <a href="workflow-run-playmode-test-standalone.html">standalone in a Player</a> or inside the Editor. Play Mode tests allow you to exercise your game code, as the tests run as <a href="https://docs.unity3d.com/ScriptReference/Coroutine.html">coroutines</a> if marked with the <code>UnityTest</code> attribute.</p>
+<p>Play Mode tests should correspond to the following conditions:</p>
+<ul>
+<li>Have an <a href="workflow-create-test-assembly.html">assembly definition</a> with reference to <em>nunit.framework.dll</em>.</li>
+<li>Have the test scripts located in a folder with the .asmdef file.</li>
+<li>The test assembly should reference an assembly within the code that you need to test.</li>
+</ul>
+<pre><code class="lang-assembly">    &quot;references&quot;: [
+        &quot;NewAssembly&quot;
+    ],
+    &quot;optionalUnityReferences&quot;: [
+        &quot;TestAssemblies&quot;
+   ],
+    &quot;includePlatforms&quot;: [],
+</code></pre>
+<h2 id="recommendations">Recommendations</h2>
+<h3 id="attributes">Attributes</h3>
+<p>Use the <a href="http://www.nunit.org/">NUnit</a> <code>Test</code> attribute instead of the <code>UnityTest</code> attribute, unless you need to <a href="reference-custom-yield-instructions.html">yield special instructions</a>, in Edit Mode, or if you need to skip a frame or wait for a certain amount of time in Play Mode.</p>
+<h3 id="references">References</h3>
+<p>It is possible for your Test Assemblies to reference the test tools in <code>UnityEngine.TestRunner</code> and <code>UnityEditor.TestRunner</code>. The latter is only available in Edit Mode. You can specify these references in the <code>Assembly Definition References</code> on the Assembly Definition.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Keywords | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Keywords | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="keywords">Keywords</h1>
+
+<h2 id="description">Description</h2>
+<p>Use Keywords to create different variants for your Shader Graph.</p>
+<p>Keywords enable you to create shaders:</p>
+<ul>
+<li>With features that you can turn on or off for each Material instance.</li>
+<li>With features that behave differently on certain platforms.</li>
+<li>That scale in complexity based on conditions you set.</li>
+</ul>
+<p>There are three types of Keywords: Boolean, Enum, and Built-in. Unity defines a Keyword in the graph, shader, and optionally, the Material Inspector based on its type. See <a href="#BooleanKeywords">Boolean Keyword</a>, <a href="#EnumKeywords">Enum Keyword</a>, and <a href="#BuiltinKeywords">Built-in Keyword</a> for more information about Keyword types. For more information about how these Keywords affect the final shader, see documentation on <a href="https://docs.unity3d.com/Manual/SL-MultipleProgramVariants.html">Making multiple shader program variants</a>.</p>
+<p>In Shader Graph, you first define a Keyword on the <a href="Blackboard.html">Blackboard</a>, then use a <a href="Keyword-Node.html">Keyword Node</a> to create a branch in the graph.</p>
+<p>The Editor is able to compile variants on demand when it needs them to render content. If you declare many different variants, you can end up with millions or trillions of possibilities. However, the Player needs to determine at build time which variants are in use and include them when it pre-compiles your shaders. To manage memory effectively, the Player strips unused variants based on their keyword and Editor settings. See the next section, Common parameters, to learn more about how you can give the Player hints about what it needs to compile and what it can ignore. When the Player strips out a variant in the build process, it displays the pink error shader.</p>
+<h2 id="common-parameters">Common parameters</h2>
+<p>Although some fields are specific to certain types of Keywords, all Keywords have the following parameters.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Name</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Display Name</strong></td>
+<td>String</td>
+<td>The display name of the Keyword. Unity shows this name in the title bar of nodes that reference the corresponding Keyword, and also in the Material Inspector if you expose that Keyword.</td>
+</tr>
+<tr>
+<td><strong>Exposed</strong></td>
+<td>Boolean</td>
+<td>When you set this parameter to <strong>true</strong>, Unity displays this Keyword in the Material Inspector. If you set it to <strong>false</strong>, the Keyword does not appear in the Material Inspector.<br><br>If you intend to access a GLOBAL shader variable, be sure to add it as you would normally add an input variable, but deselect <strong>Exposed</strong>.</td>
+</tr>
+<tr>
+<td><strong>Reference Name</strong></td>
+<td>String</td>
+<td>The internal name for the Keyword in the shader.<br><br>If you overwrite the Reference Name parameter, take note of the following:<ul><li>Keyword Reference Names are always in full capitals, so Unity converts all lowercase letters to uppercase.<li></li><li>If the Reference Name contains any characters that HLSL does not support, Unity replaces those characters with underscores.<li></li><li>Right-click on a Reference Name, and select <strong>Reset Reference</strong> to revert to the default Reference Name.<li></li><ul></ul></ul></td>
+</tr>
+<tr>
+<td><strong>Definition</strong></td>
+<td>Enum</td>
+<td>Sets how the Keyword is defined in the shader. Determines when to compile keyword variants.<br><br>There are three available options:<ul><li><strong>Shader Feature</strong>: Unity only compiles keyword variants when a Material selects the relevant option. For this option to be available in the Player, a Material selecting it must exist at build-time.<li></li><li><strong>Multi Compile</strong>: Pre-compiles all the variant possibilities. This is slower and uses more memory, but allows the option to be dynamically switched in the Player.<li></li><li><strong>Predefined</strong>: The render pipeline defines this keyword and controls the settings for it.<li></li><ul></ul></ul></td>
+</tr>
+<tr>
+<td><strong>Scope</strong></td>
+<td>Enum</td>
+<td>Sets the scope at which to define the Keyword.<br><br>The following options are available:<ul><li><strong>Global Keywords</strong>: Defines Keyword for the entire project, and it counts towards the global keyword limit.<li></li><li><strong>Local Keywords</strong>: Defines Keyword for only one shader, which has its own local keyword limit.<li></li><ul></ul>When you use Predefined Keywords, Unity disables this field.</ul></td>
+</tr>
+<tr>
+<td><strong>Stages</strong></td>
+<td></td>
+<td>Set the stage the keyword applies to.<br><br>The following options are available:<ul><li><strong>All</strong> - Applies this keyword to all shader stages.<li></li><li><strong>Vertex</strong> - Applies this keyword to the vertex stage.<li></li><li><strong>Fragment</strong> - Applies this keyword to the fragment stage.<li></li><ul></ul></ul></td>
+</tr>
+</tbody>
+</table>
+<p><a name="BooleanKeywords"></a></p>
+<h2 id="boolean-keywords">Boolean Keywords</h2>
+<p>Boolean Keywords are either on or off. This results in two shader variants. Unity exposes Boolean Keywords in the Material Inspector if the Exposed parameter is set to is true. To enable the keyword from a script, use EnableKeyword on the keyword's Reference name. DisableKeyword disables the keyword. To learn more about Boolean Keywords, see <a href="https://docs.unity3d.com/Manual/SL-MultipleProgramVariants.html">Shader variants and keywords</a>.</p>
+<p><img src="images/keywords_boolean.png" alt=""></p>
+<h3 id="type-specific-parameters">Type-specific parameters</h3>
+<p>Boolean Keywords have one Boolean-specific parameter in addition to the common parameters listed above.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Name</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Default</strong></td>
+<td>Boolean</td>
+<td>Enable this parameter to set the Keyword's default state to on, and disable it to set the Keyword's default state to off.<br><br>This parameter determines the value to use for the Keyword when Shader Graph generates previews. It also defines the Keyword's default value when you use this shader to create a new Material.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="EnumKeywords"></a></p>
+<h2 id="enum-keywords">Enum Keywords</h2>
+<p>Enum Keywords can have two or more states, which you define in the <strong>Entries</strong> list. If you expose an Enum Keyword, the <strong>Display Names</strong> in its <strong>Entries</strong> list appear in a dropdown menu in the Material Inspector.</p>
+<p>Special characters such as ( ) or ! @ are not valid in the <strong>Entry Name</strong> of an Enum Keyword. Shader Graph converts invalid characters to underscores ( _ ).</p>
+<p>When you define an Enum Keyword, Shader Graph displays labels for each state consisting of  a sanitized version of the Enum's <strong>Entry Name</strong>  appended to the main <strong>Reference</strong> name.
+When controlling a keyword via script with a, <code>Material.EnableKeyword</code> or <code>Shader.EnableKeyword function</code>, enter the state label in the format <code>{REFERENCE}_{REFERENCESUFFIX}</code>. For example, if your reference name is MYENUM and the desired entry is OPTION1, then you would call <code>Material.EnableKeyword(&quot;MYENUM_OPTION1&quot;)</code>. When you select an option, this disables the other options.</p>
+<p><img src="images/keywords_enum.png" alt=""></p>
+<h3 id="type-specific-parameters-1">Type-specific parameters</h3>
+<p>In addition to the common parameters listed above, Enum Keywords have the following additional parameters.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Name</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Default</strong></td>
+<td>Enum</td>
+<td>Select an entry from the drop-down menu to determine which value to use for the Keyword when Shader Graph generates previews. This also defines the Keyword's default value when you use this shader to create a new Material. When you edit the Entries list, Shader Graph automatically updates the options in this control.</td>
+</tr>
+<tr>
+<td><strong>Entries</strong></td>
+<td>Reorderable List</td>
+<td>This list defines all the states for the Keyword. Each state has a separate <strong>Display Name</strong> and <strong>Reference Suffix</strong>.<br><br>• <strong>Display Name</strong>: Appears in drop-down menus for the Keyword on the <a href="Internal-Inspector.html">Internal Inspector</a> and the Material Inspector. Shader Graph also uses this name for port labels on nodes that reference the Keyword.<br>• <strong>Reference Suffix</strong>: This is the final keyword, presented in the format <code>Reference_ReferenceSuffix</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="BuiltinKeywords"></a></p>
+<h2 id="built-in-keywords">Built-in Keywords</h2>
+<p>Built-in Keywords are always of either the Boolean or Enum type, but they behave slightly differently from Boolean or Enum Keywords that you create. The Unity Editor or active Render Pipeline sets their values, and you cannot edit these.</p>
+<p>All Built-in Keyword fields in the <strong>Node Settings</strong> tab of the <a href="Internal-Inspector.html">Graph Inspector</a> are grayed out except for the <strong>Default</strong> field, which you can enable or disable to show the differences in Shader Graph previews. You also cannot expose Built-in Keywords in the Material Inspector.</p>
+<p>In an HDRP project, you can find the current quality level in the Material section of the <a href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@latest/manual/quality-settings.html#using-the-current-quality-settings-parameters">HDRP Asset</a>. For URP projects, the feature is not supported, but you can use the <code>SetGloalShaderKeywords</code> command to set the <a href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.core@latest/api/UnityEngine.Rendering.MaterialQuality.html">MaterialQuality</a> Enum in the script.  For example, the following line would set Material Quality to High:</p>
+<pre><code class="lang-c#">MaterialQualityUtilities.SetGlobalShaderKeywords( MaterialQuality.High );
+</code></pre>
+<p><img src="images/keywords_built-in.png" alt=""></p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

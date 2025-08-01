@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>How to create a resolution-independent shape | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="How to create a resolution-independent shape | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="how-to-create-a-resolution-independent-shape">How to create a resolution-independent shape</h1>
+
+<p>When creating a UI element, it’s very useful to be able to make it resolution-independent - meaning that it looks sharp and crisp regardless of if it’s rendered at very high resolution or very low resolution. UI elements that are based on textures are resolution dependent. The texture itself has a specific resolution - so if the UI element is rendered at a higher resolution than the texture, the result will be blurry, and if the texture is a higher resolution than the UI element is rendered, you’ll get filtering artifacts and waste texture memory.</p>
+<p>With the nodes in the library included with this sample set, you can generate shapes procedurally instead of with textures. You can render these shapes at any resolution and they will always look perfectly sharp and smoothly anti-aliased.  Here’s how to do it:</p>
+<ol>
+<li>Add one of the SDF shape nodes (Circle, Hexagon, Pill, Rectangle, Star, or Triangle) to your graph. You can find them in the Add Node menu under UI/SDFs. These nodes generate shapes using signed distance fields. If you grab the output from the Fill output port, you’ll get a shape, but you can also get the raw SDF output from the SDF output port. Each pixel in the SDF is a value that represents the distance to the nearest edge of the shape. Pixels that are inside the shape have a negative value to indicate that.</li>
+<li>Add an AntiAliasing node to your graph. You can find it in the Add Node menu under UI/Helpers.  The AntiAliasing node is designed to “resolve” an SDF into an anti-aliased shape in a resolution-independent way.</li>
+<li>Connect the SDF output port of your SDF shape node to the Gradient input port of the AntiAliasing node.</li>
+<li>Set the Cutoff port to a default value of zero. The AntiAliasing node will convert the shape’s SDF into a solid shape using a method that correctly adapts to the number of pixels on the screen.</li>
+<li>To make your shape white and the background black, connect the <strong>Out</strong> port of the AntiAliasing node to a One Minus node to invert the result.</li>
+</ol>
+<p>You now have a resolution-independent shape. You can fill the whole screen with this shape and render it at 8k, or scale it down to a tiny portion of the screen and render it on a low-end smartphone and it will have a sharp, anti-aliased edge in all cases.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

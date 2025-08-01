@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Timeline glossary | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Timeline glossary | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="timeline-glossary">Timeline glossary</h1>
+
+<p>This topic provides an alphabetical list of the terminology used throughout the Timeline documentation.</p>
+<p><strong>animatable property</strong>: A property belonging to a GameObject, or belonging to a component added to a GameObject, that can have a different value over time.</p>
+<p><strong>animation</strong>: The result of adding two keyframes with different values, at two different times, for the same animatable property. The basic definition is a value that changes over time.</p>
+<p><strong>animation curve</strong>: The curve drawn between keyframes set for the same animatable property, at different times. The position of the tangents and the selected interpolation mode for each keyframe determines the shape of the animation curve.</p>
+<p><strong>binding</strong> or <strong>Track binding</strong>: Refers to the link between Timeline asset tracks and the GameObjects in the scene. When you link a GameObject to a track, the track animates the GameObject. Bindings are stored as part of the Timeline instance.</p>
+<p><strong>blend</strong> and <strong>blend area</strong>: The area where two Animation clips, Audio clips, or Control clips overlap. The overlap creates a transition that is referred to as a <strong>blend</strong>. The duration of the overlap is referred to as the <strong>blend area</strong>. The blend area sets the duration of the transition.</p>
+<p><strong>Blend In curve</strong>: In a blend between two Animation clips, Audio clips, or Control clips, there are two blend curves. The blend curve for the incoming clip is referred to as the <strong>Blend In</strong> curve.</p>
+<p><strong>Blend Out curve</strong>: In a blend between two Animation clips, Audio clips, or Control clips, there are two blend curves. The blend curve for the out-going clip is referred to as the <strong>Blend Out</strong> curve.</p>
+<p><strong>clip</strong>: A generic term that refers to any clip within the Content view of the Timeline window.</p>
+<p><strong>Content view</strong>: The area in the Timeline window where you add, position, and manipulate clips and markers.</p>
+<p><strong>Curves view</strong>: The area in the Timeline window that displays the animation curves for Infinite clips, or for Animation clips that have been converted from Infinite clips. The Curves view also displays animation curves for Audio Track properties. The Curves view is similar to <a href="https://docs.unity3d.com/Manual/animeditor-AnimationCurves.html">Curves mode</a> in the Animation window.</p>
+<p><strong>gap extrapolation</strong>: How an Animation track approximates animation data in the gaps before and after an Animation clip.</p>
+<p><strong>field</strong>: A generic term that describes an editable box where the user clicks and types-in a value.</p>
+<p><strong>incoming clip:</strong> The second clip in a blend between two clips. The first clip, the out-going clip, transitions to the second clip, the <strong>incoming clip</strong>.</p>
+<p><strong>Infinite clip</strong>: A special animation clip that contains basic keyframe animation recorded directly to an Animation track within the Timeline window. An Infinite clip cannot be positioned, trimmed, or split because it does not have a defined duration: it spans the entirety of an Animation track.</p>
+<p><strong>interpolation</strong>: The estimation of values between keyframes that determine the shape of an animation curve.</p>
+<p><strong>interpolation mode</strong>: The interpolation algorithm that draws the animation curve between keyframes. The interpolation mode also joins or breaks left and right tangents. Interpolation mode is also referred to as <strong>tangent mode</strong> and <strong>tangent type</strong>.</p>
+<p><strong>keyframe</strong>: The value of an animatable property set at a specific point in time. Setting at least two keyframes for the same property creates an animation.</p>
+<p><strong>marker</strong>: A generic term that refers to any marker within the Content view of the Timeline window.</p>
+<p><strong>out-going clip</strong>: The first clip in a blend between two clips. The first clip, the <strong>out-going clip</strong>, transitions to the second clip, the incoming clip.</p>
+<p><strong>Playhead Location field</strong>: The field that expresses the location of the Timeline Playhead in frames, timecode, or seconds depending on the Timeline Settings.</p>
+<p><strong>property</strong>: A generic term for the editable fields, toggles, checkboxes, or menus that comprise a component. An editable field is also referred to as a <strong>field</strong>.</p>
+<p><strong>tangent</strong>: One of two handles that control the shape of the animation curve before and after a keyframe. Tangents appear when a keyframe is selected in the Curves view.</p>
+<p><strong>tangent mode</strong> or <strong>tangent type</strong>: The selected interpolation mode used by the left tangent, right tangent, or both tangents.</p>
+<p><strong>Timeline</strong> or <strong>Unity's Timeline</strong>: Generic terms that refer to all features, windows, editors, and components related to creating, modifying, or reusing cut-scenes, cinematic, and gameplay sequences.</p>
+<p><strong>Timeline asset</strong>: Refers to the tracks, clips, and recorded keyframe animation that comprise a cut-scene, cinematic, gameplay sequence, or other effect created with the Timeline window. A Timeline asset does not include bindings to the GameObjects animated by the Timeline asset. The bindings to scene GameObjects are stored in the Timeline instance. A Timeline asset is project-based.</p>
+<p><strong>Timeline instance</strong>: Refers to the link between a Timeline asset and the GameObjects that the Timeline asset animates in the scene. You create a Timeline instance by associating a Timeline asset to a GameObject through a Playable Director component. A Timeline instance is scene-based.</p>
+<p><strong>Timeline Playback Controls</strong>: The row of buttons, toggles, and fields in the Timeline window that controls playback of the Timeline instance. The Timeline Playback Controls affect the location of the Timeline Playhead.</p>
+<p><strong>Timeline Playback mode</strong>: The mode that previews the Timeline instance in the Timeline window. Timeline Playback mode does not support audio playback. Timeline Playback mode is a simulation of Play mode in the Unity.</p>
+<p><strong>Timeline Playhead</strong>: The white marker and line that indicates the exact point in time being previewed in the Timeline window.</p>
+<p><strong>Timeline Selector</strong>: The name of the menu in the Timeline window that selects the Timeline instance to be previewed or modified.</p>
+<p><strong>Timeline window</strong>: The official name of the window where you create, modify, and preview a Timeline instance. Modifications to a Timeline instance also affect the Timeline asset.</p>
+<p><strong>track</strong>: A generic term that refers to any track within the Track list of the Timeline window.</p>
+<p><strong>Track group</strong>: A container in the Track list for organizing a collection of tracks.</p>
+<p><strong>Track sub-group</strong>: A Track group nested within another Track group. A Track group can have multiple nested sub-groups.</p>
+<p><strong>Track list</strong>: The area in the Timeline window where you add, group, and modify tracks. Each track is represented by a Track Header.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

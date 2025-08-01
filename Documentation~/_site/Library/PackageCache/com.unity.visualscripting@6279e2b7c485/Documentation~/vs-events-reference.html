@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Events node | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Events node | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="events-node">Events node</h1>
+
+<div class="NOTE">
+<h5>Note</h5>
+<p>For versions 2019/2020 LTS, download the Visual Scripting package from the <a href="https://assetstore.unity.com/packages/tools/visual-bolt-163802">Unity Asset Store</a>.</p>
+</div>
+<p>Scripting nodes listen for events. They are the starting point for all scripts and appear as special green nodes in graphs.</p>
+<p>There are many kinds of events, grouped in sub-categories under the root Events category <strong>(fuzzy finder</strong> &gt; <strong>Events</strong>).</p>
+<p>Two simple common events are Start and Update, both located under <strong>Lifecycle</strong>.</p>
+<ul>
+<li>Start is called once when the graph or event handler is first created.</li>
+<li>Update is called at every frame while the graph or event handler is active.</li>
+</ul>
+<p>New script machines start with both these events by default.</p>
+<p><img src="images/vs-new-graph-starter-nodes.png" alt=""></p>
+<h2 id="inputs--outputs">Inputs &amp; Outputs</h2>
+<p>All events have a single Trigger control output that starts the script when they are triggered.</p>
+<p>Value inputs are options that influence when the event is triggered. For example, some events have a Target setting that determines which object is listening to the event. Most often, you'll leave this setting at its default value of Self.</p>
+<p>The value outputs on events are arguments that are passed from the event, giving you more information about what actually happened. For example, on the On Trigger Enter event, the other collider that is involved in the collision is an output.</p>
+<p><img src="images/vs-events-on-trigger-enter-node.png" alt=""></p>
+<h2 id="custom-events">Custom Events</h2>
+<p>There is a special type of event, the Custom Event that triggers custom events across graphs, along with their custom arguments.</p>
+<p>For example, to create a custom event called On Damage that gets called so the character loses health, the event should have one integer argument that indicates the amount of damage to inflict. Listen to the event by creating a Custom Event node (under Events). Set the name to On Damage. The set the argument count,  below the name, to 1.</p>
+<p><img src="images/vs-events-custom-event-node.png" alt=""></p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Indices are zero-based, so the first argument is labeled Arg. 0.</p>
+</div>
+<p>To trigger the event from elsewhere, use the Trigger Custom Event node, located right under the Custom Event node in the fuzzy finder. Enter the name of the event exactly as it is sensitive to case and whitespace.</p>
+<p>For example, to create a script machine on a boulder that could hit the player, use the force of the impact as the damage.</p>
+<p><img src="images/vs-events-trigger-custom-event-example.png" alt=""></p>
+<p>The collider that hit with the boulder is the target of our trigger; the On Damage event is  triggered on all machines attached to that collider. Use the damage value to subtract health from the receiver object.</p>
+<p><img src="images/vs-events-custom-event-example.png" alt=""></p>
+<p>Custom events do not require a receiver and do not cause an error if there isn't a listener to handle them.</p>
+<h2 id="animation-events">Animation Events</h2>
+<p>Use animation events to trigger script graphs when you reach a certain point in your animation. Select an object with a machine and an animator. Then, from the animation window, add an animation event.</p>
+<p><img src="images/vs-events-animation-window-add-event.png" alt=""></p>
+<p>With the event selected, choose TriggerAnimationEvent as the function from the inspector.</p>
+<p><img src="images/vs-events-animation-choose-animation-function-inspector.png" alt=""></p>
+<p>Use any parameter from the inspector.</p>
+<p><img src="images/vs-events-animation-trigger-inspector.png" alt=""></p>
+<p>In your script graph, add an Animation Event node (under <strong>Events</strong> &gt;<strong>Animation</strong>).</p>
+<p>There are two types of events:</p>
+<ul>
+<li>a global animation event, and</li>
+<li>a named animation event.</li>
+</ul>
+<p><img src="images/vs-events-animation-event-nodes.png" alt=""></p>
+<p>The difference is that the first type listens to all animation events on the object and return the string parameter. The second type's trigger is the string parameter that is equal to the specified name input.</p>
+<h2 id="unity-events">Unity Events</h2>
+<p>Use Unity Events to trigger events that have been setup from the inspector. These are commonly found in GUI components like buttons, but <a href="https://docs.unity3d.com/ScriptReference/Events.UnityEvent.html">they can also be created in your custom scripts</a>.</p>
+<p>Configure them by selecting an object with a machine and select the Trigger Unity Event method. In the string field, type the event name to listen to in the graph and in the graph, add a UnityEvent node with a matching name.</p>
+<p><img src="images/vs-events-unity-event-node.png" alt=""></p>
+<p>Additional arguments are not supported on Unity events.</p>
+<h2 id="events-api">Events API</h2>
+<p>Visual scripting provides a simple API to trigger custom events from C# script.</p>
+<p>Add the following usings to your C# script to access the API.</p>
+<pre><code>using Unity.VisualScripting
+</code></pre>
+<h3 id="triggering-api">Triggering API</h3>
+<p>A single method call is needed to trigger a custom event. Pass as many arguments as required.</p>
+<pre><code>CustomEvent.Trigger(targetGameObject, argument1, argument2, ...)
+</code></pre>
+<p>For example, this custom event node:</p>
+<p><img src="images/vs-events-custom-event-node-blank.png" alt=""></p>
+<p>Can be triggered with this line of code.</p>
+<pre><code>CustomEvent.Trigger(enemy, &quot;Damage&quot;, 30);
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

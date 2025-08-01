@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Dynamic fonts assets | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Dynamic fonts assets | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../../index.html">
+            <img id="logo" class="svg" src="../../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="dynamic-fonts-assets">Dynamic fonts assets</h1>
+
+<p>Normally when you generate a font Asset using the Font Asset Creator, you choose which characters to include, and bake them into a Font Atlas texture.</p>
+<p>Dynamic font assets work the other way around. Instead of baking characters into an atlas in advance, you start with an empty atlas to which characters are added automatically as you use them.</p>
+<p>This makes dynamic fonts assets more flexible, but that flexibility comes at a cost.</p>
+<ul>
+<li><p>Dynamic fonts require more computational resources than static fonts.</p>
+</li>
+<li><p>Dynamic font assets maintain a link to the original font file used to create them. That means:</p>
+<ul>
+<li>During development, you must keep the font file in the project. You cannot delete it as you can the source fonts of static font assets.</li>
+<li>Source fonts of any dynamic font assets in your game are included in builds, which can increase build size.</li>
+</ul>
+</li>
+</ul>
+<p>This has several uses, for example:</p>
+<ul>
+<li><p>Use dynamic fonts during development to capture characters you forgot to include in your baked font assets.</p>
+</li>
+<li><p>Use dynamic fonts in runtime when you don't know in advance which characters the user will enter in a text field.</p>
+</li>
+</ul>
+<h2 id="creating-a-dynamic-font-asset">Creating a dynamic font Asset</h2>
+<p>Empty font assets are dynamic by default. To create one:</p>
+<ul>
+<li>From Unity's main menu, choose <strong>Assets &gt; Create &gt; TextMeshPro &gt; Font Asset</strong> or press <strong>Ctrl/Cmd + Shift + F12</strong>.</li>
+</ul>
+<p>To make an existing font Asset dynamic:</p>
+<ol>
+<li><p>Select Asset and open it in the Inspector.</p>
+</li>
+<li><p>Set the <strong>Generation Settings &gt; Atlas Population Mode</strong> property to <strong>Dynamic</strong>.</p>
+</li>
+</ol>
+<h2 id="resetting-a-dynamic-font-asset">Resetting a dynamic font Asset</h2>
+<p>You reset TextMesh Pro dynamic font assets, the same way you reset other components: by choosing <strong>Reset</strong> from the gear icon menu or context menu in the Inspector.</p>
+<p>[IMAGE]</p>
+<p>However, instead of resetting all of the Asset's properties to their default values, the command affects only:</p>
+<ul>
+<li>The Font Atlas</li>
+<li>The Character Table</li>
+<li>The Glyph Table</li>
+<li>The Glyph Adjustment Table (kerning)</li>
+</ul>
+<p>These are reset to include only the characters/glyphs used by TextMesh Pro text objects that use the font Asset.</p>
+<p>If the Asset is currently unused, TextMesh Pro resizes the atlas texture to 0 x 0 pixels.</p>
+<p><strong>NOTE:</strong> Resetting a static font Asset leaves the atlas texture as-is, but empties the character-, glyph-, and glyph adjustment tables.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

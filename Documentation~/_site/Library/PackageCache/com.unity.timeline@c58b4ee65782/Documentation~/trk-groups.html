@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Group tracks | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Group tracks | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="group-tracks">Group tracks</h1>
+
+<p>Use Track groups to organize tracks into groups when you are working with many tracks. For example, a Timeline instance has two Animation tracks that animate pieces to set up a game board. You can group these two tracks into a Track group named <code>MovingPieces</code>.</p>
+<p><img src="images/anno-track-group.png" alt=""></p>
+<p><em>A Track group with two Animation tracks</em></p>
+<p><strong>(A)</strong> Use the foldout (triangle) to <a href="#collexpgroup">collapse or expand the Track group</a>.<br>
+<strong>(B)</strong> Track group name.<br>
+<strong>(C)</strong> Use the Lock and Mute toggles to <a href="#grouplockmute">lock or mute the tracks in the Track group</a>.<br>
+<strong>(D)</strong> Use the Add (+) button to <a href="#addsubgroup">add tracks or sub-groups</a> directly to the Track group.<br>
+<strong>(E)</strong> Track headers for the tracks within a Track group are indented.<br></p>
+<p>To add a Track group, select the <strong>Add</strong> (<strong>+</strong>) menu and choose <strong>Track Group</strong>. You can also right-click an empty area of the Track list and choose <strong>Track Group</strong> from the context menu. When you add a Track group, it is added to the bottom of the Track list.</p>
+<p><img src="images/tl-track-group-added.png" alt=""></p>
+<p><em>Timeline instance with a Track group added to the bottom of the Track list</em></p>
+<p>To rename a Track group, click its name. Type the new name for the Track group and press Return. You can also rename a Track group in the Inspector window.</p>
+<p>To move tracks into a Track group, select one or more tracks and drag over the Track group. When you drag a selection of tracks, the name of the last selected track displays beside the cursor.</p>
+<p>To drop the tracks before a specific track in a Track group, drag until a white insert line indicates the destination. This is the same as <a href="trk-reorder.html">reordering tracks</a> outside a Track group.</p>
+<p><img src="images/tl-track-group-dragged.png" alt=""></p>
+<p><em>If you release when the Track group is highlighted, the tracks are moved to the top of the Track group.</em></p>
+<p><a name="collexpgroup"></a></p>
+<h2 id="collapsing-and-expanding-track-groups">Collapsing and expanding Track groups</h2>
+<p>To collapse the tracks in a Track group, click the foldout (triangle) beside the name of the Track group. The tracks are collapsed from view in the Timeline window, but are not muted. To expand the tracks in a Track group, click the foldout (triangle) again.</p>
+<p><img src="images/tl-track-group-collapsed.png" alt=""></p>
+<p><em>When a track group is collapsed, a ghost track visually represents the tracks in the Track group.</em></p>
+<p>You can also press the Left arrow key to collapse the tracks in a Track group while the Track group is selected. Press the Right Arrow key to expand the tracks in a Track group. If you press the Right Arrow key with a Track group already selected, the selection switches to the first selectable clip on the first track in the Track group.</p>
+<p><a name="grouplockmute"></a></p>
+<h2 id="locking-and-muting-track-groups">Locking and muting Track groups</h2>
+<p>Lock a Track group to prevent editing its sub-groups, tracks, and clips.  Mute a Track group to hide the effect its sub-groups, tracks, and clips have on your scene.</p>
+<p><img src="images/tl-track-group-locked-muted.png" alt=""></p>
+<p><em>A Track group can be both locked and muted.</em></p>
+<p>A locked Track group has the message <code>Locked</code> with its Lock toggle enabled. A muted Track group has the message <code>Muted</code> with its Mute toggle enabled.</p>
+<p>There are many ways to lock and unlock a Track group:</p>
+<ul>
+<li>Enable the Lock toggle in the Track group.</li>
+<li>Select a Track group and press L. You can select and lock or unlock multiple Track groups and tracks at a time.</li>
+<li>Right-click a selected Track group and choose <strong>Lock</strong> or <strong>Unlock</strong> from the context menu.</li>
+</ul>
+<p>There are many ways to mute a Track group:</p>
+<ul>
+<li>Enable the Mute button in the Track header.</li>
+<li>Select a track and press M. You can select and mute or unmute multiple Track groups and tracks at a time.</li>
+<li>Right-click a selected Track group and choose <strong>Mute</strong> or <strong>Unmute</strong> from the context menu.</li>
+</ul>
+<p>Tracks in a Track group maintain their individual locked and muted states when you lock a Track group. This means that if you lock or mute a track and then lock or mute its Track group, when you unlock or unmute the Track group, the track remains locked or muted.</p>
+<p>For example, the MovingPieces Track group has its first track locked and its second track unlocked. If you lock the Track group, both the first and second track are locked. If you unlock the Track group, the first track remains locked and the second track is unlocked because the first track was locked before the Track group was locked.</p>
+<p><img src="images/tl-track-group-stays-locked.png" alt=""></p>
+<p><em>MovingPieces Track group is unlocked but its first track remains locked because it was locked before the Track group was locked.</em></p>
+<p><a name="addsubgroup"></a></p>
+<h2 id="adding-track-sub-groups">Adding Track sub-groups</h2>
+<p>A Track group can have any number of Track sub-groups. There are many ways to add a Track sub-group:</p>
+<ul>
+<li>Select a Track group, click the <strong>Add</strong> (<strong>+</strong>) menu in the Track list, and choose <strong>Track Sub-Group</strong>.</li>
+<li>Click the <strong>Add</strong> (<strong>+</strong>) button beside the Track group name, and choose <strong>Track Sub-Group</strong>. You can also use this menu to add tracks directly to a Track group or a Track sub-group.</li>
+</ul>
+<p><img src="images/tl-add-sub-group-menu.png" alt=""></p>
+<p><em>Click the Add (+) button to add tracks and sub-groups directly to the Track group. Tracks and sub-groups are added to the bottom of the Track group.</em></p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

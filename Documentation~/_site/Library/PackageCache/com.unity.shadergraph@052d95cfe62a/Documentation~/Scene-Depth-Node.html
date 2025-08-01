@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Scene Depth Node | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Scene Depth Node | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="scene-depth-node">Scene Depth Node</h1>
+
+<h2 id="description">Description</h2>
+<p>Provides access to the current <strong>Camera</strong>'s depth buffer using input <strong>UV</strong>, which is expected to be normalized screen coordinates.</p>
+<p>Note: Depth buffer access requires depth buffer to be enabled on the active <strong>Render Pipeline</strong>. This process is different per <strong>Render Pipeline</strong>. It is recommended you read the documentation of your active <strong>Render Pipeline</strong> for information on enabling the depth buffer. If the depth buffer is unavailable this <a href="Node.html">Node</a> will return mid grey.</p>
+<p>Note: The executed HLSL code for this <a href="Node.html">Node</a> is defined per <strong>Render Pipeline</strong>, and different <strong>Render Pipelines</strong> may produce different results. Custom <strong>Render Pipelines</strong> that wish to support this <a href="Node.html">Node</a> will also need to explicitly define the behaviour for it. If undefined this <a href="Node.html">Node</a> will return 1 (white).</p>
+<p>NOTE: This <a href="Node.html">Node</a> can only be used in the <strong>Fragment</strong> <a href="Shader-Stage.html">Shader Stage</a> and it is not guaranteed to work with an opaque material.</p>
+<h4 id="unity-render-pipelines-support">Unity Render Pipelines Support</h4>
+<ul>
+<li>High Definition Render Pipeline</li>
+<li>Universal Render Pipeline</li>
+</ul>
+<h2 id="ports">Ports</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Direction</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Binding</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">UV</td>
+<td style="text-align: left;">Input</td>
+<td style="text-align: left;">Vector 4</td>
+<td style="text-align: left;">Screen Position</td>
+<td style="text-align: left;">Normalized screen coordinates</td>
+</tr>
+<tr>
+<td style="text-align: left;">Out</td>
+<td style="text-align: left;">Output</td>
+<td style="text-align: left;">Float</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">Output value</td>
+</tr>
+</tbody>
+</table>
+<h2 id="depth-sampling-modes">Depth Sampling modes</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linear01</td>
+<td>Linear depth value between 0 and 1</td>
+</tr>
+<tr>
+<td>Raw</td>
+<td>Raw depth value</td>
+</tr>
+<tr>
+<td>Eye</td>
+<td>Depth converted to eye space units</td>
+</tr>
+</tbody>
+</table>
+<h2 id="generated-code-example">Generated Code Example</h2>
+<p>The following example code represents one possible outcome of this node.</p>
+<pre><code>void Unity_SceneDepth_Raw_float(float4 UV, out float Out)
+{
+    Out = SHADERGRAPH_SAMPLE_SCENE_DEPTH(UV);
+}
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

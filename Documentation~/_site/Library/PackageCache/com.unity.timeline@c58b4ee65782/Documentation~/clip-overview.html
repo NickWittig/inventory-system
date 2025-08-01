@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Content view and Edit modes | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Content view and Edit modes | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="content-view-and-edit-modes">Content view and Edit modes</h1>
+
+<p>Use the Content view to add, position, and manage the clips and markers on each track in the Timeline asset or Timeline instance. The selected Edit mode determines how clips and markers interact with each other when you add, position, trim, resize, or delete them.</p>
+<p><img src="images/tl-edit-mode-clips-view.png" alt=""></p>
+<p><strong>(A)</strong> Edit modes<br>
+<strong>(B)</strong> Content view<br></p>
+<h2 id="clips-and-the-content-view">Clips and the Content view</h2>
+<p>In the Content view, each clip has a colored accent line that identifies the type of clip:</p>
+<ul>
+<li>Activation clips are green.</li>
+<li>Animation clips are blue.</li>
+<li>Audio clips are orange.</li>
+<li>Control clips are turquoise.</li>
+<li>Playable clips are white.</li>
+</ul>
+<p>A clip with a source asset, such as an Animation clip or an Audio clip, displays arrows that indicate when the clip excludes part of its source animation, audio waveform, or other source content.</p>
+<p>For example, if an Animation clip uses only part of its full animation, white arrows indicate that keyframes exists before the start or after the end of the clip.</p>
+<p><img src="images/tl-clip-arrows.png" alt=""></p>
+<p><em>Small arrows (red) indicate that data exists before the start or after the end of the area defined by the clip</em></p>
+<p>There are many ways to resize a clip and view its hidden source data:</p>
+<ul>
+<li>Drag the start or end of the clip to <a href="clip-trim.html">trim its start or end</a>.</li>
+<li>Select the clip and modify its clip timing properties in the Inspector window.</li>
+<li>Right-click the clip and choose <strong>Match Content</strong> from the context menu.</li>
+</ul>
+<p>When you resize a clip, the selected Edit mode determines how the surrounding clips are affected.</p>
+<h2 id="clips-and-edit-modes">Clips and Edit modes</h2>
+<p>Select an Edit mode to choose how clips are added, positioned, and trimmed in the Content view. The Edit mode is also used when you modify clip timing properties in the Inspector window. There are three Edit modes that affect most clip editing features.</p>
+<p><img src="images/anno-clip-modes-all.png" alt=""></p>
+<p><em>Edit modes are <a href="#mixmode">Mix mode</a> (default and selected), <a href="#ripplemode">Ripple mode</a>, and <a href="#replacemode">Replace mode</a></em></p>
+<p>You can temporarily switch between Edit modes. This is useful if, for example, you want to temporarily use Ripple mode to offset the content of a track while you position clips. To temporarily switch between Edit modes, hold down the following keyboard keys:</p>
+<ul>
+<li>Hold down 1 to temporarily switch to Mix mode.</li>
+<li>Hold down 2 to temporarily switch to Ripple mode.</li>
+<li>Hold down 3 to temporarily switch to Replace mode.</li>
+</ul>
+<p><a name="mixmode"></a></p>
+<h3 id="mix-mode">Mix mode</h3>
+<p>Use Mix mode to add, position, and trim clips without moving or replacing adjacent clips. Mix mode creates blends between intersecting clips. Mix mode is the default Edit mode.</p>
+<p><img src="images/anno-clip-modes-mix.png" alt=""></p>
+<p><em>Timeline window with Mix mode as the selected Edit mode.</em></p>
+<p>In Mix mode, when you hover over a clip in the Content view, the cursor changes to indicate the action that you can perform. The action depends on the part of the clip that you hover over:</p>
+<ul>
+<li>When you hover over the start of a clip, the cursor changes to a trim cursor. The trim cursor indicates the area to drag to trim the start of the clip.</li>
+<li>When you hover over the middle of a clip, the cursor changes to a position cursor. The position cursor indicates the area to drag to position the clip.</li>
+<li>When you hover over the end of a selected clip, the cursor changes to a trim cursor. The trim cursor indicates the area to drag to trim the end of the clip.</li>
+</ul>
+<p>In Mix mode, if you drag to trim or position a clip and it intersects another clip, the cursor changes to a white arrow that points towards the blend being created. There are three possible cursors depending on whether the blend is created at the beginning of the clip, at the end of the clip, or at both the beginning and end of the clip. The clip and the blend are also outlined in white.</p>
+<p><img src="images/tl-drag-create-blend.png" alt=""></p>
+<p><em>For example, the white arrow cursor and white outline indicates that dragging Clip <code>2A</code> to the right creates a blend, at the end of the clip, between Clip <code>2A</code> and Clip <code>2B</code>.</em></p>
+<p><a name="ripplemode"></a></p>
+<h3 id="ripple-mode">Ripple mode</h3>
+<p>Use Ripple mode to add, position, and trim a clip while affecting the subsequent clips on the same track. Positioning or trimming clips in Ripple mode preserves the gaps between subsequent clips.</p>
+<p><img src="images/anno-clip-modes-ripple.png" alt=""></p>
+<p><em>Timeline window with Ripple mode as the selected Edit mode.</em></p>
+<p>In Ripple mode, when you hover over a clip in the Content view, the cursor changes to indicate the action that you can perform. The actions and areas are similar to Mix mode:</p>
+<ul>
+<li>When you hover over the start of a clip, the cursor changes to a trim cursor. The trim cursor indicates the area to drag to trim the clip relative to its start.</li>
+<li>When you hover over the middle of a clip, the cursor changes to a position cursor. The position cursor indicates the area to drag to position the clip.</li>
+<li>When you hover over the end of a clip, the cursor changes to a trim cursor. The trim cursor indicates the area to drag to trim the clip relative to its end.</li>
+</ul>
+<p>In Ripple mode, when you drag to trim or position a clip, the cursor switches to a yellow arrow that points towards the affected clips and gaps. A yellow line indicates the ripple point. When you drag to trim a clip, dragging left and right changes the duration of the selected clip and repositions subsequent clips and gaps after the ripple point.</p>
+<p><img src="images/tl-drag-start-ripple.png" alt=""></p>
+<p><em>For example, the yellow arrow cursor indicates that dragging Clip <code>2A</code> affects the clips and gaps to the right, after the ripple point.</em></p>
+<p><a name="replacemode"></a></p>
+<h3 id="replace-mode">Replace mode</h3>
+<p>Use Replace mode to add, position, and trim a clip while cutting or replacing intersecting clips.</p>
+<p><img src="images/anno-clip-modes-replace.png" alt=""></p>
+<p><em>Timeline window with Replace mode as the selected Edit mode.</em></p>
+<p>In Replace mode, when you hover over a clip in the Content view, the cursor changes to indicate the action that you can perform. The actions and areas are similar to Mix mode:</p>
+<ul>
+<li>When you hover over the start of a selected clip, the cursor changes to a trim cursor. The trim cursor indicates the area to drag to trim the clip relative to its start.</li>
+<li>When you hover over the middle of a clip, the cursor changes to a position cursor. The position cursor indicates the area to drag to position the clip.</li>
+<li>When you hover over the end of a clip, the cursor changes to a trim cursor. The trim cursor indicates the area to drag to trim the clip relative to its end.</li>
+</ul>
+<p>In Replace mode, when you drag to position a clip, the clip becomes transparent so that you can view overlapping clips. If the clip being positioned overlaps other clips, releasing the clip cuts the underlying clip at each overlap.</p>
+<p>In Replace mode, when you drag to trim a clip and it intersects another clip, the cursor changes to a red arrow and a red replacement line indicates where clips overlap. Releasing the trim cuts the overlapping clip at the red replacement line.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

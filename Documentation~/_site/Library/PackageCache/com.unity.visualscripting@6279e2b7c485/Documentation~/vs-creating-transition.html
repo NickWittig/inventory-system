@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Create a transition between states | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Create a transition between states | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="create-a-transition-between-states">Create a transition between states</h1>
+
+<p>To switch between states in a State Graph, you must use a Script Graph called a transition.</p>
+<p>For more information on State Graphs, see <a href="vs-graph-types.html#state-graphs">State Graphs</a>.</p>
+<h2 id="create-a-transition-with-an-embedded-script-graph">Create a transition with an embedded Script Graph</h2>
+<p>To create a new transition to another state with an embedded graph in a State Graph:</p>
+<ol>
+<li>With a State Graph <a href="vs-open-graph-edit.html">open in the Graph window</a>, do one of the following:</li>
+</ol>
+<ul>
+<li><p>Right-click on the state where you want to make a transition, then in the context menu, select <strong>Make Transition</strong>.</p>
+</li>
+<li><p>Select the state where you want to make a transition, then press Ctrl+click and drag away from your selected state.</p>
+</li>
+</ul>
+<ol start="2">
+<li>Do one of the following:</li>
+</ol>
+<ul>
+<li><p>Select or release while on an existing state in your State Graph to connect the states with a transition.</p>
+</li>
+<li><p>Select or release while on an empty space in the Graph Editor to automatically create a new blank Script State at the end of your transition.</p>
+</li>
+</ul>
+<ol start="3">
+<li><p>Select your transition node.</p>
+</li>
+<li><p>Open the <a href="vs-interface-overview.html#the-graph-inspector">Graph Inspector</a>.</p>
+</li>
+<li><p>In the Graph Inspector, set the <strong>Source</strong> to <strong>Embed</strong>.</p>
+</li>
+<li><p>In the <strong>(Title)</strong> field, enter a title for your transition's Script Graph.</p>
+</li>
+<li><p>In the <strong>(Summary)</strong> field, enter a brief descriptive summary of your transition's Script Graph.</p>
+</li>
+</ol>
+<div class="NOTE">
+<h5>Note</h5>
+<p>If you choose to use an embedded transition Script Graph, Visual Scripting automatically provides the Trigger Transition node you need for the graph.</p>
+</div>
+<h2 id="create-a-transition-with-an-external-script-graph-file">Create a transition with an external Script Graph file</h2>
+<p>To create a new transition with a graph asset file in a State Graph:</p>
+<ol>
+<li>With a State Graph <a href="vs-open-graph-edit.html">open in the Graph window</a>, do one of the following:</li>
+</ol>
+<ul>
+<li><p>Right-click on the state where you want to make a transition, then in the context menu, select <strong>Make Transition</strong>.</p>
+</li>
+<li><p>Select the state where you want to make a transition, then press Ctrl+click and drag away from your selected state.</p>
+</li>
+</ul>
+<ol start="2">
+<li>Do one of the following:</li>
+</ol>
+<ul>
+<li><p>Select or release while on an existing state in your State Graph to connect the states with a transition.</p>
+</li>
+<li><p>Select or release while on an empty space in the Graph Editor to automatically create a new blank Script State at the end of your transition.</p>
+</li>
+</ul>
+<ol start="3">
+<li><p>Select your transition node.</p>
+</li>
+<li><p>Open the <a href="vs-interface-overview.html#the-graph-inspector">Graph Inspector</a>.</p>
+</li>
+<li><p>In the Graph Inspector, set the <strong>Source</strong> to <strong>Graph</strong>.</p>
+</li>
+<li><p>Do one of the following:</p>
+<ul>
+<li><p>Select the object picker (circle icon). Select a Script Graph from your project.</p>
+</li>
+<li><p>Click and drag a Script Graph file from your Project window and release on the <strong>Graph</strong> field.</p>
+</li>
+<li><p>Select <strong>New</strong> and <a href="vs-create-graph.html">create a new Script Graph</a>.</p>
+</li>
+</ul>
+</li>
+<li><p>Double-click the new transition node to open the transition Script Graph.</p>
+</li>
+</ol>
+<p><img src="images/vs-states-transition-graph-blank.png" alt="An image of a new blank transition Script Graph open in the Graph window."></p>
+<h2 id="create-a-self-transition-with-an-embedded-script-graph">Create a self transition with an embedded Script Graph</h2>
+<p>To create a new self transition for a state in a State Graph:</p>
+<ol>
+<li><p>With a State Graph <a href="vs-open-graph-edit.html">open in the Graph window</a>, right-click on the state where you want to make the transition.</p>
+</li>
+<li><p>In the context menu, select <strong>Make Self Transition</strong>.
+Visual Scripting attaches a new Self Transition node to the state in the State Graph automatically.</p>
+</li>
+<li><p>Select your transition node.</p>
+</li>
+<li><p>Open the <a href="vs-interface-overview.html#the-graph-inspector">Graph Inspector</a>.</p>
+</li>
+<li><p>In the Graph Inspector, set the <strong>Source</strong> to <strong>Embed</strong>.</p>
+</li>
+<li><p>In the <strong>(Title)</strong> field, enter a title for your transition's Script Graph.</p>
+</li>
+<li><p>In the <strong>(Summary)</strong> field, enter a brief descriptive summary of your transition's Script Graph.</p>
+</li>
+<li><p>Double-click the new self transition to open the transition Script Graph.</p>
+</li>
+</ol>
+<p><img src="images/vs-states-self-transition.png" alt="An image of a State Graph with a Script State node that has a self transition."></p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>If you choose to use an embedded transition Script Graph, Visual Scripting automatically provides the Trigger Transition node you need for your graph.</p>
+</div>
+<h2 id="create-a-transition-with-an-external-script-graph-file-1">Create a transition with an external Script Graph file</h2>
+<p>To create a new transition with a graph asset file in a State Graph:</p>
+<ol>
+<li><p>With a State Graph <a href="vs-open-graph-edit.html">open in the Graph window</a>, right-click on the state where you want to make the transition.</p>
+</li>
+<li><p>In the context menu, select <strong>Make Self Transition</strong>.
+Visual Scripting attaches a new Self Transition node to the state in the State Graph automatically.</p>
+</li>
+<li><p>Open the <a href="vs-interface-overview.html#the-graph-inspector">Graph Inspector</a>.</p>
+</li>
+<li><p>In the Graph Inspector, set the <strong>Source</strong> to <strong>Graph</strong>.</p>
+</li>
+<li><p>Do one of the following:</p>
+<ul>
+<li><p>Select the object picker (circle icon). Select a Script Graph from your project.</p>
+</li>
+<li><p>Click and drag a Script Graph file from your Project window and release on the <strong>Graph</strong> field.</p>
+</li>
+<li><p>Select <strong>New</strong> and <a href="vs-create-graph.html">create a new Script Graph</a>.</p>
+</li>
+</ul>
+</li>
+<li><p>Double-click the new transition node to open the transition Script Graph.</p>
+</li>
+</ol>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Running tests from the command line | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Running tests from the command line | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="running-tests-from-the-command-line">Running tests from the command line</h1>
+
+<p>It’s pretty simple to run a test project from the command line. Here is an example in Windows:</p>
+<pre><code class="lang-bash">Unity.exe -runTests -batchmode -projectPath PATH_TO_YOUR_PROJECT -testResults C:\temp\results.xml -testPlatform PS4
+</code></pre>
+<blockquote>
+<p><strong>Note</strong>: Use the <code>-batchmode</code> option when running tests on the command line to remove the need for manual user inputs. For more information, see Unity <a href="https://docs.unity3d.com/Manual/CommandLineArguments.html">Command line arguments</a>.</p>
+</blockquote>
+<h2 id="test-framework-command-line-arguments">Test Framework command line arguments</h2>
+<h3 id="forgetprojectpath">forgetProjectPath</h3>
+<p>Don't save your current <strong>Project</strong> into the Unity launcher/hub history.</p>
+<h3 id="runtests">runTests</h3>
+<p>Runs tests in the Project.</p>
+<h3 id="testcategory">testCategory</h3>
+<p>A semicolon-separated list of test categories to include in the run, or a regular expression pattern to match category names. A semi-colon separated list should be formatted as a string enclosed in quotation marks, e.g. <code>testCategory &quot;firstCategory;secondCategory&quot;</code>. If using both <code>testFilter</code> and <code>testCategory</code>, then only tests that match both are run. This argument supports negation using '!'. If using '!MyCategory' then no tests with the 'MyCategory' category will be included in the run.</p>
+<h3 id="testfilter">testFilter</h3>
+<p>A semicolon-separated list of test names to run, or a regular expression pattern to match tests by their full name. A semi-colon separated list should be formatted as a string enclosed in quotation marks, e.g. <code>testFilter &quot;Low;Medium&quot;</code>. This argument supports negation using '!'. If using the test filter '!MyNamespace.Something.MyTest', then all tests except that test will be run.
+It is also possible to run a specific variation of a parameterized test like so: <code>&quot;ClassName\.MethodName\(Param1,Param2\)&quot;</code></p>
+<h3 id="testplatform">testPlatform</h3>
+<p>The platform to run tests on. Accepted values:</p>
+<ul>
+<li><strong>EditMode</strong>
+<ul>
+<li>Edit Mode tests. Equivalent to running tests from the EditMode tab of the Test Runner window.</li>
+</ul>
+</li>
+<li><strong>PlayMode</strong>
+<ul>
+<li>Play Mode tests that run in the Editor. Equivalent to running tests from the PlayMode tab of the Test Runner window.</li>
+</ul>
+</li>
+<li>Any value from the <a href="https://docs.unity3d.com/ScriptReference/BuildTarget.html">BuildTarget</a> enum.
+<ul>
+<li>Play Mode tests that run on a player built for the specified platform. Equivalent to using the <strong>Run all tests (<code>&lt;target_platform&gt;</code>)</strong> dropdown in the PlayMode tab of the Test Runner window.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>Note</strong>: If no value is specified for this argument, tests run in Edit Mode.</p>
+</blockquote>
+<h3 id="assemblynames">assemblyNames</h3>
+<p>A semicolon-separated list of test assemblies to include in the run. A semi-colon separated list should be formatted as a string enclosed in quotation marks, e.g. <code>assemblyNames &quot;firstAssembly;secondAssembly&quot;</code>.</p>
+<h3 id="testresults">testResults</h3>
+<p>The path where Unity should save the result file. By default, Unity saves it in the Project’s root folder. Test results follow the XML format as defined by NUnit, see the <a href="https://docs.nunit.org/articles/nunit/technical-notes/usage/Test-Result-XML-Format.html">NUnit documentation</a>. There is currently no common definition for exit codes reported by individual Unity components under test. The best way to understand the source of a problem is the content of error messages and stack traces.</p>
+<h3 id="playerheartbeattimeout">playerHeartbeatTimeout</h3>
+<p>The time, in seconds, the editor should wait for heartbeats after starting a test run on a player. This defaults to 10 minutes.</p>
+<h3 id="runsynchronously">runSynchronously</h3>
+<p>If included, the test run will run tests synchronously, guaranteeing that all tests runs in one editor update call. Note that this is only supported for EditMode tests, and that tests which take multiple frames (i.e. <code>[UnityTest]</code> tests, or tests with <code>[UnitySetUp]</code> or <code>[UnityTearDown]</code> scaffolding) will be filtered out.</p>
+<h3 id="testsettingsfile">testSettingsFile</h3>
+<p>Path to a <a href="reference-test-settings-file.html">TestSettings.json</a> file.</p>
+<h3 id="orderedtestlistfile">orderedTestListFile</h3>
+<p>Path to a <em>.txt</em> file (which can have any name as long as the format is text) which contains a list of full test names you want to run in the specified order. The tests should be seperated by new lines and if they have parameters, these should be specified as well. The following is an example of the content of such a file:</p>
+<pre><code>Unity.Framework.Tests.OrderedTests.NoParameters
+Unity.Framework.Tests.OrderedTests.ParametrizedTestA(3,2)
+Unity.Framework.Tests.OrderedTests.ParametrizedTestB(&quot;Assets/file.fbx&quot;)
+Unity.Framework.Tests.OrderedTests.ParametrizedTestC(System.String[],&quot;foo.fbx&quot;)
+Unity.Framework.Tests.OrderedTests.ParametrizedTestD(1.0f)
+Unity.Framework.Tests.OrderedTests.ParametrizedTestE(null)
+Unity.Framework.Tests.OrderedTests.ParametrizedTestF(False, 1)
+Unity.Framework.Tests.OrderedTests.ParametrizedTestG(float.NaN)
+Unity.Framework.Tests.OrderedTests.ParametrizedTestH(SomeEnum)
+</code></pre>
+<h3 id="randomorderseed">randomOrderSeed</h3>
+<p>An integer different from 0 that set the seed to randomize the tests in the project, indipendetly from the fixture.</p>
+<pre><code># normal order 
+Test_1 
+Test_2 
+Test_3 
+Test_4
+# randomized with seed x 
+Test_3 
+Test_1 
+Test_4 
+Test_2
+# randomized with same seed x and a new test 
+Test_3 
+Test_5
+Test_1 
+Test_4 
+Test_2
+</code></pre>
+<h3 id="retry">retry</h3>
+<p>An integer that sets the retry count. Failing tests will be retried up to this number of times, or until they succeed, whichever happens first.</p>
+<h3 id="repeat">repeat</h3>
+<p>An integer that set the repeat count. Successful tests will be repeated up to this number of times, or until they fail, whichever happens first.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Trim clips | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Trim clips | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="trim-clips">Trim clips</h1>
+
+<p>Trimming a clip cuts off a portion of the clip at its start or end. To trim a clip, select the Mix Edit mode, hover over the start or end of the clip until the trim cursor appears, then drag the trim cursor to modify the start or end of the clip.</p>
+<p>If you trim an Animation clip, an Audio clip, or a Control clip, this selects the portion of the source asset that the clip uses.</p>
+<p>For example, trim the start of an Animation clip to modify its start and offset. This selects the section of the source asset to use. Trim the end of an Animation clip to modify its duration. If an Animation clip's source asset is keyframe animation, use the Curves view to display the unused section of the source asset.</p>
+<p><img src="images/tl-clip-trim-start.png" alt=""></p>
+<p><strong>(A)</strong> Curves view.<br>
+<strong>(B)</strong> If the area defined by an Animation clip, Audio clip, or Control clip only uses part of its source asset, the clip displays a white arrow to indicate that unused content exists before the start or after the end of the clip.<br>
+<strong>(C)</strong> The trimmed keyframe animation displays outside of the Animation clip.<br></p>
+<p>Trimming a clip is non-destructive. Trim the clip again to modify its start or end to include the animation, audio waveform, or other source content cut during a previous trim. You can also <a href="clip-reset.html">reset a clip</a> to undo trims and other edits.</p>
+<h2 id="trim-with-the-inspector-window">Trim with the Inspector window</h2>
+<p>You can select a clip to display its <a href="insp-clip.html">Clip properties</a> in the Inspector window. Use the <strong>Start</strong>, <strong>End</strong>, <strong>Duration</strong>, and <strong>Clip In</strong> (offset) properties to modify a clip to exact values.</p>
+<p><img src="images/insp-clip-timing.png" alt=""></p>
+<p><em>Position and trim a clip by adjusting its Start, End, Duration, and Clip In properties in the Inspector window</em></p>
+<h2 id="trim-with-the-timeline-playhead">Trim with the Timeline Playhead</h2>
+<p>You can trim a clip based on the location of the Timeline Playhead. To trim using the playhead, do the following:</p>
+<ol>
+<li>Position the playhead within the clip to be trimmed.</li>
+<li>Right-click the clip and choose either <strong>Editing</strong> &gt; <strong>Trim Start</strong> or <strong>Editing</strong> &gt; <strong>Trim End</strong>.</li>
+</ol>
+<p><strong>Trim Start</strong> trims the start of the clip to the playhead. <strong>Trim End</strong> trims the end of the clip to the playhead.</p>
+<p><img src="images/tl-playhead-trim-before.png" alt=""></p>
+<p><em>For example, move the Timeline Playhead within the clip</em></p>
+<p><img src="images/tl-playhead-trim-after.png" alt=""></p>
+<p><em>Right-click the clip and choose <strong>Editing</strong> &gt; <strong>Trim Start</strong> to trim the start of the clip to the playhead</em></p>
+<p>If you select clips on multiple tracks, Timeline only trims the selected clips that intersect the playhead.</p>
+<p><a name="trimloop"></a></p>
+<h2 id="trim-to-hold-or-loop-clips">Trim to hold or loop clips</h2>
+<p>If you trim the end of an Animation clip, Audio clip, or Control clip past the end of its source asset, the extra clip area either holds or loops its content.</p>
+<p>When the extra clip area loops, the entire source asset loops. Each full loop is labelled sequentially as L1, L2, L3, and so on. If the source asset is recorded keyframe animation, you can also view the looping animation curves in the Curves view.</p>
+<p>For example, an Animation clip named <code>EndRotation</code> is set to loop. Trimming the end of the <code>EndRotation</code> clip past the end of the <code>Recorded(2)</code> source asset loops its content.</p>
+<p><img src="images/tl-clip-trim-loop.png" alt=""></p>
+<p><em>The <code>EndRotation</code> clip loops once, indicated by L1. Its animation curve loops and is drawn in white.</em></p>
+<p>Whether the extra clip area holds or loops depends on the <strong>Loop</strong> property in the <a href="insp-clip-anim.html">Animation Clip Properties</a> or the <a href="insp-clip-audio.html">Audio Clip Properties</a>.</p>
+<p>For <a href="insp-clip-control.html">Control clips</a>, the properties that determine whether the extra clip area holds or loops depends on whether the clip controls a Sub-Timeline instance, Particle System, Prefab instance, or an ITimeControl Script.</p>
+<p><a name="trimspecial"></a></p>
+<h2 id="special-trim-options-for-looping-clips">Special trim options for looping clips</h2>
+<p>The Timeline window provides special trimming options for clips with loops. These special trim options either remove or complete the last partial loop.</p>
+<p>For example, an Animation clip is set to loop and its duration is just over twice longer than its source asset. This results in the Walk clip with one full loop and one partial loop.</p>
+<p><img src="images/tl-walk-loop-before.png" alt=""></p>
+<p><em>L1 indicates a complete loop. The clip ends in the middle of the second partial loop, L2.</em></p>
+<p>To extend the end of the clip and complete the partial loop, right-click the clip and choose <strong>Editing</strong> &gt; <strong>Complete Last Loop</strong>. To trim the clip at the last complete loop, right-click the clip and choose <strong>Editing</strong> &gt; <strong>Trim Last Loop</strong>.</p>
+<p><img src="images/tl-walk-loop-complete.png" alt=""></p>
+<p><em>The result of <strong>Complete Last Loop</strong></em></p>
+<p><img src="images/tl-walk-loop-trim.png" alt=""></p>
+<p><em>The result of <strong>Trim Last Loop</strong></em></p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

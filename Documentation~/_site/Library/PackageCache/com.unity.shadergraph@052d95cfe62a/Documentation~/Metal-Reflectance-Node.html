@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Metal Reflectance Node | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Metal Reflectance Node | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="metal-reflectance-node">Metal Reflectance Node</h1>
+
+<h2 id="description">Description</h2>
+<p>Returns a <strong>Metal Reflectance</strong> value for a physically based material. The material to use can be selected with the <strong>Material</strong> dropdown parameter on the <a href="Node.html">Node</a>.</p>
+<p>When using <strong>Specular</strong> <strong>Workflow</strong> on a <a href="PBR-Master-Node.md">PBR Master Node</a> this value should be supplied to the <strong>Specular</strong> <a href="Port.html">Port</a>. When using <strong>Metallic</strong> <strong>Workflow</strong> this value should be supplied to the <strong>Albedo</strong> <a href="Port.html">Port</a>.</p>
+<h2 id="ports">Ports</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Direction</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Binding</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Out</td>
+<td style="text-align: left;">Output</td>
+<td style="text-align: left;">Vector 3</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">Output value</td>
+</tr>
+</tbody>
+</table>
+<h2 id="controls">Controls</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Options</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Material</td>
+<td style="text-align: left;">Dropdown</td>
+<td style="text-align: left;">Iron, Silver, Aluminium, Gold, Copper, Chromium, Nickel, Titanium, Cobalt, Platform</td>
+<td style="text-align: left;">Selects the material value to output.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="generated-code-example">Generated Code Example</h2>
+<p>The following example code represents one possible outcome of this node.</p>
+<p><strong>Iron</strong></p>
+<pre><code>float3 _MetalReflectance_Out = float3(0.560, 0.570, 0.580);
+</code></pre>
+<p><strong>Silver</strong></p>
+<pre><code>float3 _MetalReflectance_Out = float3(0.972, 0.960, 0.915);
+</code></pre>
+<p><strong>Aluminium</strong></p>
+<pre><code>float3 _MetalReflectance_Out = float3(0.913, 0.921, 0.925);
+</code></pre>
+<p><strong>Gold</strong></p>
+<pre><code>float3 _MetalReflectance_Out = float3(1.000, 0.766, 0.336);
+</code></pre>
+<p><strong>Copper</strong></p>
+<pre><code>float3 _MetalReflectance_Out = float3(0.955, 0.637, 0.538);
+</code></pre>
+<p><strong>Chromium</strong></p>
+<pre><code>float3 _MetalReflectance_Out = float3(0.550, 0.556, 0.554);
+</code></pre>
+<p><strong>Nickel</strong></p>
+<pre><code>float3 _MetalReflectance_Out = float3(0.660, 0.609, 0.526);
+</code></pre>
+<p><strong>Titanium</strong></p>
+<pre><code>float3 _MetalReflectance_Out = float3(0.542, 0.497, 0.449);
+</code></pre>
+<p><strong>Cobalt</strong></p>
+<pre><code>float3 _MetalReflectance_Out = float3(0.662, 0.655, 0.634);
+</code></pre>
+<p><strong>Platinum</strong></p>
+<pre><code>float3 _MetalReflectance_Out = float3(0.672, 0.637, 0.585);
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

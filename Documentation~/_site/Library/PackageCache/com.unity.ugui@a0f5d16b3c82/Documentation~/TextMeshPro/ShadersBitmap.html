@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Bitmap Shader | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Bitmap Shader | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../../index.html">
+            <img id="logo" class="svg" src="../../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="bitmap-shader">Bitmap Shader</h1>
+
+<p>The Bitmap shader is designed to use  bitmap-only fonts. It treats the font atlas like a regular texture, displaying it directly, and does not support any text effects. Bitmap-textured text becomes blocky when you zoom in on it.</p>
+<h2 id="properties">Properties</h2>
+<p><img src="../images/TMP_Shader_Bitmap.png" alt="Example image"></p>
+<p><img src="../images/Letter_A_half.png" alt="Example image"> <strong><a href="#Face">Face</a>:</strong> Controls the text's overall appearance.</p>
+<p><img src="../images/Letter_B_half.png" alt="Example image"> <strong><a href="#DebugSettings">Debug Settings</a>:</strong> Exposes internal shader properties that are sometimes useful for troubleshooting.</p>
+<p><a name="Face"></a></p>
+<h3 id="face">Face</h3>
+<p>Description</p>
+<table>
+<thead>
+<tr>
+<th>Property:</th>
+<th></th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Color</strong></td>
+<td></td>
+<td>Adjust the face color of the text.<br><br>The value you set here is multiplied with the vertex <strong>Colors</strong> you set in the TextMeshPro component.<br><br>Set this to white to use the original vertex colors.<br><br>Set this to black to cancel out the vertex colors.<br><br>Similarly, setting the Alpha to <strong>1</strong> uses the original vertex-color alpha, while setting it to <strong>0</strong> removes any alpha set in the original vertex colors.</td>
+</tr>
+<tr>
+<td><strong>Texture</strong></td>
+<td></td>
+<td>Apply a texture to the text face.<br><br>The texture is multiplied with the face <strong>Color</strong> and the vertex colors in the TextMesh Pro component to produce the final face color.<br><br>The <strong>Horizontal Mapping</strong> and <strong>Vertical Mapping</strong> properties in the TextMesh Pro component determine how TextMesh Pro fits the texture to the text face.</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>Tiling X/Y</strong></td>
+<td>Increase these values to repeat the texture across the text surface, in accordance with the TextMesh Pro object's <strong>Horizontal Mapping</strong> and <strong>Vertical Mapping</strong> properties.</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>Offset X/Y</strong></td>
+<td>Adjust these values to change the texture's relative position, horizontally or vertically, on the text surface.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="DebugSettings"></a></p>
+<h3 id="debug-settings">Debug Settings</h3>
+<p>The debug section exposes some of the shader’s internal properties. They can be helpful for troubleshooting problems you encounter with the shader.</p>
+<table>
+<thead>
+<tr>
+<th>Property:</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Font Atlas</strong></td>
+<td>Points to the atlas texture used by the font Asset.</td>
+</tr>
+<tr>
+<td><strong>Offset X/Offset Y</strong></td>
+<td>Offset the vertex positions of each character in X and Y.<br><br>You can change these values using a script to create simulated crawl or scrolling FX.</td>
+</tr>
+<tr>
+<td><strong>Softness X/Softness Y</strong></td>
+<td>When <strong>Mask</strong> is set to <strong>Soft</strong>, set these to adjust the softness of the edge of the text.</td>
+</tr>
+<tr>
+<td><strong>Clip Rect</strong></td>
+<td>Clip Rect defines the Left (<strong>L</strong>), Bottom (<strong>B</strong>), Right (<strong>R</strong>) and Top (<strong>T</strong>) world space coordinates of the masking rectangle.<br><br> This is normally set automatically by the <strong>2D RectMask</strong>. However when using a normal <strong>TextMeshPro</strong> component, this allows you to set / control the masking region.</td>
+</tr>
+<tr>
+<td><strong>Stencil ID</strong></td>
+<td>The reference value. For more information, refer to <a href="https://docs.unity3d.com/Manual/SL-Stencil.html">the <code>ref</code> parameter in ShaderLab command: Stencil</a>.</td>
+</tr>
+<tr>
+<td><strong>Stencil Comp</strong></td>
+<td>A comparison operation. For more information, refer to <a href="https://docs.unity3d.com/Manual/SL-Stencil.html">the <code>comparisonOperation</code> parameter in ShaderLab command: Stencil</a>.</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

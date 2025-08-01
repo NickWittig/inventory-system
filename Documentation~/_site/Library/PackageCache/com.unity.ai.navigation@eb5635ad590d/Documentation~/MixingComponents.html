@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Use NavMesh Agent with Other Components | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Use NavMesh Agent with Other Components | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="use-navmesh-agent-with-other-components">Use NavMesh Agent with Other Components</h1>
+
+<p>You can use <a href="NavMeshAgent.html"><strong>NavMesh Agent</strong></a>, <a href="NavMeshObstacle.html"><strong>NavMesh Obstacle</strong></a> and <a href="NavMeshLink.html"><strong>NavMesh Link</strong></a> components with other Unity components too. Here’s a list of dos and don’ts when mixing different components together.</p>
+<h2 id="navmesh-agent-and-physics">NavMesh Agent and Physics</h2>
+<ul>
+<li>You don’t need to add physics <a href="Glossary.html#collider" title="An invisible shape that is used to handle physical collisions for an object. A collider doesn’t need to be exactly the same shape as the object’s mesh - a rough approximation is often more efficient and indistinguishable in gameplay."><strong>colliders</strong></a> to NavMesh Agents for them to avoid each other
+<ul>
+<li>That is, the navigation system simulates agents and their reaction to obstacles and the static world. Here the static world is the baked NavMesh.</li>
+</ul>
+</li>
+<li>If you want a NavMesh Agent to push around physics objects or use physics triggers:
+<ul>
+<li>Add a Collider component (if not present)</li>
+<li>Add <a href="Glossary.html#rigidbody" title="A component that allows a GameObject to be affected by simulated gravity and other forces."><strong>Rigidbody</strong></a> component
+<ul>
+<li>Turn on kinematic (Is Kinematic) - this is important!</li>
+<li>Kinematic means that the rigid body is controlled by something else than the physics simulation</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>If both NavMesh Agent and Rigidbody (non-kinematic) are active at the same time, you have race condition
+<ul>
+<li>Both components may try to move the agent at the same time which leads to undefined behavior</li>
+</ul>
+</li>
+<li>You can use a NavMesh Agent to move e.g. a player character, without physics
+<ul>
+<li>Set players agent’s avoidance priority to a small number (high priority), to allow the player to brush through crowds</li>
+<li>Move the player agent using <a href="https://docs.unity3d.com/6000.0/Documentation/ScriptReference/AI.NavMeshAgent-velocity.html">NavMeshAgent.velocity</a>, so that other agents can predict the player movement to avoid the player.</li>
+</ul>
+</li>
+</ul>
+<h2 id="navmesh-agent-and-animator">NavMesh Agent and Animator</h2>
+<ul>
+<li>NavMesh Agent and Animator with <a href="Glossary.html#root-motion" title="Motion of character’s root node, whether it’s controlled by the animation itself or externally."><strong>Root Motion</strong></a> can cause race condition
+<ul>
+<li>Both components try to move the transform each frame</li>
+<li>Two possible solutions</li>
+</ul>
+</li>
+<li>Information should always flow in one direction
+<ul>
+<li>Either agent moves the character and animations follows</li>
+<li>Or animation moves the character based on simulated result</li>
+<li>Otherwise you’ll end up having a hard to debug feedback loop</li>
+</ul>
+</li>
+<li><em>Animation follows agent</em>
+<ul>
+<li>Use the <a href="https://docs.unity3d.com/6000.0/Documentation/ScriptReference/AI.NavMeshAgent-velocity.html">NavMeshAgent.velocity</a> as input to the Animator to roughly match the agent’s movement to the animations</li>
+<li>Robust and simple to implement, will result in foot sliding where animations cannot match the velocity</li>
+</ul>
+</li>
+<li><em>Agent follows animation</em>
+<ul>
+<li>Disable <a href="https://docs.unity3d.com/6000.0/Documentation/ScriptReference/AI.NavMeshAgent-updatePosition.html">NavMeshAgent.updatePosition</a> and <a href="https://docs.unity3d.com/6000.0/Documentation/ScriptReference/AI.NavMeshAgent-updateRotation.html">NavMeshAgent.updateRotation</a> to detach the simulation from the game objects locations</li>
+<li>Use the difference between the simulated agent’s position (<a href="https://docs.unity3d.com/6000.0/Documentation/ScriptReference/AI.NavMeshAgent-nextPosition.html">NavMeshAgent.nextPosition</a>) and animation root (<a href="https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Animator-rootPosition.html">Animator.rootPosition</a>) to calculate controls for the animations</li>
+<li>See <a href="CouplingAnimationAndNavigation.html">Coupling Animation and Navigation</a> for more details</li>
+</ul>
+</li>
+</ul>
+<h2 id="navmesh-agent-and-navmesh-obstacle">NavMesh Agent and NavMesh Obstacle</h2>
+<ul>
+<li>Do not mix well!
+<ul>
+<li>Enabling both will make the agent trying to avoid itself</li>
+<li>If carving is enabled in addition, the agent tries to constantly remap to the edge of the carved hole, even more erroneous behavior ensues</li>
+</ul>
+</li>
+<li>Make sure only one of them are active at any given time
+<ul>
+<li>Deceased state, you may turn off the agent and turn on the obstacle to force other agents to avoid it</li>
+<li>Alternatively you can use priorities to make certain agents to be avoided more</li>
+</ul>
+</li>
+</ul>
+<h2 id="navmesh-obstacle-and-physics">NavMesh Obstacle and Physics</h2>
+<ul>
+<li>If you want physics controlled object to affect NavMesh Agent’s behavior
+<ul>
+<li>Add NavMesh Obstacle component to the object which agent should be aware of, this allows the avoidance system to reason about the obstacle</li>
+</ul>
+</li>
+<li>If a game object has a Rigidbody and a NavMesh Obstacle attached, the obstacle’s velocity is obtained from the Rigidbody automatically
+<ul>
+<li>This allows NavMesh Agents to predict and avoid the moving obstacle</li>
+</ul>
+</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>How to make shapes that adapt to the aspect ratio of the UI element | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="How to make shapes that adapt to the aspect ratio of the UI element | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="how-to-make-shapes-that-adapt-to-the-aspect-ratio-of-the-ui-element">How to make shapes that adapt to the aspect ratio of the UI element</h1>
+
+<p>Buttons and other UI elements come in all shapes and sizes. Frequently, the same style of button or background element needs to work with many different shapes or adapt to a changing width and height. Many of the UI elements in this sample are designed to adapt to changing dimensions.  Follow these steps to create a UI element that can do that.</p>
+<ol>
+<li>Create a new Shader Graph asset.</li>
+<li>In the Graph Inspector, set the Shader Graph’s Material setting to <strong>Canvas</strong>.</li>
+<li>Add an SDF Pill node to the new Shader Graph file. ( You can find this node in the <strong>Add Node</strong> menu under <strong>UI/SDFs</strong>.)</li>
+<li>Connect the Pill node’s <strong>Fill</strong> output port to the <strong>Base Color</strong> input port of the <strong>Master Stack</strong>. Now you’ve created a shader for a UI element that’s meant to be square.  If you assign this shader to a non-square UI element, it will stretch and not look like a proper pill shape.
+Notice that the Pill node’s last input port is called <strong>WidthHeight</strong>. This is an input for the width and height data of the UI element that the shader will be assigned to. By default, the Pill node assumes the UI element will be square, but if you plan to use a different aspect ratio, you can enter other values. Rather than entering the values manually, it’s best to connect them to the actual UI element values.  That’s what we’ll do next.</li>
+<li>Open the <strong>Blackboard</strong> and add a new Vector2 parameter.</li>
+<li>Name the parameter <strong>WidthHeight</strong>.</li>
+<li>Drag the parameter into the graph and connect it to the <strong>WidthHeight</strong> input port on the Pill node.  You’ve now exposed the <strong>WidthHeight</strong> parameter so it can be connected outside the shaders.</li>
+<li>In your scene, create a new <strong>Canvas</strong> element (if there isn’t one already) in the <strong>Hierarchy</strong> panel. (Right click in the <strong>Hierarchy</strong> panel and select <strong>UI</strong> &gt; <strong>Canvas</strong>).</li>
+<li>Then add an Image element to the Canvas. (Right click on the <strong>Canvas</strong> element and select <strong>UI</strong> &gt; <strong>Image</strong>) Select the Image element.</li>
+<li>Select the material associated with your shader in the Project panel and drag and drop it into the Material slot in the Inspector for the Image UI element. Now your shader’s material is assigned to the UI element.</li>
+<li>Click the <strong>Add Component</strong> button at the bottom of the Inspector.</li>
+<li>Select and assign the <strong>Image Size</strong> script to the Image element.  This script connects the Image element’s Width and Height parameters to the WidthHeight parameter of your shader, so when the Width or Height values change, the shader adapts.</li>
+</ol>
+<p>Now you have a shader that will adapt to the aspect ratio of the UI element it’s assigned to. You can adjust the Width and Height parameters of the Image element and the Pill shape will maintain its rounded shape. This same feature is also available on many of the other nodes in the node library. You can control any subgraph node with a WidthHeight input port in this same way.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

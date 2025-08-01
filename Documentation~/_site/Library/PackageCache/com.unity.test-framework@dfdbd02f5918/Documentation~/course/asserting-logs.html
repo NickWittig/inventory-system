@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>5. Asserting and expecting logs | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="5. Asserting and expecting logs | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../../index.html">
+            <img id="logo" class="svg" src="../../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="5-asserting-and-expecting-logs">5. Asserting and expecting logs</h1>
+
+<h2 id="learning-objectives">Learning objectives</h2>
+<p>How to test and verify code that writes to the console log.</p>
+<h2 id="intro-and-motivation">Intro and motivation</h2>
+<p>At Unity, we have many packages and modules that communicate with the user through logging messages and exceptions to the console log. This can be both for the normal workflows and for error cases.</p>
+<p>We have extended the test framework to be aware of the console log. This means that by default, any error or exception that is logged while running a test will result in that test failing. If such failures are expected, then it is possible to use <code>LogAssert.Expect(logtype, message)</code> to ensure that a given message is logged. This can be used to expect normal messages and warnings as well. The <code>LogAssert.Expect</code> can be placed both before and after the message happens. When the test is done (or next time it yields), it will fail if the expected message is not present.</p>
+<pre><code>[Test]
+public void LogAssertExample()
+{
+ // Expect a regular log message
+ LogAssert.Expect(LogType.Log, &quot;Log message&quot;);
+
+ // The test fails without the following expected log message
+ Debug.Log(&quot;Log message&quot;);
+
+ // An error log
+ Debug.LogError(&quot;Error message&quot;);
+
+ // Without expecting an error log, the test would fail
+ LogAssert.Expect(LogType.Error, &quot;Error message&quot;);
+}
+</code></pre>
+<p>The <code>LogAssert.Expect</code> also takes a regex as an argument, as sometimes it is not possible to know the precise string. For example, if the logged message has time duration in the string.</p>
+<h2 id="exercise">Exercise</h2>
+<p>In the <a href="welcome.html#import-samples">sample</a> <code>5_AssertingLogs</code> there is a class called <code>MyLoggingClass</code>.</p>
+<p>The class has two methods with the following behavior:</p>
+<ul>
+<li><p><code>DoSomething();</code> logs the message &quot;Doing something&quot;.</p>
+</li>
+<li><p><code>DoSomethingElse();</code> logs an error &quot;An error happened. Code: #&quot; where # is a random number from 0 to 9.</p>
+</li>
+</ul>
+<p>Write tests that verify the above behavior using <code>LogAssert.Expect</code>. You can experiment by seeing what happens if <code>DoSomethingElse();</code> is called without the expect and what happens if you expect e.g. a message of type warning.</p>
+<h2 id="hints">Hints</h2>
+<ul>
+<li>You will need to use a regular expression together with <code>LogAssert.Expect</code> in order to expect the error message.</li>
+<li>In Unity, there is a difference between a logged error and a logged exception.</li>
+</ul>
+<h2 id="solution">Solution</h2>
+<p>A full solution to the exercise can be found in the sample <code>5_AssertingLogs_Solution</code>.</p>
+<p>One possible implementation of the tests is as follows:</p>
+<pre><code>[Test]
+public void DoSomethingLogsMessage()
+{
+ var loggingClassUnderTest = new MyLoggingClass();
+ 
+ loggingClassUnderTest.DoSomething();
+ 
+ LogAssert.Expect(LogType.Log, &quot;Doing something&quot;);
+}
+
+[Test]
+public void DoSomethingElseLogsError()
+{
+ var loggingClassUnderTest = new MyLoggingClass();
+ 
+ loggingClassUnderTest.DoSomethingElse();
+ 
+ LogAssert.Expect(LogType.Error, new Regex(&quot;An error happened. Code: \\d&quot;));
+}
+</code></pre>
+<h2 id="further-reading-and-resources">Further reading and resources</h2>
+<p><a href="https://docs.unity3d.com/Packages/com.unity.test-framework@1.1/manual/reference-custom-assertion.html#logassert">Documentation for LogAssert</a></p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

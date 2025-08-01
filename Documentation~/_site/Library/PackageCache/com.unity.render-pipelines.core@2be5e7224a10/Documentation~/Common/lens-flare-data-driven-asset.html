@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Lens Flare (SRP) Asset | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Lens Flare (SRP) Asset | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../../index.html">
+            <img id="logo" class="svg" src="../../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="lens-flare-srp-asset">Lens Flare (SRP) Asset</h1>
+
+<p>Unity’s <a href="https://docs.unity3d.com/Manual/ScriptableRenderPipeline.html">Scriptable Render Pipeline (SRP)</a> includes the <strong>Lens Flare Data</strong> asset. You can use this asset to control the appearance of <a href="lens-flare-component.md">Lens Flares</a> in your scene. This is the SRP equivalent of the Built-in Render Pipeline's <a href="https://docs.unity3d.com/Manual/class-Flare.html">Flare</a> asset, which is incompatible with SRPs.</p>
+<p>To create a Lens Flare Data asset, select <strong>Assets &gt; Create &gt; Lens Flare (SRP)</strong>. To use this asset, assign it to the <strong>Lens Flare Data</strong> property of a <a href="lens-flare-component.md">Lens Flare (SRP) component</a>.</p>
+<h2 id="properties">Properties</h2>
+<p>The Lens Flare Element asset has the following properties:</p>
+<ul>
+<li><a href="#Type">Type</a>
+<ul>
+<li><a href="#Image">Image</a></li>
+<li><a href="#Circle">Circle</a></li>
+<li><a href="#Polygon">Polygon</a></li>
+<li><a href="#Ring">Ring</a></li>
+<li><a href="#LensFlareDataSRP">Lens Flare Data SRP</a></li>
+</ul>
+</li>
+<li><a href="#Common">Common</a>
+<ul>
+<li><a href="#Cutoff">Cutoff</a></li>
+<li><a href="#Transform">Transform</a></li>
+<li><a href="#AxisTransform">AxisTransform</a></li>
+<li><a href="#Distortion">Distortion</a></li>
+<li><a href="#Multiple-Elements">Multiple Elements</a>
+<ul>
+<li><a href="#Uniform">Uniform</a></li>
+<li><a href="#Curve">Curve</a></li>
+<li><a href="#Random">Random</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="Image"></a></p>
+<h3 id="type">Type</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Property</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Type</td>
+<td>Select the type of Lens Flare Element this asset creates: <br>• <a href="#Image">Image</a> <br>• <a href="#Circle">Circle</a> <br>• <a href="#Polygon">Polygon</a></td>
+</tr>
+</tbody>
+</table>
+<p><a name="Image"></a></p>
+<h4 id="image">Image</h4>
+<p><img src="images/LensFlareShapeImage.png" alt=""></p>
+<table>
+<thead>
+<tr>
+<th><strong>Property</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Flare Texture</td>
+<td>The Texture this lens flare element uses.</td>
+</tr>
+<tr>
+<td>Preserve Aspect Ratio</td>
+<td>Fixes the width and height (aspect ratio) of the <strong>Flare Texture</strong>. You can use <a href="#Distortion">Distortion</a> to change this property.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Circle"></a></p>
+<h4 id="circle">Circle</h4>
+<p><img src="images/LensFlareShapeCircle.png" alt=""></p>
+<table>
+<thead>
+<tr>
+<th><strong>Property</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gradient</td>
+<td>Controls the offset of the circular flare's gradient. This value ranges from 0 to 1.</td>
+</tr>
+<tr>
+<td>Falloff</td>
+<td>Controls the falloff of the circular flare's gradient. This value ranges from 0 to 1, where 0 has no falloff between the tones and 1 creates a falloff that is spread evenly across the circle.</td>
+</tr>
+<tr>
+<td>Inverse</td>
+<td>Enable this property to reverse the direction of the gradient.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Polygon"></a></p>
+<h4 id="polygon">Polygon</h4>
+<p><img src="images/LensFlareShapePolygon.png" alt=""></p>
+<table>
+<thead>
+<tr>
+<th><strong>Property</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gradient</td>
+<td>Controls the offset of the polygon flare's gradient. This value ranges from 0 to 1.</td>
+</tr>
+<tr>
+<td>Falloff</td>
+<td>Controls the falloff of the polygon flare's gradient. This value ranges from 0 to 1, where 0 has no falloff between the tones and 1 creates a falloff that is spread evenly across the polygon.</td>
+</tr>
+<tr>
+<td>Side Count</td>
+<td>Determines how many sides the polygon flare has.</td>
+</tr>
+<tr>
+<td>Roundness</td>
+<td>Defines how smooth the edges of the polygon flare are. This value ranges from 0 to 1, where 0 is a sharp polygon and 1 is a circle.</td>
+</tr>
+<tr>
+<td>Inverse</td>
+<td>Enable this property to reverse the direction of the gradient</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Ring"></a></p>
+<h4 id="ring">Ring</h4>
+<p><img src="images/LensFlareShapeRing.png" alt=""></p>
+<table>
+<thead>
+<tr>
+<th><strong>Property</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gradient</td>
+<td>Controls the offset of the circular flare's gradient. This value ranges from 0 to 1.</td>
+</tr>
+<tr>
+<td>Falloff</td>
+<td>Controls the falloff of the circular flare's gradient. This value ranges from 0 to 1, where 0 has no falloff between the tones and 1 creates a falloff that is spread evenly across the circle.</td>
+</tr>
+<tr>
+<td>Inverse</td>
+<td>Enable this property to reverse the direction of the gradient.</td>
+</tr>
+<tr>
+<td>Amplitude</td>
+<td>Amplitude of the sampling of the noise.</td>
+</tr>
+<tr>
+<td>Repeat</td>
+<td>Frequency of the sampling for the noise.</td>
+</tr>
+<tr>
+<td>Speed</td>
+<td>Scale the speed of the animation.</td>
+</tr>
+<tr>
+<td>Ring Thickness</td>
+<td>Ring Thickness.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="LensFlareDataSRP"></a></p>
+<h4 id="lens-flare-data-driven-srp">Lens Flare Data Driven SRP</h4>
+<p><img src="images/LensFlareShapeLensFlareDataSRP.png" alt=""></p>
+<table>
+<thead>
+<tr>
+<th><strong>Property</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Asset</td>
+<td>Lens Flare Data SRP asset as an element.</td>
+</tr>
+</tbody>
+</table>
+<p>Unity support an Lens Flare Data SRP recursive, but with a hard cutoff after 16 recursions call.
+For instance asset A constains asset B which constains asset A (infinite recursion).
+That will trigger a warning and execution 16 recursions:</p>
+<pre><code>&quot;LensFlareSRPAsset contains too deep recursive asset (&gt; 16). Be careful to not have recursive aggregation, A contains B, B contains A, ... which will produce an infinite loop.&quot;
+</code></pre>
+<p><a name="Color"></a></p>
+<h2 id="color">Color</h2>
+<p><img src="images/LensFlareColor.png" alt=""></p>
+<table>
+<thead>
+<tr>
+<th><strong>Property</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Color Type</td>
+<td>Select the color type of Lens Flare Element this asset creates: <br>• <a href="#ColorConstant">Constant</a> <br>• <a href="#ColorRadial">Radial</a> <br>• <a href="#ColorAngular">Angular</a></td>
+</tr>
+<tr>
+<td>Tint</td>
+<td>Changes the tint of the lens flare. If this asset is attached to the light, this property is based on the light tint.</td>
+</tr>
+<tr>
+<td>Modulate By Light Color</td>
+<td>Allows light color to affect this Lens Flare Element. This only applies when the asset is used in a <a href="srp-lens-flare-component.md">SRP Lens Flare Override Component</a> that is attached to a point, spot, or area light.</td>
+</tr>
+<tr>
+<td>Intensity</td>
+<td>Controls the intensity of this element.</td>
+</tr>
+<tr>
+<td>Blend Mode</td>
+<td>Select the blend mode of the Lens Flare Element this asset creates:<br>• Additive  <br>• Screen  <br>• Premultiplied <br>• Lerp</td>
+</tr>
+</tbody>
+</table>
+<p><a name="ColorConstant"></a></p>
+<h3 id="constant-color">Constant Color</h3>
+<p><img src="images/LensFlareColorConstant.png" alt=""></p>
+<table>
+<thead>
+<tr>
+<th><strong>Property</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tint</td>
+<td>Changes the tint of the lens flare. If this asset is attached to the light, this property is based on the light tint.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="ColorRadial"></a></p>
+<h3 id="constant-color-1">Constant Color</h3>
+<p><img src="images/LensFlareColorRadialGradient.png" alt=""></p>
+<table>
+<thead>
+<tr>
+<th><strong>Property</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tint Radial</td>
+<td>Specifies the radial gradient tint of the element. If the element type is set to Image, the Flare Texture is multiplied by this color.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="ColorAngular"></a></p>
+<h3 id="constant-color-2">Constant Color</h3>
+<p><img src="images/LensFlareColorAngularGradient.png" alt=""></p>
+<table>
+<thead>
+<tr>
+<th><strong>Property</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tint Angular</td>
+<td>Specifies the angular gradient tint of the element. If the element type is set to Image, the Flare Texture is multiplied by this color.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Common"></a></p>
+<h2 id="common">Common</h2>
+<p><a name="Cutoff"></a></p>
+<h3 id="cutoff">Cutoff</h3>
+<p><img src="images/LensFlareCutoff.png" alt=""></p>
+<p>| <strong>Property</strong>            | <strong>Description</strong>                                              |
+| ----------------------- | ------------------------------------------------------------ |
+| Cutoff Speed            | Sets the speed at which the radius occludes the element.
+A value of zero (with a large radius) does not occlude anything. The higher this value, the faster the element is occluded on the side of the screen.
+The effect of this value is more noticeable with multiple elements.
+. |
+| Cutoff Radius           | Sets the normalized radius of the lens shape used to occlude the lens flare element.
+A radius of one is equivalent to the scale of the element.. |</p>
+<p><a name="Transform"></a></p>
+<h3 id="transform">Transform</h3>
+<p><img src="images/LensFlareTransform.png" alt=""></p>
+<table>
+<thead>
+<tr>
+<th><strong>Property</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Position Offset</td>
+<td>Defines the offset of the lens flare's position in screen space, relative to its source.</td>
+</tr>
+<tr>
+<td>Auto Rotate</td>
+<td>Enable this property to automatically rotate the Lens Flare Texture relative to its angle on the screen. Unity uses the <strong>Auto Rotate</strong> angle to override the <strong>Rotation</strong> parameter. <br><br> To ensure the Lens Flare can rotate, assign a value greater than 0 to the <a href="#AxisTransform"><strong>Starting Position</strong></a>  property.</td>
+</tr>
+<tr>
+<td>Rotation</td>
+<td>Rotates the lens flare. This value operates in degrees of rotation.</td>
+</tr>
+<tr>
+<td>Size</td>
+<td>Use this to adjust the scale of this lens flare element. <br><br> This property is not available when the <a href="#Type">Type</a> is set to <a href="#Image">Image</a> and <strong>Preserve Aspect Ratio</strong> is enabled.</td>
+</tr>
+<tr>
+<td>Scale</td>
+<td>The size of this lens flare element in world space.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="AxisTransform"></a></p>
+<h3 id="axis-transform">Axis Transform</h3>
+<p><img src="images/LensFlareAxisTransform.png" alt=""></p>
+<table>
+<thead>
+<tr>
+<th><strong>Property</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Starting Position</td>
+<td>Defines the starting position of the lens flare relative to its source. This value operates in screen space.</td>
+</tr>
+<tr>
+<td>Angular Offset</td>
+<td>Controls the angular offset of the lens flare, relative to its current position. This value operates in degrees of rotation.</td>
+</tr>
+<tr>
+<td>Translation Scale</td>
+<td>Limits the size of the lens flare offset. For example, values of (1, 0) create a horizontal lens flare, and (0, 1) create a vertical lens flare. <br><br>You can also use this property to control how quickly the lens flare appears to move. For example, values of (0.5, 0.5) make the lens flare element appear to move at half the speed.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Distortion"></a></p>
+<h3 id="distortion">Distortion</h3>
+<p><img src="images/LensFlareRadialDistortion.png" alt=""></p>
+<table>
+<thead>
+<tr>
+<th><strong>Property</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enable</td>
+<td>Set this property to True to enable distortion.</td>
+</tr>
+<tr>
+<td>Radial Edge Size</td>
+<td>Controls the size of the distortion effect from the edge of the screen.</td>
+</tr>
+<tr>
+<td>Radial Edge Curve</td>
+<td>Blends the distortion effect along a curve from the center of the screen to the edges of the screen.</td>
+</tr>
+<tr>
+<td>Relative To Center</td>
+<td>Set this value to True to make distortion relative to the center of the screen. Otherwise, distortion is relative to the screen position of the lens flare.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Multiple-Elements"></a></p>
+<h3 id="multiple-elements">Multiple Elements</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Property</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enable</td>
+<td>Enable this to allow multiple lens flare elements in your scene.</td>
+</tr>
+<tr>
+<td>Count</td>
+<td>Determines the number of identical lens flare elements Unity generates.<br>A value of <strong>1</strong> appears the same as a single lens flare element.</td>
+</tr>
+<tr>
+<td>Distribution</td>
+<td>Select the method that Unity uses to generate multiple lens flare elements:<br>•<a href="#Uniform">Uniform</a><br>•<a href="#Curve">Curve</a><br>•<a href="#Random">Random</a></td>
+</tr>
+<tr>
+<td>Length Spread</td>
+<td>Controls how spread out multiple lens flare elements appear.</td>
+</tr>
+<tr>
+<td>Relative To Center</td>
+<td>If true the distortion is relative to center of the screen otherwise relative to lensFlare source screen position.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="uniform">Uniform</h4>
+<p><img src="images/LensFlareMultileElementUniform.png" alt=""></p>
+<table>
+<thead>
+<tr>
+<th><strong>Property</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Colors</td>
+<td>The range of colors that this asset applies to the lens flares.</td>
+</tr>
+<tr>
+<td>Rotation</td>
+<td>The angle of rotation (in degrees) applied to each element incrementally.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Curve"></a></p>
+<h4 id="curve">Curve</h4>
+<p><img src="images/LensFlareMultileElementCurve.png" alt=""></p>
+<table>
+<thead>
+<tr>
+<th><strong>Property</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Colors</td>
+<td>The range of colors that this asset applies to the lens flares. You can use the <strong>Position Spacing</strong> curve to determine how this range affects each lens flare.</td>
+</tr>
+<tr>
+<td>Position Variation</td>
+<td>Adjust this curve to change the placement of the lens flare elements in the <strong>Lens Spread</strong>.</td>
+</tr>
+<tr>
+<td>Rotation</td>
+<td>The uniform angle of rotation (in degrees) applied to each element distributed along the curve. This value ranges from -180° to 180°.</td>
+</tr>
+<tr>
+<td>Scale</td>
+<td>Adjust this curve to control the size range of the lens flare elements.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Random"></a></p>
+<h4 id="random">Random</h4>
+<p><img src="images/LensFlareMultileElementRandom.png" alt=""></p>
+<table>
+<thead>
+<tr>
+<th><strong>Property</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Seed</td>
+<td>The base value that this asset uses to generate randomness.</td>
+</tr>
+<tr>
+<td>Intensity Variation</td>
+<td>Controls the variation of brightness across the lens flare elements. A high value can make some elements might invisible.</td>
+</tr>
+<tr>
+<td>Colors</td>
+<td>The range of colors that this asset applies to the lens flares. This property is based on the <strong>Seed</strong> value.</td>
+</tr>
+<tr>
+<td>Position Variation</td>
+<td>Controls the position of the lens flares. The <strong>X</strong> value is spread along the same axis as <strong>Length Spread</strong>. A value of 0 means there is no change in the lens flare position. The <strong>Y</strong> value is spread along the vertical screen space axis based on the <strong>Seed</strong> value.</td>
+</tr>
+<tr>
+<td>Rotation Variation</td>
+<td>Controls the rotation variation of the lens flares, based on the <strong>Seed</strong> value. The <strong>Rotation</strong> and <strong>Auto Rotate</strong> parameters inherit from this property.</td>
+</tr>
+<tr>
+<td>Scale Variation</td>
+<td>Controls the scale of the lens flares based on the <strong>Seed</strong> value.</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>The Player Input component | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="The Player Input component | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="input-system-player-input">
+<h1 id="the-player-input-component">The Player Input component</h1>
+
+<p>The Player Input component provides two related but separate features which can be useful in common game scenarios. These are:</p>
+<ul>
+<li><p>Configuring how <a href="Actions.html">Actions</a> map to methods or callbacks in the script that controls your player.</p>
+</li>
+<li><p>Handling local multiplayer scenarios such as player lobbies, device filtering, and screen-splitting.</p>
+</li>
+</ul>
+<h2 id="the-player-input-component-1">The Player Input component</h2>
+<p><img src="Images/PlayerInput.png" alt="PlayerInput"><br>
+<em>Above, the Player Input component displayed in the inspector.</em></p>
+<h3 id="connecting-actions-to-methods-or-callbacks">Connecting actions to methods or callbacks</h3>
+<p>The <strong>Player Input</strong> component represents a single player, and the connection between that player's associated device, Actions, and methods or callbacks.</p>
+<p>You can use a single instance of a Player Input component in a single-player game to set up a mapping between your Input Actions and methods or callbacks in the script that controls your player.</p>
+<p>For example, by using the Player Input component, you can set up a mapping between actions such as &quot;Jump&quot; to C# methods in your script such as <code>public void OnJump()</code>.</p>
+<p>There are a few options for doing exactly how the Player Input component does this, such as using SendMessage, or Unity Events, which is described in more detail below.</p>
+<h3 id="handling-local-multiplayer-scenarios">Handling local multiplayer scenarios</h3>
+<p>You can also have multiple <strong>Player Input</strong> components active at the same time (each on a separate instance of a prefab) along with the <a href="PlayerInputManager.html"><strong>Player Input Manager</strong></a> component to implement local multiplayer features, such as device filtering, and screen-splitting.</p>
+<p>In these local multiplayer scenarios, the Player Input component should be on a prefab that represents a player in your game, which the <a href="PlayerInputManager.html"><strong>Player Input Manager</strong></a> has a reference to. The <strong>Player Input Manager</strong> then instantiates players as they join the game and pairs each player instance to a unique device that the player uses exclusively (for example, one gamepad for each player). You can also manually pair devices in a way that enables two or more players to share a Device (for example, left/right keyboard splits or hot seat use).</p>
+<p>Each <code>PlayerInput</code> corresponds to one <a href="UserManagement.html"><code>InputUser</code></a>. You can use <a href="../api/UnityEngine.InputSystem.PlayerInput.html#UnityEngine_InputSystem_PlayerInput_user"><code>PlayerInput.user</code></a> to query the <code>InputUser</code> from the component.</p>
+<h2 id="getting-started">Getting started</h2>
+<p>To get started using the Player Input component, use the following steps:</p>
+<ol>
+<li><a href="https://docs.unity3d.com/Manual/UsingComponents.html">Add</a> a <strong>Player Input</strong> component to a GameObject. This would usually be the GameObject that represents the player in your game.</li>
+<li>Assign your <a href="ActionAssets.html">Action Asset</a> to the <strong>Actions</strong> field. This is usually the default project-wide action asset named &quot;InputSystem_Actions&quot;</li>
+<li>Set up Action responses, by selecting a <strong>Behaviour</strong> type from the Behaviour menu. The Behaviour type you select affects how you should implement the methods that handle your Action responses. See the  <a href="#notification-behaviors">notification behaviors</a> section further down for details.<br><br><img src="Images/PlayerInputNotificationBehaviors.png" alt="PlayerInput Notification Behavior"><br><br></li>
+</ol>
+<h2 id="configuring-the-player-input-component">Configuring the Player Input component</h2>
+<p>You can use the following properties to configure <code>PlayerInput</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.PlayerInput.html#UnityEngine_InputSystem_PlayerInput_actions"><code>Actions</code></a></td>
+<td>The set of <a href="Actions.html">Input Actions</a> associated with the player. Typically you would set this to Project-Wide Actions, however you can assign an <a href="ActionAssets.html">ActionAsset</a> reference here). To receive input, each player must have an associated set of Actions. See documentation on <a href="#actions">Actions</a> for details.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.PlayerInput.html#UnityEngine_InputSystem_PlayerInput_defaultControlScheme"><code>Default Control Scheme</code></a></td>
+<td>Which <a href="ActionBindings.html#control-schemes">Control Scheme</a> (from what is defined in <a href="../api/UnityEngine.InputSystem.PlayerInput.html#UnityEngine_InputSystem_PlayerInput_actions"><code>Actions</code></a>) to enable by default.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.PlayerInput.html#UnityEngine_InputSystem_PlayerInput_defaultActionMap"><code>Default Action Map</code></a></td>
+<td>Which <a href="Actions.html#overview">Action Map</a> in <a href="../api/UnityEngine.InputSystem.PlayerInput.html#UnityEngine_InputSystem_PlayerInput_actions"><code>Actions</code></a> to enable by default. If set to <code>None</code>, then the player starts with no Actions being enabled.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.PlayerInput.html#UnityEngine_InputSystem_PlayerInput_camera"><code>Camera</code></a></td>
+<td>The individual camera associated with the player. This is only required when employing <a href="PlayerInputManager.html#split-screen">split-screen</a> setups and has no effect otherwise.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.PlayerInput.html#UnityEngine_InputSystem_PlayerInput_notificationBehavior"><code>Behavior</code></a></td>
+<td>How the <code>PlayerInput</code> component notifies game code about things that happen with the player. See documentation on <a href="#notification-behaviors">notification behaviors</a>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="actions">Actions</h3>
+<p>To receive input, each player must have an associated set of Input Actions.</p>
+<h4 id="specifying-the-actions-to-use">Specifying the Actions to use</h4>
+<p>The simplest workflow is to use the project-wide actions defined in the <a href="ActionsEditor.html">Input Actions editor</a>. However, the Player Input component also allows you to use an <a href="ActionAssets.html">Actions Asset</a> to specify the actions that should be used by any instance of the component. If you set the <strong>Actions</strong> field to <strong>Actions Asset</strong>, the inspector displays a field into which you can assign an actions asset, and a <strong>Create Actions</strong> button which allows you to create a new actions asset. When you create these via the Player Input inspector's <strong>Create Actions</strong> button, the Input System creates a default set of Actions. However, the Player Input component places no restrictions on the arrangement of Actions.</p>
+<h4 id="enabling-and-disabling-actions">Enabling and disabling Actions</h4>
+<p>The Player Input component automatically handles enabling and disabling Actions, and also handles installing <a href="RespondingToActions.html#responding-to-actions-using-callbacks">callbacks</a> on the Actions. When multiple Player Input components use the same Actions, the components automatically create <a href="RespondingToActions.html#using-actions-with-multiple-players">private copies of the Actions</a>. This is why, when writing input code that works with the PlayerInput component, you should not use <code>InputSystem.actions</code> because this references the &quot;singleton&quot; copy of the actions rather than the specific private copy associated with the PlayerInput instance you are coding for.</p>
+<p>When first enabled, the Player Input component enables all Actions from the the <a href="../api/UnityEngine.InputSystem.PlayerInput.html#UnityEngine_InputSystem_PlayerInput_defaultActionMap"><code>Default Action Map</code></a>. If no default Action Map exists, the Player Input component does not enable any Actions. To manually enable Actions, you can call <a href="../api/UnityEngine.InputSystem.InputActionMap.html#UnityEngine_InputSystem_InputActionMap_Enable"><code>Enable</code></a> and <a href="../api/UnityEngine.InputSystem.InputActionMap.html#UnityEngine_InputSystem_InputActionMap_Disable"><code>Disable</code></a> on the Action Maps or Actions, like you would do <a href="Actions.html">without <code>PlayerInput</code></a>. To check which Action Map is currently enabled, or to switch to a different one, use the  <a href="../api/UnityEngine.InputSystem.PlayerInput.html#UnityEngine_InputSystem_PlayerInput_currentActionMap"><code>PlayerInput.currentActionMap</code></a> property. To switch Action Maps with an Action Map name, you can also call <a href="../api/UnityEngine.InputSystem.PlayerInput.html#UnityEngine_InputSystem_PlayerInput_SwitchCurrentActionMap_System_String_"><code>PlayerInput.SwitchCurrentActionMap</code></a>.</p>
+<p>To disable a player's input, call <a href="../api/UnityEngine.InputSystem.PlayerInput.html#UnityEngine_InputSystem_PlayerInput_DeactivateInput"><code>PlayerInput.DeactivateInput</code></a>. To re-enable it, call <a href="../api/UnityEngine.InputSystem.PlayerInput.html#UnityEngine_InputSystem_PlayerInput_ActivateInput"><code>PlayerInput.ActivateInput</code></a>. The latter enables the default Action Map, if it exists.</p>
+<p>When <code>PlayerInput</code> is disabled, it automatically disables the currently active Action Map (<a href="../api/UnityEngine.InputSystem.PlayerInput.html#UnityEngine_InputSystem_PlayerInput_currentActionMap"><code>PlayerInput.currentActionMap</code></a>) and disassociate any Devices paired to the player.</p>
+<p>See the <a href="#notification-behaviors">notification behaviors</a> section below for how to be notified when player triggers an Action.</p>
+<h3 id="when-using-send-messages-or-broadcast-messages">When using <strong>Send Messages</strong> or <strong>Broadcast Messages</strong></h3>
+<p>When the <a href="#notification-behaviors">notification behavior</a> of <code>PlayerInput</code> is set to <strong>Send Messages</strong> or <strong>Broadcast Messages</strong>, you can set your app to respond to Actions by defining methods in components like so:</p>
+<pre><code class="lang-CSharp">public class MyPlayerScript : MonoBehaviour
+{
+    // &quot;jump&quot; action becomes &quot;OnJump&quot; method.
+
+    // If you're not interested in the value from the control that triggers the action, use a method without arguments.
+    public void OnJump()
+    {
+        // your Jump code here
+    }
+
+    // If you are interested in the value from the control that triggers an action, you can declare a parameter of type InputValue.
+    public void OnMove(InputValue value)
+    {
+        // Read value from control. The type depends on what type of controls.
+        // the action is bound to.
+        var v = value.Get&lt;Vector2&gt;();
+
+        // IMPORTANT:
+        // The given InputValue is only valid for the duration of the callback. Storing the InputValue references somewhere and calling Get&lt;T&gt;() later does not work correctly.
+    }
+}
+</code></pre>
+<p>The component must be on the same <code>GameObject</code> if you are using <code>Send Messages</code>, or on the same or any child <code>GameObject</code> if you are using <code>Broadcast Messages</code>.</p>
+<h3 id="when-using-invoke-unity-events">When using <strong>Invoke Unity Events</strong></h3>
+<p>When the <a href="#notification-behaviors">notification behavior</a> of <code>PlayerInput</code> is set to <code>Invoke Unity Events</code>, each Action has to be routed to a target method. The methods have the same format as the <a href="RespondingToActions.html#action-callbacks"><code>started</code>, <code>performed</code>, and <code>canceled</code> callbacks</a> on <a href="../api/UnityEngine.InputSystem.InputAction.html"><code>InputAction</code></a>.</p>
+<pre><code class="lang-CSharp">public class MyPlayerScript : MonoBehaviour
+{
+    public void OnFire(InputAction.CallbackContext context)
+    {
+    }
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        var value = context.ReadValue&lt;Vector2&gt;();
+    }
+}
+</code></pre>
+<h3 id="notification-behaviors">Notification behaviors</h3>
+<p>You can use the <a href="../api/UnityEngine.InputSystem.PlayerInput.html#UnityEngine_InputSystem_PlayerInput_notificationBehavior"><code>Behavior</code></a> property in the Inspector to determine how a <code>PlayerInput</code> component notifies game code when something related to the player has occurred.</p>
+<p>The following options are available:</p>
+<table>
+<thead>
+<tr>
+<th>Behavior</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.PlayerNotifications.html"><code>Send Messages</code></a></td>
+<td>Uses <a href="https://docs.unity3d.com/ScriptReference/GameObject.SendMessage.html"><code>GameObject.SendMessage</code></a> on the <code>GameObject</code> that the <code>PlayerInput</code> component belongs to.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.PlayerNotifications.html"><code>Broadcast Messages</code></a></td>
+<td>Uses <a href="https://docs.unity3d.com/ScriptReference/GameObject.BroadcastMessage.html"><code>GameObject.BroadcastMessage</code></a> on the <code>GameObject</code> that the <code>PlayerInput</code> component belongs to. This broadcasts the message down the <code>GameObject</code> hierarchy.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.PlayerNotifications.html"><code>Invoke Unity Events</code></a></td>
+<td>Uses a separate <a href="https://docs.unity3d.com/ScriptReference/Events.UnityEvent.html"><code>UnityEvent</code></a> for each individual type of message. When this is selected, the events available on the <code>PlayerInput</code> are accessible from the <strong>Events</strong> foldout. The argument received by events triggered for Actions is the same as the one received by <a href="RespondingToActions.html#action-callbacks"><code>started</code>, <code>performed</code>, and <code>canceled</code> callbacks</a>.<br><br><img src="Images/MyPlayerActionEvents.png" alt="PlayerInput UnityEvents"></td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.PlayerNotifications.html"><code>Invoke CSharp Events</code></a></td>
+<td>Similar to <code>Invoke Unity Events</code>, except that the events are plain C# events available on the <code>PlayerInput</code> API. You cannot configure these from the Inspector. Instead, you have to register callbacks for the events in your scripts.<br><br>The following events are available:<br><br><ul><li><a href="../api/UnityEngine.InputSystem.PlayerInput.html#UnityEngine_InputSystem_PlayerInput_onActionTriggered"><code>onActionTriggered</code></a> (collective event for all actions on the player)</li><li><a href="../api/UnityEngine.InputSystem.PlayerInput.html#UnityEngine_InputSystem_PlayerInput_onDeviceLost"><code>onDeviceLost</code></a></li><li><a href="../api/UnityEngine.InputSystem.PlayerInput.html#UnityEngine_InputSystem_PlayerInput_onDeviceRegained"><code>onDeviceRegained</code></a></li></ul></td>
+</tr>
+</tbody>
+</table>
+<p>In addition to per-action notifications, <code>PlayerInput</code> sends the following general notifications:</p>
+<table>
+<thead>
+<tr>
+<th>Notification</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.PlayerInput.html#UnityEngine_InputSystem_PlayerInput_DeviceLostMessage"><code>DeviceLostMessage</code></a></td>
+<td>The player has lost one of the Devices assigned to it. This can happen, for example, if a wireless device runs out of battery.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.PlayerInput.html#UnityEngine_InputSystem_PlayerInput_DeviceRegainedMessage"><code>DeviceRegainedMessage</code></a></td>
+<td>Notification that triggers when the player recovers from Device loss and is good to go again.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="device-assignments">Device assignments</h3>
+<p>If the <code>PlayerInput</code> component has any Devices assigned, it matches these to the <a href="ActionBindings.html#control-schemes">Control Schemes</a> in the associated Action Asset, and only enables Control Schemes which match its Input Devices.</p>
+<p>Each <code>PlayerInput</code> can have one or more Devices assigned to it. By default, no two <code>PlayerInput</code> components are assigned the same Devices, but you can force this; to do so, manually assign Devices to a player when calling <a href="../api/UnityEngine.InputSystem.PlayerInput.html#UnityEngine_InputSystem_PlayerInput_Instantiate_UnityEngine_GameObject_System_Int32_System_String_System_Int32_UnityEngine_InputSystem_InputDevice_"><code>PlayerInput.Instantiate</code></a>, or call <a href="../api/UnityEngine.InputSystem.Users.InputUser.html#UnityEngine_InputSystem_Users_InputUser_PerformPairingWithDevice_UnityEngine_InputSystem_InputDevice_UnityEngine_InputSystem_Users_InputUser_UnityEngine_InputSystem_Users_InputUserPairingOptions_"><code>InputUser.PerformPairingWithDevice</code></a> on the <code>InputUser</code> of a <code>PlayerInput</code>.</p>
+<h3 id="debug-information">Debug information</h3>
+<p>When the Editor is in Play mode, each PlayerInput component instance displays a <strong>Debug</strong> section, as shown below.</p>
+<p><img src="images/PlayerInputUserDeviceDebug.png" alt="The debug section of the PlayerInput component"></p>
+<p>The Debug section shows the User number (which starts counting from zero), the control Scheme, and the devices assigned to the PlayerInput instance.</p>
+<h3 id="ui-input">UI input</h3>
+<p>The <code>PlayerInput</code> component can work together with an <a href="UISupport.html#setting-up-ui-input"><code>InputSystemUIInputModule</code></a> to drive the <a href="UISupport.html">UI system</a>.</p>
+<p>To set this up, assign a reference to a <code>InputSystemUIInputModule</code> component in the <a href="../api/UnityEngine.InputSystem.PlayerInput.html#UnityEngine_InputSystem_PlayerInput_uiInputModule"><code>UI Input Module</code></a> field of the <code>PlayerInput</code> component. The <code>PlayerInput</code> and <code>InputSystemUIInputModule</code> components should be configured to work with the same <a href="Actions.html"><code>InputActionAsset</code></a> for this to work.</p>
+<p>Once you've completed this setup, when the <code>PlayerInput</code> component configures the Actions for a specific player, it assigns the same Action configuration to the <code>InputSystemUIInputModule</code>. In other words, the same Action and Device configuration that controls the player now also controls the UI.</p>
+<p>If you use <a href="UISupport.html#multiplayer-uis"><code>MultiplayerEventSystem</code></a> components to dispatch UI events, you can also use this setup to simultaneously have multiple UI instances on the screen, each controlled by a separate player.</p>
+<blockquote>
+<p><strong>Notes</strong>:</p>
+<ul>
+<li><p>As a general rule, if you are using the PlayerInput workflow, you should read input through callbacks as described above, however if you need to access the input actions asset directly while using the PlayerInput component, you should access the <a href="../api/UnityEngine.InputSystem.PlayerInput.html#UnityEngine_InputSystem_PlayerInput_actions">PlayerInput component's copy of the actions</a>, not <code>InputSystem.actions</code>. This is because the PlayerInput component performs device filtering to automatically assign devices to multiple players, so each instance has its own copy of the actions filtered for each player. If you bypass this by reading <code>InputSystem.actions</code> directly, the automatic device assignment won't work.</p>
+</li>
+<li><p>This component is built on top of the public Input System API. As such, they don't do anything that you can't program yourself. They are meant primarily as an easy, out-of-the-box setup that eliminates much of the need for custom scripting.
+<br> </p>
+</li>
+</ul>
+</blockquote>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

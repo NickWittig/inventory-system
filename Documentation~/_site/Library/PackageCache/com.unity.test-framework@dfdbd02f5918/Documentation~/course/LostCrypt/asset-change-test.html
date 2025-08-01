@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>6. Asset Change Test | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="6. Asset Change Test | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../../../index.html">
+            <img id="logo" class="svg" src="../../../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="6-asset-change-test">6. Asset Change Test</h1>
+
+<h2 id="learning-objectives">Learning Objectives</h2>
+<p>This exercise will teach you a popular pattern in Game Tests to verify if Assets change over time.</p>
+<h2 id="exercise">Exercise</h2>
+<p>As you noticed inside LostCrypt, when you pick up the Wand, your character equips armor.<br>
+Write a test that checks that after Sara picks up the wand, armor is equipped.</p>
+<ol>
+<li>Create a <code>WandTests.cs</code> class and implement <code>MainScene\_CharacterReachesWandAndEquipsArmor</code> test.</li>
+<li>Try to observe how <code>Sara Variant</code> or more specifically <code>puppet_sara</code> GameObject changes the moment you pick up the wand.</li>
+</ol>
+<h2 id="hints">Hints</h2>
+<ul>
+<li>You can reuse code from <a href="reach-wand-test.html">Reach Wand Test</a> for the logic of the character picking up the wand. Or you can try to trigger this action programmatically.</li>
+<li>Remember that if some Unity internal APIs are not accessible for your test you might need to add a new reference inside the <code>PlayModeTests</code> assembly definition.</li>
+</ul>
+<h2 id="solution">Solution</h2>
+<p>PlayModeTests.asmdef</p>
+<pre><code>{
+    &quot;name&quot;: &quot;PlayModeTests&quot;,
+    &quot;rootNamespace&quot;: &quot;&quot;,
+    &quot;references&quot;: [
+        &quot;Unity.InputSystem&quot;,
+        &quot;Unity.InputSystem.TestFramework&quot;,
+        &quot;TestInputControl&quot;,
+        &quot;UnityEngine.TestRunner&quot;,
+        &quot;Unity.2D.Animation.Runtime&quot;
+    ],
+    &quot;includePlatforms&quot;: [],
+    &quot;excludePlatforms&quot;: [],
+    &quot;allowUnsafeCode&quot;: false,
+    &quot;overrideReferences&quot;: true,
+    &quot;precompiledReferences&quot;: [
+        &quot;nunit.framework.dll&quot;
+    ],
+    &quot;autoReferenced&quot;: false,
+    &quot;defineConstraints&quot;: [
+        &quot;UNITY_INCLUDE_TESTS&quot;
+    ],
+    &quot;versionDefines&quot;: [],
+    &quot;noEngineReferences&quot;: false
+}
+</code></pre>
+<p>WandTests.cs</p>
+<pre><code>using System.Collections;
+using NUnit.Framework;
+using UnityEngine;
+using UnityEngine.TestTools;
+using UnityEngine.SceneManagement;
+using UnityEngine.Experimental.U2D.Animation;
+
+public class WandTests
+{
+    private Transform _characterTransform;
+    private float _testTimeout = 25.0f;
+    private float _wandLocation = 21.080f;
+
+    [UnityTest]
+    public IEnumerator MainScene_CharacterReachesWandAndEquipsArmor()
+    {
+        SceneManager.LoadScene(&quot;Assets/Scenes/Main.unity&quot;, LoadSceneMode.Single);
+        
+        // Skip first frame so Sara have a chance to appear on the screen
+        yield return null;
+        var puppet = GameObject.Find(&quot;puppet_sara&quot;);
+        var spriteLibrary = puppet.GetComponent&lt;SpriteLibrary&gt;();
+        
+        Assert.AreEqual(spriteLibrary.spriteLibraryAsset.name, &quot;Sara&quot;);
+
+        var elapsedTime = 0.0f;
+        yield return GoRight();
+        while (GetCurrentCharacterPosition() &lt;= _wandLocation)
+        {
+            yield return null;
+            elapsedTime += Time.deltaTime;
+            if (elapsedTime &gt; _testTimeout)
+            {
+                Assert.Fail($&quot;Character did not reach location position in {_testTimeout} seconds.&quot;);
+            }
+        }
+
+        // Wait for Wand pickup animation to be over.
+        yield return new WaitForSeconds(12);
+
+        Assert.AreEqual(spriteLibrary.spriteLibraryAsset.name, &quot;Sara_var01&quot;);
+    }
+
+    private float GetCurrentCharacterPosition()
+    {
+        // Get Main character's Transform which is used to manipulate position.
+        if (_characterTransform == null)
+        {
+            _characterTransform = GameObject.Find(&quot;Sara Variant&quot;).transform;
+        }
+
+        return _characterTransform.position.x;
+    }
+
+    private IEnumerator GoRight()
+    {
+        TestInputControl.MoveLeft = false;
+        yield return null;
+        TestInputControl.MoveRight = true;
+    } 
+}
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

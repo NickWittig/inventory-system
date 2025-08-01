@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Custom yield instructions | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Custom yield instructions | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="custom-yield-instructions">Custom yield instructions</h1>
+
+<p>By implementing this interface below, you can define custom yield instructions in <strong>Edit Mode</strong> tests.</p>
+<h2 id="ieditmodetestyieldinstruction">IEditModeTestYieldInstruction</h2>
+<p>In an Edit Mode test, you can use <code>IEditModeTestYieldInstruction</code> interface to implement your own instruction. There are also a couple of commonly used implementations available:</p>
+<ul>
+<li><a href="#enterplaymode">EnterPlayMode</a></li>
+<li><a href="#exitplaymode">ExitPlayMode</a></li>
+<li><a href="reference-recompile-scripts.html">RecompileScripts</a></li>
+<li><a href="reference-wait-for-domain-reload.html">WaitForDomainReload</a></li>
+</ul>
+<h2 id="example">Example</h2>
+<pre><code class="lang-c#">[UnityTest]
+
+public IEnumerator PlayOnAwakeDisabled_DoesntPlayWhenEnteringPlayMode()
+
+{
+    var videoPlayer = PrefabUtility.InstantiatePrefab(m_VideoPlayerPrefab.GetComponent&lt;VideoPlayer&gt;()) as VideoPlayer;
+
+    videoPlayer.playOnAwake = false;
+
+    yield return new EnterPlayMode();
+
+    var videoPlayerGO = GameObject.Find(m_VideoPlayerPrefab.name);
+
+    Assert.IsFalse(videoPlayerGO.GetComponent&lt;VideoPlayer&gt;().isPlaying);
+
+    yield return new ExitPlayMode();
+
+    Object.DestroyImmediate(GameObject.Find(m_VideoPlayerPrefab.name));
+}
+</code></pre>
+<h2 id="properties">Properties</h2>
+<table>
+<thead>
+<tr>
+<th>Syntax</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bool ExpectDomainReload</code></td>
+<td>Returns <code>true</code> if the instruction expects a domain reload to occur.</td>
+</tr>
+<tr>
+<td><code>bool ExpectedPlaymodeState</code></td>
+<td>Returns <code>true</code> if the instruction expects the Unity Editor to be in <strong>Play Mode</strong>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="methods">Methods</h2>
+<table>
+<thead>
+<tr>
+<th>Syntax</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IEnumerator Perform()</code></td>
+<td>Used to define multi-frame operations performed when instantiating a yield instruction.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="enterplaymode">EnterPlayMode</h2>
+<ul>
+<li>Implements <code>IEditModeTestYieldInstruction</code>. Creates a yield instruction to enter Play Mode.</li>
+<li>When creating an Editor test that uses the <code>UnityTest</code> attribute, use this to trigger the Editor to enter Play Mode.</li>
+<li>Throws an exception if the Editor is already in Play Mode or if there is a <a href="https://support.unity3d.com/hc/en-us/articles/205930539-How-do-I-interpret-a-compiler-error-">script compilation error</a>.</li>
+</ul>
+<h2 id="exitplaymode">ExitPlayMode</h2>
+<ul>
+<li>Implements <code>IEditModeTestYieldInstruction</code>. A new instance of the class is a yield instruction to exit Play Mode.</li>
+<li>Throws an exception if the Editor is not in Play Mode.</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

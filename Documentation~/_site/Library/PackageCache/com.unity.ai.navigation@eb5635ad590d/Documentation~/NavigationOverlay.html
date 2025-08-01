@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>AI Navigation overlay reference | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="AI Navigation overlay reference | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="ai-navigation-overlay-reference">AI Navigation overlay reference</h1>
+
+<p>The <strong>AI Navigation</strong> overlay allows you to control the display of NavMesh surfaces, agents, and GameObjects in the Scene view. You can use it to help you debug any issues with AI Navigation and pathfinding.</p>
+<p>Use the <a href="https://docs.unity3d.com/Manual/display-and-hide-overlay.html">Overlay Menu</a> to show or hide the <strong>AI Navigation</strong> overlay. It docks to the lower right corner of the Scene view by default. To <a href="https://docs.unity3d.com/Manual/position-overlay.html">reposition</a> the overlay, click and drag its handle.</p>
+<h2 id="surfaces">Surfaces</h2>
+<p>This section controls the way <a href="NavMeshSurface.html">NavMesh Surface</a> instances are displayed. The following table describes the controls available in the Surfaces section of the overlay.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Control</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Show Only Selected</strong></td>
+<td style="text-align: left;">Display only the surfaces part of the current scene selection hierarchy.<br> You can set the opacity of the selected and non-selected surfaces in the Preferences window. For more details, refer to <a href="NavEditorPreferences.html">AI Navigation preferences</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Show NavMesh</strong></td>
+<td style="text-align: left;">Display navigation meshes for the relevant surfaces. <br>The colors used to display this mesh are the ones defined for the area types.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Show HeightMesh</strong></td>
+<td style="text-align: left;">Display <a href="HeightMesh.html"><strong>HeightMeshes</strong></a> (surface precise elevation information) for the relevant surfaces.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="agents">Agents</h2>
+<p>This section controls the displayed information for the currently selected <a href="NavMeshAgent.html">NavMesh Agents</a>. The following table describes the controls available in the Agents section of the overlay.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Control</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Show Path Polygons</strong></td>
+<td style="text-align: left;">Display the NavMesh polygons part of the agent's path in a darker color.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Show Path Query Nodes</strong></td>
+<td style="text-align: left;">Display the path nodes explored during the pathfinding query in yellow.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Show Neighbors</strong></td>
+<td style="text-align: left;">Display the collision avoidance neighbors (dynamic obstacles) relative to the agent.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Show Walls</strong></td>
+<td style="text-align: left;">Display the collision avoidance walls (static obstacles) for an agent.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Show Avoidance</strong></td>
+<td style="text-align: left;">Show the different positions sampled during the collision avoidance process.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="obstacles">Obstacles</h2>
+<p>This section controls the displayed information for the currently selected <a href="NavMeshObstacle.html">NavMesh Obstacles</a>. The following table describes the controls available in the Obstacles section of the overlay.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Control</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Show Carve Hull</strong></td>
+<td style="text-align: left;">Display the convex shape that is used to carve the NavMesh.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="xref:overlays">Overlays</a> - How to use and work with overlays.</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>State Graph nodes | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="State Graph nodes | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="state-graph-nodes">State Graph nodes</h1>
+
+<p>Visual scripting has four nodes that you can use to identify and manipulate the State Graphs assigned to a GameObject and its State Machines:</p>
+<ul>
+<li><a href="#SetState">Set State Graph</a></li>
+<li><a href="#HasState">Has State Graph</a></li>
+<li><a href="#GetState">Get State Graph</a></li>
+<li><a href="#GetStates">Get State Graphs</a></li>
+</ul>
+<h2 id="set-state-graph"><a name="SetState">Set State Graph</a></h2>
+<p>You can use the Set State Graph node to assign a State Graph to a specific State Machine, or to the first State Machine attached to a specific GameObject.</p>
+<p><img src="images/VS-set-state-graph-node.png" alt="The Set State Graph node"></p>
+<table>
+<thead>
+<tr>
+<th colspan="2"><strong>Item</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2"><strong>Node Parameters</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><img src="images\Label-A.png" alt="The letter A in a blue circle, matching the label on the Set State Graph node image."></td>
+<td><strong>Container Type</strong></td>
+<td>Specifies whether the <b>Target</b> is a GameObject or State Machine.</td>
+</tr>
+<tr>
+<td colspan="2"><strong>Input Ports</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><img src="images\Label-B.png" alt="The letter B in a blue circle, matching the label on the Set State Graph node image."></td>
+<td><strong>Enter</strong></td>
+<td>(Input Trigger) The execution input trigger for the node.</td>
+</tr>
+<tr>
+<td><img src="images\Label-C.png" alt="The letter C in a blue circle, matching the label on the Set State Graph node image."></td>
+<td><strong>Target</strong></td>
+<td>(GameObject or State Machine) The GameObject or State Machine where the node sets the <b>Graph</b>.</td>
+</tr>
+<tr>
+<td><img src="images\Label-D.png" alt="The letter D in a blue circle, matching the label on the Set State Graph node image."></td>
+<td><strong>Graph</strong></td>
+<td>(State Graph Asset) The State Graph the node sets on the <b>Target</b>.</td>
+</tr>
+<tr>
+<td colspan="2"><strong>Output Ports</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><img src="images\Label-E.png" alt="The letter E in a blue circle, matching the label on the Set State Graph node image."></td>
+<td><strong>Exit</strong></td>
+<td>(Output Trigger) The execution output trigger.</td>
+</tr>
+<tr>
+<td><img src="images\Label-F.png" alt="The letter F in a blue circle, matching the label on the Set State Graph node image."></td>
+<td><strong>Graph</strong></td>
+<td>(State Graph Asset; Optional) Outputs the <b>Graph</b>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="setting-the-required-node-parameters-and-inputs">Setting the required node parameters and inputs</h3>
+<p>The Set State Graph node has one required input parameter, called <strong>Container Type</strong>, which is set using the dropdown in the node's header. The <strong>Container Type</strong> specifies what component type the node should expect as an input for its <strong>Target</strong>:</p>
+<ul>
+<li><p>If you choose <strong>GameObject</strong>, the node expects to receive a GameObject, and assigns the graph to the first State Machine attached to that GameObject.</p>
+</li>
+<li><p>If you choose <strong>State Machine</strong>, the node expects to receive a State Machine, and you can specify the exact State Machine where you want to set your State Graph.</p>
+</li>
+</ul>
+<p>Depending on which <strong>Container Type</strong> you select, the icon displayed next to the <strong>Target</strong> input port on the node changes:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Container Type</strong></th>
+<th style="text-align: left;"><strong>Target Icon</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>GameObject</strong></td>
+<td style="text-align: left;"><img src="images/vs-gameobject-icon.png" alt="The GameObject icon"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>State Machine</strong></td>
+<td style="text-align: left;"><img src="images/vs-state-machine-icon.png" alt="The State Machine icon"></td>
+</tr>
+</tbody>
+</table>
+<p>The node has three input ports, located on the left side. The first port, <strong>Enter</strong>, connects to the node that should start the execution of the Set State Graph node.</p>
+<p>The other two ports collect the Set State Graph node's required input data:</p>
+<ul>
+<li><p>The <strong>Target</strong>, or the GameObject or State Machine where you want to set a State Graph.</p>
+</li>
+<li><p>The <strong>Graph</strong>, or the State Graph to assign to the GameObject or State Machine.</p>
+</li>
+</ul>
+<h3 id="outputs">Outputs</h3>
+<p>The Set State Graph node has two output ports, located on the right side.</p>
+<p>The first port, <strong>Exit</strong>, establishes the connection to the node that should execute after the Set State Graph node has finished.</p>
+<p>The second port, <strong>Graph</strong>, can output the State Graph that you assigned using the node.</p>
+<h2 id="has-state-graph"><a name="HasState">Has State Graph</a></h2>
+<p>The Has State Graph node allows you to determine whether a GameObject or State Machine has a specific State Graph assigned to it.</p>
+<p><img src="images/VS-has-state-graph-node.png" alt="The Has State Graph node"></p>
+<table>
+<thead>
+<tr>
+<th colspan="2"><strong>Item</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2"><strong>Node Parameters</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><img src="images\Label-A.png" alt="The letter A in a blue circle, matching the label on the Set State Graph node image."></td>
+<td><strong>Container Type</strong></td>
+<td>Specify whether the <b>Target</b> is a GameObject or State Machine.</td>
+</tr>
+<tr>
+<td colspan="2"><strong>Input Ports</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><img src="images\Label-B.png" alt="The letter B in a blue circle, matching the label on the Set State Graph node image."></td>
+<td><strong>Enter</strong></td>
+<td>(Input Trigger) The execution input trigger for the node.</td>
+</tr>
+<tr>
+<td><img src="images\Label-C.png" alt="The letter C in a blue circle, matching the label on the Set State Graph node image."></td>
+<td><strong>Target</strong></td>
+<td>(GameObject or State Machine) The GameObject or State Machine where the node should check for the <b>Graph</b>.</td>
+</tr>
+<tr>
+<td><img src="images\Label-D.png" alt="The letter D in a blue circle, matching the label on the Set State Graph node image."></td>
+<td><strong>Graph</strong></td>
+<td>(State Graph Asset) The State Graph to search for on the GameObject or State Machine.</td>
+</tr>
+<tr>
+<td colspan="2"><strong>Output Ports</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><img src="images\Label-E.png" alt="The letter E in a blue circle, matching the label on the Set State Graph node image."></td>
+<td><strong>Exit</strong></td>
+<td>(Output Trigger) The execution output trigger, which starts execution of the next node in the flow after checking for the specified State Graph.</td>
+</tr>
+<tr>
+<td><img src="images\Label-F.png" alt="The letter F in a blue circle, matching the label on the Set State Graph node image."></td>
+<td><strong>Has Graph</strong></td>
+<td>(Boolean) Outputs <code>true</code> if the node found the specified State Graph, <code>false</code> if not.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="setting-the-required-node-parameters-and-inputs-1">Setting the required node parameters and inputs</h3>
+<p>The Has State Graph node has one required input parameter, called <strong>Container Type</strong>, which is set using the dropdown in the node's header. The <strong>Container Type</strong> specifies what component type the node should expect as an input for its <strong>Target</strong>:</p>
+<ul>
+<li><p>If you choose <strong>GameObject</strong>, the node expects to receive a GameObject, and checks for the graph on the first State Machine attached to that GameObject.</p>
+</li>
+<li><p>If you choose <strong>State Machine</strong>, the node expects to receive a State Machine, and you can specify the exact State Machine where you want to check for the State Graph.</p>
+</li>
+</ul>
+<p>Depending on which <strong>Container Type</strong> you select, the icon displayed next to the <strong>Target</strong> input port on the node changes:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Container Type</strong></th>
+<th style="text-align: left;"><strong>Target Icon</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>GameObject</strong></td>
+<td style="text-align: left;"><img src="images/vs-gameobject-icon.png" alt="The GameObject icon"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>State Machine</strong></td>
+<td style="text-align: left;"><img src="images/vs-state-machine-icon.png" alt="The State Machine icon"></td>
+</tr>
+</tbody>
+</table>
+<p>The node has three input ports, located on the left side. The first port, <strong>Enter</strong>, connects to the node that should start the execution of the Has State Graph node.</p>
+<p>The other two ports collect the Has State Graph node's required input data:</p>
+<ul>
+<li><p>The <strong>Target</strong>, or the GameObject or State Machine where you want to check for a State Graph.</p>
+</li>
+<li><p>The <strong>Graph</strong>, or the State Graph to search for on the GameObject or State Machine.</p>
+</li>
+</ul>
+<h3 id="outputs-1">Outputs</h3>
+<p>The Has State Graph node returns <code>true</code> if it finds the specified State Graph. Otherwise, it returns <code>false</code>.</p>
+<p>You can use a control node connected to the Has State Graph's output port to change what your script does next, based on the result from Has State Graph. For more information about control nodes, see <a href="vs-control.html">Control nodes</a>.</p>
+<h2 id="get-state-graph"><a name="GetState">Get State Graph</a></h2>
+<p>The Get State Graph node returns the first State Graph set on a GameObject.</p>
+<p><img src="images/VS-get-state-graph-node.png" alt="The Get State Graph node"></p>
+<table>
+<thead>
+<tr>
+<th colspan="2"><strong>Item</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<td colspan="2"><strong>Input Ports</strong></td>
+<td></td>
+
+<tr>
+<td><img src="images\Label-A.png" alt="The letter A in a blue circle, matching the label on the Set State Graph node image."></td>
+<td><strong>GameObject</strong></td>
+<td>(GameObject) The GameObject where the node should retrieve a set State Graph.</td>
+</tr>
+<tr>
+<td colspan="2"><strong>Output Ports</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><img src="images\Label-B.png" alt="The letter B in a blue circle, matching the label on the Set State Graph node image."></td>
+<td><strong>Graph</strong></td>
+<td>(State Graph Asset) Outputs the first or only State Graph set on the GameObject, or null if there is no set State Graph.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="setting-the-required-node-parameters-and-inputs-2">Setting the required node parameters and inputs</h3>
+<p>The Get State Graph node is a data node. It can't control any logic in your script, and is only used to return data.</p>
+<p>The node has a single input port, located on the left side, which collects the node's required input data:</p>
+<ul>
+<li>The GameObject where the node should retrieve the State Graph. You can choose a specific GameObject, or leave the default selection as <strong>This</strong> to use the GameObject where your script is currently running.</li>
+</ul>
+<h3 id="outputs-2">Outputs</h3>
+<p>The Get State Graph node has a single output port, located on the right side. The output port returns the GameObject's first set State Graph, or <code>null</code>, if there is no set State Graph.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The Get State Graph node returns only the first State Graph set on a GameObject. To return all State Graphs set on a GameObject, use the <a href="#GetStates">Get State Graphs node</a>.</p>
+</div>
+<h2 id="get-state-graphs"><a name="GetStates">Get State Graphs</a></h2>
+<p>The Get State Graphs node returns a list of all State Graphs set on a GameObject.</p>
+<p><img src="images/VS-get-state-graphs-node.png" alt="The Get State Graphs node"></p>
+<table>
+<thead>
+<tr>
+<th colspan="2"><strong>Item</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<td colspan="2"><strong>Input Ports</strong></td>
+<td></td>
+
+<tr>
+<td><img src="images\Label-A.png" alt="The letter A in a blue circle, matching the label on the Set State Graph node image."></td>
+<td><strong>GameObject</strong></td>
+<td>(GameObject) The GameObject where the node should retrieve a list of set State Graphs.</td>
+</tr>
+<tr>
+<td colspan="2"><strong>Output Ports</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><img src="images\Label-B.png" alt="The letter B in a blue circle, matching the label on the Set State Graph node image."></td>
+<td><strong>Graphs</strong></td>
+<td>(List of State Graph Assets) Outputs a list of all State Graphs set on the GameObject, or an empty list if there are no set State Graphs.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="setting-the-required-node-parameters-and-inputs-3">Setting the required node parameters and inputs</h3>
+<p>The Get State Graphs node is a data node. It can't control any logic in your script, and is only used to return data.</p>
+<p>The node has a single input port, located on the left side, which collects the node's required input data:</p>
+<ul>
+<li>The GameObject where the node should retrieve a list of State Graphs. You can choose a specific GameObject, or leave the default selection as <strong>This</strong> to use the GameObject where your script is currently running.</li>
+</ul>
+<h3 id="outputs-3">Outputs</h3>
+<p>The Get State Graphs node has a single output port, located on the right side. The output port returns a list of all set State Graphs for the GameObject, or an empty list, if there are no set State Graphs.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

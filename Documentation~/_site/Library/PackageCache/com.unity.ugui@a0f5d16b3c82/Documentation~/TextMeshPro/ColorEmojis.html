@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Color emojis | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Color emojis | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../../index.html">
+            <img id="logo" class="svg" src="../../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="color-emojis">Color emojis</h1>
+
+<p>You can include color glyphs and emojis in text. To do so, import a font file that has color emojis in it and set it as the fallback emojis text assets.</p>
+<p><img src="../images/NativeEmojiExample.png" alt="Native Emoji Example"></p>
+<h2 id="set-up-color-emojis">Set up color emojis</h2>
+<p>Create a color font asset and add it to the TMP Settings Fallback. Note this is the same as the Project Settings/TextMeshPro/Settings as depicted in the image.</p>
+<ol>
+<li>In your project, import a font file that has color emojis in it.</li>
+<li>Right-click in the <code>Asset</code> folder, and then select <strong>Create &gt; TextMeshPro &gt; FontAsset &gt; Color</strong>. This ensures that you create the font asset with the right shader (Sprite) and the right atlas rendering mode (Color).</li>
+<li>Open the TMP Settings asset or alternatively via the <strong>Edit &gt; ProjectSettings &gt; TextMesh Pro &gt; Settings</strong>.</li>
+<li>Add the emoji font asset to the <strong>Fallback Emoji Text Assets</strong> section.</li>
+</ol>
+<p><img src="../images/FallbackEmoji.png" alt="Example image"></p>
+<p>Alternatively, assigning a color font asset to the text object will work fine provided that the <a href="ColorEmojis">Emoji Fallback Support</a> option in the Extra Settings of the text component is disabled.</p>
+<h2 id="include-emojis-in-text">Include emojis in text</h2>
+<p>To include emojis in text, do the following:</p>
+<ul>
+<li>Include emojis in text through their Unicode. For example, enter <code>\U00001f60</code> to represent a smile.</li>
+<li>Use OS Virtual Keyboard.</li>
+<li>Copy the emojis from an external Text Editing tool and paste them in your text field.</li>
+</ul>
+<p>To find more information about the Unicode Emojis Standard, see this <a href="http://unicode.org/Public/emoji/14.0/">link</a>.</p>
+<h2 id="control-emoji-fallback-search">Control Emoji Fallback Search</h2>
+<p>The &quot;Emoji Fallback Support&quot; option controls where we search for characters defined in the Unicode Standards as Emojis.</p>
+<p>When this option is enabled (default), the &quot;Fallback Emoji Text Assets&quot; list will be search first for any characters defined as Emojis.</p>
+<p>When this option is disabled, the Primary font asset assigned to the text component will be searched first.</p>
+<p>Basically, this option overrides the character search to prioritize searching thru the &quot;Fallback Emoji Text Assets&quot; list first when the character is an emoji.</p>
+<p>This option is also useful when a font contains black-and-white emojis as it allows the user to control if the emojis contained in the primary will be used or those from the &quot;Fallback Emoji Text Assets&quot; list.</p>
+<p>To update the <code>Emoji Fallback Support</code>:</p>
+<ol>
+<li>Select the <strong>Text (TMP)</strong> field in the hierarchy.</li>
+<li>In the Inspector window, under the <code>Extra Settings</code> foldout of the <strong>Text (TMP)</strong> field, select the <strong>Emoji Fallback Support</strong> toggle.</li>
+</ol>
+<p><img src="../images/EmojiFallbackSupport.png" alt="Example image"></p>
+<h2 id="limitations">Limitations</h2>
+<p>The color emojis feature has the following limitations:</p>
+<ul>
+<li>It doesn't support some OpenType font features, such as chain context and single substitution.</li>
+<li>It doesn't support Apple fonts that use the AAT format. It's a predecessor to OpenType.</li>
+<li>It doesn't support SVG color glyphs.</li>
+<li>Dynamic OS FontAsset has limited support on some iOS devices. The <code>Apple Color Emoji</code> font file found on OSX and several iOS devices works fine. However, the <code>Apple Color Emoji-160px</code> found on newer iOS devices is not support as the emoji's are encoded in JPEG format which is not supported by FreeType.</li>
+<li>Prior to Unity 2023.1, adding a UTF-32 through the inspector sends an error. The emojis won't display in the inspector.</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

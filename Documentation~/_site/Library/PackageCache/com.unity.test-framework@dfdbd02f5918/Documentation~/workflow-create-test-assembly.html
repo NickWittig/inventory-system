@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Workflow: Creating test assemblies | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Workflow: Creating test assemblies | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="workflow-creating-test-assemblies">Workflow: Creating test assemblies</h1>
+
+<p>UTF looks for tests in a <strong>Test Assembly</strong>, which is any assembly that references Nunit.</p>
+<p>The Test Runner UI helps you set up test assemblies:</p>
+<ol>
+<li>Select the Assets folder in your Project window.</li>
+<li>Open the Test Runner window (menu: <strong>Window</strong> &gt; <strong>General</strong> &gt; <strong>Test Runner</strong>).</li>
+<li>In the <strong>Test Runner</strong> window, select <strong>Create a new Test Assembly Folder in the active path</strong>.</li>
+</ol>
+<p><img src="./images/create-test-assembly-folder.png" alt="Test Runner window EditMode tab"></p>
+<p>Alternatively, you can go via the <strong>Assets</strong> menu:</p>
+<ol>
+<li>Select the Assets folder in your Project window.</li>
+<li>Create a new Test Assembly Folder (menu: <strong>Assets</strong> &gt; <strong>Create</strong> &gt; <strong>Testing</strong> &gt; <strong>Test Assembly Folder</strong>).</li>
+</ol>
+<p>This creates a <em>Tests</em> folder in your project Assets with a corresponding <code>.asmdef</code> file with the required references. You can change the name of the new <a href="https://docs.unity3d.com/Manual/ScriptCompilationAssemblyDefinitionFiles.html">Assembly Definition</a> and press Enter to accept it.</p>
+<p><img src="./images/test-assembly-folder.png" alt="New Test folder and assembly file"></p>
+<p>Click on the assembly definition file to inspect it in the <strong>Inspector</strong> window. You'll see that it has references to <strong>nunit.framework.dll</strong>*,* <strong>UnityEngine.TestRunner,</strong> and <strong>UnityEditor.TestRunner</strong> assemblies. This tells UTF that this is a test assembly.</p>
+<p>The checkbox selections under <strong>Platforms</strong> determine which platforms the test assembly can run on. Assemblies created through the <strong>Test Runner</strong> target the <strong>Editor</strong> only by default. <strong>Any Platform</strong> or a specific platform other than <strong>Editor</strong> makes it possible to run any Play Mode tests in the assembly on standalone Players for the additional platforms.</p>
+<p><img src="./images/import-settings.png" alt="Assembly definition import settings"></p>
+<blockquote>
+<p><strong>Note</strong>: The <strong>UnityEditor.TestRunner</strong> reference is only available for <a href="edit-mode-vs-play-mode-tests.html#edit-mode-tests">Edit Mode tests</a>.</p>
+</blockquote>
+<p>You can repeat the steps above as many times as you like to create additional Test Assemblies. The first Test Assembly folder you create is named <em>Tests</em> by default and subsequent ones are named <em>Tests 1</em>, <em>Tests 2</em>, and so on. Remember that you can always rename the assemblies but each assembly name must be unique.</p>
+<blockquote>
+<p><strong>Note</strong>: Changing the file name of the assembly definition file does not affect the value of the <strong>Name</strong> property in the file. Use the <strong>Inspector</strong> window or edit the .asmdef direclty in a text editor to make sure the name property is properly changed.</p>
+</blockquote>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

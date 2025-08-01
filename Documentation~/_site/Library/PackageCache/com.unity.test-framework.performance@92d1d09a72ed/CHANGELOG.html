@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Changelog | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Changelog | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="changelog">Changelog</h1>
+
+<h2 id="310---2025-03-28">[3.1.0] - 2025-03-28</h2>
+<h3 id="added">Added</h3>
+<ul>
+<li>Added an optional command-line argument &quot;perfTestResults&quot; to control the target location of performance test run results file.</li>
+</ul>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>Warmup cycles no longer record GC measurements.</li>
+<li>Setup and Cleanup cycles no longer contribute to GC measurements.</li>
+</ul>
+<h2 id="303---2023-09-11">[3.0.3] - 2023-09-11</h2>
+<h3 id="fixed-1">Fixed</h3>
+<ul>
+<li>Fixed issue where exception in OnTestEnded callback would result in EndTest method not finalising properly</li>
+</ul>
+<h3 id="changed">Changed</h3>
+<ul>
+<li>Temporarily removed &quot;Open Script&quot; from Performance Benchmark Window</li>
+<li>Some clarifications in documentation were added (&quot;Extension&quot; naming changed to &quot;Package&quot;, Package limitations clarified)</li>
+</ul>
+<h2 id="302---2023-06-29">[3.0.2] - 2023-06-29</h2>
+<h3 id="changed-1">Changed</h3>
+<ul>
+<li>Added additional InternalsVisibleTo attribute for internal test assembly</li>
+</ul>
+<h2 id="301---2023-06-23">[3.0.1] - 2023-06-23</h2>
+<h3 id="changed-2">Changed</h3>
+<ul>
+<li>Removed false &quot;unityRelease&quot; field from package.json</li>
+</ul>
+<h2 id="300---2023-06-05">[3.0.0] - 2023-06-05</h2>
+<h3 id="added-1">Added</h3>
+<ul>
+<li>&quot;Open Source Code&quot; menu item to test results</li>
+<li>Test Filter to filter results by test name</li>
+</ul>
+<h3 id="changed-3">Changed</h3>
+<ul>
+<li>Items in test results are grouped by classname</li>
+<li>Make Sample Groups to be shown only when clicking on items with them</li>
+<li>&quot;New Data available&quot; label re-located</li>
+<li>Replaced CamelCase headers with regular text headers in csv report</li>
+<li>Replaced TRUE/FALSE with Yes/No in the &quot;Increase Is Better&quot; column in csv report</li>
+<li>Renamed the default report name to PerformanceTestResults</li>
+<li>Documentation updates to reflect API changes</li>
+</ul>
+<h3 id="fixed-2">Fixed</h3>
+<ul>
+<li>Median calculation in case of even number of samples</li>
+<li>Deviation division by zero</li>
+<li>Exception thrown after clicking Cancel button (during Test Result export)</li>
+<li>The issue where the last column was always empty in csv report</li>
+</ul>
+<h2 id="300-pre2---2023-04-06">[3.0.0-pre.2] - 2023-04-06</h2>
+<h3 id="added-2">Added</h3>
+<ul>
+<li>Help button, which redirects the user to documentation website</li>
+<li>Clear Results button, which clears all Performance test results</li>
+<li>Updated CI to support more Unity versions and expand test coverage</li>
+</ul>
+<h3 id="changed-4">Changed</h3>
+<ul>
+<li>Updated the style of toolbar buttons to match that of the Test Runner window for consistency</li>
+<li>Export button is now disabled instead of hidden when there are no Performance test results</li>
+<li>Made AutoRefresh toggle retain its state after closing and reopening the window</li>
+<li>Moved the Performance Test Report from 'Window/Analysis' to 'Window/General' near Test Runner for better accessibility</li>
+</ul>
+<h3 id="removed">Removed</h3>
+<ul>
+<li>Build project from CI</li>
+</ul>
+<h3 id="fixed-3">Fixed</h3>
+<ul>
+<li>Issue where running tests with the Test Report window open would cause the error message &quot;The object of type 'Material' has been destroyed&quot; to appear</li>
+<li>Issues where incorrect labels were displayed at certain scenarios</li>
+<li>Issues flagged by SonarQube</li>
+</ul>
+<h2 id="300-pre1---2023-03-02">[3.0.0-pre.1] - 2023-03-02</h2>
+<h3 id="added-3">Added</h3>
+<ul>
+<li>Merged 2.8.1 changes that weren't reflected in 2.10.0 release</li>
+</ul>
+<h3 id="fixed-4">Fixed</h3>
+<ul>
+<li>Fixing issues from SonarQube check</li>
+<li>Updating obsolete API's that stopped working with recent Unity versions</li>
+<li>Clarified how to add package in Unity project in documentation</li>
+</ul>
+<h2 id="2100---2021-11-01">[2.10.0] - 2021-11-01</h2>
+<h3 id="added-4">Added</h3>
+<ul>
+<li>Support for dynamic measurement count in Measure.Method and Measure.Frames</li>
+</ul>
+<h2 id="290---2021-04-14">[2.9.0] - 2021-04-14</h2>
+<h3 id="added-5">Added</h3>
+<ul>
+<li>Support for overriding measurement count</li>
+</ul>
+<h2 id="281---2021-03-16">[2.8.1] - 2021-03-16</h2>
+<h3 id="removed-1">Removed</h3>
+<ul>
+<li>Setting up date when building player. It will set up at the beginning of the run.</li>
+</ul>
+<h2 id="280---2021-03-16">[2.8.0] - 2021-03-16</h2>
+<h3 id="added-6">Added</h3>
+<ul>
+<li>Overloads to measurements for overriding sample unit</li>
+</ul>
+<h3 id="fixed-5">Fixed</h3>
+<ul>
+<li>Cases where cleanup throws an exception</li>
+</ul>
+<h2 id="270---2021-02-19">[2.7.0] - 2021-02-19</h2>
+<h3 id="changed-5">Changed</h3>
+<ul>
+<li>Reduce metadata overhead when running locally by caching dependencies</li>
+<li>Restructured documentation</li>
+</ul>
+<h3 id="removed-2">Removed</h3>
+<ul>
+<li>The need for link.xml</li>
+</ul>
+<h3 id="fixed-6">Fixed</h3>
+<ul>
+<li>Method measurement IterationsPerMeasurement</li>
+</ul>
+<h2 id="260---2021-01-12">[2.6.0] - 2021-01-12</h2>
+<h3 id="added-7">Added</h3>
+<ul>
+<li>Build configuration support</li>
+</ul>
+<h2 id="251---2021-01-05">[2.5.1] - 2021-01-05</h2>
+<h3 id="fixed-7">Fixed</h3>
+<ul>
+<li>Serialization for Performance Test Report window</li>
+</ul>
+<h2 id="250---2020-12-29">[2.5.0] - 2020-12-29</h2>
+<h3 id="added-8">Added</h3>
+<ul>
+<li>Domain reload support</li>
+</ul>
+<h3 id="changed-6">Changed</h3>
+<ul>
+<li>Switched from Newtonsoft.Json to Unity json module</li>
+</ul>
+<h2 id="241---2020-11-05">[2.4.1] - 2020-11-05</h2>
+<h3 id="changed-7">Changed</h3>
+<ul>
+<li>Metadata collection was made public</li>
+</ul>
+<h2 id="240---2020-09-16">[2.4.0] - 2020-09-16</h2>
+<h3 id="added-9">Added</h3>
+<p>Performance Test Report window updates:</p>
+<ul>
+<li>CSV export option.</li>
+<li>Monitoring of results file timestamp to support auto refresh when a new file is found.</li>
+<li>Display of timestamp of last loaded results file.</li>
+<li>Option to sort test report window by order the tests ran in (index). This is now the default.</li>
+<li>Min and max to the table.</li>
+<li>Improved titles and tooltips on columns</li>
+</ul>
+<h3 id="changed-8">Changed</h3>
+<ul>
+<li>Upgraded json dependency to release version</li>
+<li>Reduced overhead introduced when running tests</li>
+</ul>
+<h2 id="231---2020-07-01">[2.3.1] - 2020-07-01</h2>
+<h3 id="fixed-8">Fixed</h3>
+<ul>
+<li>Overhead introduced with Measure.Method no longer calculates execution time of Setup and Cleanup changes</li>
+</ul>
+<h2 id="230---2020-06-17">[2.3.0] - 2020-06-17</h2>
+<h3 id="fixed-9">Fixed</h3>
+<ul>
+<li>Measure.Method overhead</li>
+<li>Measure.Method no longer calculates execution time of Setup and Cleanup</li>
+<li>Overwritten test name will be displayed with method name in Test Result viewer</li>
+</ul>
+<h2 id="220---2020-05-26">[2.2.0] - 2020-05-26</h2>
+<h3 id="added-10">Added</h3>
+<ul>
+<li>Support for custom metadata</li>
+</ul>
+<h2 id="210---2020-05-14">[2.1.0] - 2020-05-14</h2>
+<h3 id="added-11">Added</h3>
+<ul>
+<li>Flexible horizontal splitter for report window</li>
+</ul>
+<h3 id="fixed-10">Fixed</h3>
+<ul>
+<li>Date format</li>
+</ul>
+<h2 id="209---2020-03-23">[2.0.9] - 2020-03-23</h2>
+<h3 id="fixed-11">Fixed</h3>
+<ul>
+<li>Profiler measurements for method measurements</li>
+<li>Throw exceptions when measuring NaN</li>
+</ul>
+<h2 id="208---2020-02-20">[2.0.8] - 2020-02-20</h2>
+<h3 id="fixed-12">Fixed</h3>
+<ul>
+<li>Fix profiler marker capture when changing scenes in editor tests</li>
+<li>Only shift samplegroups for UI</li>
+</ul>
+<h2 id="207---2020-02-14">[2.0.7] - 2020-02-14</h2>
+<h3 id="fixed-13">Fixed</h3>
+<ul>
+<li>Results parsing</li>
+</ul>
+<h2 id="206---2020-01-13">[2.0.6] - 2020-01-13</h2>
+<h3 id="fixed-14">Fixed</h3>
+<ul>
+<li>Development player field</li>
+</ul>
+<h2 id="205---2020-01-13">[2.0.5] - 2020-01-13</h2>
+<h3 id="changed-9">Changed</h3>
+<ul>
+<li>Disallow multiple performance attributes</li>
+<li>Disallow empty samplegroup name</li>
+<li>Assign samplegroup name to frames measurements</li>
+</ul>
+<h2 id="204---2019-12-05">[2.0.4] - 2019-12-05</h2>
+<h3 id="changed-10">Changed</h3>
+<ul>
+<li>Update json package to support AOT platforms</li>
+</ul>
+<h2 id="203---2019-11-20">[2.0.3] - 2019-11-20</h2>
+<h3 id="added-12">Added</h3>
+<ul>
+<li>New fields to data format BuildTarget, StereoRenderingPath</li>
+</ul>
+<h2 id="202---2019-11-20">[2.0.2] - 2019-11-20</h2>
+<h3 id="changed-11">Changed</h3>
+<ul>
+<li>Increased test serialization version</li>
+</ul>
+<h2 id="201---2019-11-20">[2.0.1] - 2019-11-20</h2>
+<h3 id="fixed-15">Fixed</h3>
+<ul>
+<li>Player callbacks when no tests were executed</li>
+</ul>
+<h2 id="200---2019-11-19">[2.0.0] - 2019-11-19</h2>
+<h3 id="added-13">Added</h3>
+<ul>
+<li>Tests to package testables</li>
+</ul>
+<h3 id="changed-12">Changed</h3>
+<ul>
+<li>Refactored data format, reduced nesting</li>
+<li>Slight refactor on measurement API</li>
+<li>Shift sample units when printing results</li>
+<li>Switched to newtosoft json package</li>
+</ul>
+<h3 id="removed-3">Removed</h3>
+<ul>
+<li>Unused fields</li>
+<li>Deprecated attributes</li>
+</ul>
+<h3 id="fixed-16">Fixed</h3>
+<ul>
+<li>Resources cleanup meta files</li>
+</ul>
+<h2 id="131---2019-11-05">[1.3.1] - 2019-11-05</h2>
+<h3 id="fixed-17">Fixed</h3>
+<ul>
+<li>Warning after cleaning resources</li>
+<li>Test suite when running in the editor</li>
+</ul>
+<h2 id="130---2019-08-26">[1.3.0] - 2019-08-26</h2>
+<h3 id="changed-13">Changed</h3>
+<ul>
+<li>Switch to errors from exceptions when parsing results</li>
+<li>Increase minimum unity version to 2019.3</li>
+</ul>
+<h3 id="removed-4">Removed</h3>
+<ul>
+<li>Metadata collectors tests</li>
+</ul>
+<h2 id="126---2019-08-22">[1.2.6] - 2019-08-22</h2>
+<h3 id="changed-14">Changed</h3>
+<ul>
+<li>Categorize performance tests as performance</li>
+<li>ProfilerMarkers can now be called with string params</li>
+<li>Switch measuring frames and methods to stopwatch</li>
+</ul>
+<h3 id="removed-5">Removed</h3>
+<ul>
+<li>Profiler section on docs as the feature was removed</li>
+</ul>
+<h2 id="125---2019-06-17">[1.2.5] - 2019-06-17</h2>
+<h3 id="added-14">Added</h3>
+<ul>
+<li>Test publish for CI</li>
+</ul>
+<h2 id="124---2019-06-17">[1.2.4] - 2019-06-17</h2>
+<h3 id="added-15">Added</h3>
+<ul>
+<li>Test publish for CI</li>
+</ul>
+<h2 id="123---2019-06-14">[1.2.3] - 2019-06-14</h2>
+<h3 id="changed-15">Changed</h3>
+<ul>
+<li>Updated changelog</li>
+</ul>
+<h2 id="122---2019-06-13">[1.2.2] - 2019-06-13</h2>
+<h3 id="added-16">Added</h3>
+<ul>
+<li>Support for domain reload</li>
+</ul>
+<h2 id="121---2019-06-07">[1.2.1] - 2019-06-07</h2>
+<h3 id="fixed-18">Fixed</h3>
+<ul>
+<li>Bug that would cause player build failures</li>
+</ul>
+<h2 id="120---2019-05-23">[1.2.0] - 2019-05-23</h2>
+<h3 id="changed-16">Changed</h3>
+<ul>
+<li>Increase unity version to 2019.2</li>
+</ul>
+<h2 id="110---2019-05-22">[1.1.0] - 2019-05-22</h2>
+<h3 id="changed-17">Changed</h3>
+<ul>
+<li>Update assembly definition formats to avoid testables in package manifest</li>
+</ul>
+<h2 id="109---2019-05-21">[1.0.9] - 2019-05-21</h2>
+<h3 id="changed-18">Changed</h3>
+<ul>
+<li>Update scripting runtime setting for 2019.3</li>
+</ul>
+<h2 id="108---2019-03-08">[1.0.8] - 2019-03-08</h2>
+<h3 id="added-17">Added</h3>
+<ul>
+<li>Automation test deploy</li>
+</ul>
+<h2 id="107---2019-03-08">[1.0.7] - 2019-03-08</h2>
+<h3 id="added-18">Added</h3>
+<ul>
+<li>Automation test deploy</li>
+</ul>
+<h2 id="106---2019-03-04">[1.0.6] - 2019-03-04</h2>
+<h3 id="changed-19">Changed</h3>
+<ul>
+<li>Updated changelog</li>
+</ul>
+<h2 id="105---2019-03-04">[1.0.5] - 2019-03-04</h2>
+<h3 id="added-19">Added</h3>
+<ul>
+<li>Conditional support for 2019.1</li>
+</ul>
+<h2 id="104---2019-02-18">[1.0.4] - 2019-02-18</h2>
+<h3 id="removed-6">Removed</h3>
+<ul>
+<li>Unnecessary meta files</li>
+</ul>
+<h2 id="103---2019-02-18">[1.0.3] - 2019-02-18</h2>
+<h3 id="changed-20">Changed</h3>
+<ul>
+<li>package.json update</li>
+</ul>
+<h2 id="102---2019-02-18">[1.0.2] - 2019-02-18</h2>
+<h3 id="changed-21">Changed</h3>
+<ul>
+<li>package.json update</li>
+</ul>
+<h2 id="101---2019-02-18">[1.0.1] - 2019-02-18</h2>
+<h3 id="changed-22">Changed</h3>
+<ul>
+<li>Updated Documentation to reflect breaking changes</li>
+</ul>
+<h2 id="100---2019-02-15">[1.0.0] - 2019-02-15</h2>
+<h3 id="changed-23">Changed</h3>
+<ul>
+<li>Refactor attributes</li>
+</ul>
+<h2 id="0150---2019-01-15">[0.1.50] - 2019-01-15</h2>
+<h3 id="changed-24">Changed</h3>
+<ul>
+<li>Results paths to persistent data</li>
+</ul>
+<h2 id="0149---2018-12-04">[0.1.49] - 2018-12-04</h2>
+<h3 id="changed-25">Changed</h3>
+<ul>
+<li>Revert changes to profiler and GC</li>
+</ul>
+<h2 id="0148---2018-11-22">[0.1.48] - 2018-11-22</h2>
+<h3 id="changed-26">Changed</h3>
+<ul>
+<li>Doc updates and ignore GC api in editor due to api issues</li>
+</ul>
+<h2 id="0147---2018-11-14">[0.1.47] - 2018-11-14</h2>
+<h3 id="removed-7">Removed</h3>
+<ul>
+<li>Debug logs</li>
+</ul>
+<h2 id="0146---2018-11-14">[0.1.46] - 2018-11-14</h2>
+<h3 id="fixed-19">Fixed</h3>
+<ul>
+<li>Breaking changes introduced by testrunner API rename</li>
+</ul>
+<h2 id="0145---2018-11-08">[0.1.45] - 2018-11-08</h2>
+<h3 id="fixed-20">Fixed</h3>
+<ul>
+<li>Breaking changes to data submodule</li>
+</ul>
+<h2 id="0144---2018-11-08">[0.1.44] - 2018-11-08</h2>
+<h3 id="changed-27">Changed</h3>
+<ul>
+<li>Disable GC and update API to work around warning</li>
+</ul>
+<h2 id="0143---2018-10-30">[0.1.43] - 2018-10-30</h2>
+<h3 id="fixed-21">Fixed</h3>
+<ul>
+<li>Method measurements setup and cleanup</li>
+</ul>
+<h2 id="0142---2018-10-15">[0.1.42] - 2018-10-15</h2>
+<h3 id="added-20">Added</h3>
+<ul>
+<li>Button on report window to open profiler output for test</li>
+<li>Save profiler output on perf tests</li>
+</ul>
+<h3 id="removed-8">Removed</h3>
+<ul>
+<li>Unsupported features for legacy scripting runtime</li>
+<li>Unnecessary assembly definition</li>
+</ul>
+<h3 id="fixed-22">Fixed</h3>
+<ul>
+<li>Version attribute for test cases</li>
+</ul>
+<h2 id="0141---2018-10-02">[0.1.41] - 2018-10-02</h2>
+<h3 id="added-21">Added</h3>
+<ul>
+<li>Test report graph</li>
+</ul>
+<h2 id="0140---2018-09-17">[0.1.40] - 2018-09-17</h2>
+<h3 id="changed-28">Changed</h3>
+<ul>
+<li>Update documentation</li>
+</ul>
+<h2 id="0139---2018-09-14">[0.1.39] - 2018-09-14</h2>
+<h3 id="removed-9">Removed</h3>
+<ul>
+<li>Duplicate module from docs</li>
+</ul>
+<h2 id="0138---2018-09-14">[0.1.38] - 2018-09-14</h2>
+<h3 id="changed-29">Changed</h3>
+<ul>
+<li>Updated documentation</li>
+</ul>
+<h2 id="0136---2018-08-27">[0.1.36] - 2018-08-27</h2>
+<h3 id="changed-30">Changed</h3>
+<ul>
+<li>ProfilerMarkers now take params as arguments</li>
+</ul>
+<h2 id="0135---2018-08-27">[0.1.35] - 2018-08-27</h2>
+<h3 id="added-22">Added</h3>
+<p>Measure.Method improvements:</p>
+<ul>
+<li>Add GC allocation to Measure.Method</li>
+<li>Add setup/cleanup for Measure.Method</li>
+<li>Move order of calls for Measure.Scope</li>
+</ul>
+<h2 id="0134---2018-08-16">[0.1.34] - 2018-08-16</h2>
+<h3 id="fixed-23">Fixed</h3>
+<ul>
+<li>Obsolete warnings</li>
+</ul>
+<h2 id="0133---2018-08-03">[0.1.33] - 2018-08-03</h2>
+<h3 id="fixed-24">Fixed</h3>
+<ul>
+<li>Obsolete warnings, doc update with modules and internals, ValueSource fix</li>
+</ul>
+<h2 id="0132---2018-07-09">[0.1.32] - 2018-07-09</h2>
+<h3 id="added-23">Added</h3>
+<ul>
+<li>Method and Frames measurements can now specify custom warmup, measurement and iteration counts</li>
+</ul>
+<h2 id="0131---2018-07-04">[0.1.31] - 2018-07-04</h2>
+<h3 id="changed-31">Changed</h3>
+<ul>
+<li>Marked metadata tests with performance category</li>
+</ul>
+<h2 id="0130---2018-06-27">[0.1.30] - 2018-06-27</h2>
+<h3 id="fixed-25">Fixed</h3>
+<ul>
+<li>Method measurement</li>
+</ul>
+<h2 id="0129---2018-06-12">[0.1.29] - 2018-06-12</h2>
+<h3 id="changed-32">Changed</h3>
+<ul>
+<li>Moving back to json in xml due to multiple instabilities</li>
+</ul>
+<h2 id="0128---2018-06-01">[0.1.28] - 2018-06-01</h2>
+<h3 id="removed-10">Removed</h3>
+<ul>
+<li>json printing from output</li>
+</ul>
+<h2 id="0127---2018-05-31">[0.1.27] - 2018-05-31</h2>
+<h3 id="added-24">Added</h3>
+<ul>
+<li>Meta files to npm ignore</li>
+</ul>
+<h2 id="0126---2018-05-31">[0.1.26] - 2018-05-31</h2>
+<h3 id="changed-33">Changed</h3>
+<p>Preparing package for moving to public registry:</p>
+<ul>
+<li>Inversed changelog order</li>
+<li>Excluded CI files from published package</li>
+</ul>
+<h2 id="0125---2018-05-31">[0.1.25] - 2018-05-31</h2>
+<h3 id="removed-11">Removed</h3>
+<ul>
+<li>Missing meta files</li>
+</ul>
+<h2 id="0124---2018-05-31">[0.1.24] - 2018-05-31</h2>
+<h3 id="changed-34">Changed</h3>
+<ul>
+<li>Print out json to xml by default for backwards compatability</li>
+</ul>
+<h2 id="0123---2018-05-30">[0.1.23] - 2018-05-30</h2>
+<h3 id="fixed-26">Fixed</h3>
+<ul>
+<li>Issues with packman, bumping up version</li>
+</ul>
+<h2 id="0122---2018-05-29">[0.1.22] - 2018-05-29</h2>
+<h3 id="added-25">Added</h3>
+<ul>
+<li>Option to specify custom Measure.Method Execution and Warmup count</li>
+</ul>
+<h2 id="0121---2018-05-25">[0.1.21] - 2018-05-25</h2>
+<h3 id="fixed-27">Fixed</h3>
+<ul>
+<li>Issues introduced by .18 fix</li>
+</ul>
+<h2 id="0119---2018-05-24">[0.1.19] - 2018-05-24</h2>
+<h3 id="changed-35">Changed</h3>
+<ul>
+<li>Package has been renamed to <code>com.unity.test-framework.performance</code> to match test framework</li>
+</ul>
+<h2 id="0118---2018-05-24">[0.1.18] - 2018-05-24</h2>
+<h3 id="fixed-28">Fixed</h3>
+<ul>
+<li>Fix SetUp and TearDown for 2018.1</li>
+</ul>
+<h2 id="0117---2018-05-23">[0.1.17] - 2018-05-23</h2>
+<h3 id="changed-36">Changed</h3>
+<ul>
+<li>Refactor Method and Frames measurements</li>
+<li>Metadata collected using internal test runner API and player connection for 2018.3+</li>
+</ul>
+<h2 id="0116---2018-05-09">[0.1.16] - 2018-05-09</h2>
+<h3 id="fixed-29">Fixed</h3>
+<ul>
+<li>Bug fix regarding measureme methods being disposed twice</li>
+</ul>
+<h2 id="0115---2018-05-02">[0.1.15] - 2018-05-02</h2>
+<h3 id="fixed-30">Fixed</h3>
+<ul>
+<li>Metadata test, the test was failing if a json file was missing for playmode tests</li>
+</ul>
+<h2 id="0114---2018-04-30">[0.1.14] - 2018-04-30</h2>
+<h3 id="added-26">Added</h3>
+<ul>
+<li>Addition of measuring a method or frames for certain amount of times or for duration</li>
+<li>Introduced SampleGroupDefinition</li>
+</ul>
+<h3 id="changed-37">Changed</h3>
+<ul>
+<li>Refactored measuring methods</li>
+</ul>
+<h3 id="removed-12">Removed</h3>
+<ul>
+<li>Removes linq usage for due to issues with AOT platforms</li>
+</ul>
+<h2 id="0113---2018-04-15">[0.1.13] - 2018-04-15</h2>
+<h3 id="added-27">Added</h3>
+<ul>
+<li>Added total, std and sample count aggregations</li>
+<li>Added sample unit to multi sample groups</li>
+</ul>
+<h3 id="removed-13">Removed</h3>
+<ul>
+<li>Removed totaltime from frametime measurements</li>
+</ul>
+<h3 id="fixed-31">Fixed</h3>
+<ul>
+<li>Fixed android metadata collecting</li>
+</ul>
+<h2 id="0112---2018-04-11">[0.1.12] - 2018-04-11</h2>
+<h3 id="changed-38">Changed</h3>
+<ul>
+<li>Naming</li>
+</ul>
+<h3 id="fixed-32">Fixed</h3>
+<ul>
+<li>json serialization</li>
+</ul>
+<h2 id="0111---2018-04-09">[0.1.11] - 2018-04-09</h2>
+<h3 id="fixed-33">Fixed</h3>
+<ul>
+<li>2018.1 internal namespaces</li>
+</ul>
+<h2 id="0110---2018-04-09">[0.1.10] - 2018-04-09</h2>
+<h3 id="added-28">Added</h3>
+<ul>
+<li>Added editmode and playmode tests that collect metadata</li>
+</ul>
+<h3 id="changed-39">Changed</h3>
+<ul>
+<li>Change fields to UpperCamelCase</li>
+</ul>
+<h2 id="019---2018-04-06">[0.1.9] - 2018-04-06</h2>
+<h3 id="added-29">Added</h3>
+<ul>
+<li>json output for 2018.1 which will be printed after test run</li>
+</ul>
+<h2 id="018---2018-04-03">[0.1.8] - 2018-04-03</h2>
+<h3 id="fixed-34">Fixed</h3>
+<ul>
+<li>Fix an exception on 2018.1</li>
+</ul>
+<h2 id="017---2018-04-03">[0.1.7] - 2018-04-03</h2>
+<h3 id="changed-40">Changed</h3>
+<ul>
+<li>Changed some of the names to match new convention</li>
+<li>Addressed typos in docs</li>
+<li>Multiple overloads replaced by using default arguments</li>
+</ul>
+<h2 id="016---2018-03-28">[0.1.6] - 2018-03-28</h2>
+<h3 id="added-30">Added</h3>
+<ul>
+<li>Measure.Custom got a new overload with SampleGroup</li>
+<li>Readme now includes installation and more examples</li>
+</ul>
+<h2 id="015---2018-03-20">[0.1.5] - 2018-03-20</h2>
+<h3 id="added-31">Added</h3>
+<ul>
+<li>Checks for usage outside of Performance tests</li>
+</ul>
+<h2 id="014---2018-03-20">[0.1.4] - 2018-03-20</h2>
+<h3 id="added-32">Added</h3>
+<ul>
+<li>System info to performance test output</li>
+<li>Preparing for reporting test data</li>
+</ul>
+<h2 id="013---2018-03-14">[0.1.3] - 2018-03-14</h2>
+<h3 id="removed-14">Removed</h3>
+<ul>
+<li>Temporarily removing tests from the package into separate repo</li>
+</ul>
+<h2 id="012---2018-03-14">[0.1.2] - 2018-03-14</h2>
+<h3 id="fixed-35">Fixed</h3>
+<ul>
+<li>Update for a missing bracket</li>
+</ul>
+<h2 id="011---2018-03-14">[0.1.1] - 2018-03-14</h2>
+<h3 id="added-33">Added</h3>
+<ul>
+<li>Test output now includes json that can be used to parse performance data from TestResults.xml</li>
+<li>Added defines to be compatible with 2018.1 and newer</li>
+<li>Measurement methods can now take in SampleGroup as argument</li>
+</ul>
+<h3 id="removed-15">Removed</h3>
+<ul>
+<li>Removed unnecessary overloads for measurements due to introduction of SampleGroup</li>
+</ul>
+<h2 id="010---2018-02-27">[0.1.0] - 2018-02-27</h2>
+<h3 id="this-is-the-first-release-of-unity-package-performancetesting">This is the first release of <em>Unity Package performancetesting</em>.</h3>
+<p>Initial version.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

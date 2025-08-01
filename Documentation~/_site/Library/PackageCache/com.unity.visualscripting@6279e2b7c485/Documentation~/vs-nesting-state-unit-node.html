@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>State Unit node | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="State Unit node | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="state-unit-node">State Unit node</h1>
+
+<p>Use a State Unit node like a Subgraph. The node references and triggers a State Graph inside a Script Graph.</p>
+<p><img src="images/vs-state-unit-new-state-graph.png" alt="An image of the Graph window that displays a State Unit node and the Graph Inspector."></p>
+<p>A State Unit node:</p>
+<ul>
+<li>Can't send or receive any data from ports.</li>
+<li>Can only trigger its associated State Graph or other nodes inside its parent Script Graph.</li>
+<li>Can't change its number or type of ports.</li>
+</ul>
+<p>For more information on Subgraphs and State Units, see <a href="vs-nesting-subgraphs-state-units.html">Subgraphs and State Units</a>. For more information on State Graphs and Script Graphs, see <a href="vs-graph-types.html">Graphs</a>.</p>
+<h2 id="fuzzy-finder-category">Fuzzy finder category</h2>
+<p>The State Unit node is in the <strong>Nesting</strong> category in the fuzzy finder.</p>
+<p>You can go to the <strong>Graphs</strong> category and select any State Graph to create a State Unit node. For more information on how to create a State Unit node, see <a href="vs-nesting-add-state-unit.html">Add a State Unit to a Script Graph</a>.</p>
+<h2 id="inputs">Inputs</h2>
+<p>The State Unit node has the following input ports:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Name</strong></th>
+<th style="text-align: left;"><strong>Type</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Start</strong></td>
+<td style="text-align: left;">Input Trigger</td>
+<td style="text-align: left;">The first execution Input Trigger for the node. The connection made to this port indicates when Visual Scripting runs the nested State Graph. Visual Scripting makes all states marked as Start States in the State Graph active.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Stop</strong></td>
+<td style="text-align: left;">Input Trigger</td>
+<td style="text-align: left;">The second execution Input Trigger for the node. The connection made to this port indicates when Visual Scripting stops the nested State Graph. Visual Scripting makes all states and transitions in the State Graph inactive.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="outputs">Outputs</h2>
+<p>The State Unit node has the following output ports:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Name</strong></th>
+<th style="text-align: left;"><strong>Type</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Started</strong></td>
+<td style="text-align: left;">Output Trigger</td>
+<td style="text-align: left;">The first execution Output Trigger for the node. The connection made to this port indicates what Visual Scripting runs after the nested State Graph starts.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Stopped</strong></td>
+<td style="text-align: left;">Output Trigger</td>
+<td style="text-align: left;">The second execution Output Trigger for the node. The connection made to this port indicates what Visual Scripting runs after the nested State Graph stops.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="example-graph-usage">Example graph usage</h2>
+<div class="TIP">
+<h5>Tip</h5>
+<p>A State Unit node can use a new blank State Graph or an existing State Graph from a project. For more information, see <a href="vs-nesting-add-state-unit.html">Add a State Unit to a Script Graph</a>.</p>
+</div>
+<p>In the following example, a State Unit node triggers when the Script Graph's GameObject enters a specific Collider marked as a trigger. After the State Unit node starts, the Script Graph uses a Debug Log node to log <code>Started new state!</code> to the console. When the GameObject leaves the Collider, the State Unit node stops, and the Script Graph uses another Debug Log node to log <code>Exited state</code> to the console.</p>
+<p><img src="images/vs-state-unit-node-script-graph-example.png" alt="An image of the Graph window. The Output Trigger port from an On Trigger Enter Event node connects to the Start port on the New State Graph State Unit node. The Output Trigger port from an On Trigger Exit Event node connects to the Stop port on the New State Graph State Unit node. The Started Output Trigger port on the State unit node connects to the Input Trigger port on a Debug Log node. A String Literal node with a message of &quot;Started new state!&quot; connects to the Message input port on the Debug Log node. The Stopped Output Trigger port on the State Unit node connects to the Input Trigger port on another Debug Log node. Another String Literal node with a message of &quot;Exited state&quot; connects to the Message port on the second Debug Log node."></p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Live edit during runtime | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Live edit during runtime | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="live-edit-during-runtime">Live edit during runtime</h1>
+
+<p>Live editing in visual scripting goes beyond adjusting values in real-time. Live editing also includes the ability to add and remove nodes as well as connectors; you can code while the game is playing and immediately affect the gameplay.</p>
+<p>Remember that:</p>
+<ul>
+<li>Changes you make to embed graphs are <strong>reverted</strong> when you exit play mode; they live inside components.</li>
+<li>Changes you make to graphs are <strong>saved</strong> when you exit play mode; they live inside assets.</li>
+<li>Graph variables are saved when not in an embed graph.</li>
+<li>The following variables are not saved:
+<ul>
+<li>Object</li>
+<li>Scene</li>
+<li>App</li>
+<li>Saved</li>
+</ul>
+</li>
+</ul>
+<div class="NOTE">
+<h5>Note</h5>
+<p>If you’ve used an embed graph and do not want to lose your modifications, copy all the changes you made to the embed graph before exiting Play mode. Paste them back in when in edit mode. You can’t do this for any changed variables.</p>
+</div>
+<p>As a visual aid, connectors in Live mode display their execution flow with animated directional droplets going in the direction of execution. The speed and number of droplets does not represent the frequency or speed of execution.</p>
+<h2 id="to-adjust-the-graph-during-runtime">To adjust the graph during runtime</h2>
+<p>With a graph open do any or all of the following:</p>
+<ul>
+<li>In the Inspector, click in any field to change a component’s value. The values are not persistent and won’t save when you leave Play mode.</li>
+<li>Right-click in an empty spot in the graph and add a node.</li>
+<li>Connect nodes.</li>
+<li>Delete any connectors.</li>
+<li>Add an extension.</li>
+<li>Add and link Debug nodes.</li>
+<li>Change values directly in a node.</li>
+</ul>
+<div class="TIP">
+<h5>Tip</h5>
+<p>Select any GameObject that contains a script graph to see and work with the values of the selected GameObject during runtime.</p>
+</div>
+<div class="NOTE">
+<h5>Note</h5>
+<p>When you modify anything after a Start event during runtime you won’t get the update on the GameObject during that session. You need to restart the session for Unity to execute the new logic after the start event.</p>
+</div>
+<p>The changes you make to a graph are instantly shared across all instances of that saved graph asset.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

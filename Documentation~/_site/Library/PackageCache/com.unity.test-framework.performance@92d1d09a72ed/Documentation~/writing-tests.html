@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Writing a simple test | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Writing a simple test | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="writing-a-simple-test">Writing a simple test</h1>
+
+<p>This example uses <code>Measure.Method</code> to measure the performance of Vector2 operations. This executes the provided method and samples performance. Increasing <code>MeasurementCount</code> from the default of 7 to 20 improves performance test stability. You can execute a <code>Vector2.MoveTowards</code> test in Edit Mode or Play Mode.</p>
+<pre><code class="lang-csharp">[Test, Performance]
+public void Vector2_operations()
+{
+    var a = Vector2.one;
+    var b = Vector2.zero;
+
+    Measure.Method(() =&gt;
+    {
+            Vector2.MoveTowards(a, b, 0.5f);
+            Vector2.ClampMagnitude(a, 0.5f);
+            Vector2.Reflect(a, b);
+            Vector2.SignedAngle(a, b);
+    })
+        .MeasurementCount(20)
+        .Run();
+}
+</code></pre>
+<p>To view the results, go to <strong>Window &gt; Analysis &gt; Performance Test Report</strong>.</p>
+<p><img src="images/example01.png" alt="Performance test example01"></p>
+<p>In this example, the results show that the first method execution took five times longer than the subsequent methods, and those subsequent method executions were unstable. Also, you can't tell from these test results how long it took for each Vector2 operation to execute.</p>
+<h2 id="improving-test-stability">Improving test stability</h2>
+<p>Now we'll look at how to improve the stability of our test. Instability can occur at the beginning of a test for several reasons, such as entering Play Mode or method initialization, because the tested method is quite fast and more sensitive to other running background processes.</p>
+<p>To improve stability, use <code>WarmupCount(n)</code>. This allows you to execute methods before recording data, so Unity doesn't record method initialization. The simplest way to increase test execution time is to repeat the method in a loop.
+Avoid having measurements that are less than 1ms because they are usually more sensitive to unstable environments.</p>
+<p>To help you track the execution time for each operation, split the Vector2 operations into several tests. Often, when writing tests, we use setup and clean up methods to isolate the test environment. However, in this case, methods are isolated and do not affect other methods, so we don't need a cleanup or setup.
+The following code example shows a performance test for the <code>Vector2.MoveTowards</code> operation. Other Vector2 performance tests are identical.</p>
+<pre><code class="lang-csharp">[Test, Performance]
+public void Vector2_MoveTowards()
+{
+
+    Measure.Method(() =&gt;
+    {
+        Vector2.MoveTowards(Vector2.one, Vector2.zero, 0.5f);
+    })
+        .WarmupCount(5)
+        .IterationsPerMeasurement(10000)
+        .MeasurementCount(20)
+        .Run();
+}
+</code></pre>
+<p>With 100000 iterations in this test, we see a small fluctuation in method execution time but the standard deviation is low, which means the test is reasonably stable.</p>
+<p><img src="images/example02.png" alt="Performance test example02"></p>
+<h2 id="measure-a-play-mode-only-method">Measure a Play Mode only method</h2>
+<p>To measure a method that only runs in Play Mode (for example <code>Physics.Raycast</code>), you can use <code>Measure.Frames()</code>, which records time per frame by default. To only measure <code>Physics.Raycast</code> time, you can disable frame time measurements with <code>DontRecordFrametime</code> and just measure the <code>Physics.Raycast</code> profiler marker.
+This test creates objects that you need to dispose of at the end of each test, because multiple unnecessary objects can affect the next test results. Use the SetUp method to create GameObjects, and the TearDown method to destroy the created GameObjects after each test.</p>
+<pre><code class="lang-csharp">[SetUp]
+public void SetUp()
+{
+    for (int i = 0; i &lt; 100; ++i)
+    {
+        GameObject raycaster = new GameObject(&quot;raycast&quot;, typeof(Raycast));
+        raycaster.transform.SetParent(_parent.transform);
+    }
+}
+
+[UnityTest, Performance]
+public IEnumerator Physics_RaycastTests()
+{
+    string profilierMarker = &quot;Physics.Raycast&quot;;
+    
+    yield return Measure.Frames()
+        .WarmupCount(3)
+        .DontRecordFrametime()
+        .MeasurementCount(10)
+        .ProfilerMarkers(profilierMarker)
+        .Run();
+}
+
+public class Raycast : MonoBehaviour
+{
+    private void Update()
+    {
+        RaycastHit hit;
+        bool ray = Physics.Raycast(
+            transform.position, 
+            Vector3.forward, 
+            out hit, 
+            Mathf.Infinity);
+    }
+}
+
+[TearDown]
+public void TearDown()
+{
+    GameObject.DestroyImmediate(_parent);
+}
+</code></pre>
+<p>To record your own measurements, create a new sample group and record a custom metric. The following example measures <code>Allocated</code> and <code>Reserved</code> memory.</p>
+<pre><code class="lang-csharp">[Test, Performance]
+public void Empty()
+{
+    var allocated = new SampleGroup(&quot;TotalAllocatedMemory&quot;, SampleUnit.Megabyte);
+    var reserved = new SampleGroup(&quot;TotalReservedMemory&quot;, SampleUnit.Megabyte);
+
+    using (Measure.Scope())
+    {
+        Measure.Custom(allocated, UnityEngine.Profiling.Profiler.GetTotalAllocatedMemoryLong() / 1048576f);
+        Measure.Custom(reserved, UnityEngine.Profiling.Profiler.GetTotalReservedMemoryLong() / 1048576f);
+    }
+}
+</code></pre>
+<p>Before you start to collect package performance data, make sure the tests you run locally are stable (the data set deviation is &lt;5%). In the <strong>Performance Test Report</strong> window, ensure the test isn't fluctuating and that the results between runs are similar.</p>
+<p>Results of performance tests run on a local machine can be significantly different to previous test runs because of other applications running in the background, CPU overheating, or CPU boosting. Make sure that CPU intensive applications are turned off where possible. You can disable CPU boost in the BIOS or with third-party software such as Real Temp.</p>
+<p>For comparing performance data between runs, use the <a href="https://github.com/Unity-Technologies/PerformanceBenchmarkReporter/wiki">Unity Performance Benchmark Reporter</a>, which provides a graphical HTML report that enables you to compare performance metric baselines and subsequent performance metrics.</p>
+<h2 id="further-examples">Further examples</h2>
+<h4 id="example-1-measure-frame-time-for-scene">Example 1: Measure Frame Time For Scene</h4>
+<pre><code class="lang-csharp">    [UnityTest, Performance, Version(&quot;4&quot;)]
+    public IEnumerator MainSceneFrameTime_StartPosition()
+    { 
+        SceneManager.LoadScene(&quot;Demo&quot;, LoadSceneMode.Single);
+        
+        // Measure initial time of first 25 frames after loading the scene
+        using(Measure.Frames().Scope(&quot;FrameTime.FirstFramesAfterLoadingScene&quot;))
+        {
+            for (var i = 0; i &lt; 25; i++)
+            {
+                yield return null;
+            }
+        }
+
+        // Measure frame times for ten seconds during rest of the &quot;Demo&quot; scene
+        using (Measure.Frames().Scope(&quot;FrameTime.Main&quot;))
+        {
+            yield return new WaitForSeconds(10);
+        }
+    }
+</code></pre>
+<h4 id="example-2-measure-execution-time-to-serialize-simple-object-to-json">Example 2: Measure execution time to serialize simple object to JSON</h4>
+<pre><code class="lang-csharp">    [Test, Performance, Version(&quot;2&quot;)]
+    public void Serialize_SimpleObject()
+    {
+        var obj = new SimpleObject();
+        obj.Init();
+
+        Measure.Method(() =&gt; JsonUtility.ToJson(obj)).Run();
+    }
+
+    [Serializable]
+    public class SimpleObject
+    {
+        public int IntField;
+        public string StringField;
+        public float FloatField;
+        public bool BoolField;
+
+        [Serializable]
+        public struct NestedStruct
+        {
+            public int A, B;
+        }
+
+        public NestedStruct Str;
+
+        public Vector3 Position;
+
+        public void Init()
+        {
+            IntField = 1;
+            StringField = &quot;Test&quot;;
+            FloatField = 2.0f;
+            BoolField = false;
+            Str.A = 15;
+            Str.B = 20;
+        }
+    }
+</code></pre>
+<h4 id="example-3-measure-execution-time-to-create-5000-simple-cubes">Example 3: Measure execution time to create 5000 simple cubes</h4>
+<pre><code class="lang-csharp">    string[] markers =
+    {
+        &quot;Instantiate&quot;,
+        &quot;Instantiate.Copy&quot;,
+        &quot;Instantiate.Produce&quot;,
+        &quot;Instantiate.Awake&quot;
+    };
+
+    [Test, Performance]
+    public void Instantiate_CreateCubes()
+    {
+        using (Measure.ProfilerMarkers(markers))
+        {
+            using(Measure.Scope())
+            {
+                var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                for (var i = 0; i &lt; 5000; i++)
+                {
+                    UnityEngine.Object.Instantiate(cube);
+                }
+            }
+        }
+    }
+</code></pre>
+<h4 id="example-4-custom-measurement-to-capture-total-allocated-and-reserved-memory">Example 4: Custom measurement to capture total allocated and reserved memory</h4>
+<pre><code class="lang-csharp">    [Test, Performance, Version(&quot;1&quot;)]
+    public void Measure_Empty()
+    {
+        var allocated = new SampleGroup(&quot;TotalAllocatedMemory&quot;, SampleUnit.Megabyte);
+        var reserved = new SampleGroup(&quot;TotalReservedMemory&quot;, SampleUnit.Megabyte);
+        Measure.Custom(allocated, UnityEngine.Profiling.Profiler.GetTotalAllocatedMemoryLong() / 1048576f);
+        Measure.Custom(reserved, UnityEngine.Profiling.Profiler.GetTotalReservedMemoryLong() / 1048576f);
+    }
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

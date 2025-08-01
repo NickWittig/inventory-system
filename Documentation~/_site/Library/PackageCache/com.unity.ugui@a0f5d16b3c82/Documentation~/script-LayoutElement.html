@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Layout Element | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Layout Element | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="layout-element">Layout Element</h1>
+
+<p>If you want to override the minimum, preferred, or flexible size of a layout element, you can do that by adding a Layout Element component to the GameObject.</p>
+<p>A layout controller allocates width or height to a layout element in the following order:</p>
+<ul>
+<li>First, the layout controller allocates the minimum size properties (<strong>Min Width</strong>, <strong>Min Height</strong>).</li>
+<li>If there is sufficient available space, the layout controller allocates the preferred size properties (<strong>Preferred Width</strong>, <strong>Preferred Height</strong>).</li>
+<li>If there is additional available space, the layout controller allocates the flexible size properties (<strong>Flexible Width</strong>, <strong>Flexible Height</strong>).</li>
+</ul>
+<p>For more information about minimum, preferred, and flexible size, see documentation on <a href="UIAutoLayout.html">Auto Layout</a>.</p>
+<h2 id="properties">Properties</h2>
+<p><img src="images/UI_LayoutElementInspector.png" alt=""></p>
+<p>When you enable a width or height property, a value field appears next to it. Use this value field to enter the exact value for the width or height. <strong>Min</strong> and <strong>Preferred</strong> sizes are in regular units, while the <strong>Flexible</strong> sizes are in relative units.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Property:</strong></th>
+<th style="text-align: left;"><strong>Function:</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Ignore Layout</strong></td>
+<td style="text-align: left;">When enabled, the layout system ignores this layout element.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Min Width</strong></td>
+<td style="text-align: left;">The minimum width this layout element should have.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Min Height</strong></td>
+<td style="text-align: left;">The minimum height this layout element should have.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Preferred Width</strong></td>
+<td style="text-align: left;">The preferred width this layout element should have before additional available width is allocated.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Preferred Height</strong></td>
+<td style="text-align: left;">The preferred height this layout element should have before additional available height is allocated.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Flexible Width</strong></td>
+<td style="text-align: left;">The relative amount of additional available width this layout element should fill out relative to its siblings.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Flexible Height</strong></td>
+<td style="text-align: left;">The relative amount of additional available height this layout element should fill out relative to its siblings.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Layout Priority</strong></td>
+<td style="text-align: left;">The layout priority for this component. <br><br> If a GameObject has more than one component with layout properties (for example, an Image component and a LayoutElement component), the layout system uses the property values from the component with the highest <strong>Layout Priority</strong>. <br><br> If the components have the same <strong>Layout Priority</strong>, the layout system uses the highest value for each property, regardless of which component it comes from.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="description">Description</h2>
+<p>The Layout Element component lets you override the values for one or more of the layout properties. Enable the checkbox for a property you want to override and then specify the value you want to override with.</p>
+<p>Minimum and preferred sizes are defined in regular units, while the flexible sizes are defined in relative units. If any layout element has flexible size greater than zero, it means that all the available space will be filled out. The relative flexible size values of the siblings determines how big a proportion of the available space each sibling fills out. Most commonly, flexible width and height is set to just 0 or 1.</p>
+<p>Specifying both a preferred size and a flexible size can make sense in certain cases. Flexible sizes are only allocated after all preferred sizes have been fully allocated. Thus, a layout element which has a flexible size specified but no preferred size will keep its minimum size until other layout elements have grown to their full preferred size, and only then begin to grow based on additional available space. By also specifying a flexible size, this can be avoided and the element can grow to its preferred size in tandem with the other layout elements that have preferred sizes, and then grow further once all flexible sizes have been allocated.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

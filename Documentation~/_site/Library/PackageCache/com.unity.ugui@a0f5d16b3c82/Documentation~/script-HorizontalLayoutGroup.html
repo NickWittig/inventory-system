@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Horizontal Layout Group | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Horizontal Layout Group | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="horizontal-layout-group">Horizontal Layout Group</h1>
+
+<p>The Horizontal Layout Group component places its child layout elements next to each other, side by side. Their widths are determined by their respective minimum, preferred, and flexible widths according to the following model:</p>
+<ul>
+<li>The minimum widths of all the child layout elements are added together and the spacing between them is added as well. The result is the mimimum width of the Horizontal Layout Group.</li>
+<li>The preferred widths of all the child layout elements are added together and the spacing between them is added as well. The result is the preferred width of the Horizontal Layout Group.</li>
+<li>If the Horizontal Layout Group is at its minimum width or smaller, all the child layout elements will also have their minimum width.</li>
+<li>The closer the Horizontal Layout group is to its preferred width, the closer each child layout element will also get to their preferred width.</li>
+<li>If the Horizontal Layout Group is wider than its preferred width, it will distribute the extra available space proportionally to the child layout elements according to their respective flexible widths.</li>
+</ul>
+<p>For more information about minimum, preferred, and flexible width, see the documentation on <a href="UIAutoLayout.html">Auto Layout</a>.</p>
+<h2 id="properties">Properties</h2>
+<p><img src="images/UI_HorizontalLayoutGroupInspector.png" alt=""></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Property:</strong></th>
+<th style="text-align: left;"><strong>Function:</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Padding</strong></td>
+<td style="text-align: left;">The padding inside the edges of the layout group.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Spacing</strong></td>
+<td style="text-align: left;">The spacing between the layout elements.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Child Alignment</strong></td>
+<td style="text-align: left;">The alignment to use for the child layout elements if they don't fill out all the available space.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Control Child Size</strong></td>
+<td style="text-align: left;">Whether the Layout Group controls the width and height of its child layout elements.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Use Child Scale</strong></td>
+<td style="text-align: left;">Whether the Layout Group considers the scale of its child layout elements when sizing and laying out elements. <br><br> <strong>Width</strong> and <strong>Height</strong>  correspond to the <strong>Scale &gt; X</strong> and <strong>Scale &gt; Y</strong> values in each child layout element's <a href="class-RectTransform.html">Rect Transform</a> component. <br><br>You cannot animate the Scale values using the <a href="https://docs.unity3d.com/Manual/class-AnimatorController.html">Animator Controller</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Child Force Expand</strong></td>
+<td style="text-align: left;">Whether to force the child layout elements to expand to fill additional available space.</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

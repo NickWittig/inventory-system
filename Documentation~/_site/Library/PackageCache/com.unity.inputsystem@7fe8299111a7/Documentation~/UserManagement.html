@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>User Management | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="User Management | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="input-system-user-management">
+<h1 id="user-management">User Management</h1>
+
+<p>The Input System supports multi-user management through the <a href="../api/UnityEngine.InputSystem.Users.InputUser.html"><code>InputUser</code></a> class. This comprises both user account management features on platforms that have these capabilities built into them (such as Xbox and PS4), as well as features to manage Device allocations to one or more local users.</p>
+<blockquote>
+<p><strong>Note</strong>: The user management API is quite low-level in nature. The stock functionality of Player Input Manager component (see <a href="PlayerInputManager.html">Player Input Manager</a>) provides an easier way to set up user management. The API described here is useful when you want more control over user management.</p>
+</blockquote>
+<p>In the Input System, each <a href="../api/UnityEngine.InputSystem.Users.InputUser.html"><code>InputUser</code></a> represents a human interacting with the application. For example, you can have multiple users playing a game together on a single computer or device (local multiplayer), where each user has one or more <a href="#device-pairing">paired Input Devices</a>.</p>
+<p>The <a href="PlayerInputManager.html"><code>PlayerInputManager</code></a> class uses <a href="../api/UnityEngine.InputSystem.Users.InputUser.html"><code>InputUser</code></a> internally to handle users.</p>
+<blockquote>
+<p><strong>Note</strong>: In the editor, all <code>InputUser</code> instances are automatically removed when exiting play mode thus also removing any device pairings. In essence, <code>InputUser</code> is considered a player-only API.</p>
+</blockquote>
+<h2 id="device-pairing">Device pairing</h2>
+<p>You can use the <a href="../api/UnityEngine.InputSystem.Users.InputUser.html#UnityEngine_InputSystem_Users_InputUser_PerformPairingWithDevice_UnityEngine_InputSystem_InputDevice_UnityEngine_InputSystem_Users_InputUser_UnityEngine_InputSystem_Users_InputUserPairingOptions_"><code>InputUser.PerformPairingWithDevice</code></a> method to create a new <a href="../api/UnityEngine.InputSystem.Users.InputUser.html"><code>InputUser</code></a> instance and pair it with an <a href="../api/UnityEngine.InputSystem.InputDevice.html"><code>InputDevice</code></a>. You can also optionally pass in an existing <a href="../api/UnityEngine.InputSystem.Users.InputUser.html"><code>InputUser</code></a> instance to pair it with the Device, if you don't want to create a new user instance.</p>
+<p>To query the Devices paired to a specific <a href="../api/UnityEngine.InputSystem.Users.InputUser.html"><code>InputUser</code></a>, use <a href="../api/UnityEngine.InputSystem.Users.InputUser.html#UnityEngine_InputSystem_Users_InputUser_pairedDevices"><code>InputUser.pairedDevices</code></a>. To remove the pairing, use <a href="../api/UnityEngine.InputSystem.Users.InputUser.html#UnityEngine_InputSystem_Users_InputUser_UnpairDevice_UnityEngine_InputSystem_InputDevice_"><code>InputUser.UnpairDevice</code></a> or <a href="../api/UnityEngine.InputSystem.Users.InputUser.html#UnityEngine_InputSystem_Users_InputUser_UnpairDevices"><code>InputUser.UnpairDevices</code></a>.</p>
+<h3 id="initial-engagement">Initial engagement</h3>
+<p>After you create a user, you can use <a href="../api/UnityEngine.InputSystem.Users.InputUser.html#UnityEngine_InputSystem_Users_InputUser_AssociateActionsWithUser_UnityEngine_InputSystem_IInputActionCollection_"><code>InputUser.AssociateActionsWithUser</code></a> to associate <a href="Actions.html">Input Actions</a> to it, and use <a href="../api/UnityEngine.InputSystem.Users.InputUser.html#UnityEngine_InputSystem_Users_InputUser_ActivateControlScheme_System_String_"><code>InputUser.ActivateControlScheme</code></a> to associate and activate a <a href="ActionBindings.html#control-schemes">Control Scheme</a>. You can use <a href="../api/UnityEngine.InputSystem.InputControlScheme.html#UnityEngine_InputSystem_InputControlScheme_FindControlSchemeForDevice__1_UnityEngine_InputSystem_InputDevice___0_"><code>InputControlScheme.FindControlSchemeForDevice</code></a> to pick a control scheme that matches the selected Actions and Device:</p>
+<pre><code>var scheme = InputControlScheme.FindControlSchemeForDevice(user.pairedDevices[0], user.actions.controlsSchemes);
+if (scheme != null)
+    user.ActivateControlScheme(scheme);
+</code></pre>
+<p>When you activate a Control Scheme, the Input System automatically switches the active Binding mask for the user's Actions to that Control Scheme.</p>
+<h3 id="loss-of-device">Loss of Device</h3>
+<p>If paired Input Devices disconnect during the session, the system notifies the <a href="../api/UnityEngine.InputSystem.Users.InputUser.html"><code>InputUser</code></a> class. It still keeps track of the Device, and automatically re-pairs the Device if it becomes available again.</p>
+<p>To get notifications about these changes, subscribe to the <a href="../api/UnityEngine.InputSystem.Users.InputUser.html#UnityEngine_InputSystem_Users_InputUser_onChange"><code>InputUser.onChange</code></a> event.</p>
+<h2 id="debugging">Debugging</h2>
+<p>Check the debugger documentation to learn <a href="Debugging.html#debugging-users-and-playerinput">how to debug active users</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

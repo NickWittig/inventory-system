@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Working with debug messages | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Working with debug messages | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="working-with-debug-messages">Working with debug messages</h1>
+
+<p>You can use debug nodes to see the result of a code segment inside the Unity console. For example, attaching a Debug node to a Variable node outputs the value of the variable.</p>
+<div class="TIP">
+<h5>Tip</h5>
+<p>Debugs are a useful tool when prototyping.</p>
+</div>
+<h2 id="to-create-a-debug-message">To create a debug message</h2>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>Remove or disconnect the debugs from the graphs before producing the final executable.</p>
+</div>
+<ol>
+<li>Add a Script Machine component to the GameObject.</li>
+<li>Select <strong>Edit Graph</strong>.</li>
+<li>Do one of the following:
+<ul>
+<li>Use the starting events that are created with the script machine.</li>
+<li>Add an event node to the graph.</li>
+</ul>
+</li>
+<li>Drag and release from the node port.<br>
+The fuzzy finder appears.</li>
+<li>In the finder field, enter “Log”.<br>
+A list of Debug nodes appears.</li>
+<li>Select the relevant debug message type you want to use (for example <strong>Log(Message)</strong>, <strong>Log Error(Message)</strong> or <strong>Log Warning(Message)</strong>).<br>
+The select Debug node is placed in the graph and linked to the event.</li>
+<li>Drag and release from the Debug green (output) port.<br>
+The fuzzy finder appears.</li>
+<li>In the list, select the String node.<br>
+A String node appears on the graph, connected to the Debug node.v
+Enter the debug message in the string node**.**</li>
+</ol>
+<div class="TIP">
+<h5>Tip</h5>
+<p>You can link variables or GameObjects other than a string to the port to see the value in the console.</p>
+</div>
+<p>Whenever the graph is run and the Event is fired, the debug node executes and the text in the String appears in the console.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The debug bar indicates the number of messages of each debug type (in the following order Message, Error, Warning).</p>
+</div>
+<p><img src="images/vs-unity-console-w-warnings.png" alt=""></p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

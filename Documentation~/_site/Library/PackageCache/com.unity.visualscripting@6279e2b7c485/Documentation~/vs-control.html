@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Control nodes | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Control nodes | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="control-nodes">Control nodes</h1>
+
+<div class="NOTE">
+<h5>Note</h5>
+<p>For versions 2019/2020 LTS, download the Visual Scripting package from the <a href="https://assetstore.unity.com/packages/tools/visual-bolt-163802">Unity Asset Store</a>.</p>
+</div>
+<p>Control nodes branch, loop and merge the flow.</p>
+<h2 id="branching">Branching</h2>
+<p>Branching nodes split the control flow based on a value.</p>
+<h3 id="if">If</h3>
+<p>The common if node uses a boolean condition. Consider them as an &quot;if the condition is true, do something, otherwise, do something else.&quot;</p>
+<p><img src="images/vs-control-if-control-node.png" alt=""></p>
+<h3 id="switch">Switch</h3>
+<p>Branch on the value of an enum, a string, or an integer. These nodes are called Switch nodes.</p>
+<p>To switch on an enum, decide on the type of the enum. The branch output ports appears.</p>
+<p><img src="images/vs-control-switch-enum-control-node.png" alt=""></p>
+<p>To switch on a string or number, create each branch option in the graph inspector.</p>
+<p><img src="images/vs-control-switch-string-control-node.png" alt=""></p>
+<p>The node is updated with each output port.</p>
+<p>For strings, optionally choose to ignore the case of the selector.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>A Default port is always added. It is the path that the control flow should take if the input selector does not correspond to any other option.</p>
+</div>
+<h3 id="select">Select</h3>
+<p>Select nodes are the opposite of switch nodes. You can select a single value from a set of options based on a selector.</p>
+<p>For example, a Select On Integer node that chooses a color based on a player number.</p>
+<p><img src="images/vs-control-select-control-node.png" alt=""></p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>In the above example predictive debugging warns of a crash if playerNo is not within 1, 2, 3, or 4, because the Default port is not connected.</p>
+</div>
+<h2 id="looping">Looping</h2>
+<p>Loops repeats logic for a certain number of iterations before moving on.</p>
+<p>The logic to be repeated is called the body of the loop. After the loop is over, the exit port is called.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The body of every loop is called synchronously, not over the course of multiple frames. Co-routine-like behaviours are achieved by listening to the update event manually.</p>
+</div>
+<h3 id="while-loop">While Loop</h3>
+<p>The while loop is the simplest form of loop. It repeats its body while its condition remains true. Only when the condition becomes false does the loop terminate.</p>
+<p>For example, the following graph generates a new random name until the result isn't contained in the names application variable.</p>
+<p><img src="images/vs-control-while-loop-node.png" alt=""></p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>Do not create an infinite loop. If the condition is always true, the editor hangs. As loop bodies are synchronous, not parallel, there are few uses for while loops in visual scripting.</p>
+</div>
+<h3 id="for-each-loop">For Each Loop</h3>
+<p>For Each iterates over every element of a collection. It outputs the current index and item that is being looped over.</p>
+<p>For example, the following graph outputs four messages to the console:</p>
+<ul>
+<li><em>I love my cat</em></li>
+<li><em>I love my dog</em></li>
+<li><em>I love my bird</em></li>
+<li><em>I love my fish</em></li>
+</ul>
+<p><img src="images/vs-control-for-each-loop-node.png" alt=""></p>
+<p>To access the key and value from dictionaries in the loop, check the Dictionary box.</p>
+<h3 id="for-loop">For Loop</h3>
+<p>For is a numeric loop and requires three integers: a start index, an end index, and a step. The loop starts at the first index, then increments towards the last index via increments of the step. It outputs the current index.</p>
+<p>For example, this graph counts to ten by skipping odd numbers because of its step. In other words, its output is 0, 2, 4, 6, then 8.</p>
+<p><img src="images/vs-control-for-loop-node.png" alt=""></p>
+<p>The For loop can also be very useful when combined with the Get List Item and Count Items nodes.</p>
+<p>For example, the following graph is very similar to the last graph as the output to the console is &quot;I like {animal}s&quot;.</p>
+<p>Instead of using the For Each node that outputs each item, the graph outputs each item manually by its index in the list. This graph outputs the following messages:</p>
+<ul>
+<li><em>I like cats</em></li>
+<li><em>I like dogs</em></li>
+<li><em>I like birds</em></li>
+<li><em>I like horses</em></li>
+</ul>
+<p><img src="images/vs-control-for-loop-node-get-count-list-items-node.png" alt=""></p>
+<h3 id="break-loop">Break Loop</h3>
+<p>A loop can finish early by using the Break Loop node. As soon as this node is entered, the exit port of the loop is called, no matter how many more iterations remain.</p>
+<p>For example, even though this for loop is supposed to count to 10, it stops at 5 because of the break. Its output is 0, 1, 2, 3, then 4.</p>
+<p><img src="images/vs-control-break-loop-node.png" alt=""></p>
+<h2 id="exception-handling">Exception Handling</h2>
+<h3 id="try-catch">Try Catch</h3>
+<p>The Try Catch node handles <a href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/exceptions/">Exceptions</a> that occur. It prevents your game from crashing in case you suspect some code might fail.</p>
+<p>Anything that gets executed in the Try branch is considered &quot;safe&quot;: the script continues from the Catch branch instead if it fails. The Exception port captures information about the failure when that happens. A common way of handling this is to log a warning with the exception message.</p>
+<p><img src="images/vs-control-try-catch-node.png" alt=""></p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>By default, this node catches all exceptions. Be specific in your handling by changing the exception type in the dropdown.</p>
+</div>
+<p>The Finally branch is optional. It is always called after Try or Catch, regardless of whether the operation succeeded or not. It is usually used to dispose or destroy any resources that must be freed. This port can be disconnected if there is no need to destroy any resources.</p>
+<h3 id="throw">Throw</h3>
+<p>The Throw node allows you to raise your own exceptions that stop the flow. These are caught with Try Catch.</p>
+<p>It is good practice to &quot;fail early&quot; by throwing as soon as something unexpected happens. It helps catch bugs early in the chain, instead of letting them trickle down and have unexpected side effects that are hard to debug.</p>
+<p>For example, to ensure damage is positive before applying it:</p>
+<p><img src="images/vs-control-throw-node.png" alt=""></p>
+<p>If the Custom checkbox is selected, you can pass a custom Exception object that contains more data than a simple message. Most often, this is not required. By default, the thrown exception is of type <code>System.Exception</code>.</p>
+<h2 id="toggles">Toggles</h2>
+<p>Toggle nodes are similar in principle to light-switches: they can be turned on and off to impact either the script or values. Think of them as &quot;gates&quot; that can be opened and closed.</p>
+<h3 id="toggle-flow">Toggle Flow</h3>
+<p>The Toggle Flow node gates the flow of control. When on, the flow passes through; when off, the flow does  not.</p>
+<p>There are many inputs and outputs that allow fine grained control over the logic. In the previous example, Toggle is used to show how the same event (a keypress) turns the toggle on and off. Instead you can use On and Off with two different events to get the same results.</p>
+<p>On the output side, the Is On boolean port indicates the toggle status, that is turned on or off. The control outputs are triggered according to the table below:</p>
+<table>
+<thead>
+<tr>
+<th>Port</th>
+<th>Triggered When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>On</td>
+<td>Flow enters the toggle via the unmarked input while it is on.</td>
+</tr>
+<tr>
+<td>Off</td>
+<td>Flow enters the toggle via the unmarked input while it is off.</td>
+</tr>
+<tr>
+<td>Turned On</td>
+<td>The toggle gets turned on, either via the On or Toggle inputs.</td>
+</tr>
+<tr>
+<td>Turned Off</td>
+<td>The toggle gets turned off, either via the Off or Toggle inputs.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="toggle-value">Toggle Value</h3>
+<p>The Toggle Value node selects between two different input values depending on whether it is on or off. Its ports work exactly like the Toggle Flow node.</p>
+<p>Another way of implementing the same logic as the previous example: clicking Space toggles the object to move up. This time a value of 1 or 0 is provided as the vertical velocity.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Turn on relations in the toolbar as a means to visualize the flow between the toggle ports.</p>
+</div>
+<p><img src="images/vs-control-toggle-flow-value-node.png" alt=""></p>
+<h2 id="once">Once</h2>
+<p>The Once node executes different logic the first time it is traversed from any subsequent times.</p>
+<p><img src="images/vs-control-once-node.png" alt=""></p>
+<p>It can be reset by entering the Reset port.</p>
+<h2 id="cache">Cache</h2>
+<p>The Cache node saves the result of an expensive operating and reuses it instead of fetching it again each time you need it.</p>
+<p>For example, using this graph, the formula is calculated twice:</p>
+<p><img src="images/vs-control-cache-node-example.png" alt=""></p>
+<p>By using the Cache node, the result is saved and calculated only once, optimizing performance.</p>
+<p><img src="images/vs-control-cache-node.png" alt=""></p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>It is important to note that caching only lasts within the scope of the current flow. The value of the cache is not shared or available from another event.</p>
+</div>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

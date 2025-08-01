@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Input Event nodes | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Input Event nodes | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="input-event-nodes">Input Event nodes</h1>
+
+<p>Input nodes are an Event node type that can read input from Unity's <a href="https://docs.unity3d.com/Manual/class-InputManager.html">Input Manager</a> or <a href="https://docs.unity3d.com/Packages/com.unity.inputsystem@latest">Input System package</a> for use in a Script Graph.</p>
+<p>For more information about how to read and capture input in Visual Scripting, see <a href="vs-capture-player-input.html">Capture user input in an application</a>.</p>
+<h2 id="input-system-package-nodes">Input System package nodes</h2>
+<p>The following nodes read and interact with Events from the Input System package:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Node</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><a href="vs-nodes-events-input-system-button.html"><strong>On Input System Event Button</strong></a></td>
+<td style="text-align: left;">The On Input System Event Button node listens for a specific Input Action from a Player Input component. It doesn't send or read any other data.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="vs-nodes-events-input-system-float.html"><strong>On Input System Event Float</strong></a></td>
+<td style="text-align: left;">The On Input System Event Float node listens for a specific Input Action from a Player Input component. The node can output a <strong>single float value</strong>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="vs-nodes-events-input-system-vector2.html"><strong>On Input System Event Vector 2</strong></a></td>
+<td style="text-align: left;">The On Input System Event Vector 2 node listens for a specific Input Action from a Player Input component. The node can output <strong>two values as a Vector 2</strong>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="input-manager-nodes">Input Manager nodes</h2>
+<p>The following nodes read and interact with Events from Unity's Input Manager:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Node</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><a href="vs-nodes-events-on-button-input.html"><strong>On Button Input</strong></a></td>
+<td style="text-align: left;">The On Button Input node listens for a specified action on a virtual button from your Input Manager configuration.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="vs-nodes-events-on-keyboard-input.html"><strong>On Keyboard Input</strong></a></td>
+<td style="text-align: left;">The On Keyboard Input node listens for a specified action on a keyboard key.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="vs-nodes-events-on-mouse-down.html"><strong>On Mouse Down</strong></a></td>
+<td style="text-align: left;">The On Mouse Down node listens for a mouse click action on a specific GameObject in your application.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="vs-nodes-events-on-mouse-drag.html"><strong>On Mouse Drag</strong></a></td>
+<td style="text-align: left;">The On Mouse Drag node listens for a mouse click and hold on a specific GameObject in your application. It triggers the next node connected to it as long as the mouse button is held down on that GameObject.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="vs-nodes-events-on-mouse-enter.html"><strong>On Mouse Enter</strong></a></td>
+<td style="text-align: left;">The On Mouse Enter node listens for the user's mouse pointer location to enter the Collider of a specified GameObject. When the mouse enters the Collider or GUI element, the node triggers the next node connected to it.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="vs-nodes-events-on-mouse-exit.html"><strong>On Mouse Exit</strong></a></td>
+<td style="text-align: left;">The On Mouse Exit node listens for the user's mouse pointer location to exit the Collider of a specified GameObject. When the mouse exits the Collider or GUI element, the node triggers the next node connected to it.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="vs-nodes-events-on-mouse-input.html"><strong>On Mouse Input</strong></a></td>
+<td style="text-align: left;">The On Mouse Input node listens for a specific action on a user's mouse. The action doesn't need to happen on a specific GameObject's Collider.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="vs-nodes-events-on-mouse-over.html"><strong>On Mouse Over</strong></a></td>
+<td style="text-align: left;">The On Mouse Over node listens for a user's mouse to land over a specified GameObject's Collider. While the user's mouse is over the Collider, it triggers the next node connected to it once every frame.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="vs-nodes-events-on-mouse-up-button.html"><strong>On Mouse Up As Button</strong></a></td>
+<td style="text-align: left;">The On Mouse Up As Button node listens for a user to release their mouse button after they click a Collider in your application. To trigger the On Mouse Up As Button node, the user must release their mouse button over the same Collider they clicked.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="vs-nodes-events-on-mouse-up.html"><strong>On Mouse Up</strong></a></td>
+<td style="text-align: left;">The On Mouse Up node listens for a user to release their mouse button after they click a Collider in your application. The user can release their mouse button anywhere in your application to trigger the On Mouse Up node.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="vs-capture-player-input.html">Capturing input in your application</a></li>
+<li><a href="vs-capturing-player-inputs-new.html">Capture input using the Input System package</a></li>
+<li><a href="vs-capturing-player-inputs-old.html">Capture input using the Input Manager</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Version control systems | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Version control systems | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="version-control-systems">Version control systems</h1>
+
+<p>To avoid any problems with automatically generated files, exclude some Visual Scripting files from your version control solution.</p>
+<p>To exclude files from version control, include a file or configure your settings to specify which files and folders to exclude:</p>
+<ol>
+<li><p>Create a new file at the root of your project directory.</p>
+<div class="TIP">
+<h5>Tip</h5>
+<p>The root of your project directory is at the level above your <strong>Assets</strong> folder.</p>
+</div>
+</li>
+<li><p>Name the file based on your chosen version control system:</p>
+<ul>
+<li><p><strong>Git</strong>: <code>.gitignore</code>. For more information, see <a href="https://git-scm.com/docs/gitignore">Git's documentation on gitignore</a>.</p>
+</li>
+<li><p><strong>Unity Collab</strong>: <code>.collabignore</code>. For more information, see the <a href="https://docs.unity3d.com/Manual/UnityCollaborateIgnoreFiles.html">Unity User Manual</a>.</p>
+</li>
+<li><p><strong>Subversion</strong>: Ignore the files from your <code>svn:ignore</code> property or runtime configuration options. For more information, see Subversion's documentation on <a href="https://svnbook.red-bean.com/en/1.7/svn.advanced.props.special.ignore.html">Ignoring Unversioned Items</a>.</p>
+</li>
+</ul>
+</li>
+<li><p>Open the file in a text editor.</p>
+</li>
+<li><p>Add the appropriate files or file patterns to your ignore file or configuration. For an example and more information, see <a href="#ignore-file-template">Ignore file template</a>.</p>
+</li>
+</ol>
+<div class="NOTE">
+<h5>Note</h5>
+<p>If you have an issue when you try to create a <code>.gitignore</code> file on Windows, refer to Microsoft's documentation on <a href="https://docs.microsoft.com/en-us/azure/devops/repos/git/ignore-files?view=azure-devops&amp;tabs=command-line#create-a-gitignore">how to create a .gitignore file from the command line</a>.</p>
+</div>
+<h2 id="ignore-file-template">Ignore file template</h2>
+<p>The following template ignores all core Visual Scripting files, but preserves your project settings and variables. It also includes the standard Unity ignore directives for files that you can exclude from version control. For more information, see the <code>Unity.gitignore</code> file included in <a href="https://github.com/github/gitignore/blob/master/Unity.gitignore">GitHub's gitignore template repository</a>.</p>
+<p>Refer to the comments in the template for which lines to comment or remove.</p>
+<pre><code>    # Optionally exclude these transient (generated) files, 
+    # because they can be easily re-generated by the package
+
+    Assets/Unity.VisualScripting.Generated/VisualScripting.Flow/UnitOptions.db
+    Assets/Unity.VisualScripting.Generated/VisualScripting.Flow/UnitOptions.db.meta
+    Assets/Unity.VisualScripting.Generated/VisualScripting.Core/Property Providers
+    Assets/Unity.VisualScripting.Generated/VisualScripting.Core/Property Providers.meta
+
+    ## Unity
+    # From: https://github.com/github/gitignore/blob/master/Unity.gitignore
+
+    /[Ll]ibrary/
+    /[Tt]emp/
+    /[Oo]bj/
+    /[Bb]uild/
+    /[Bb]uilds/
+    /[Ll]ogs/
+    /[Uu]ser[Ss]ettings/
+
+    # MemoryCaptures can get excessive in size.
+    # They also could contain extremely sensitive data
+    /[Mm]emoryCaptures/
+
+    # Asset meta data should only be ignored when the corresponding asset is also ignored
+    !/[Aa]ssets/**/*.meta
+
+    # Uncomment this line if you want to ignore the asset store tools plugin
+    # /[Aa]ssets/AssetStoreTools*
+
+    # Autogenerated Jetbrains Rider plugin
+    /[Aa]ssets/Plugins/Editor/JetBrains*
+
+    # Visual Studio cache directory
+    .vs/
+
+    # Gradle cache directory
+    .gradle/
+
+    # Autogenerated VS/MD/Consulo solution and project files
+    ExportedObj/
+    .consulo/
+    *.csproj
+    *.unityproj
+    *.sln
+    *.suo
+    *.tmp
+    *.user
+    *.userprefs
+    *.pidb
+    *.booproj
+    *.svd
+    *.pdb
+    *.opendb
+    *.VC.db
+
+    # Unity3D generated meta files
+    *.pidb.meta
+    *.pdb.meta
+    *.mdb.meta
+
+    # Unity3D Generated File On Crash Reports
+    sysinfo.txt
+
+    # Builds
+    *.apk
+    *.aab
+    *.unitypackage
+
+    # Crashlytics generated file
+    crashlytics-build.properties
+
+    # Packed Addressables
+    /[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*.*.bin*
+
+    # Temporary auto-generated Android Assets
+    /[Aa]ssets/[Ss]treamingAssets/aa.meta
+    /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+</code></pre>
+<h2 id="remove-previously-committed-files">Remove previously committed files</h2>
+<p>If you committed any files to a version control solution that you want to exclude:</p>
+<ul>
+<li>See Git's documentation on <a href="https://git-scm.com/docs/git-rm">the <code>git-rm</code> command</a>.</li>
+<li>See Subversion's documentation on <a href="https://svnbook.red-bean.com/en/1.6/svn.ref.svn.c.delete.html">the <code>svn delete</code> command</a>.</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

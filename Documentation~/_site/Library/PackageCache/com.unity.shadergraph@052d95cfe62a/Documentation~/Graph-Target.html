@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Graph Target | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Graph Target | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="graph-target">Graph Target</h1>
+
+<p>A Target determines the end point compatibility of a shader you generate using Shader Graph. You can select Targets for each Shader Graph asset, and use the <a href="Graph-Settings-Tab.html">Graph Settings Menu</a> to change the Targets.</p>
+<p><img src="images/GraphSettings_Menu.png" alt="image"></p>
+<p>Targets hold information such as the required generation format, and variables that allow compatibility with different render pipelines or integration features like <a href="https://docs.unity3d.com/Packages/com.unity.visualeffectgraph@latest">Visual Effect Graph</a>. You can select any number of Targets for each Shader Graph asset. If a Target you select isn't compatible with other Targets you've already selected, an error message that explains the problem appears.</p>
+<p>Target Settings are specific to each Target, and can vary between assets depending on which Targets you've selected. Be aware that Universal Render Pipeline (URP) Target Settings and High Definition Render Pipeline (HDRP) Target Settings might change in future versions.</p>
+<p>Typically, each Target you select generates a valid subshader from the graph. For example, a Shader Graph asset with both URP and HDRP Targets will generate two subshaders. When you use a graph that targets multiple render pipelines, you must reimport the Shader Graph asset if you change the active render pipeline. This updates the Material Inspector for any Materials that use your graph.</p>
+<p>Shader Graph supports three targets: the <a href="https://docs.unity3d.com/Manual/urp/urp-introduction.html">Universal Render Pipeline</a>, the <a href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@12.0/manual/index.html">High Definition Render Pipeline</a>, and the <a href="https://docs.unity3d.com/2020.3/Documentation/Manual/render-pipelines">Built-In Render Pipeline</a>.</p>
+<p>Not all blocks are compatible with all targets. If a block in your graph becomes inactive when you choose a target, that block is not compatible with that target.</p>
+<p>The visual results of a graph are not the same in all render pipelines. This is because of the technical differences between URP, Built-In, and HDRP.</p>
+<p>Shader Graphs that target the Built-In Render Pipeline replicate the results of shaders handwritten in ShaderLab, with the exception of normal maps. For mathematical correctness, normal maps created with Shader Graph behave as they do in URP even when your build targets the Built-In Render Pipeline.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

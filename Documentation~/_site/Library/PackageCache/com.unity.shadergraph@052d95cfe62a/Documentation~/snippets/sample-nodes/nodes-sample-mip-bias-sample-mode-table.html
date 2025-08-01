@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>nodes-sample-mip-bias-sample-mode-table.md | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="nodes-sample-mip-bias-sample-mode-table.md | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../../../index.html">
+            <img id="logo" class="svg" src="../../../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+
+<table>
+<thead>
+<tr>
+<th><strong>Name</strong></th>
+<th><strong>Type</strong></th>
+<th colspan="2"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="3"><strong>Use Global Mip Bias</strong></td>
+<td rowspan="3">Toggle</td>
+<td colspan="2">Enable <strong>Use Global Mip Bias</strong> to use the render pipeline's Global Mip Bias. This bias adjusts the percentage of texture information taken from a specific mip when sampling. For more information on mip bias, see <a href="https://docs.unity3d.com/Documentation/Manual/texture-mipmaps-introduction.html">Mipmaps introduction</a> in the Unity User Manual.</td>
+</tr>
+<tr>
+<td><strong>Enabled</strong></td>
+<td>Shader Graph uses the render pipeline's Global Mip Bias to adjust the texture information taken when sampling.</td>
+</tr>
+<tr>
+<td><strong>Disabled</strong></td>
+<td>Shader Graph doesn't use the render pipeline's Global Mip Bias to adjust texture information when sampling.</td>
+</tr>
+<tr>
+<td rowspan="5"><strong>Mip Sampling Mode</strong></td>
+<td rowspan="5">Dropdown</td>
+<td colspan="2">Choose the sampling mode to use to calculate the mip level of the texture.</td>
+</tr>
+<tr>
+<td><strong>Standard</strong></td>
+<td>The render pipeline calculates and automatically selects the mip for the texture.</td>
+</tr>
+<tr>
+<td><strong>LOD</strong></td>
+<td>The render pipeline lets you set an explicit mip for the texture on the node. The texture will always use this mip, regardless of the DDX or DDY calculations between pixels. Set the Mip Sampling Mode to <strong>LOD</strong> to connect the node to a Block node in the Vertex Context. For more information on Block nodes and Contexts, see <a href="Master-Stack.md">Master Stack</a>.</td>
+</tr>
+<tr>
+<td><strong>Gradient</strong></td>
+<td>The render pipeline lets you set the DDX and DDY values to use for its mip calculation, instead of using the values calculated from the texture's UV coordinates. For more information on DDX and DDY values, see <a href="https://docs.unity3d.com/Documentation/Manual/texture-mipmaps-introduction.html">Mipmaps introduction</a> in the User Manual.</td>
+</tr>
+<tr>
+<td><strong>Bias</strong></td>
+<td>The render pipeline lets you set a bias to adjust the calculated mip for a texture up or down. Negative values bias the mip to a higher resolution. Positive values bias the mip to a lower resolution. The render pipeline can add this value to the value of the Global Mip Bias, or use this value instead of its Global Mip Bias. For more information on mip bias, see <a href="https://docs.unity3d.com/Documentation/Manual/texture-mipmaps-introduction.html">Mipmaps introduction</a> in the User Manual.</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

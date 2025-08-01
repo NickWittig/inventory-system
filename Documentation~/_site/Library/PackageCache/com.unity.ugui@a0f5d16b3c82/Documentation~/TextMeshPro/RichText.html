@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Rich Text | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Rich Text | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../../index.html">
+            <img id="logo" class="svg" src="../../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="rich-text">Rich Text</h1>
+
+<p>Rich text tags alter the appearance and layout of text by supplementing or overriding TextMesh Pro GameObject properties. For example, you can use rich text tags to change the color or alignment of some, or all of your text without modifying its properties or material.</p>
+<p><strong>To use rich text tags:</strong></p>
+<ul>
+<li>Enter any <a href="RichTextSupportedTags.html">supported rich text tags</a> in the TextMeshPro <a href="TMPObjectUIText.html#text"><strong>Text</strong> input field</a>, inline with the text you want to display.</li>
+</ul>
+<p><strong>To disable rich text for a TextMesh Pro object:</strong></p>
+<ul>
+<li>Open the TextMesh Pro GameObject in the Inspector, and disable the <strong>Text Mesh Pro &gt; Extra Settings &gt; Rich Text</strong> property.</li>
+</ul>
+<h2 id="rich-text-tags">Rich Text Tags</h2>
+<p>Rich text tags are  similar to  HTML or XML tags, but have less strict syntax.</p>
+<p>A simple tag consists of only the tag name, and looks like  this:</p>
+<p><code>&lt;tag&gt;</code></p>
+<p>For example, the <code>&lt;b&gt;</code> tag makes text bold, while the <code>&lt;u&gt;</code> tag underlines it.</p>
+<h3 id="tag-attributes-and-values">Tag attributes and values</h3>
+<p>Some tags have additional values or attributes, and look like this:</p>
+<p><code>&lt;tag=&quot;value&quot;&gt;</code> or <code>&lt;tag attribute=&quot;value&quot;&gt;</code></p>
+<p>For example <code>&lt;color=”red”&gt;</code> makes text red. <code>Red</code> is the <code>color</code> tag’s value.</p>
+<p>Similarly <code>&lt;sprite index=3&gt;</code> inserts the fourth sprite from the default Sprite Asset. <code>index</code> is an attribute of the <code>sprite</code> tag, and its value is <code>3</code>.</p>
+<p>A tag, including its attributes, can be up to 128 characters long.</p>
+<p>The table below lists possible attribute/value types.</p>
+<table>
+<thead>
+<tr>
+<th>Attribute/value type:</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Decimals</td>
+<td><code>0.5</code></td>
+</tr>
+<tr>
+<td>Percentages</td>
+<td><code>25%</code></td>
+</tr>
+<tr>
+<td>Pixel values</td>
+<td><code>5px</code></td>
+</tr>
+<tr>
+<td>Font units</td>
+<td><code>1.5em</code></td>
+</tr>
+<tr>
+<td>Hex color values</td>
+<td><code>#FFFFFF</code> (RGB)<br><code>#FFFFFFFF</code> (RGBA)<br><code>#FF</code> (A)</td>
+</tr>
+<tr>
+<td>Names</td>
+<td>Both <code>&lt;link=”ID”&gt;</code> and <code>&lt;link=ID&gt;</code> are valid.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tag-scope-and-nested-tags">Tag scope and nested tags</h2>
+<p>Tags have a scope that defines how much of the text they affect. Most of the time, a tag added to a given point in the text affects all of the text from that point forward.</p>
+<p>For example, adding the tag <code>&lt;color=&quot;red&quot;&gt;</code> at the beginning of the text affects the entire text block:</p>
+<p><code>&lt;color=&quot;red&quot;&gt;This text is red</code></p>
+<p><img src="../images/TMP_RichTextExample1.png" alt="Example image"><br>
+<em>Successive color tags</em></p>
+<p>Adding the same tag in the middle of the text block affects only the text between the tag and the end of the block :</p>
+<p><code>This text turns&lt;color=&quot;red&quot;&gt; red</code></p>
+<p><img src="../images/TMP_RichTextExample2.png" alt="Example image"><br>
+<em>Successive color tags</em></p>
+<p>If you use the same tag more than once in a text block, the last tag supersedes all previous tags of the same type.</p>
+<p><code>&lt;color=&quot;red&quot;&gt;This text goes from red&lt;color=&quot;green&quot;&gt; to green</code></p>
+<p><img src="../images/TMP_RichTextExample3.png" alt="Example image"><br>
+<em>Successive color tags</em></p>
+<p>You can also limit the scope of most tags using a closing tag. Closing tags contain only a forward slash and the tag name, like this: <code>&lt;/tag&gt;</code></p>
+<p>Tags can also be <em>nested</em> so one tag’s scope is within another tag’s scope. For example:</p>
+<pre><code>&lt;color=red&gt;This text is &lt;color=green&gt;mostly &lt;/color&gt;red.
+</code></pre>
+<p><img src="../images/TMP_RichTextExample4.png" alt="Example image"><br>
+<em>Successive color tags</em></p>
+<p>The first <code>&lt;color&gt;</code> tag’s scope is the entire text block. The the second <code>&lt;color&gt;</code> tag has a closing tag that limits its scope to one word.</p>
+<p>When you nest tags, you don't have to close their scopes in the same order that you started them.</p>
+<h2 id="rich-text-tags-and-right-to-left-text">Rich-text tags and right-to-left text</h2>
+<p>TextMesh Pro's right-to-left editor does not distinguish between regular text and rich text tags. Rich text tags that you enter in the right-to-left editor do not work unless you type them right-to-left as well.</p>
+<p>The easiest way to apply rich text tags to right-to-left text is to type the text in the right-to-left editor, and then apply the tags in the regular editor.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

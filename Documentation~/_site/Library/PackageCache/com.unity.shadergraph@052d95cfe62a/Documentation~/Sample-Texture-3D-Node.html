@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Sample Texture 3D node | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Sample Texture 3D node | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="sample-texture-3d-node">Sample Texture 3D node</h1>
+
+<p>The Sample Texture 3D node samples a <strong>Texture 3D</strong> asset and returns a <strong>Vector 4</strong> color value. You can specify the <strong>UV</strong> coordinates for a texture sample and use a <a href="Sampler-State-Node.html">Sampler State node</a> to define a specific Sampler State.</p>
+<p>For more information about Texture 3D assets, see <a href="https://docs.unity3d.com/Manual/class-Texture3D.html">3D textures</a> in the Unity User manual.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>If you experience texture sampling errors for this node in a graph with Custom Function Nodes or Sub Graphs, upgrade to Shader Graph version 10.3 or later.</p>
+</div>
+
+<p><img src="images/sg-sample-texture-3d-node.png" alt="An image that displays the Graph window with a Sample Texture 3D node."></p>
+<h2 id="create-node-menu-category">Create Node menu category</h2>
+<p>The Sample Texture 2D node is under the <strong>Input</strong> &gt; <strong>Texture</strong> category in the Create Node menu.</p>
+<h2 id="compatibility">Compatibility</h2>
+<p>The Sample Texture 3D node is supported on the following render pipelines:<table>
+<thead>
+<tr>
+<th><strong>Built-In Render Pipeline</strong></th>
+<th><strong>Universal Render Pipeline (URP)</strong></th>
+<th><strong>High Definition Render Pipeline (HDRP)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p>With its default settings, this node can only connect to a Block node in the <strong>Fragment</strong> Context of a Shader Graph. To sample a Texture for the <strong>Vertex</strong> Context of a Shader Graph, set the <a href="#additional-node-settings">Mip Sampling Mode</a> to <strong>LOD</strong>.</p>
+<h2 id="inputs">Inputs</h2>
+<p>The Sample Texture 3D node has the following input ports:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Name</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Binding</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Texture</strong></td>
+<td>Texture 3D</td>
+<td>None</td>
+<td>The 3D Texture asset to sample.</td>
+</tr>
+<tr>
+<td><strong>UV</strong></td>
+<td>Vector 3</td>
+<td>None</td>
+<td>The 3D UV coordinates to use to sample the Texture.</td>
+</tr>
+<tr>
+<td><strong>Sampler</strong></td>
+<td>Sampler State</td>
+<td>Default Sampler State</td>
+<td>The Sampler State and settings to use to sample the texture.</td>
+</tr>
+<tr>
+<td><strong>LOD</strong></td>
+<td>Float</td>
+<td>LOD</td>
+<td>The specific mip to use when sampling the Texture. <strong>NOTE</strong> The <strong>LOD</strong> Input port only displays if <strong>Mip Sampling Mode</strong> is <strong>LOD</strong>. For more information, refer to <a href="#additional-node-settings">Additional node settings</a>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="additional-node-settings">Additional node settings</h2>
+<p>The Sample Texture 3D node has some additional settings that you can access from the Graph Inspector:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Name</strong></th>
+<th><strong>Type</strong></th>
+<th colspan="2"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="3"><strong>Mip Sampling Mode</strong></td>
+<td rowspan="3">Dropdown</td>
+<td colspan="2">Choose the sampling mode that the Sample Texture 3D node uses to calculate the mip level of the texture. </td>
+</tr>
+<tr>
+<td><strong>Standard</strong></td>
+<td>The mip is calculated and selected automatically for the texture.</td>
+</tr>
+<tr>
+<td><strong>LOD</strong></td>
+<td>Set an explicit mip for the texture. The texture will always use this mip, regardless of the DDX or DDY calculations between pixels. If the <strong>Mip Sampling Mode</strong> is set to <strong>LOD</strong>, you can connect the node to a Block node in the <strong>Vertex</strong> Context. For more information on Block nodes and Contexts, see <a href="Master-Stack.html">Master Stack</a>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="outputs">Outputs</h2>
+<p>The Sample Texture 3D node has the following output ports:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Name</strong></th>
+<th style="text-align: left;"><strong>Type</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>RGBA</strong></td>
+<td style="text-align: left;">Vector 4</td>
+<td style="text-align: left;">The full RGBA Vector 4 color value of the texture sample.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>R</strong></td>
+<td style="text-align: left;">Float</td>
+<td style="text-align: left;">The Red channel or X component of the texture sample.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>G</strong></td>
+<td style="text-align: left;">Float</td>
+<td style="text-align: left;">The Green channel or Y component of the texture sample.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>B</strong></td>
+<td style="text-align: left;">Float</td>
+<td style="text-align: left;">The Blue channel or Z component of the texture sample.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>A</strong></td>
+<td style="text-align: left;">Float</td>
+<td style="text-align: left;">The Alpha channel or W component of the texture sample.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="example-graph-usage">Example graph usage</h2>
+<p>In the following example, the Sample Texture 3D node samples a 3D fractal noise Texture asset. It takes its input UV coordinates from a Position node, set to <strong>Object</strong> Space.</p>
+<p>The Sample Texture 3D node needs a Vector 3 for its UV coordinate input, rather than a Vector 2, because the Texture asset exists as a volume in imaginary 3D space. The node uses the default Sampler State because there is no Sampler State node connected.</p>
+<p>This specific Texture 3D asset stores its Texture data in the Alpha channel, so the Sample Texture 3D node uses its <strong>A</strong> output port as an input for the Base Color Block node in the <strong>Fragment</strong> Context of the Master Stack:</p>
+<p><img src="images/sg-sample-texture-3d-node-example.png" alt="An image of the Graph window, that displays a Position node connected to the UV input port on a Sample Texture 3D node. The Sample Texture 3D node's A output port connects to the Base Color Block node in the Fragment Context of the Master Stack."></p>
+<h2 id="generated-code-example">Generated code example</h2>
+<p>The following code represents this node in Unity's shader code:</p>
+<pre><code>float4 _SampleTexture3D_Out = SAMPLE_TEXTURE3D(Texture, Sampler, UV);
+</code></pre>
+<h2 id="related-nodes">Related nodes</h2>
+<p>The following nodes are related or similar to the Sample Texture 3D node:</p>
+<ul>
+<li><a href="Sample-Texture-2D-Array-Node.html">Sample Texture 2D Array node</a></li>
+<li><a href="Sample-Texture-2D-Node.html">Sample Texture 2D node</a></li>
+<li><a href="Sampler-State-Node.html">Sampler State node</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

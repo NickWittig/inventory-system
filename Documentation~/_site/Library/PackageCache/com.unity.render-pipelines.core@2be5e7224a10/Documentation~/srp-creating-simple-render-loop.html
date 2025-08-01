@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Create a simple render loop in a custom render pipeline | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Create a simple render loop in a custom render pipeline | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="um-srp-creating-simple-render-loop">
+<h1 id="create-a-simple-render-loop-in-a-custom-render-pipeline">Create a simple render loop in a custom render pipeline</h1>
+
+<p>A render loop is the term for all of the rendering operations that take place in a single frame. This page contains information on creating a simple render loop in a custom render pipeline that is based on Unity's Scriptable Render Pipeline.</p>
+<p>The code examples on this page demonstrate the basic principles of using the Scriptable Render Pipeline. You can use this information to build your own custom Scriptable Render Pipeline, or to understand how Unity's prebuilt Scriptable Render Pipelines work.</p>
+<h2 id="preparing-your-project">Preparing your project</h2>
+<p>Before you begin writing the code for your render loop, you must prepare your project.</p>
+<p>The steps are as follows:</p>
+<ol>
+<li><a href="#creating-unity-shader">Create an SRP-compatible shader</a>.</li>
+<li><a href="#creating-gameobject">Create one or more GameObjects to render</a>.</li>
+<li><a href="#creating-srp">Create the basic structure of your custom SRP</a>.</li>
+<li><em>Optional:</em> If you plan to extend your simple custom SRP to add more complex functionality, install the SRP Core package. The SRP Core package includes the <a href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.core@17.0/api/index.html">SRP Core shader library</a> (which you can use to make your shaders SRP Batcher compatible), and utility functions for common operations.</li>
+</ol>
+<p><a name="creating-unity-shader"></a></p>
+<h3 id="creating-an-srp-compatible-shader">Creating an SRP-compatible shader</h3>
+<p>In the Scriptable Render Pipeline, you use the <code>LightMode</code> Pass tag to determine how to draw geometry. For more information on Pass tags, see <a href="https://docs.unity3d.com/6000.0/Documentation/Manual/SL-PassTags">ShaderLab: assigning tags to a Pass</a>.</p>
+<p>This task shows you how to create a very simple unlit Shader object with a LightMode Pass tag value of <code>ExampleLightModeTag</code>.</p>
+<ol>
+<li>Create a new shader asset in your project. For instructions on creating a shader asset, see <a href="https://docs.unity3d.com/6000.0/Documentation/Manual/class-Shader">Shader assets</a>.</li>
+<li>In your Project view, double click the shader asset to open the shader source code in a text editor.</li>
+<li>Replace the existing code with the following:</li>
+</ol>
+<pre><code>// This defines a simple unlit Shader object that is compatible with a custom Scriptable Render Pipeline.
+// It applies a hardcoded color, and demonstrates the use of the LightMode Pass tag.
+// It is not compatible with SRP Batcher.
+
+Shader &quot;Examples/SimpleUnlitColor&quot;
+{
+    SubShader
+    {
+        Pass
+        {
+            // The value of the LightMode Pass tag must match the ShaderTagId in ScriptableRenderContext.DrawRenderers
+            Tags { &quot;LightMode&quot; = &quot;ExampleLightModeTag&quot;}
+
+            HLSLPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+
+	float4x4 unity_MatrixVP;
+            float4x4 unity_ObjectToWorld;
+
+            struct Attributes
+            {
+                float4 positionOS   : POSITION;
+            };
+
+            struct Varyings
+            {
+                float4 positionCS : SV_POSITION;
+            };
+
+            Varyings vert (Attributes IN)
+            {
+                Varyings OUT;
+                float4 worldPos = mul(unity_ObjectToWorld, IN.positionOS);
+                OUT.positionCS = mul(unity_MatrixVP, worldPos);
+                return OUT;
+            }
+
+            float4 frag (Varyings IN) : SV_TARGET
+            {
+                return float4(0.5,1,0.5,1);
+            }
+            ENDHLSL
+        }
+    }
+}
+</code></pre>
+<p><a name="creating-gameobject"></a></p>
+<h3 id="creating-a-gameobject-to-render">Creating a GameObject to render</h3>
+<p>To test that your render loop works, you must create something to render. This task shows you how to put GameObjects in your scene that use the SRP-compatible shader that you created in the previous task.</p>
+<ol>
+<li>Create a new material asset in your Unity project. For instructions see <a href="https://docs.unity3d.com/6000.0/Documentation/Manual/class-Material">Materials</a>.</li>
+<li>Assign the shader asset to the material asset. For instructions, see <a href="https://docs.unity3d.com/6000.0/Documentation/Manual/class-Material">Materials</a>.</li>
+<li>Create a cube in your scene. For instructions, see <a href="https://docs.unity3d.com/6000.0/Documentation/Manual/PrimitiveObjects">Primitive objects</a>.</li>
+<li>Assign the material to it. For instructions, see <a href="https://docs.unity3d.com/6000.0/Documentation/Manual/class-Material">Materials</a>.</li>
+</ol>
+<p><a name="creating-srp"></a></p>
+<h3 id="creating-the-basic-structure-of-your-custom-srp">Creating the basic structure of your custom SRP</h3>
+<p>The final stage of preparation is to create the basic source files needed for your custom SRP, and tell Unity to begin rendering using the custom SRP.</p>
+<ol>
+<li>Create a class that inherits from <code>RenderPipeline</code> and a compatible Render Pipeline Asset, following the instructions in <a href="srp-creating-render-pipeline-asset-and-render-pipeline-instance.html">Creating a Render Pipeline Instance and Render Pipeline Asset</a></li>
+<li>Set the active Render Pipeline Asset, following the instructions in <a href="https://docs.unity3d.com/6000.0/Documentation/Manual/srp-setting-render-pipeline-asset.html">How to get, set, and configure the active render pipeline</a>. Unity will begin rendering using the custom SRP immediately, which means that your Scene view and Game view will be blank until you add code to your custom SRP.</li>
+</ol>
+<h2 id="creating-the-render-loop">Creating the render loop</h2>
+<p>In a simple render loop, the basic operations are:</p>
+<ul>
+<li><a href="#clearing">Clearing the render target</a>, which means removing the geometry that was drawn during the last frame.</li>
+<li><a href="#culling">Culling</a>, which means filtering out geometry that is not visible to a Camera.</li>
+<li><a href="#drawing">Drawing</a>, which means telling the GPU what geometry to draw, and how to draw it.</li>
+</ul>
+<p><a name="clearing"></a></p>
+<h3 id="clearing-the-render-target">Clearing the render target</h3>
+<p>Clearing means removing the things that were drawn during the last frame. The render target is usually the screen; however, you can also render to textures to create a &quot;picture in picture&quot; effect. These examples demonstrate how to render to the screen, which is Unity's default behavior.</p>
+<p>To clear the render target in the Scriptable Render Pipeline, you do the following:</p>
+<ol>
+<li>Configure a <code>CommandBuffer</code> with a <code>Clear</code> command.</li>
+<li>Add the <code>CommandBuffer</code> to the queue of commands on the <code>ScriptableRenderContext</code>; to do this, call <a href="xref:UnityEngine.Rendering.ScriptableRenderContext.ExecuteCommandBuffer(UnityEngine.Rendering.CommandBuffer)">ScriptableRenderContext.ExecuteCommandBuffer</a>.</li>
+<li>Instruct the graphics API to perform the queue of commands on the <code>ScriptableRenderContext</code>; to do this, call  <a href="xref:UnityEngine.Rendering.ScriptableRenderContext.Submit">ScriptableRenderContext.Submit</a>.</li>
+</ol>
+<p>As with all Scriptable Render Pipeline operations, you use the <a href="xref:UnityEngine.Rendering.RenderPipeline.Render(UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Camera%5B%5D)">RenderPipeline.Render</a> method as the entry point for this code. This example code demonstrates how to do this:</p>
+<pre><code class="lang-lang-csharp">/* 
+This is a simplified example of a custom Scriptable Render Pipeline.
+It demonstrates how a basic render loop works.
+It shows the clearest workflow, rather than the most efficient runtime performance.
+*/
+
+using UnityEngine;
+using UnityEngine.Rendering;
+
+public class ExampleRenderPipeline : RenderPipeline {
+    public ExampleRenderPipeline() {
+    }
+
+    protected override void Render (ScriptableRenderContext context, Camera[] cameras) {
+        // Create and schedule a command to clear the current render target
+        var cmd = new CommandBuffer();
+        cmd.ClearRenderTarget(true, true, Color.black);
+        context.ExecuteCommandBuffer(cmd);
+        cmd.Release();
+
+        // Instruct the graphics API to perform all scheduled commands
+        context.Submit();
+    }
+}
+</code></pre>
+<p><a name="culling"></a></p>
+<h3 id="culling">Culling</h3>
+<p>Culling is the process of filtering out geometry that is not visible to a Camera.</p>
+<p>To cull in the Scriptable Render Pipeline, you do the following:</p>
+<ol>
+<li>Populate a <a href="xref:UnityEngine.Rendering.ScriptableCullingParameters">ScriptableCullingParameters</a> struct with data about a Camera; to do this, call <a href="xref:UnityEngine.Camera.TryGetCullingParameters(UnityEngine.Rendering.ScriptableCullingParameters&amp;)">Camera.TryGetCullingParameters</a>.</li>
+<li>Optional: Manually update the values of the <code>ScriptableCullingParameters</code> struct.</li>
+<li>Call <a href="xref:UnityEngine.Rendering.ScriptableRenderContext.Cull(UnityEngine.Rendering.ScriptableCullingParameters&amp;)">ScriptableRenderContext.Cull</a>, and store the results in a <code>CullingResults</code> struct.</li>
+</ol>
+<p>This example code extends the example above, and demonstrates how to clear the render target and then perform a culling operation:</p>
+<pre><code class="lang-lang-csharp">/* 
+This is a simplified example of a custom Scriptable Render Pipeline.
+It demonstrates how a basic render loop works.
+It shows the clearest workflow, rather than the most efficient runtime performance.
+*/
+
+using UnityEngine;
+using UnityEngine.Rendering;
+
+public class ExampleRenderPipeline : RenderPipeline {
+    public ExampleRenderPipeline() {
+    }
+
+    protected override void Render (ScriptableRenderContext context, Camera[] cameras) {
+        // Create and schedule a command to clear the current render target
+        var cmd = new CommandBuffer();
+        cmd.ClearRenderTarget(true, true, Color.black);
+        context.ExecuteCommandBuffer(cmd);
+        cmd.Release();
+
+        // Iterate over all Cameras
+        foreach (Camera camera in cameras)
+        {
+            // Get the culling parameters from the current Camera
+            camera.TryGetCullingParameters(out var cullingParameters);
+
+            // Use the culling parameters to perform a cull operation, and store the results
+            var cullingResults = context.Cull(ref cullingParameters);
+        }
+
+        // Instruct the graphics API to perform all scheduled commands
+        context.Submit();
+    }
+}
+</code></pre>
+<p><a name="drawing"></a></p>
+<h3 id="drawing">Drawing</h3>
+<p>Drawing is the process of instructing the graphics API to draw a given set of geometry with given settings.</p>
+<p>To draw in SRP, you do the following:</p>
+<ol>
+<li>Perform a culling operation, as described above, and store the results in a <code>CullingResults</code> struct.</li>
+<li>Create and configure <a href="xref:UnityEngine.Rendering.FilteringSettings">FilteringSettings</a> struct, which describes how to filter the culling results.</li>
+<li>Create and configure a <a href="xref:UnityEngine.Rendering.DrawingSettings">DrawingSettings</a> struct, which describes which geometry to draw and how to draw it.</li>
+<li><em>Optional</em>: By default, Unity sets the render state based on the Shader object. If you want to override the render state for some or all of the geometry that you are about to draw, you can use a <a href="xref:UnityEngine.Rendering.RenderStateBlock">RenderStateBlock</a> struct to do this.</li>
+<li>Call <a href="xref:UnityEngine.Rendering.ScriptableRenderContext.DrawRenderers(UnityEngine.Rendering.CullingResults,UnityEngine.Rendering.DrawingSettings&amp;,UnityEngine.Rendering.FilteringSettings&amp;)">ScriptableRenderContext.DrawRenderers</a>, and pass the structs that you created as parameters. Unity draws the filtered set of geometry, according to the settings.</li>
+</ol>
+<p>This example code builds on the examples above, and demonstrates how to clear the render target, perform a culling operation, and draw the resulting geometry:</p>
+<pre><code class="lang-lang-csharp">/* 
+This is a simplified example of a custom Scriptable Render Pipeline.
+It demonstrates how a basic render loop works.
+It shows the clearest workflow, rather than the most efficient runtime performance.
+*/
+
+using UnityEngine;
+using UnityEngine.Rendering;
+
+public class ExampleRenderPipeline : RenderPipeline {
+    public ExampleRenderPipeline() {
+    }
+
+    protected override void Render (ScriptableRenderContext context, Camera[] cameras) {
+        // Create and schedule a command to clear the current render target
+        var cmd = new CommandBuffer();
+        cmd.ClearRenderTarget(true, true, Color.black);
+        context.ExecuteCommandBuffer(cmd);
+        cmd.Release();
+
+        // Iterate over all Cameras
+        foreach (Camera camera in cameras)
+        {
+            // Get the culling parameters from the current Camera
+            camera.TryGetCullingParameters(out var cullingParameters);
+
+            // Use the culling parameters to perform a cull operation, and store the results
+            var cullingResults = context.Cull(ref cullingParameters);
+
+            // Update the value of built-in shader variables, based on the current Camera
+            context.SetupCameraProperties(camera);
+
+            // Tell Unity which geometry to draw, based on its LightMode Pass tag value
+            ShaderTagId shaderTagId = new ShaderTagId(&quot;ExampleLightModeTag&quot;);
+
+            // Tell Unity how to sort the geometry, based on the current Camera
+            var sortingSettings = new SortingSettings(camera);
+
+            // Create a DrawingSettings struct that describes which geometry to draw and how to draw it
+            DrawingSettings drawingSettings = new DrawingSettings(shaderTagId, sortingSettings);
+
+            // Tell Unity how to filter the culling results, to further specify which geometry to draw
+            // Use FilteringSettings.defaultValue to specify no filtering
+            FilteringSettings filteringSettings = FilteringSettings.defaultValue;
+        
+            // Schedule a command to draw the geometry, based on the settings you have defined
+            context.DrawRenderers(cullingResults, ref drawingSettings, ref filteringSettings);
+
+            // Schedule a command to draw the Skybox if required
+            if (camera.clearFlags == CameraClearFlags.Skybox &amp;&amp; RenderSettings.skybox != null)
+            {
+                context.DrawSkybox(camera);
+            }
+
+            // Instruct the graphics API to perform all scheduled commands
+            context.Submit();
+        }
+    }
+}
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

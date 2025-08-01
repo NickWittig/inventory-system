@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title> | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content=" | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../../index.html">
+            <img id="logo" class="svg" src="../../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+
+<h3 id="color">Color</h3>
+<p>TextMesh Pro uses vertex colors to tint the text. You can apply a uniform color as well a <a href="ColorGradients.html">gradient</a> of up to four colors.</p>
+<p><img src="../images/TMP_Object_Color.png" alt="Example image"></p>
+<table>
+<thead>
+<tr>
+<th>Property:</th>
+<th></th>
+<th>Function:</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Vertex Color</strong></td>
+<td></td>
+<td>Choose the main color for the text. <br><br> Any colors and textures defined in the TextMesh Pro GameObject or its material ar multiplied with this color.</td>
+</tr>
+<tr>
+<td><strong>Color Gradient</strong></td>
+<td></td>
+<td>Enable this option to apply a <a href="ColorGradients.html">color gradient</a> to each character sprite. <br><br> You can then set the gradient’s type and colors, or apply a <a href="ColorGradientsPresets.html">color gradient preset</a>. <br><br> Gradient colors are multiplied with the <strong>Vertex Color</strong>. If <strong>Vertex Color</strong> is set to white you see only the gradient colors. If it’s set to black you don’t see the gradient colors at all.</td>
+</tr>
+<tr>
+<td><strong>Color Preset</strong></td>
+<td></td>
+<td>Choose a <a href="ColorGradientsPresets.html">color gradient preset</a>. <br><br> When you apply a preset its <strong>Color Mode</strong> and <strong>Colors</strong> replace the text's local properties in the Inspector. <br><br> Editing these properties modifies the preset, which affects every TextMesh Pro GameObject that uses it. <br><br> Set this property to <strong>None</strong> to revert to the text’s local gradient properties.</td>
+</tr>
+<tr>
+<td><strong>Color Mode</strong></td>
+<td></td>
+<td>Choose the type of color gradient to apply. <br><br> TextMesh Pro applies gradients to each character individually.</td>
+</tr>
+<tr>
+<td></td>
+<td>Single</td>
+<td>A uniform color that modifies the base <strong>Vertex Color</strong>.</td>
+</tr>
+<tr>
+<td></td>
+<td>Horizontal Gradient</td>
+<td>A two-color gradient with each color emanating from one side of the character.</td>
+</tr>
+<tr>
+<td></td>
+<td>Vertical Gradient</td>
+<td>A two-color gradient with one color emanating from the top of the character, and the other from the bottom.</td>
+</tr>
+<tr>
+<td></td>
+<td>Four Corners Gradient</td>
+<td>A four-color gradient with each color emanating from a different corner of the character.</td>
+</tr>
+<tr>
+<td><strong>Colors</strong></td>
+<td></td>
+<td>Choose each gradient color. <br><br> The number of available colors depends on the type of gradient, and the color fields are arranged to match the position of each color in the gradient (left and right, top and bottom, 2 rows of 2 for four-corner gradients). <br><br> You can set the color in any of the following ways:<br><br> <strong>Swatch:</strong> Click to open a color picker. <br><br> <strong>Eyedropper:</strong> Click to choose a color from any part of the screen. <br><br> <strong>Hex Value:</strong> Enter the RGBA hex value directly.</td>
+</tr>
+<tr>
+<td><strong>Override Tags</strong></td>
+<td></td>
+<td>Enable this option to ignore any <a href="RichText.html">rich text tags</a> that change text color.</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

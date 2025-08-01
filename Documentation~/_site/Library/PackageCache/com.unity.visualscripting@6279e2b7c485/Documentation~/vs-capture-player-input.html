@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Capture user input in an application | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Capture user input in an application | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="capture-user-input-in-an-application">Capture user input in an application</h1>
+
+<p>You can capture input from a user's input device to make your application interactive. Visual Scripting can use either the <a href="https://docs.unity3d.com/Manual/class-InputManager.html">Input Manager</a> or the <a href="https://docs.unity3d.com/Packages/com.unity.inputsystem@latest">Input System package</a> to capture input data in a Script Graph.</p>
+<h2 id="use-the-input-system-package">Use the Input System package</h2>
+<p>The Input System package captures input in Unity applications. It uses any input device and replaces Unity's <a href="#use-the-input-manager">Input Manager</a>.</p>
+<p>To install the Input System package, see the <a href="https://docs.unity3d.com/Packages/com.unity.inputsystem@latest/index.html?subfolder=/manual/Installation.html">Installation guide</a> in the Input System package documentation.</p>
+<p>To check if the Input System package is installed, go to <strong>Window</strong> &gt; <strong>Package Manager</strong>.</p>
+<p><img src="images/vs-input-system-package-manager.png" alt="An image of the Package Manager window, that displays the Input System package."></p>
+<p>For more information on the Package Manager and managing packages in projects, see the <a href="https://docs.unity3d.com/Manual/PackagesList.html">Packages</a> section in the Unity User Manual.</p>
+<h3 id="input-system-package-prerequisites">Input System package prerequisites</h3>
+<p>To use the Input System package in a project, do the following:</p>
+<ol>
+<li><p>Install the package. For more information, see the <a href="https://docs.unity3d.com/Manual/PackagesList.html">Packages</a> section in the User Manual.</p>
+</li>
+<li><p>Regenerate your Node Library to include the Input System package nodes. For more information, <a href="vs-configuration.html#Regen">Configure project settings</a>.</p>
+</li>
+<li><p>In your Player Project Settings, set <strong>Active Input Handling</strong> to <strong>Input System Package (New)</strong> or <strong>Both</strong>. For more information on this setting, see <a href="https://docs.unity3d.com/Manual/class-PlayerSettingsStandalone.html#Configuration">Standalone Player settings</a> in the User Manual.</p>
+</li>
+<li><p>Create an Input System settings asset. Go to <strong>Edit</strong> &gt; <strong>Project Settings</strong> and select <strong>Input System Package</strong>, then select <strong>Create Settings Asset</strong>. For more information on the available input settings, see <a href="https://docs.unity3d.com/Packages/com.unity.inputsystem@latest/index.html?subfolder=/manual/Settings.html">Input Settings</a> in the Input System package documentation.</p>
+</li>
+<li><p>Create a GameObject with a <code>PlayerInput</code> component and an Input Actions asset. For more information, see <a href="vs-capture-player-input-add-component.html">Add and configure a PlayerInput component</a>.</p>
+</li>
+</ol>
+<p>After you've configured your project, create a graph to <a href="vs-capturing-player-inputs-new.html">Capture input with the Input System package</a>.</p>
+<h2 id="use-the-input-manager">Use the Input Manager</h2>
+<p>The Input Manager is Unity's built-in system for input.</p>
+<p>Change the Input Manager's settings to change how a project receives input. Go to <strong>Edit</strong> &gt; <strong>Project Settings</strong> and select <strong>Input Manager</strong>.</p>
+<p><img src="images/vs-input-manager-project-settings.png" alt="An image of the Unity Editor's Project Settings window, that displays the Input Manager's settings for its Horizontal axis."></p>
+<p>For more information on the available settings, see the <a href="https://docs.unity3d.com/Documentation/Manual/class-InputManager.html">Input Manager documentation</a> in the User Manual.</p>
+<h3 id="input-manager-prerequisites">Input Manager prerequisites</h3>
+<p>To use the Input Manager in a project, in your Player Project Settings, set <strong>Active Input Handling</strong> to <strong>Input Manager (Old)</strong> or <strong>Both</strong>. For more information on this setting, see <a href="https://docs.unity3d.com/Manual/class-PlayerSettingsStandalone.html#Configuration">Standalone Player settings</a> in the User Manual.</p>
+<p>After you’ve configured your Player Project Settings, create a graph to <a href="vs-capturing-player-inputs-old.html">Capture input with the Input Manager</a>.</p>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="vs-capture-player-input-add-component.html">Add and configure a Player Input component</a></li>
+<li><a href="vs-capturing-player-inputs-new.html">Capture input with the Input System package</a></li>
+<li><a href="vs-capturing-player-inputs-old.html">Capture input with the Input Manager</a></li>
+<li><a href="vs-input-nodes.html">Input event nodes</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

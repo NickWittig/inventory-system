@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>On Mouse Up As Button node | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="On Mouse Up As Button node | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="on-mouse-up-as-button-node">On Mouse Up As Button node</h1>
+
+<div class="NOTE">
+<h5>Note</h5>
+<p>The On Mouse Up As Button node is an <a href="https://docs.unity3d.com/Manual/class-InputManager.html">Input Manager</a> node. For more information about how to use the Input Manager with Visual Scripting, see <a href="vs-capture-player-input.html">Capture user input in an application</a>.</p>
+</div>
+<p>The On Mouse Up As Button node listens for a user to release their mouse button after they click a Collider in your application. It triggers the next node connected to it after the action occurs in the application. It doesn't send or receive any other data.</p>
+<p>To trigger the On Mouse Up As Button node, the user must release their mouse button over the same Collider they clicked. If you want the user to trigger the node after they release their mouse button at any location in your application, use the <a href="vs-nodes-events-on-mouse-up.html">On Mouse Up node</a> instead.</p>
+<p><img src="images/vs-nodes-events-on-mouse-up-button-node.png" alt="An image of the Graph window. An On Mouse Up As Button node displays with its details in the Graph Inspector."></p>
+<h2 id="fuzzy-finder-category">Fuzzy finder category</h2>
+<p>The On Mouse Up As Button node is in the <strong>Events</strong> &gt; <strong>Input</strong> category in the fuzzy finder.</p>
+<h2 id="inputs">Inputs</h2>
+<p>The On Mouse Up As Button node has one input port:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Name</strong></th>
+<th style="text-align: left;"><strong>Type</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Target</strong></td>
+<td style="text-align: left;">GameObject</td>
+<td style="text-align: left;">The GameObject the user must click and release with their mouse button to trigger the node.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="additional-node-settings">Additional node settings</h2>
+<p>The On Mouse Up As Button node has additional settings. Access these settings from the <a href="vs-interface-overview.html#the-graph-inspector">Graph Inspector</a>:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Name</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+[!include[nodes-coroutine](./snippets/nodes-coroutine.md)]
+</tbody>
+</table>
+<h2 id="outputs">Outputs</h2>
+<p>The On Mouse Up As Button node has one output port:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Name</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+[!include[nodes-input-output-trigger](./snippets/input-manager/nodes-input-output-trigger.md)]
+</tbody>
+</table>
+<h2 id="example-graph-usage">Example graph usage</h2>
+<p>In the following example, the On Mouse Up As Button node runs as a coroutine to load a new scene after the user clicks and releases their mouse button over the <strong>Target</strong> GameObject. The Script Graph loads the scene, makes the graph wait until the scene loads, then sets the loaded scene as the active scene in the application.</p>
+<p><img src="images/vs-nodes-events-on-mouse-up-as-button-example.png" alt="An image of the Graph window. An On Mouse Up As Button node has its Target set to This and is set to run as a coroutine. Its Trigger output port connects to the Invoke input port on a Scene Manager Load Scene node. The Load Scene node loads the scene from Scene Build Index 1, with an inline value. Its Exit output port connects to the Enter input port on a Wait Until node. The Wait Until node waits until a Scene Is Loaded node returns True as its Condition input. When Is Loaded returns True, the Wait Until node's Exit output port triggers the Invoke input port on a Scene Manager Get Scene At node. The Get Scene At node gets the scene from Index 1 with an inline value. Its Exit output port connects to the Invoke input port on a Scene Manager Set Active Scene node. The Set Active Scene node takes the Result scene output from the Get Scene At node and changes the active scene in the application."></p>
+<p>When the application starts, the active scene contains a plane with three spheres.</p>
+<p><img src="images/vs-nodes-events-on-mouse-up-as-button-example-2.png" alt="An image of the Game view, that displays a simple plane with three red spheres."></p>
+<p>After the Script Graph runs, the scene changes to a plane with a single cube.</p>
+<p><img src="images/vs-nodes-events-on-mouse-up-as-button-example-3.png" alt="An image of the Game view, that displays a simple plane with a single red cube."></p>
+<h2 id="related-nodes">Related nodes</h2>
+<p>The following nodes are related or similar to the On Mouse Up As Button node:</p>
+<ul>
+<li><a href="vs-nodes-events-on-button-input.html">On Button Input node</a></li>
+<li><a href="vs-nodes-events-on-keyboard-input.html">On Keyboard Input node</a></li>
+<li><a href="vs-nodes-events-on-mouse-down.html">On Mouse Down node</a></li>
+<li><a href="vs-nodes-events-on-mouse-drag.html">On Mouse Drag node</a></li>
+<li><a href="vs-nodes-events-on-mouse-enter.html">On Mouse Enter node</a></li>
+<li><a href="vs-nodes-events-on-mouse-exit.html">On Mouse Exit node</a></li>
+<li><a href="vs-nodes-events-on-mouse-input.html">On Mouse Input node</a></li>
+<li><a href="vs-nodes-events-on-mouse-over.html">On Mouse Over node</a></li>
+<li><a href="vs-nodes-events-on-mouse-up.html">On Mouse Up node</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

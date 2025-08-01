@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Sample Virtual Texture Node | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Sample Virtual Texture Node | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="sample-virtual-texture-node">Sample Virtual Texture Node</h1>
+
+<h2 id="description">Description</h2>
+<p>Samples a <a href="Property-Types.html#virtual-texture">Virtual Texture</a> and returns up to four Vector 4 color values for use in the shader. You can use the UV input to override the UV coordinate. The Sample Virtual Texture node takes one UV coordinate as the input, and uses that UV coordinate to sample all of the textures in the Virtual Texture.</p>
+<p>If you want to use the Sample Virtual Texture node to sample normal maps, navigate to each layer that you want to sample as a normal map, open the <strong>Layer Type</strong> drop-down menu, and select <strong>Normal</strong>.</p>
+<p>By default, you can only use this node in the fragment shader stage. For more information about how to use this node, or how to configure it for use in the vertex shader stage, see <a href="https://docs.unity3d.com/2020.1/Documentation/Manual/svt-use-in-shader-graph.html">Using Streaming Virtual Texturing in Shader Graph</a>.</p>
+<p>If you disable Virtual Texturing in your project, this node works the same way as the <a href="Sample-Texture-2D-Node.html">Sample 2D Texture Node</a>, and performs standard 2D sampling on each texture.</p>
+<p>You must connect a Sample Virtual Texture node to a Virtual Texture property for the Shader Graph Asset to compile. If you don't connect the node to a property, an error appears, indicating that the node requires a connection.</p>
+<p>For information about Streaming Virtual Texturing, see <a href="https://docs.unity3d.com/2020.1/Documentation/Manual/svt-streaming-virtual-texturing.html">Streaming Virtual Texturing</a>.</p>
+<h2 id="ports">Ports</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Direction</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Binding</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">UV</td>
+<td style="text-align: left;">Input</td>
+<td style="text-align: left;">Vector 2</td>
+<td style="text-align: left;">UV</td>
+<td style="text-align: left;">The UV coordinate.</td>
+</tr>
+<tr>
+<td style="text-align: left;">VT</td>
+<td style="text-align: left;">Input</td>
+<td style="text-align: left;">Virtual Texture</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">The Virtual Texture to sample. Must be connected to a Virtual Texture property.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Out</td>
+<td style="text-align: left;">Output</td>
+<td style="text-align: left;">Vector 4</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">The output value of layer 1 as RGBA.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Out2</td>
+<td style="text-align: left;">Output</td>
+<td style="text-align: left;">Vector 4</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">The output of layer 2 as RGBA.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Out3</td>
+<td style="text-align: left;">Output</td>
+<td style="text-align: left;">Vector 4</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">The output of layer 3 as RGBA.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Out4</td>
+<td style="text-align: left;">Output</td>
+<td style="text-align: left;">Vector 4</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">The output of layer 4 as RGBA.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="settings">Settings</h2>
+<p>The Sample Virtual Texture node has several settings available for you to specify its behavior. These settings work in combination with any scripts you might have set up in your project. To view the settings, select the node with the <a href="Internal-Inspector.html">Graph Inspector</a> open. For more information, see <a href="https://docs.unity3d.com/2020.1/Documentation/Manual/svt-streaming-virtual-texturing.html">Streaming Virtual Texturing</a>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Options</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Lod Mode</td>
+<td style="text-align: left;">Dropdown</td>
+<td style="text-align: left;">Automatic, Lod Level, Lod Bias, Derivatives</td>
+<td style="text-align: left;">Sets the specific Lod mode to use when sampling the textures.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Quality</td>
+<td style="text-align: left;">Dropdown</td>
+<td style="text-align: left;">Low, High</td>
+<td style="text-align: left;">Sets the quality mode to use when sampling the textures.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Automatic Streaming</td>
+<td style="text-align: left;">Toggle</td>
+<td style="text-align: left;">Enabled/Disabled</td>
+<td style="text-align: left;">Determines whether the node uses automatic streaming or manual streaming.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Enable Global Mip Bias</td>
+<td style="text-align: left;">Toggle</td>
+<td style="text-align: left;">Enabled/Disabled</td>
+<td style="text-align: left;">Enables the global mipmap bias that Unity automatically imposes at runtime. Unity sets this bias during certain dynamic resolution scaling algorithms to improve detail reconstruction.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Layer 1 Type</td>
+<td style="text-align: left;">Dropdown</td>
+<td style="text-align: left;">Default, Normal</td>
+<td style="text-align: left;">The texture type of layer 1.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Layer 2 Type</td>
+<td style="text-align: left;">Dropdown</td>
+<td style="text-align: left;">Default, Normal</td>
+<td style="text-align: left;">The texture type of layer 2.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Layer 3 Type</td>
+<td style="text-align: left;">Dropdown</td>
+<td style="text-align: left;">Default, Normal</td>
+<td style="text-align: left;">The texture type of layer 3. This option only appears if the Virtual Texture has at least 3 layers.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Layer 4 Type</td>
+<td style="text-align: left;">Dropdown</td>
+<td style="text-align: left;">Default, Normal</td>
+<td style="text-align: left;">The texture type of layer 4. This option only appears if the Virtual Texture has at least 4 layers.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="generated-code-example">Generated Code Example</h2>
+<p>The following example code represents one possible outcome of this node.</p>
+<pre><code>float4 SampleVirtualTexture(float2 uv, VTPropertyWithTextureType vtProperty, out float4 Layer0)
+{
+    VtInputParameters vtParams;
+    vtParams.uv = uv;
+    vtParams.lodOrOffset = 0.0f;
+    vtParams.dx = 0.0f;
+    vtParams.dy = 0.0f;
+    vtParams.addressMode = VtAddressMode_Wrap;
+    vtParams.filterMode = VtFilter_Anisotropic;
+    vtParams.levelMode = VtLevel_Automatic;
+    vtParams.uvMode = VtUvSpace_Regular;
+    vtParams.sampleQuality = VtSampleQuality_High;
+    #if defined(SHADER_STAGE_RAY_TRACING)
+    if (vtParams.levelMode == VtLevel_Automatic || vtParams.levelMode == VtLevel_Bias)
+    {
+        vtParams.levelMode = VtLevel_Lod;
+        vtParams.lodOrOffset = 0.0f;
+    }
+    #endif
+    StackInfo info = PrepareVT(vtProperty.vtProperty, vtParams);
+    Layer0 = SampleVTLayerWithTextureType(vtProperty, vtParams, info, 0);
+    return GetResolveOutput(info);
+}
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

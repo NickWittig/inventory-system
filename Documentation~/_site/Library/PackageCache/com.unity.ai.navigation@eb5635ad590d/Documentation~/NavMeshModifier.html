@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>NavMesh Modifier component reference | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="NavMesh Modifier component reference | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="navmesh-modifier-component-reference">NavMesh Modifier component reference</h1>
+
+<p>Use the NavMesh Modifier component to adjust the behavior of a <a href="Glossary.html#gameobject" title="The fundamental object in Unity scenes, which can represent characters, props, scenery, cameras, waypoints, and more.">GameObject</a> when the <a href="Glossary.html#navmesh" title="A mesh that Unity generates to approximate the walkable areas and obstacles in your environment for path finding and AI-controlled navigation.">NavMesh</a> is baked at runtime. The NavMesh Modifier component affects the NavMesh during the generation process only. This means the NavMesh is updated to reflect any changes to NavMesh Modifier components when you bake the NavMesh. Use the available properties to specify changes in behavior and any limits to those changes.</p>
+<p>To use the NavMesh Modifier component, add it to a GameObject as follows:</p>
+<ol>
+<li>Select the GameObject whose effect on the NavMesh you want to modify.</li>
+<li>In the Inspector, select <strong>Add Component</strong>, then select <strong>Navigation</strong> &gt; <strong>NavMesh Modifier</strong>. <br> The NavMesh Modifier component is displayed in the Inspector window.</li>
+</ol>
+<p>The NavMesh Modifier can also affect the NavMesh generation process hierarchically. This means that the GameObject the component is attached to, as well as all its children, are affected. In addition, you can place another NavMesh Modifier further down the hierarchy to override the NavMesh Modifier that is further up the hierarchy.</p>
+<p>To apply the NavMesh Modifier hierarchically, select the <strong>Apply To Children</strong> property.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The NavMesh Modifier component replaces the legacy Navigation Static setting which you could enable from the Objects tab of the Navigation window and the Static flags dropdown on the GameObject. The NavMesh Modifier component is available for baking at runtime, whereas the Navigation Static flags were available in the Editor only.</p>
+</div>
+<p>The following table describes the properties available in the NavMesh Modifier component.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Mode</strong></td>
+<td>Specify whether to consider or ignore the affected GameObject(s).</td>
+</tr>
+<tr>
+<td><strong>Mode</strong> &gt; <strong>Add or Modify Object</strong></td>
+<td>Consider the affected GameObject(s) when building the NavMesh.</td>
+</tr>
+<tr>
+<td><strong>Mode</strong> &gt; <strong>Remove Object</strong></td>
+<td>Ignore the affected object(s) when building the NavMesh for the specified agent type.</td>
+</tr>
+<tr>
+<td><strong>Affected Agents</strong></td>
+<td>Specify which agents the NavMesh Modifier affects. For example, you can choose to have certain obstacles be ignored by specific agents.</td>
+</tr>
+<tr>
+<td><strong>Affected Agents</strong> &gt; <strong>All</strong></td>
+<td>Modify the behavior of all agents.</td>
+</tr>
+<tr>
+<td><strong>Affected Agents</strong> &gt; <strong>None</strong></td>
+<td>Exclude all agents from the modified behavior.</td>
+</tr>
+<tr>
+<td><strong>Apply to Children</strong></td>
+<td>Apply the configuration to the child hierarchy of the GameObject. To override this component's influence further down the hierarchy, add another NavMesh Modifier component.</td>
+</tr>
+<tr>
+<td><strong>Override Area</strong></td>
+<td>Change the <a href="AreasAndCosts">area type</a> for the affected GameObject(s). If you want to change the area type, select the checkbox then select the new area type in the Area Type dropdown. If you do not want to change the area type, clear the checkbox.</td>
+</tr>
+<tr>
+<td><strong>Override Area</strong>  &gt; <strong>Area Type</strong></td>
+<td>Select the new area type you want to apply from the dropdown.</td>
+</tr>
+<tr>
+<td><strong>Override Generate Links</strong></td>
+<td>Force the NavMesh bake process to either include or ignore the affected GameObject(s) when you generate links.</td>
+</tr>
+<tr>
+<td><strong>Override Generate Links</strong> &gt; <strong>Generate Links</strong></td>
+<td>Specify whether or not to include the affected GameObject(s) when you generate links. To include the GameObject(s) when you generate links in the NavMesh bake process, select this checkbox. To ignore the GameObject(s) when you generate links in the NavMesh bake process, clear this checkbox.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="CreateNavMesh.html">Create a NavMesh</a></li>
+<li><a href="AreasAndCosts.html">Navigation Areas and Costs</a></li>
+<li><a href="NavigationWindow.html#agents-tab">Navigation Agent Types</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Sprites | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Sprites | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../../index.html">
+            <img id="logo" class="svg" src="../../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="sprites">Sprites</h1>
+
+<p>TextMesh Pro allows you to include sprites in your text via <a href="RichTextSprite.html">rich text tags</a>.</p>
+<p>To use sprites in your Scene, you need a Sprite Asset. You create sprite assets from atlas textures that each contain a given set of sprites.</p>
+<p><img src="../images/TMP_SpriteAtlas.png" alt="Example image"><br>
+<em>A sprite atlas texture</em></p>
+<p>You can use as many sprite atlases and assets as you like, but keep in mind that using multiple atlases per text object results in multiple draw calls for that object, which consumes more system resources. As a rule, try to stick to one atlas per object.</p>
+<p><strong>Note:</strong> Sprites are regular bitmap textures, so make sure that their resolution is high enough to display correctly on your target platforms.</p>
+<h2 id="using-sprite-assets">Using Sprite Assets</h2>
+<p>To use a sprite Asset in your project, put it in a <code>Resources/Sprites</code> folder. This allows TextMesh Pro to find it.</p>
+<p>Once you've added/created your sprite assets, you can set one as the default source for sprites in the project. You set the default sprite Asset in the <a href="Settings.html#DefaultSprite">TextMesh Pro Settings</a>.</p>
+<p>You can also choose sprite assets to use with specific text objects. Edit a <a href="">TexMesh Pro 3D</a> or <a href="">TextmeshPro UI</a> Asset to specify a sprite Asset to use with the font.</p>
+<h2 id="creating-a-sprite-asset">Creating a Sprite Asset</h2>
+<p>You create sprite assets from atlas textures. Although sprite assets and their source textures are separate entities, you must keep the source textures in the project after creating the sprite assets.</p>
+<ol>
+<li><p>Select the texture you want to use for the Sprite Asset.</p>
+</li>
+<li><p>In the Inspector, change the following Texture Importer properties.</p>
+</li>
+</ol>
+<ul>
+<li><p>Set the <strong>Texture Type</strong> to <strong>Sprite (2D and UI)</strong>.</p>
+</li>
+<li><p>Set the <strong>Sprite Mode</strong> to <strong>Multiple</strong>.<br><br><img src="../images/TMP_InspectorSpriteTexture.png" alt="Example image"></p>
+</li>
+</ul>
+<ol>
+<li><p>Open the Sprite Editor from the Inspector, or choose <strong>Window &gt; 2D &gt; Sprite Editor</strong> from the menu, and use it to divide the texture into individual sprites.</p>
+</li>
+<li><p>With the texture still selected, choose <strong>Asset &gt; Create &gt; TextMesh Pro &gt; Sprite Asset</strong> from the menu to create a new sprite Asset.</p>
+</li>
+</ol>
+<p>After creating the sprite Asset, you can revert the atlas texture's <strong>Texture Type</strong>
+to its original setting.</p>
+<h2 id="sprite-asset-properties">Sprite Asset Properties</h2>
+<p><img src="../images/TMP_InspectorSpriteAsset.png" alt="Example image"></p>
+<p>The Sprite Asset properties are divided into the following groups:</p>
+<p><img src="../images/Letter_A_half.png" alt="Example image"> <strong><a href="#SpriteInfo">Sprite Info</a>:</strong> Provides references to the sprite Asset's material and source texture.</p>
+<p><img src="../images/Letter_B_half.png" alt="Example image"> <strong><a href="#FallbackSpriteAssets">Fallback Sprite Assets</a>:</strong> Provides references to the sprite Asset's material and source texture.</p>
+<p><img src="../images/Letter_C_half.png" alt="Example image"> <strong><a href="#SpriteList">Sprite List</a>:</strong> Provides references to the sprite Asset's material and source texture.</p>
+<p><a name="FallbackFont"></a></p>
+<h3 id="sprite-info">Sprite Info</h3>
+<p><img src="../images/TMP_InspectorSpriteAssetSpriteInfo.png" alt="Example image"></p>
+<table>
+<thead>
+<tr>
+<th>Property:</th>
+<th>Function:</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sprite Atlas</strong></td>
+<td>A reference to the sprite Asset's source texture.</td>
+</tr>
+<tr>
+<td><strong>Default Material</strong></td>
+<td>A reference to the sprite Asset's material, which it uses to render sprites.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="FallbackFont"></a></p>
+<h3 id="fallback-sprite-assets">Fallback Sprite Assets</h3>
+<p><img src="../images/TMP_InspectorSpriteAssetFallback.png" alt="Example image"></p>
+<p>When TextMesh Pro can't find a glyph in this sprite assets, it searches the fallback sprite assets that you specify here.</p>
+<table>
+<thead>
+<tr>
+<th>Property:</th>
+<th>Function:</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Fallback Sprite Asset List</strong></td>
+<td>Manage the fallback sprite assets.<br><br>Click <strong>+</strong> and <strong>-</strong> to add and remove font slots.<br><br>Click the circle icon next to a font to choose a font Asset using the Object Picker.<br><br>Drag the handles on the left side of any font Asset to reorder the list.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="FallbackFont"></a></p>
+<h3 id="sprite-list">Sprite List</h3>
+<p><img src="../images/TMP_InspectorSpriteAssetSpriteList.png" alt="Example image"></p>
+<table>
+<thead>
+<tr>
+<th>Property:</th>
+<th></th>
+<th>Function:</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sprite Search</strong></td>
+<td></td>
+<td>Search the sprite list by <strong>ID</strong> or <strong>Name</strong>.<br><br>Search results are ordered by <strong>ID</strong>, lowest to highest.</td>
+</tr>
+<tr>
+<td><strong>Previous Page / Next Page</strong></td>
+<td></td>
+<td>Long sprite lists are split into pages, which you can navigate using these buttons (also located at the bottom of the section).</td>
+</tr>
+<tr>
+<td><strong>Sprite Properties</strong></td>
+<td></td>
+<td>Manage the sprites in this Asset.<br><br>Click a sprite to make it active.<br><br>Click <strong>Up</strong> or <strong>Down</strong> to move the sprite up or down in the list.<br><br>Enter an <strong>ID</strong> in the text field and click <strong>Goto</strong> to move the sprite to that position in then list.<br><br><strong>Note:</strong> Moving a sprite updates its <strong>ID</strong> and the <strong>ID</strong>s of all preceding sprites accordingly.<br><br>Click <strong>+</strong> to add a copy of the sprite to the list.<br><br>Click <strong>-</strong> to remove the sprite from the list.</td>
+</tr>
+<tr>
+<td></td>
+<td>ID</td>
+<td>A unique ID for the sprite, based on its portion in the list.<br><br>You can use this value in <a href="RichTextSprite.html">rich text tags</a> tags to add this sprite to text.<br><br>Reordering the list updates the <strong>ID</strong>s of any affected sprites</td>
+</tr>
+<tr>
+<td></td>
+<td>Unicode</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Name</td>
+<td>A unique name for the sprite.<br><br>You can change this value, but it must be unique in the list<br><br>You can use this value in <a href="RichTextSprite.html">rich text tags</a> to add this sprite to text.</td>
+</tr>
+<tr>
+<td></td>
+<td>X, Y, W, H</td>
+<td>The rectangular area the character occupies in the sprite atlas.</td>
+</tr>
+<tr>
+<td></td>
+<td>OX, OY</td>
+<td>Control the placement of the sprite, defined at its top-left corner relative to its origin on the baseline.</td>
+</tr>
+<tr>
+<td></td>
+<td>Adv.</td>
+<td>Specify  how far to advance along the baseline before placing the next sprite.</td>
+</tr>
+<tr>
+<td></td>
+<td>SF</td>
+<td>Change this scaling factor value to adjust the size of the sprite.</td>
+</tr>
+<tr>
+<td><strong>Global Offsets &amp; Scale</strong></td>
+<td></td>
+<td>Use these settings to override the following values for all sprites in the Asset: <strong>OX</strong>, <strong>OY</strong>, <strong>ADV.</strong>, and <strong>SF.</strong></td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

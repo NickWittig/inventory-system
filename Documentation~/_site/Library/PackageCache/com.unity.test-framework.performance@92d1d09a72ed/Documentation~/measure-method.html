@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Measure.Method() | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Measure.Method() | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="measuremethod">Measure.Method()</h1>
+
+<p>Executes the provided method, sampling performance using the following additional properties/methods to control how the measurements are taken:</p>
+<ul>
+<li><strong>WarmupCount(int n)</strong> - number of times to execute before measurements are collected. If unspecified, a default warmup is executed for 100 ms or until at least 3 method executions have completed, whichever is longer.</li>
+<li><strong>MeasurementCount(int n)</strong> - number of measurements to capture, defaults to 9 if not specified.</li>
+<li><strong>DynamicMeasurementCount(OutlierMode outlierMode)</strong> - dynamically find a suitable measurement count based on the margin of error of the samples. The measurements will stop once a certain amount of samples (specified by a confidence interval) falls within an acceptable error range from the result (defined by a relative error of the mean). A default margin of error range of 2% and a default confidence interval of 99% will be used. Statistical outliers will not be taken into account unless different behaviour is specified through the outlierMode argument.</li>
+<li><strong>DynamicMeasurementCount(double maxRelativeError, ConfidenceLevel confidenceLevel, OutlierMode outlierMode)</strong> - dynamically find a suitable measurement count based on the margin of error of the samples and using the provided confidence interval and error range.</li>
+<li><strong>IterationsPerMeasurement(int n)</strong> - number of method executions per measurement to use. If this value is not specified, the method is executed as many times as possible until approximately 100 ms has elapsed.</li>
+<li><strong>SampleGroup(string name)</strong> - name of the measurement, defaults to &quot;Time&quot; if unspecified.</li>
+<li><strong>SampleGroup(SampleGroup sampleGroup)</strong> - a sample group with a custom name and measurement unit. This will override the otherwise default value of &quot;Time&quot;.</li>
+<li><strong>GC()</strong> - if specified, measures the total number of Garbage Collection allocation calls.</li>
+<li><strong>SetUp(Action action)</strong> - is called every iteration before method execution. Setup time is not measured.</li>
+<li><strong>CleanUp(Action action)</strong> - is called every iteration after method execution. Cleanup time is not measured.</li>
+</ul>
+<h4 id="example-1-simple-method-measurement-using-default-values">Example 1: Simple method measurement using default values</h4>
+<pre><code class="lang-csharp">[Test, Performance]
+public void Test()
+{
+    Measure.Method(() =&gt; { ... }).Run();
+}
+</code></pre>
+<h4 id="example-2-customize-measuremethod-properties">Example 2: Customize Measure.Method properties</h4>
+<pre><code class="lang-csharp">[Test, Performance]
+public void Test()
+{
+    Measure.Method(() =&gt; { ... })
+        .WarmupCount(10)
+        .MeasurementCount(10)
+        .IterationsPerMeasurement(5)
+        .GC()
+        .SetUp(()=&gt; {/*setup code*/})
+        .CleanUp(()=&gt; {/*cleanup code*/})
+        .Run();
+}
+</code></pre>
+<h4 id="example-3-measuremethod-samplegroup-and-profilermarkers">Example 3: Measure.Method, SampleGroup and ProfilerMarkers</h4>
+<pre><code class="lang-csharp">[Test, Performance]
+public void Test()
+{
+    var sg = new SampleGroup(&quot;Name&quot;, SampleUnit.Microsecond);
+    var sgMarker = new SampleGroup(&quot;MarkerName&quot;, SampleUnit.Seconds);
+    Measure.Method(() =&gt; { ... }).SampleGroup(sg).ProfilerMarkers(sgMarker).Run();
+}
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

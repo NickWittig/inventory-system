@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title> | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content=" | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+
+<h2 id="dllimport-and-internal-calls">DllImport and internal calls</h2>
+<p>To call native functions, use <a href="https://docs.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.dllimportattribute?view=net-6.0"><code>[DllImport]</code></a>:</p>
+<pre><code class="lang-c#">[DllImport(&quot;MyNativeLibrary&quot;)]
+public static extern int Foo(int arg);
+</code></pre>
+<p>Burst also supports internal calls implemented inside Unity:</p>
+<pre><code class="lang-c#">// In UnityEngine.Mathf
+[MethodImpl(MethodImplOptions.InternalCall)]
+public static extern int ClosestPowerOfTwo(int value);
+</code></pre>
+<p><code>DllImport</code> is only supported for <a href="https://docs.unity3d.com/Manual/NativePlugins.html">native plug-ins</a>, not platform-dependent libraries like <code>kernel32.dll</code>.</p>
+<p>For all <code>DllImport</code> and internal calls, you can only use the following types as parameter or return types:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Type</strong></th>
+<th><strong>Supported type</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Built-in and intrinsic types</td>
+<td><code>byte</code> / <code>sbyte</code><br><code>short</code> / <code>ushort</code><br><code>int</code> / <code>uint</code><br><code>long</code> / <code>ulong</code><br><code>float</code><br><code>double</code><br><code>System.IntPtr</code> / <code>System.UIntPtr</code><br><code>Unity.Burst.Intrinsics.v64</code> / <code>Unity.Burst.Intrinsics.v128</code> / <code>Unity.Burst.Intrinsics.v256</code></td>
+</tr>
+<tr>
+<td>Pointers and references</td>
+<td><code>sometype*</code> : Pointer to any of the other types in this list<br><code>ref sometype</code> : Reference to any of the other types in this list</td>
+</tr>
+<tr>
+<td>Handle structs</td>
+<td><code>unsafe struct MyStruct { void* Ptr; }</code> : Struct containing a single pointer field<br><code>unsafe struct MyStruct { int Value; }</code> : Struct containing a single integer field</td>
+</tr>
+</tbody>
+</table>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Passing structs by value isn't supported; you need to pass them through a pointer or reference. The only exception is that handle structs are supported. These are structs that contain a single field of pointer or integer type.</p>
+</div>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="csharp-hpc-overview.html">HPC# overview</a></li>
+<li><a href="csharp-burst-intrinsics.html">Burst intrinsics overview</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

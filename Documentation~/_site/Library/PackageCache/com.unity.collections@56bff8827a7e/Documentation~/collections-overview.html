@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Collections overview | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Collections overview | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="collections-overview">Collections overview</h1>
+
+<p>The Collections package extends the concepts and collections in the core Unity engine, including adding more <a href="xref:JobSystemNativeContainer">native container objects</a> and <a href="https://docs.unity3d.com/Manual/job-system-jobs.html">job types</a>. The collections in this package fall into the following categories:</p>
+<ul>
+<li>Collection types which have safety checks that make sure that Unity properly disposes of the type, and you use them in a thread-safe way. These types are in the <a href="xref:Unity.Collections"><code>Unity.Collections</code></a> namespace and their names start with <code>Native</code>.</li>
+<li>Collection types which don't have safety checks. These types are in the <a href="xref:Unity.Collections.LowLevel.Unsafe"><code>Unity.Collections.LowLevel.Unsafe</code></a> namespace and their names start with <code>Unsafe</code>.</li>
+</ul>
+<p>The remaining collection types which don't fit into these categories aren't allocated and don't contain any pointers. These types only contain small amounts of data, and their disposal and thread safety aren't a concern.</p>
+<h2 id="native-and-unsafe-comparison">Native and unsafe comparison</h2>
+<p><code>Native</code> collection types perform safety checks to make sure that indices passed to their methods are in bounds, but the other types don't have these kind of checks.</p>
+<p>Several <code>Native</code> types have <code>Unsafe</code> equivalents, for example, <a href="xref:Unity.Collections.INativeList%601"><code>NativeList</code></a> has <a href="xref:Unity.Collections.LowLevel.Unsafe.UnsafeList%601"><code>UnsafeList</code></a>, and <a href="xref:Unity.Collections.NativeHashMap%602"><code>NativeHashMap</code></a> has <a href="xref:Unity.Collections.LowLevel.Unsafe.UnsafeHashMap%602"><code>UnsafeHashMap</code></a>.</p>
+<p>It's best practice to use <code>Native</code> collections over the <code>Unsafe</code> equivalents. However, it's sometimes necessary to use the <code>Unsafe</code> equivalents because <code>Native</code> collection types can't contain other <code>Native</code> collections. This is because of how Unity implements the <code>Native</code> safety checks. For example, if you want to get a list of lists, you can use either <code>NativeList&lt;UnsafeList&lt;T&gt;&gt;</code> or <code>UnsafeList&lt;UnsafeList&lt;T&gt;&gt;</code>, but you can't use <code>NativeList&lt;NativeList&lt;T&gt;&gt;</code>.</p>
+<p>If you've disabled safety checks, then there isn't a significant performance difference between a <code>Native</code> type and its <code>Unsafe</code> equivalent. In fact, most <code>Native</code> collections are implemented as wrappers of their <code>Unsafe</code> counterparts. For example, <code>NativeList</code> is made up of an <code>UnsafeList</code> plus some handles that the safety checks use.</p>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="collection-types.html">Collection types overview</a></li>
+<li><a href="parallel-readers.html">Parallel readers and writers</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

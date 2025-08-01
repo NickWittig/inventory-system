@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Font Assets | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Font Assets | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../../index.html">
+            <img id="logo" class="svg" src="../../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="font-assets">Font Assets</h1>
+
+<p>To use different fonts with TextMesh Pro, you need to create font assets. TextMesh Pro has its own font Asset format that is distinct from, but related to, <a href="https://docs.unity3d.com/2019.1/Documentation/Manual/class-Font.html">Unity's regular font Asset format</a>. You create TextMesh Pro font assets <em>from</em> Unity font assets.</p>
+<p>Every TextMesh Pro font Asset has two sub-Assets:</p>
+<ul>
+<li><strong>Font atlas:</strong> a black and white or grayscale texture file that contains all of the characters included in the font Asset.<br><br><img src="../images/FontAtlasExample.png" alt="Example image"><br><em>Example of a font atlas</em></li>
+<li><strong>Font material:</strong> a material that controls the appearance of TextMesh Pro text using one of the <a href="Shaders.html">TextMesh Pro shaders</a>.</li>
+</ul>
+<p>Font assets must be in a specific folder so TextMesh Pro can find them and include them in builds. To change the default folder for font assets, got to the <a href="Settings.html">TextMesh Pro settings</a> and set the <strong>Default Font Asset &gt; Path</strong> option.</p>
+<h2 id="creating-font-assets">Creating Font Assets</h2>
+<p>To create a TextMesh Pro font Asset, use the TexMesh Pro <a href="FontAssetsCreator.html">Font Asset Creator</a>.</p>
+<p>You can also create an empty TextMesh Pro font Asset from the Unity main menu. An empty font asset does not contain any characters by default, you must add them later. To create an empty TextMesh Pro font asset, select a Unity font Asset and then select <strong>Asset &gt; Create &gt; TextMeshPro &gt; Font Asset</strong> from the menu.</p>
+<h2 id="types-of-font-atlas">Types of font atlas</h2>
+<p>Font Assets can have the following types of font atlas:</p>
+<ul>
+<li><p><strong>Distance Field:</strong> This type of atlas contains <a href="FontAssetsSDF.html">signed distance field (SDF)</a> information.<br><br>This is the recommended Font Asset type for most applications because SDF atlases produce text that is smooth when transformed.</p>
+</li>
+<li><p><strong>Smooth/Hinted Smooth:</strong> This type of atlas is an antialiased bitmap texture. A Hinted smooth atlas aligns glyph pixels with texture pixels to produce a smoother result.<br><br>Smooth atlases work well for static text that is viewed head on, in situations where there is a good correspondence between texture pixels and screen pixels. Transforming text generated from a smooth atlas blurs the text edges.</p>
+</li>
+<li><p><strong>Raster/Raster Hinted:</strong> Raster atlases are un-smoothed bitmap textures. They almost always produce text with jagged, pixellated edges. The Hinted rater atlases align glyph pixels with texture pixels to produce a smoother result.</p>
+</li>
+</ul>
+<h2 id="get-font-features">Get Font Features</h2>
+<p>This option determines if OpenType font features should be retrieved from the source font file as new characters and glyphs are added to the font asset. Disabling this option will prevent extracting font features.</p>
+<p>To update the Get Font Features option on a FontAsset:</p>
+<ol>
+<li>Select the FontAsset</li>
+<li>In the FontAsset inspector, navigate to the Generation Settings section.</li>
+<li>Select <strong>Get Font Features</strong>.</li>
+</ol>
+<p><img src="../images/GetFontFeatures.png" alt="Example image"></p>
+<h2 id="reset">Reset</h2>
+<p>The <code>Reset</code> context menu option clears all tables which includes the Character and Glyph tables along with all font features tables such as the Ligature, Glyph Adjustment, Mark to Base, Mark to Mark tables. This option also clears the font asset's atlas texture and resets it back to size zero.</p>
+<p>To reset a FontAsset:</p>
+<ol>
+<li>Select the FontAsset</li>
+<li>Expand the top right menu in the FontAsset Inspector.</li>
+<li>Select <strong>Reset</strong>.</li>
+</ol>
+<p><img src="../images/ResetMenuItem.png" alt="Example image"></p>
+<h2 id="clear-dynamic-data">Clear Dynamic Data</h2>
+<p>The <code>Clear Dynamic Data</code> context menu option clears the character and glyph tables as well as the font asset's atlas texture which is also resized back to size zero. This option preserves all font feature table data such as Ligatures, Glyph Adjustment, Mark to Base, Mark to Mark, etc.</p>
+<p>To clear a FontAsset:</p>
+<ol>
+<li>Select the FontAsset</li>
+<li>Expand the top right menu in the FontAsset Inspector.</li>
+<li>Select <strong>Clear Dynamic Data</strong>.</li>
+</ol>
+<p><img src="../images/ClearDynamicDataMenuItem.png" alt="Example image"></p>
+<p>This preserves the custom ligatures, kernings, and diacritical marks you added to the font asset when clearing the atlas.</p>
+<h2 id="clear-dynamic-data-on-build">Clear Dynamic Data on Build</h2>
+<p>The &quot;Clear Dynamic Data on Build&quot; option works like the &quot;Clear Dynamic Data&quot; context menu option but also clears data when building the project or closing the Editor.</p>
+<p>When enabled, this option resizes the texture to 0 (empty) during the build process.</p>
+<p>For dynamic FontAssets, it resets the glyph atlas, character table, and glyph table to their initial states. This feature helps reduce build size by minimizing the FontAsset's data footprint.</p>
+<p>To update the Clear Dynamic Data on Build option:</p>
+<ol>
+<li>Select the FontAsset</li>
+<li>In the FontAsset inspector, navigate to the Generation Settings section.</li>
+<li>Select <strong>Clear Dynamic Data on Build</strong>.</li>
+</ol>
+<p><img src="../images/ClearDynamicDataOnBuild.png" alt="Example image"></p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

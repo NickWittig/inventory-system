@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Using the JetBrains Rider Editor package | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Using the JetBrains Rider Editor package | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="using-the-jetbrains-rider-editor-package">Using the JetBrains Rider Editor package</h1>
+
+<p>To use the package, go to <strong>Edit &gt; Preferences &gt; External Tools</strong>, click on the <strong>External Script Editor</strong> dropdown menu and select your version of <strong>Rider</strong>. When you select this option, the window reloads.</p>
+<p>After the window reloads, new settings that control production of .csproj files become available.</p>
+<p><img src="images/preferences-settings-external-tools-window.png" alt=""> <br>
+<em>External Tools tab in the Preferences window</em></p>
+<h2 id="commandline-endpoints">Commandline endpoints</h2>
+<p>Q: Generate sln/csproj files for CI?</p>
+<p>A: <code>Unity -batchmode -quit -projectPath ProjectPath -executeMethod Packages.Rider.Editor.RiderScriptEditor.SyncSolution</code></p>
+<p>Q: Generate sln/csproj and open External Editor?</p>
+<p>A: <code>Unity -batchmode -quit -projectPath ProjectPath -executeMethod Packages.Rider.Editor.RiderScriptEditor.SyncSolutionAndOpenExternalEditor</code></p>
+<h2 id="package-preferences">Package preferences</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Property:</strong></th>
+<th style="text-align: left;"><strong>Description:</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Extensions handled</strong></td>
+<td style="text-align: left;">This field lists the file extensions that open in JetBrains Rider. This field contains a variety of extensions by default.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Generate .csproj files for:</strong></td>
+<td style="text-align: left;">Each setting in this list enables or disables production of .csproj files for a different type of package. The <strong>Regenerate project files</strong> button updates existing .csproj files and creates the necessary new ones based on the settings you choose. These settings control whether to generate .csproj files for any installed packages. For more information on how to install packages, see the <a href="https://docs.unity3d.com/Manual/upm-ui-actions.html">Adding and removing packages documentation</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;">__    Embedded     packages__</td>
+<td style="text-align: left;">Any package that appears under your project’s Packages folder is an embedded package. An embedded package is not necessarily built-in; you can create your own packages and embed them inside your project. This setting is enabled by default. For more information on embedded packages, see the <a href="https://docs.unity3d.com/Manual/upm-embed.html">Embedded dependencies documentation</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;">__    Local     packages__</td>
+<td style="text-align: left;">Any package that you install from a local repository stored on your machine, but from outside of your Unity project. This setting is enabled by default.</td>
+</tr>
+<tr>
+<td style="text-align: left;">__    Registry     packages__</td>
+<td style="text-align: left;">Any package that you install from either the official Unity registry or a custom registry. Packages in the Unity registry are available to install directly from the Package Manager. For more information about the Unity package registry, see the <a href="https://docs.unity3d.com/Packages/com.unity.package-manager-ui@1.8/manual/index.html#PackManRegistry">Package Registry section of the Unity Package Manager documentation</a>. For information on creating and using custom registries in addition to the Unity registry, see the <a href="https://docs.unity3d.com/Manual/upm-scoped.html">Scoped package registries documentation</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;">__    Git     packages__</td>
+<td style="text-align: left;">Any package you install directly from a Git repository using a URL.</td>
+</tr>
+<tr>
+<td style="text-align: left;">__    Built-in     packages__</td>
+<td style="text-align: left;">Any package that is already installed as part of the default Unity installation.</td>
+</tr>
+<tr>
+<td style="text-align: left;">__    Tarball     packages__</td>
+<td style="text-align: left;">Any package you install from a GZip tarball archive on the local machine, outside of your Unity project.</td>
+</tr>
+<tr>
+<td style="text-align: left;">__    Unknown     packages__</td>
+<td style="text-align: left;">Any package which Unity cannot determine an origin for. This could be because the package doesn’t list its origin, or that Unity doesn’t recognize the origin listed.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Player projects</strong></td>
+<td style="text-align: left;">For each player project, generate an additional .csproj file named 'originalProjectName.Player.csproj'. This allows different project types to have their code included in Rider’s systems, such as assembly definitions or testing suites.</td>
+</tr>
+</tbody>
+</table>
+<p>This package also adds a second tab under <strong>Preferences</strong> named <strong>Rider</strong>, pictured below.</p>
+<p><img src="images/preferences-rider-tab.png" alt="">
+<br><em>Rider tab in the Preferences window</em></p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The Logging Level menu does not control the level of Unity's logging, only the level of log messages that Rider package logs in its own log file. For more information on controlling Unity's logging level, see the <a href="https://docs.unity3d.com/Manual/Console.html#StackTraceLogging">Stack Trace Logging section of the Console Window documentation</a>.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Property:</strong></th>
+<th style="text-align: left;"><strong>Description:</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong><strong>Pass Console to Rider</strong></strong></td>
+<td style="text-align: left;">If <strong>Pass Console to Rider</strong> is enabled, Rider can access data that Unity sends to the Unity Console and display it within its own environment instead.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><strong>Log file</strong></strong></td>
+<td style="text-align: left;">The <strong>Log file</strong> field contains an <strong>Open log</strong> button. Select this button to open the log file inside the Rider IDE. This button is unavailable when <strong>Logging Level</strong> is set to <strong>OFF</strong>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Logging Level</strong></td>
+<td style="text-align: left;">The <strong>Logging Level</strong> menu controls how detailed are the Rider package logs. Those logs may be used for troubleshooting communication between Rider and Unity. Rider package logs all messages of the type you select as well as any messages of a more severe type. For example, if you choose <strong>WARN</strong>, then Rider logs all <strong>ERROR</strong> and <strong>FATAL</strong> messages as well as <strong>WARN</strong> messages. The message types are listed below in order of severity, with <strong>FATAL</strong> as the most severe type of message and <strong>TRACE</strong> as the least severe.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><strong>OFF</strong></strong></td>
+<td style="text-align: left;">Rider does not produce any logs.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>**FATAL</strong></td>
+<td style="text-align: left;">Logs information relating to serious problems that cause the application to crash. This setting produces the smallest logs.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><strong>ERROR</strong></strong></td>
+<td style="text-align: left;">Logs information about errors that prevent some functionality from working, but don’t cause the application to fail (for example, a failed database connection).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><strong>WARN</strong></strong></td>
+<td style="text-align: left;">Logs information about possible problems, or any unusual behaviour. Warnings don’t indicate that something has gone wrong, but that Unity detects something that might potentially cause an issue if not investigated.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><strong>INFO</strong></strong></td>
+<td style="text-align: left;">Logs information about normal operation of the application, such as a successful database connection attempt.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><strong>VERBOSE</strong></strong></td>
+<td style="text-align: left;">Logs detailed but not exhaustive information about your code. This setting is helpful for checking how your code executes or providing diagnostic information for other developers.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><strong>TRACE</strong></strong></td>
+<td style="text-align: left;">Logs as much information about the application as possible. This can create a very large and detailed log, so it’s good practice to only use it when attempting to find the cause of a specific issue with your code.</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

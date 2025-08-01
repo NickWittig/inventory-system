@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Architecture | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Architecture | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="input-system-architecture">
+<h1 id="architecture">Architecture</h1>
+
+<p>The Input System has a layered architecture that consists of a low-level layer and a high-level layer.</p>
+<h1 id="native-backend">Native backend</h1>
+<p>The foundation of the Input System is the native backend code. This is platform-specific code which collects information about available Devices and input data from Devices. This code is not part of the Input System package, but is included with Unity itself. It has implementations for each runtime platform supported by Unity. This is why some platform-specific input bugs can only be fixed by an update to Unity, rather than a new version of the Input System package.</p>
+<p>The Input System interfaces with the native backend using <a href="Events.html">events</a> that the native backend sends. These events notify the system of the creation and removal of <a href="Devices.html">Input Devices</a>, as well as any updates to the Device states. For efficiency and to avoid creating any garbage, the native backend reports these events as a simple buffer of raw, unmanaged memory containing a stream of events.</p>
+<p>The Input System can also send data back to the native backend in the form of <a href="Devices.html#device-commands">commands</a> sent to Devices, which are also buffers of memory that the native backend interprets. These commands can have different meanings for different Device types and platforms.</p>
+<h1 id="input-system-low-level">Input System (low-level)</h1>
+<p><img src="Images/InputArchitectureLowLevel.png" alt="Low-Level Architecture"></p>
+<p>The low-level Input System code processes and interprets the memory from the event stream that the native backend provides, and dispatches individual events.</p>
+<p>The Input System creates Device representations for any newly discovered Device in the event stream. The low-level code sees a Device as a block of raw, unmanaged memory. If it receives a state event for a Device, it writes the data from the state event into the Device's <a href="Controls.html#control-state">state representation</a> in memory, so that the state always contains an up-to-date representation of the Device and all its Controls.</p>
+<p>The low-level system code also contains structs which describe the data layout of commonly known Devices.</p>
+<h1 id="input-system-high-level">Input System (high-level)</h1>
+<p><img src="Images/InputArchitectureHighLevel.png" alt="High-Level Architecture"></p>
+<p>The high-level Input System code interprets the data in a Device's state buffers by using <a href="Layouts.html">layouts</a>, which describe the data layout of a Device and its Controls in memory. The Input System creates layouts from either the pre-defined structs of commonly known Devices supplied by the low level system, or dynamically at runtime, as in the case of <a href="HID.html#auto-generated-layouts">generic HIDs</a>.</p>
+<p>Based on the information in the layouts, the Input System then creates <a href="Controls.html">Control</a> representations for each of the Device's controls, which let you read the state of each individual Control in a Device.</p>
+<p>As part of the high-level system, you can also build another abstraction layer to map Input Controls to your application mechanics. Use <a href="Actions.html">Actions</a> to <a href="ActionBindings.html">bind</a> one or more Controls to an input in your application. The Input System then monitors these Controls for state changes, and notifies your game logic using <a href="RespondingToActions.html#responding-to-actions-using-callbacks">callbacks</a>. You can also specify more complex behaviors for your Actions using <a href="Processors.html">Processors</a> (which perform processing on the input data before sending it to you) and <a href="Interactions.html">Interactions</a> (which let you specify patterns of input on a Control to listen to, such as multi-taps).</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

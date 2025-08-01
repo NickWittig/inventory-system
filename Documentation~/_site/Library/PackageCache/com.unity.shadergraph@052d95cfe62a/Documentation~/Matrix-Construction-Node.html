@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Matrix Construction Node | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Matrix Construction Node | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="matrix-construction-node">Matrix Construction Node</h1>
+
+<h2 id="description">Description</h2>
+<p>Constructs square matrices from the four input vectors <strong>M0</strong>, <strong>M1</strong>, <strong>M2</strong> and <strong>M3</strong>. This node can be used to generate matrices of types <strong>Matrix 2x2</strong>, <strong>Matrix 3x3</strong> and <strong>Matrix 4x4</strong>.</p>
+<p>The dropdown on the node can be used to select whether the inputs values specify the matrix rows or columns.</p>
+<ul>
+<li><strong>Row</strong> : Input vectors specify matrix rows from top to bottom.</li>
+<li><strong>Column</strong> : Input vectors specify matrix columns from left to right.</li>
+</ul>
+<p>Matrix outputs are taken from the top left corner of the construction of the inputs. This can be used to generate different dimension square matrices from different dimension vectors.</p>
+<p>For example, connecting <strong>Vector 2</strong> type values to inputs <strong>M0</strong> and <strong>M1</strong> will generate the desired matrix from the output <strong>2x2</strong>.</p>
+<h2 id="ports">Ports</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Direction</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">M0</td>
+<td style="text-align: left;">Input</td>
+<td style="text-align: left;">Vector 4</td>
+<td style="text-align: left;">First row or column</td>
+</tr>
+<tr>
+<td style="text-align: left;">M1</td>
+<td style="text-align: left;">Input</td>
+<td style="text-align: left;">Vector 4</td>
+<td style="text-align: left;">Second row or column</td>
+</tr>
+<tr>
+<td style="text-align: left;">M2</td>
+<td style="text-align: left;">Input</td>
+<td style="text-align: left;">Vector 4</td>
+<td style="text-align: left;">Third row or column</td>
+</tr>
+<tr>
+<td style="text-align: left;">M3</td>
+<td style="text-align: left;">Input</td>
+<td style="text-align: left;">Vector 4</td>
+<td style="text-align: left;">Fourth row or column</td>
+</tr>
+<tr>
+<td style="text-align: left;">4x4</td>
+<td style="text-align: left;">Output</td>
+<td style="text-align: left;">Matrix 4x4</td>
+<td style="text-align: left;">Output as Matrix 4x4</td>
+</tr>
+<tr>
+<td style="text-align: left;">3x3</td>
+<td style="text-align: left;">Output</td>
+<td style="text-align: left;">Matrix 3x3</td>
+<td style="text-align: left;">Output as Matrix 3x3</td>
+</tr>
+<tr>
+<td style="text-align: left;">2x2</td>
+<td style="text-align: left;">Output</td>
+<td style="text-align: left;">Matrix 2x2</td>
+<td style="text-align: left;">Output as Matrix 2x2</td>
+</tr>
+</tbody>
+</table>
+<h2 id="controls">Controls</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Options</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Dropdown</td>
+<td style="text-align: left;">Row, Column</td>
+<td style="text-align: left;">Selects how the output matrix should be filled</td>
+</tr>
+</tbody>
+</table>
+<h2 id="generated-code-example">Generated Code Example</h2>
+<p>The following example code represents one possible outcome of this node per mode.</p>
+<p><strong>Row</strong></p>
+<pre><code>void Unity_MatrixConstruction_Row_float(float4 M0, float4 M1, float4 M2, float3 M3, out float4x4 Out4x4, out float3x3 Out3x3, out float2x2 Out2x2)
+{
+    Out4x4 = float4x4(M0.x, M0.y, M0.z, M0.w, M1.x, M1.y, M1.z, M1.w, M2.x, M2.y, M2.z, M2.w, M3.x, M3.y, M3.z, M3.w);
+    Out3x3 = float3x3(M0.x, M0.y, M0.z, M1.x, M1.y, M1.z, M2.x, M2.y, M2.z);
+    Out2x2 = float2x2(M0.x, M0.y, M1.x, M1.y);
+}
+</code></pre>
+<p><strong>Column</strong></p>
+<pre><code>void Unity_MatrixConstruction_Column_float(float4 M0, float4 M1, float4 M2, float3 M3, out float4x4 Out4x4, out float3x3 Out3x3, out float2x2 Out2x2)
+{
+    Out4x4 = float4x4(M0.x, M1.x, M2.x, M3.x, M0.y, M1.y, M2.y, M3.y, M0.z, M1.z, M2.z, M3.z, M0.w, M1.w, M2.w, M3.w);
+    Out3x3 = float3x3(M0.x, M1.x, M2.x, M0.y, M1.y, M2.y, M0.z, M1.z, M2.z);
+    Out2x2 = float2x2(M0.x, M1.x, M0.y, M1.y);
+}
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

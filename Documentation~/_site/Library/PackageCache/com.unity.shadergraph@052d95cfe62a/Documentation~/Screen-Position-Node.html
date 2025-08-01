@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Screen Position Node | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Screen Position Node | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="screen-position-node">Screen Position Node</h1>
+
+<h2 id="description">Description</h2>
+<p>Provides access to the screen position of the mesh vertex or fragment. The X and Y values represent the horizontal and vertical positions respectively. Use the <strong>Mode</strong> dropdown control to select the mode of the output value. The available modes are as follows:</p>
+<ul>
+<li><p><strong>Default</strong> - Returns X and Y values that represent the normalized <strong>Screen Position</strong>. The normalized <strong>Screen Position</strong> is the <strong>Screen Position</strong> divided by the clip space position W component. The X and Y value ranges are between 0 and 1 with position <code>float2(0,0)</code> at the lower left corner of the screen. The Z and W values aren't used in this mode, so they're always 0.</p>
+</li>
+<li><p><strong>Raw</strong> - Returns the raw <strong>Screen Position</strong> values, which are the <strong>Screen Position</strong> values before the clip space position W component is divided out. Position <code>float2(0,0)</code> is at the lower left corner of the screen. This mode is useful for projection.</p>
+</li>
+<li><p><strong>Center</strong> - Returns X and Y values that represent the normalized <strong>Screen Position</strong> offset so position <code>float2(0,0)</code> is at the center of the screen. The range of the X and Y values is –1 to 1. The Z and W values aren't used in this mode, so they're always 0.</p>
+</li>
+<li><p><strong>Tiled</strong> - Returns <strong>Screen Position</strong> offset so position <code>float2(0,0)</code> is at the center of the screen and tiled using <code>frac</code>.</p>
+</li>
+<li><p><strong>Pixel</strong> - Returns <strong>Screen Position</strong> in terms of the actual pixel width and height values of the screen. In this mode, position <code>float2(0,0)</code> is at the lower left corner of the screen. Whereas the range of Default mode is always 0 to 1, the range of Pixel mode depends on the screen resolution. The Z and W values aren't used in this mode, so they're always 0.</p>
+</li>
+</ul>
+<h2 id="ports">Ports</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Direction</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Binding</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Out</td>
+<td style="text-align: left;">Output</td>
+<td style="text-align: left;">Vector 4</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">Get the <strong>Screen Position</strong> of the mesh.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="controls">Controls</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Options</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Mode</td>
+<td style="text-align: left;">Dropdown</td>
+<td style="text-align: left;">Default, Raw, Center, Tiled, Pixel</td>
+<td style="text-align: left;">Select which coordinate space to use for the <strong>Screen Position</strong> output.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="generated-code-example">Generated Code Example</h2>
+<p>The following code examples represent one possible outcome for each mode.</p>
+<p><strong>Default</strong></p>
+<pre><code>float4 Out = float4(IN.NDCPosition.xy, 0, 0);
+</code></pre>
+<p><strong>Raw</strong></p>
+<pre><code>float4 Out = IN.ScreenPosition;
+</code></pre>
+<p><strong>Center</strong></p>
+<pre><code>float4 Out = float4(IN.NDCPosition.xy * 2 - 1, 0, 0);
+</code></pre>
+<p><strong>Tiled</strong></p>
+<pre><code>float4 Out = frac(float4((IN.NDCPosition.x * 2 - 1) * _ScreenParams.x / _ScreenParams.y, IN.{0}.y * 2 - 1, 0, 0));
+</code></pre>
+<p><strong>Pixel</strong></p>
+<pre><code>float4 Out = float4(IN.PixelPosition.xy, 0, 0);
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

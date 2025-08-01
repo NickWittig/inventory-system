@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>White Balance Node | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="White Balance Node | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="white-balance-node">White Balance Node</h1>
+
+<h2 id="description">Description</h2>
+<p>Adjusts the temperature and tint of input <strong>In</strong> by the amount of inputs <strong>Temperature</strong> and <strong>Tint</strong> respectively. <strong>Temperature</strong> has the effect of shifting the values towards yellow or blue. <strong>Tint</strong> has the effect of shifting towards pink or green.</p>
+<h2 id="ports">Ports</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Direction</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Binding</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">In</td>
+<td style="text-align: left;">Input</td>
+<td style="text-align: left;">Vector 3</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">Input value</td>
+</tr>
+<tr>
+<td style="text-align: left;">Temperature</td>
+<td style="text-align: left;">Input</td>
+<td style="text-align: left;">Float</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">Temperature offset value</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tint</td>
+<td style="text-align: left;">Input</td>
+<td style="text-align: left;">Float</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">Tint offset value</td>
+</tr>
+<tr>
+<td style="text-align: left;">Out</td>
+<td style="text-align: left;">Output</td>
+<td style="text-align: left;">Vector 3</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">Output value</td>
+</tr>
+</tbody>
+</table>
+<h2 id="generated-code-example">Generated Code Example</h2>
+<p>The following example code represents one possible outcome of this node.</p>
+<pre><code>void Unity_WhiteBalance_float(float3 In, float Temperature, float Tint, out float3 Out)
+{
+    // Range ~[-1.67;1.67] works best
+    float t1 = Temperature * 10 / 6;
+    float t2 = Tint * 10 / 6;
+
+    // Get the CIE xy chromaticity of the reference white point.
+    // Note: 0.31271 = x value on the D65 white point
+    float x = 0.31271 - t1 * (t1 &lt; 0 ? 0.1 : 0.05);
+    float standardIlluminantY = 2.87 * x - 3 * x * x - 0.27509507;
+    float y = standardIlluminantY + t2 * 0.05;
+
+    // Calculate the coefficients in the LMS space.
+    float3 w1 = float3(0.949237, 1.03542, 1.08728); // D65 white point
+
+    // CIExyToLMS
+    float Y = 1;
+    float X = Y * x / y;
+    float Z = Y * (1 - x - y) / y;
+    float L = 0.7328 * X + 0.4296 * Y - 0.1624 * Z;
+    float M = -0.7036 * X + 1.6975 * Y + 0.0061 * Z;
+    float S = 0.0030 * X + 0.0136 * Y + 0.9834 * Z;
+    float3 w2 = float3(L, M, S);
+
+    float3 balance = float3(w1.x / w2.x, w1.y / w2.y, w1.z / w2.z);
+
+    float3x3 LIN_2_LMS_MAT = {
+        3.90405e-1, 5.49941e-1, 8.92632e-3,
+        7.08416e-2, 9.63172e-1, 1.35775e-3,
+        2.31082e-2, 1.28021e-1, 9.36245e-1
+    };
+
+    float3x3 LMS_2_LIN_MAT = {
+        2.85847e+0, -1.62879e+0, -2.48910e-2,
+        -2.10182e-1,  1.15820e+0,  3.24281e-4,
+        -4.18120e-2, -1.18169e-1,  1.06867e+0
+    };
+
+    float3 lms = mul(LIN_2_LMS_MAT, In);
+    lms *= balance;
+    Out = mul(LMS_2_LIN_MAT, lms);
+}
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

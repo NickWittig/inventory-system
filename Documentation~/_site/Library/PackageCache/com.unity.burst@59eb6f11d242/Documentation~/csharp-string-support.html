@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>String support | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="String support | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="string-support">String support</h1>
+
+<p>Burst supports string usage in the following scenarios:</p>
+<ul>
+<li><a href="https://docs.unity3d.com/ScriptReference/Debug.Log.html"><code>Debug.Log</code></a></li>
+<li>Assigning a string to the <a href="https://docs.unity3d.com/Packages/com.unity.collections@2.2/api/Unity.Collections.FixedString.html"><code>FixedString</code></a> structs that <code>Unity.Collections</code> provides, for example <a href="https://docs.unity3d.com/Packages/com.unity.collections@2.2/api/Unity.Collections.FixedString128Bytes.html"><code>FixedString128Bytes</code></a>.</li>
+<li>The <a href="https://docs.microsoft.com/en-us/dotnet/api/system.runtime.compilerservices?view=net-6.0"><code>System.Runtime.CompilerServices</code></a> attributes <code>[CallerLineNumber]</code>, <code>[CallerMemberName]</code>, and <code>[CallerFilePath]</code> on arguments to Burst functions. However, you can only pass the strings directly to calls to <code>Debug.Log</code>.</li>
+</ul>
+<p>A string can be either:</p>
+<ul>
+<li>A string literal. For example: <code>&quot;This is a string literal&quot;</code>.</li>
+<li>An interpolated string using <code>$&quot;This is an integer {value}</code> or using <code>string.Format</code>, where the string to format is also a string literal.</li>
+</ul>
+<p>For example, Burst supports the following constructions:</p>
+<ul>
+<li><p>Logging with a string literal:</p>
+<pre><code class="lang-c#">Debug.Log(&quot;This a string literal&quot;);
+</code></pre>
+</li>
+<li><p>Logging using string interpolation:</p>
+<pre><code class="lang-c#">int value = 256;
+Debug.Log($&quot;This is an integer value {value}&quot;); 
+</code></pre>
+<p>This is the same as using <code>string.Format</code> directly:</p>
+<pre><code class="lang-c#">int value = 256;
+Debug.Log(string.Format(&quot;This is an integer value {0}&quot;, value));
+</code></pre>
+</li>
+</ul>
+<h2 id="supported-debuglog-methods">Supported <code>Debug.Log</code> methods</h2>
+<p>Burst supports the following <a href="https://docs.unity3d.com/ScriptReference/Debug.Log.html"><code>Debug.Log</code></a> methods:</p>
+<ul>
+<li><code>Debug.Log(object)</code></li>
+<li><code>Debug.LogWarning(object)</code></li>
+<li><code>Debug.LogError(object)</code></li>
+</ul>
+<h2 id="string-interpolation-support">String interpolation support</h2>
+<p>String interpolation has the following restrictions:</p>
+<ul>
+<li><p>The string must be a string literal</p>
+</li>
+<li><p>Burst supports the following <code>string.Format</code> methods:</p>
+<ul>
+<li><code>string.Format(string, object)</code></li>
+<li><code>string.Format(string, object, object)</code></li>
+<li><code>string.Format(string, object, object, object)</code></li>
+<li><code>string.Format(string, object[])</code>. Use this for a string interpolation that contains more than three arguments, for example <code>$&quot;{arg1} {arg2} {arg3} {arg4} {arg5}&quot;</code>. In this case, the <code>object[]</code> array needs to be a constant size and no arguments should involve control flows (for example, <code>$&quot;This is a {(cond ? arg1 : arg2)}&quot;</code>).</li>
+</ul>
+</li>
+<li><p>The string must only use value types</p>
+</li>
+<li><p>The string must take only built-in type arguments:</p>
+<ul>
+<li><code>char</code></li>
+<li><code>boolean</code></li>
+<li><code>byte</code> / <code>sbyte</code></li>
+<li><code>double</code></li>
+<li><code>float</code></li>
+<li><code>short</code> / <code>ushort</code></li>
+<li><code>int</code> / <code>uint</code></li>
+<li><code>long</code> / <code>ulong</code></li>
+</ul>
+</li>
+<li><p>Burst supports all vector types (for example <code>int2</code>, <code>float3</code>), except <code>half</code> vector types. For example:</p>
+<pre><code class="lang-c#">var value = new float3(1.0f, 2.0f, 3.0f);
+// Logs &quot;This value float3(1f, 2f, 3f)&quot;
+Debug.Log($&quot;This value `{value}`&quot;);
+</code></pre>
+</li>
+<li><p>Burst doesn't support <code>ToString()</code> of structs. It displays the full name of the struct instead.</p>
+</li>
+</ul>
+<p>For more information, refer to the .NET documentation on <a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/tokens/interpolated">String interpolation</a> and <a href="https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings">Standard numeric format strings</a>.</p>
+<h2 id="managed-strings">Managed strings</h2>
+<p>You can pass a managed <code>string</code> literal or an interpolated string directly to <code>Debug.Log</code>, but you can't pass a string to a user method or use them as fields in a struct. To pass around or store strings, use one of the <a href="https://docs.unity3d.com/Packages/com.unity.collections@1.2/api/Unity.Collections.FixedString.html"><code>FixedString</code></a> structs in the <code>Unity.Collections</code> package:</p>
+<pre><code class="lang-c#">int value = 256;
+FixedString128 text = $&quot;This is an integer value {value} used with FixedString128&quot;;
+MyCustomLog(text);
+
+// ...
+
+// String can be passed as an argument to a method using a FixedString, 
+// but not using directly a managed `string`:
+public static void MyCustomLog(in FixedString128 log)
+{
+    Debug.Log(text);
+}
+</code></pre>
+<h2 id="arguments-and-specifiers">Arguments and specifiers</h2>
+<p>Burst has limited support for string format arguments and specifiers:</p>
+<pre><code class="lang-c#">int value = 256;
+
+// Padding left: &quot;This value `  256`
+Debug.Log($&quot;This value `{value,5}`&quot;);
+
+// Padding right: &quot;This value `256  `
+Debug.Log($&quot;This value `{value,-5}`&quot;);
+
+// Hexadecimal uppercase: &quot;This value `00FF`
+Debug.Log($&quot;This value `{value:X4}`&quot;);
+
+// Hexadecimal lowercase: &quot;This value `00ff`
+Debug.Log($&quot;This value `{value:x4}`&quot;);
+
+// Decimal with leading-zero: &quot;This value `0256`
+Debug.Log($&quot;This value `{value:D4}`&quot;);
+</code></pre>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="csharp-hpc-overview.html">HPC# Overview</a></li>
+<li><a href="csharp-type-support.html">C#/.NET type support</a></li>
+<li><a href="csharp-system-support.html">C#/.NET System namespace support</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

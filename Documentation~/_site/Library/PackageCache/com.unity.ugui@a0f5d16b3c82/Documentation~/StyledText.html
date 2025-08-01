@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Rich Text | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Rich Text | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="rich-text">Rich Text</h1>
+
+<p>The text for UI elements and text meshes can incorporate multiple font styles and sizes. Rich text is supported both for the UI System and the legacy GUI system. The Text, GUIStyle, GUIText and TextMesh classes have a <strong>Rich Text</strong> setting which instructs Unity to look for markup tags within the text. The <a href="ScriptRef:Debug.Log.html">Debug.Log</a> function can also use these markup tags to enhance error reports from code. The tags are not displayed but indicate style changes to be applied to the text.</p>
+<h2 id="markup-format">Markup format</h2>
+<p>The markup system is inspired by HTML but isn't intended to be strictly compatible with standard HTML. The basic idea is that a section of text can be enclosed inside a pair of matching tags:-</p>
+<p><code>We are &lt;b&gt;not&lt;/b&gt; amused.</code></p>
+<p>As the example shows, the tags are just pieces of text inside the &quot;angle bracket&quot; characters, <code>&lt;</code> and <code>&gt;</code>.</p>
+<p>You place the <em>opening</em> tag at the beginning of the section. The text inside the tag denotes its name (which in this case is just <strong>b</strong>).</p>
+<p>You place another tag at the end of the section. This is the <em>closing</em> tag. It has the same name as the opening tag, but the name is prefixed with a slash <code>/</code> character.  Every opening tag must have a corresponding closing tag. If you don't <em>close</em> an opening tag, it is rendered as regular text.</p>
+<p>The tags are not displayed to the user directly but are interpreted as instructions for styling the text they enclose. The <code>b</code> tag used in the example above applies boldface to the word &quot;not&quot;, so the text appears ons creen as:-</p>
+<p>We are <strong>not</strong> amused</p>
+<p><img src="images/StyleTextBold.png" alt=""></p>
+<p>A marked up section of text (including the tags that enclose it) is referred to as an <strong>element</strong>.</p>
+<h3 id="nested-elements">Nested elements</h3>
+<p>It is possible to apply more than one style to a section of text by &quot;nesting&quot; one element inside another</p>
+<p><code>We are &lt;b&gt;&lt;i&gt;definitely not&lt;/i&gt;&lt;/b&gt; amused</code></p>
+<p>The <code>&lt;i&gt;</code> tag applies italic style, so this would be presented onscreen as</p>
+<p>We are <strong><em>definitely not</em></strong> amused</p>
+<p><img src="images/StyleTextBoldItalic1.png" alt=""></p>
+<p>Note the ordering of the closing tags, which is in reverse to that of the opening tags. The reason for this is perhaps clearer when you consider that the inner tags need not span the whole text of the outermost element</p>
+<p><code>We are &lt;b&gt;absolutely &lt;i&gt;definitely&lt;/i&gt; not&lt;/b&gt; amused</code></p>
+<p>which gives</p>
+<p>We are <strong>absolutely <em>definitely</em> not</strong> amused</p>
+<p><img src="images/StyleTextBoldItalic2.png" alt=""></p>
+<h3 id="tag-parameters">Tag parameters</h3>
+<p>Some tags have a simple all-or-nothing effect on the text but others might allow for variations. For example, the <strong>color</strong> tag needs to know which color to apply. Information like this is added to tags by the use of <strong>parameters</strong>:-</p>
+<p><code>We are &lt;color=green&gt;green&lt;/color&gt; with envy</code></p>
+<p>Which produces this result:</p>
+<p><img src="images/StyleTextColorGreen.png" alt=""></p>
+<p>Note that the ending tag doesn't include the parameter value. Optionally, the value can be surrounded by quotation marks but this isn't required.</p>
+<p>Tag parameters cannot include blank spaces. For example:</p>
+<p><code>We are &lt;color = green&gt;green&lt;/color&gt; with envy</code></p>
+<p>does not work because of the spaces to either side of the <code>=</code> character.</p>
+<h2 id="supported-tags">Supported tags</h2>
+<p>The following list describes all the styling tags supported by Unity.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong><em>Tag</em></strong></th>
+<th style="text-align: left;"><strong><em>Description</em></strong></th>
+<th style="text-align: left;"><strong><em>Example</em></strong></th>
+<th style="text-align: left;"><strong><em>Notes</em></strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>b</strong></td>
+<td style="text-align: left;">Renders the text in boldface.</td>
+<td style="text-align: left;"><code>We are &lt;b&gt;not&lt;/b&gt; amused.</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>i</strong></td>
+<td style="text-align: left;">Renders the text in italics.</td>
+<td style="text-align: left;"><code>We are &lt;i&gt;usually&lt;/i&gt; not amused.</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>size</strong></td>
+<td style="text-align: left;">Sets the size of the text according to the parameter value, given in pixels.</td>
+<td style="text-align: left;"><code>We are &lt;size=50&gt;largely&lt;/size&gt; unaffected.</code></td>
+<td style="text-align: left;">Although this tag is available for Debug.Log, you will find that the line spacing in the window bar and Console looks strange if the size is set too large.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="ColorTag"></a><strong>color</strong></td>
+<td style="text-align: left;">Sets the color of the text according to the parameter value. The color can be specified in the traditional HTML format. <code>#rrggbbaa</code> ...where the letters correspond to pairs of hexadecimal digits denoting the red, green, blue and alpha (transparency) values for the color. For example, cyan at full opacity would be specified by  <code>color=#00ffffff</code>...<br><br>You can specify hexadecimal values in uppercase or lowercase; <code>#FF0000</code> is equivalent to <code>#ff0000</code>.</td>
+<td style="text-align: left;"><code>We are &lt;color=#ff0000ff&gt;colorfully&lt;/color&gt; amused</code></td>
+<td style="text-align: left;">Another option is to use the name of the color. This is easier to understand but naturally, the range of colors is limited and full opacity is always assumed. <code>&lt;color=cyan&gt;some text&lt;/color&gt;</code>  The available color names are given in the <a href="#ColorNames">table below</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>material</strong></td>
+<td style="text-align: left;">This is only useful for text meshes and renders a section of text with a material specified by the parameter. The value is an index into the text mesh's array of materials as shown by the inspector.</td>
+<td style="text-align: left;"><code>We are &lt;material=2&gt;texturally&lt;/material&gt; amused</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>quad</strong></td>
+<td style="text-align: left;">This is only useful for text meshes and renders an image inline with the text. It takes parameters that specify the material to use for the image, the image height in pixels, and a further four that denote a rectangular area of the image to display. Unlike the other tags, quad does not surround a piece of text and so there is no ending tag - the slash character is placed at the end of the initial tag to indicate that it is &quot;self-closing&quot;.</td>
+<td style="text-align: left;"><code>&lt;quad material=1 size=20 x=0.1 y=0.1 width=0.5 height=0.5&gt;</code></td>
+<td style="text-align: left;">This selects the material at position in the renderer's material array and sets the height of the image to 20 pixels. The rectangular area of image starts at given by the x, y, width and height values, which are all given as a fraction of the unscaled width and height of the texture.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="ColorNames"></a></p>
+<h3 id="supported-colors">Supported colors</h3>
+<p>The following table lists colors for which you can use a name instead of a hexadecimal tag in the <a href="#ColorTag"><code>&lt;color&gt;</code></a> rich text tag.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong><em>Color name</em></strong></th>
+<th style="text-align: left;"><strong><em>Hex value</em></strong></th>
+<th style="text-align: left;"><strong><em>Swatch</em></strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">aqua (same as cyan)</td>
+<td style="text-align: left;"><code>#00ffffff</code></td>
+<td style="text-align: left;"><img src="images/CyanSwatch.png" alt=""></td>
+</tr>
+<tr>
+<td style="text-align: left;">black</td>
+<td style="text-align: left;"><code>#000000ff</code></td>
+<td style="text-align: left;"><img src="images/BlackSwatch.png" alt=""></td>
+</tr>
+<tr>
+<td style="text-align: left;">blue</td>
+<td style="text-align: left;"><code>#0000ffff</code></td>
+<td style="text-align: left;"><img src="images/BlueSwatch.png" alt=""></td>
+</tr>
+<tr>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;"><code>#a52a2aff</code></td>
+<td style="text-align: left;"><img src="images/BrownSwatch.png" alt=""></td>
+</tr>
+<tr>
+<td style="text-align: left;">cyan (same as aqua)</td>
+<td style="text-align: left;"><code>#00ffffff</code></td>
+<td style="text-align: left;"><img src="images/CyanSwatch.png" alt=""></td>
+</tr>
+<tr>
+<td style="text-align: left;">darkblue</td>
+<td style="text-align: left;"><code>#0000a0ff</code></td>
+<td style="text-align: left;"><img src="images/DarkblueSwatch.png" alt=""></td>
+</tr>
+<tr>
+<td style="text-align: left;">fuchsia (same as magenta)</td>
+<td style="text-align: left;"><code>#ff00ffff</code></td>
+<td style="text-align: left;"><img src="images/MagentaSwatch.png" alt=""></td>
+</tr>
+<tr>
+<td style="text-align: left;">green</td>
+<td style="text-align: left;"><code>#008000ff</code></td>
+<td style="text-align: left;"><img src="images/GreenSwatch.png" alt=""></td>
+</tr>
+<tr>
+<td style="text-align: left;">grey</td>
+<td style="text-align: left;"><code>#808080ff</code></td>
+<td style="text-align: left;"><img src="images/GreySwatch.png" alt=""></td>
+</tr>
+<tr>
+<td style="text-align: left;">lightblue</td>
+<td style="text-align: left;"><code>#add8e6ff</code></td>
+<td style="text-align: left;"><img src="images/LightblueSwatch.png" alt=""></td>
+</tr>
+<tr>
+<td style="text-align: left;">lime</td>
+<td style="text-align: left;"><code>#00ff00ff</code></td>
+<td style="text-align: left;"><img src="images/LimeSwatch.png" alt=""></td>
+</tr>
+<tr>
+<td style="text-align: left;">magenta (same as fuchsia)</td>
+<td style="text-align: left;"><code>#ff00ffff</code></td>
+<td style="text-align: left;"><img src="images/MagentaSwatch.png" alt=""></td>
+</tr>
+<tr>
+<td style="text-align: left;">maroon</td>
+<td style="text-align: left;"><code>#800000ff</code></td>
+<td style="text-align: left;"><img src="images/MaroonSwatch.png" alt=""></td>
+</tr>
+<tr>
+<td style="text-align: left;">navy</td>
+<td style="text-align: left;"><code>#000080ff</code></td>
+<td style="text-align: left;"><img src="images/NavySwatch.png" alt=""></td>
+</tr>
+<tr>
+<td style="text-align: left;">olive</td>
+<td style="text-align: left;"><code>#808000ff</code></td>
+<td style="text-align: left;"><img src="images/OliveSwatch.png" alt=""></td>
+</tr>
+<tr>
+<td style="text-align: left;">orange</td>
+<td style="text-align: left;"><code>#ffa500ff</code></td>
+<td style="text-align: left;"><img src="images/OrangeSwatch.png" alt=""></td>
+</tr>
+<tr>
+<td style="text-align: left;">purple</td>
+<td style="text-align: left;"><code>#800080ff</code></td>
+<td style="text-align: left;"><img src="images/PurpleSwatch.png" alt=""></td>
+</tr>
+<tr>
+<td style="text-align: left;">red</td>
+<td style="text-align: left;"><code>#ff0000ff</code></td>
+<td style="text-align: left;"><img src="images/RedSwatch.png" alt=""></td>
+</tr>
+<tr>
+<td style="text-align: left;">silver</td>
+<td style="text-align: left;"><code>#c0c0c0ff</code></td>
+<td style="text-align: left;"><img src="images/SilverSwatch.png" alt=""></td>
+</tr>
+<tr>
+<td style="text-align: left;">teal</td>
+<td style="text-align: left;"><code>#008080ff</code></td>
+<td style="text-align: left;"><img src="images/TealSwatch.png" alt=""></td>
+</tr>
+<tr>
+<td style="text-align: left;">white</td>
+<td style="text-align: left;"><code>#ffffffff</code></td>
+<td style="text-align: left;"><img src="images/WhiteSwatch.png" alt=""></td>
+</tr>
+<tr>
+<td style="text-align: left;">yellow</td>
+<td style="text-align: left;"><code>#ffff00ff</code></td>
+<td style="text-align: left;"><img src="images/YellowSwatch.png" alt=""></td>
+</tr>
+</tbody>
+</table>
+<h2 id="editor-gui">Editor GUI</h2>
+<p>Rich text is disabled by default in the editor GUI system but it can be enabled explicitly using a custom <a href="ScriptRef:GUIStyle.html">GUIStyle</a>. The <code>richText</code> property should be set to true and the style passed to the GUI function in question:</p>
+<pre><code>GUIStyle style = new GUIStyle ();
+style.richText = true;
+GUILayout.Label(&quot;&lt;size=30&gt;Some &lt;color=yellow&gt;RICH&lt;/color&gt; text&lt;/size&gt;&quot;,style);
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

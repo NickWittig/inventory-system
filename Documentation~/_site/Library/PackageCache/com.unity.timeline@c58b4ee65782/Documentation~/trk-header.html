@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Track header | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Track header | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="track-header">Track header</h1>
+
+<p>When a Timeline asset is selected, use the Track Header to rename a track, display the Curves view for an Audio track, or lock and mute a track.</p>
+<p>When a GameObject with a Timeline instance is selected, use the Track Header to set the track binding or rename a track, enable an Avatar mask, display the Curves view, record keyframe animation, display Track markers, or lock and mute a track.</p>
+<p><img src="images/anno-track-header.png" alt=""></p>
+<p><em>Track Header for an Animation track when a GameObject with a Timeline instance is selected</em></p>
+<p><strong>(A)</strong> The <a href="#accenticon">colored accent and icon</a> provides track information and indicates track errors or warnings.<br>
+<strong>(B)</strong> The <a href="#tracknameorbinding">Track name or its binding</a><br>
+<strong>(C)</strong> Use the Avatar Mask, Curves View, and Record toggle to <a href="wf-anim-override.html">enable masking between Animation tracks</a>, <a href="curves-overview.html">display and edit animation curves</a> for Animation clips or Audio tracks, and to <a href="wf-record-anim.html">record basic animation</a>.<br>
+<strong>(D)</strong> Enable the Track Markers toggle to expand the size of markers on the track and to make the markers selectable. Disable the Track Markers toggle to collapse markers and make them unselectable.<br>
+<strong>(E)</strong> Use the Lock and Mute toggles to <a href="trk-lock-mute.html">lock and mute tracks</a>.<br>
+<strong>(F)</strong> More (⋮) menu<br></p>
+<p><a name="accenticon"></a></p>
+<h2 id="colored-accent-and-icon">Colored accent and icon</h2>
+<p>Each Track header has a colored accent that identifies the track type and its clips:</p>
+<ul>
+<li>Activation tracks are green. Use Activation tracks to add Activation clips which set when the bound GameObject is active. The GameObject is bound to the Activation track.</li>
+<li>Animation tracks are blue. Use Animation tracks to add Animation clips that animate the bound GameObject. Use an Animation track and its Animation clips to <a href="wf-record-anim.html">record basic animation</a> or <a href="wf-anim-human.html">animate a humanoid</a>.</li>
+<li>Audio tracks are orange. Use Audio tracks to add Audio clips for playing background music or sound effects. Each Audio clip is bound to an audio waveform. The audio source, that plays each waveform, is bound to the Audio track.</li>
+<li>Control tracks are turquoise. Use Control tracks to add Control clips which are special clips that control a Sub-Timeline instance, Particle System, Prefab instance, or ITimeControl Script. <a href="insp-clip-control.html">How the Control clip is created</a> determines what it controls.</li>
+<li>Playable tracks are white. Use Playable tracks to add Playable clips. Each Playable clip is bound to a script that uses the <a href="https://docs.unity3d.com/Manual/Playables.html">Playables API</a> to create custom animation tools, effects or gameplay mechanisms.</li>
+</ul>
+<p>Each Track header is also identified by an icon. If a track has a binding error, its bound GameObject is disabled, or another track related error occurs, then this icon switches to an error or warning icon. Hovering over this icon displays an error or warning message.</p>
+<p>For example, if an Animation track is bound to a disabled GameObject, the icon switches to an alert icon.</p>
+<p><img src="images/tl-alert-icon.png" alt=""></p>
+<p><em>An alert icon indicates that the RedCube bound GameObject is disabled. Hover over the icon to view an explanation of the warning.</em></p>
+<p><a name="tracknameorbinding"></a></p>
+<h2 id="track-name-or-binding">Track name or binding</h2>
+<p>When a Timeline instance is selected, depending on the type of track, the Track header displays either the track name or the track binding.</p>
+<p>To rename a track that has a track name, click the track name, type the new name and press Return. You can also rename tracks in the Inspector window when setting <a href="insp-trk.html">track properties</a>.</p>
+<p>To select or change a track binding, click the picker (circle) to choose from the list of GameObjects in your Scene. This list only includes GameObjects that have an Animator component.</p>
+<p>To view the GameObject that is bound to a track, click the track binding and the linked GameObject is indicated in the Hierarchy view.</p>
+<p>Track bindings are saved to the Playable Director component associated with the GameObject that is linked to the Timeline asset. For more information on the relationship between Timeline assets and Timeline instances, consult the <a href="tl-overview.html">Timeline assets and instances topic</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Colorspace Conversion Node | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Colorspace Conversion Node | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="colorspace-conversion-node">Colorspace Conversion Node</h1>
+
+<h2 id="description">Description</h2>
+<p>Returns the result of converting the value of input <strong>In</strong> from one colorspace space to another. The spaces to transform from and to are defined by the values of the dropdowns on the node.</p>
+<h2 id="ports">Ports</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Direction</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">In</td>
+<td style="text-align: left;">Input</td>
+<td style="text-align: left;">Vector 3</td>
+<td style="text-align: left;">Input value</td>
+</tr>
+<tr>
+<td style="text-align: left;">Out</td>
+<td style="text-align: left;">Output</td>
+<td style="text-align: left;">Vector 3</td>
+<td style="text-align: left;">Output value</td>
+</tr>
+</tbody>
+</table>
+<h2 id="controls">Controls</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Options</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">From</td>
+<td style="text-align: left;">Dropdown</td>
+<td style="text-align: left;">RGB, Linear, HSV</td>
+<td style="text-align: left;">Selects the colorspace to convert from</td>
+</tr>
+<tr>
+<td style="text-align: left;">To</td>
+<td style="text-align: left;">Dropdown</td>
+<td style="text-align: left;">RGB, Linear, HSV</td>
+<td style="text-align: left;">Selects the colorspace to convert to</td>
+</tr>
+</tbody>
+</table>
+<h2 id="generated-code-example">Generated Code Example</h2>
+<p>The following example code represents one possible outcome of this node per from/to permutation.</p>
+<p><strong>RGB &gt; RGB</strong></p>
+<pre><code>void Unity_ColorspaceConversion_RGB_RGB_float(float3 In, out float3 Out)
+{
+    Out =  In;
+}
+</code></pre>
+<p><strong>RGB &gt; Linear</strong></p>
+<pre><code>void Unity_ColorspaceConversion_RGB_Linear_float(float3 In, out float3 Out)
+{
+    float3 linearRGBLo = In / 12.92;;
+    float3 linearRGBHi = pow(max(abs((In + 0.055) / 1.055), 1.192092896e-07), float3(2.4, 2.4, 2.4));
+    Out = float3(In &lt;= 0.04045) ? linearRGBLo : linearRGBHi;
+}
+</code></pre>
+<p><strong>RGB &gt; HSV</strong></p>
+<pre><code>void Unity_ColorspaceConversion_RGB_HSV_float(float3 In, out float3 Out)
+{
+    float4 K = float4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
+    float4 P = lerp(float4(In.bg, K.wz), float4(In.gb, K.xy), step(In.b, In.g));
+    float4 Q = lerp(float4(P.xyw, In.r), float4(In.r, P.yzx), step(P.x, In.r));
+    float D = Q.x - min(Q.w, Q.y);
+    float  E = 1e-10;
+    Out = float3(abs(Q.z + (Q.w - Q.y)/(6.0 * D + E)), D / (Q.x + E), Q.x);
+}
+</code></pre>
+<p><strong>Linear &gt; RGB</strong></p>
+<pre><code>void Unity_ColorspaceConversion_Linear_RGB_float(float3 In, out float3 Out)
+{
+    float3 sRGBLo = In * 12.92;
+    float3 sRGBHi = (pow(max(abs(In), 1.192092896e-07), float3(1.0 / 2.4, 1.0 / 2.4, 1.0 / 2.4)) * 1.055) - 0.055;
+    Out = float3(In &lt;= 0.0031308) ? sRGBLo : sRGBHi;
+}
+</code></pre>
+<p><strong>Linear &gt; Linear</strong></p>
+<pre><code>void Unity_ColorspaceConversion_Linear_Linear_float(float3 In, out float3 Out)
+{
+    Out = In;
+}
+</code></pre>
+<p><strong>Linear &gt; HSV</strong></p>
+<pre><code>void Unity_ColorspaceConversion_Linear_HSV_float(float3 In, out float3 Out)
+{
+    float3 sRGBLo = In * 12.92;
+    float3 sRGBHi = (pow(max(abs(In), 1.192092896e-07), float3(1.0 / 2.4, 1.0 / 2.4, 1.0 / 2.4)) * 1.055) - 0.055;
+    float3 Linear = float3(In &lt;= 0.0031308) ? sRGBLo : sRGBHi;
+    float4 K = float4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
+    float4 P = lerp(float4(Linear.bg, K.wz), float4(Linear.gb, K.xy), step(Linear.b, Linear.g));
+    float4 Q = lerp(float4(P.xyw, Linear.r), float4(Linear.r, P.yzx), step(P.x, Linear.r));
+    float D = Q.x - min(Q.w, Q.y);
+    float  E = 1e-10;
+    Out = float3(abs(Q.z + (Q.w - Q.y)/(6.0 * D + E)), D / (Q.x + E), Q.x);
+}
+</code></pre>
+<p><strong>HSV &gt; RGB</strong></p>
+<pre><code>void Unity_ColorspaceConversion_HSV_RGB_float(float3 In, out float3 Out)
+{
+    float4 K = float4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
+    float3 P = abs(frac(In.xxx + K.xyz) * 6.0 - K.www);
+    Out = In.z * lerp(K.xxx, saturate(P - K.xxx), In.y);
+}
+</code></pre>
+<p><strong>HSV &gt; Linear</strong></p>
+<pre><code>void Unity_ColorspaceConversion_HSV_Linear_float(float3 In, out float3 Out)
+{
+    float4 K = float4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
+    float3 P = abs(frac(In.xxx + K.xyz) * 6.0 - K.www);
+    float3 RGB = In.z * lerp(K.xxx, saturate(P - K.xxx), In.y);
+    float3 linearRGBLo = RGB / 12.92;
+    float3 linearRGBHi = pow(max(abs((RGB + 0.055) / 1.055), 1.192092896e-07), float3(2.4, 2.4, 2.4));
+    Out = float3(RGB &lt;= 0.04045) ? linearRGBLo : linearRGBHi;
+}
+</code></pre>
+<p><strong>HSV &gt; HSV</strong></p>
+<pre><code>void Unity_ColorspaceConversion_HSV_HSV_float(float3 In, out float3 Out)
+{
+    Out = In;
+}
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

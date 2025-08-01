@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Normal From Height Node | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Normal From Height Node | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="normal-from-height-node">Normal From Height Node</h1>
+
+<h2 id="description">Description</h2>
+<p>Creates a normal map from a height value defined by input <strong>Input</strong> with a strength defined by input <strong>Strength</strong>.</p>
+<h2 id="ports">Ports</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Direction</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">In</td>
+<td style="text-align: left;">Input</td>
+<td style="text-align: left;">Float</td>
+<td style="text-align: left;">Input height value</td>
+</tr>
+<tr>
+<td style="text-align: left;">Strength</td>
+<td style="text-align: left;">Input</td>
+<td style="text-align: left;">Float</td>
+<td style="text-align: left;">The strength of the output normal. Considered in real-world units, recommended range is 0 - 0.1 .</td>
+</tr>
+<tr>
+<td style="text-align: left;">Out</td>
+<td style="text-align: left;">Output</td>
+<td style="text-align: left;">Vector 3</td>
+<td style="text-align: left;">Output value</td>
+</tr>
+</tbody>
+</table>
+<h2 id="controls">Controls</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Options</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Output Space</td>
+<td style="text-align: left;">Dropdown</td>
+<td style="text-align: left;">Tangent, World</td>
+<td style="text-align: left;">Sets the coordinate space of the output normal.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="generated-code-example">Generated Code Example</h2>
+<p>The following example code represents one possible outcome of this node per <strong>Output Space</strong> mode.</p>
+<p><strong>Tangent</strong></p>
+<pre><code>void Unity_NormalFromHeight_Tangent_float(float In, float Strength, float3 Position, float3x3 TangentMatrix, out float3 Out)
+{
+    float3 worldDerivativeX = ddx(Position);
+    float3 worldDerivativeY = ddy(Position);
+
+    float3 crossX = cross(TangentMatrix[2].xyz, worldDerivativeX);
+    float3 crossY = cross(worldDerivativeY, TangentMatrix[2].xyz);
+    float d = dot(worldDerivativeX, crossY);
+    float sgn = d &lt; 0.0 ? (-1.0f) : 1.0f;
+    float surface = sgn / max(0.000000000000001192093f, abs(d));
+
+    float dHdx = ddx(In);
+    float dHdy = ddy(In);
+    float3 surfGrad = surface * (dHdx*crossY + dHdy*crossX);
+    Out = normalize(TangentMatrix[2].xyz - (Strength * surfGrad));
+    Out = TransformWorldToTangent(Out, TangentMatrix);
+}
+</code></pre>
+<p><strong>World</strong></p>
+<pre><code>void Unity_NormalFromHeight_World_float(float In, float Strength, float3 Position, float3x3 TangentMatrix, out float3 Out)
+{
+    float3 worldDerivativeX = ddx(Position);
+    float3 worldDerivativeY = ddy(Position);
+
+    float3 crossX = cross(TangentMatrix[2].xyz, worldDerivativeX);
+    float3 crossY = cross(worldDerivativeY, TangentMatrix[2].xyz);
+    float d = dot(worldDerivativeX, crossY);
+    float sgn = d &lt; 0.0 ? (-1.0f) : 1.0f;
+    float surface = sgn / max(0.000000000000001192093f, abs(d));
+
+    float dHdx = ddx(In);
+    float dHdy = ddy(In);
+    float3 surfGrad = surface * (dHdx*crossY + dHdy*crossX);
+    Out = normalize(TangentMatrix[2].xyz - (Strength * surfGrad));
+}
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

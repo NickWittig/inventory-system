@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Create a new state | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Create a new state | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="create-a-new-state">Create a new state</h1>
+
+<p>You can create three types of State nodes in a State Graph: <a href="#create-a-script-state">Script States</a>, <a href="#create-an-any-state">Any States</a>, and <a href="#create-a-super-state">Super States</a>. For more information on the types of State nodes, see State Graphs in <a href="vs-graph-types.html#state-graphs">Graphs</a>.</p>
+<p>You can also add a <a href="vs-sticky-notes.html">Sticky Note</a> to add comments to a graph.</p>
+<h2 id="create-a-script-state">Create a Script State</h2>
+<p>To create a new blank Script State:</p>
+<ol>
+<li><p>[!include[vs-open-state-menu](./snippets/vs-open-state-menu.md)]</p></li>
+<li><p>Select <strong>Create Script State</strong>. <br>Visual Scripting creates a new Script State node.</p></li>
+<li><p>Open the <a href="vs-interface-overview.html#the-graph-inspector">Graph Inspector</a>.</p></li>
+<li><p>In the Graph Inspector, choose a source for the Script State node:</p>
+<ul>
+<li><p><strong>Embed</strong>: The graph only exists on the Script State node. You can only modify the graph from the node in its parent State Graph.</p></li>
+<li><p><strong>Graph</strong>: The graph exists in a separate file. You can modify the graph outside of its parent State Graph and reuse the graph in other areas of your application.</p></li>
+</ul>
+</li>
+<li><p>If you chose <strong>Graph</strong>:</p>
+<ol type="a">
+<li><p>Select <strong>New</strong>.</p></li>
+<li><p>Enter a name for the graph file.</p></li>
+<li><p>Choose where you want to save the new graph.</p></li>
+<li><p>Select <strong>Save</strong>.</p></li>
+</ol></li>
+</ol>
+<p><img src="images/vs-blank-graph-script-state-example.png" alt="An image of a State Graph with a new blank Script State node."></p>
+<p>To create a Script State from an existing Script Graph:</p>
+<ol>
+<li><p>[!include[vs-open-state-menu](./snippets/vs-open-state-menu.md)]</p></li>
+<li><p>Select <strong>Create Script State</strong>. <br>Visual Scripting creates a new Script State node.</p></li>
+<li><p>Open the <a href="vs-interface-overview.html#the-graph-inspector">Graph Inspector</a>.</p></li>
+<li><p>In the Graph Inspector, set the source for the Script State node to <strong>Graph</strong>.</p></li>
+<li><p>Do one of the following:</p>
+<ul>
+<li><p>Select the object picker (circle icon) and choose a compatible Script Graph from your project.</p></li>
+<li><p>Click and drag a Script Graph file from your Project window and release on the <strong>Graph</strong> field.</p></li>
+</ul></li>
+</ol>
+<p><img src="images/vs-existing-graph-example-script-state.png" alt="An image of a State Graph with a Script State node with an existing Script Graph."></p>
+<div class="TIP">
+<h5>Tip</h5>
+<p>Click and drag the Script Graph from your Project window into the Graph Editor to automatically create a Script State node.</p>
+</div>
+<h2 id="create-an-any-state">Create an Any State</h2>
+<p>To create a new Any State node:</p>
+<ol>
+<li><p>With a State Graph <a href="vs-open-graph-edit.html">open in the Graph window</a>, right-click on an empty space in the Graph Editor to open the context menu.</p>
+</li>
+<li><p>Select <strong>Create Any State</strong>.</p>
+</li>
+</ol>
+<p><img src="images/vs-states-any-state-node.png" alt="An image of a State Graph with a new Any State node"></p>
+<h2 id="create-a-super-state">Create a Super State</h2>
+<p>To create a new blank Super State:</p>
+<ol>
+<li><p>[!include[vs-open-state-menu](./snippets/vs-open-state-menu.md)]</p></li>
+<li><p>Select <strong>Create Super State</strong>. <br>Visual Scripting creates a new Super State node.</p></li>
+<li><p>Open the <a href="vs-interface-overview.html#the-graph-inspector">Graph Inspector</a>.</p></li>
+<li><p>In the Graph Inspector, choose a source for the Super State node:</p>
+<ul>
+<li><p><strong>Embed</strong>: The graph only exists on the Super State node. You can only modify the graph from the node in its parent State Graph.</p></li>
+<li><p><strong>Graph</strong>: The graph exists in a separate file. You can modify the graph outside of its parent State Graph and reuse the graph in other areas of your application.</p></li>
+</ul>
+</li>
+<li><p>If you chose <strong>Graph</strong>:</p>
+<ol type="a">
+<li><p>Select <strong>New</strong>.</p></li>
+<li><p>Enter a name for the graph file.</p></li>
+<li><p>Choose where you want to save the new graph.</p></li>
+<li><p>Select <strong>Save</strong>.</p></li>
+</ol></li>
+</ol>
+<p><img src="images/vs-blank-graph-super-state-example.png" alt="An image of a State Graph with a new blank Super State node."></p>
+<p>To create a Super State from an existing State Graph:</p>
+<ol>
+<li><p>[!include[vs-open-state-menu](./snippets/vs-open-state-menu.md)]</p></li>
+<li><p>Select <strong>Create Super State</strong>. <br>Visual Scripting creates a new Super State node.</p></li>
+<li><p>Open the <a href="vs-interface-overview.html#the-graph-inspector">Graph Inspector</a>.</p></li>
+<li><p>In the Graph Inspector, set the source for the Super State node to <strong>Graph</strong>.</p></li>
+<li><p>Do one of the following:</p>
+<ul>
+<li><p>Select the object picker (circle icon) and choose a compatible State Graph from your project.</p></li>
+<li><p>Click and drag a State Graph file from your Project window and release on the <strong>Graph</strong> field.</p></li>
+</ul></li>
+</ol>
+<p><img src="images/vs-existing-graph-example-super-state.png" alt="An image of a State Graph with a Super State node with an existing State Graph."></p>
+<div class="TIP">
+<h5>Tip</h5>
+<p>Click and drag the State Graph from your Project window into the Graph Editor to automatically create a Super State node.</p>
+</div>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

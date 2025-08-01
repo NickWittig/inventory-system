@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Math Nodes | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Math Nodes | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="math-nodes">Math Nodes</h1>
+
+<h2 id="advanced">Advanced</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><a href="Absolute-Node.html">Absolute</a></th>
+<th style="text-align: left;"><a href="Absolute-Node.html">Exponential</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><img src="images/AbsoluteNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"><img src="images/ExponentialNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Returns the absolute value of input In.</td>
+<td style="text-align: left;">Returns the exponential value of input In.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="Length-Node.html"><strong>Length</strong></a></td>
+<td style="text-align: left;"><a href="Log-Node.html"><strong>Log</strong></a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/LengthNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"><img src="images/LogNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Returns the length of input In.</td>
+<td style="text-align: left;">Returns the logarithm of input In.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="Modulo-Node.html"><strong>Modulo</strong></a></td>
+<td style="text-align: left;"><a href="Negate-Node.html"><strong>Negate</strong></a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/ModuloNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"><img src="images/NegateNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Returns the remainder of input A divided by input B.</td>
+<td style="text-align: left;">Returns the inverse value of input In.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="Normalize-Node.html"><strong>Normalize</strong></a></td>
+<td style="text-align: left;"><a href="Posterize-Node.html"><strong>Posterize</strong></a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/NormalizeNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"><img src="images/PosterizeNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Returns the normalized vector of input In.</td>
+<td style="text-align: left;">Returns the input In converted into a number of values defined by input Steps.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="Reciprocal-Node.html"><strong>Reciprocal</strong></a></td>
+<td style="text-align: left;"><a href="Reciprocal-Square-Root-Node.html"><strong>Reciprocal Square Root</strong></a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/ReciprocalNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"><img src="images/ReciprocalSquareRootNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Returns the result of 1 divided by input In.</td>
+<td style="text-align: left;">Returns the result of 1 divided by the square root of input In.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="basic">Basic</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><a href="Add-Node.html">Add</a></th>
+<th style="text-align: left;"><a href="Divide-Node.html">Divide</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><img src="images/AddNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"><img src="images/DivideNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Returns the sum of the two input values.</td>
+<td style="text-align: left;">Returns the result of input A divided by input B.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="Multiply-Node.html"><strong>Multiply</strong></a></td>
+<td style="text-align: left;"><a href="Power-Node.html"><strong>Power</strong></a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/MultiplyNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"><img src="images/PowerNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Returns the result of input A multiplied by input B.</td>
+<td style="text-align: left;">Returns the result of input A to the power of input B.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="Square-Root-Node.html"><strong>Square Root</strong></a></td>
+<td style="text-align: left;"><a href="Subtract-Node.html"><strong>Subtract</strong></a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/SquareRootNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"><img src="images/SubtractNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Returns the square root of input In.</td>
+<td style="text-align: left;">Returns the result of input A minus input B.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="derivative">Derivative</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><a href="DDX-Node.html">DDX</a></th>
+<th style="text-align: left;"><a href="DDXY-Node.html">DDXY</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><img src="images/DDXNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"><img src="images/DDXYNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Returns the partial derivative with respect to the screen-space x-coordinate.</td>
+<td style="text-align: left;">Returns the sum of both partial derivatives.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="DDY-Node.html"><strong>DDY</strong></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/DDYNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Returns the partial derivative with respect to the screen-space y-coordinate.</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="interpolation">Interpolation</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><a href="Inverse-Lerp-Node.html">Inverse Lerp</a></th>
+<th style="text-align: left;"><a href="Lerp-Node.html">Lerp</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><img src="images/InverseLerpNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"><img src="images/LerpNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Returns the parameter that produces the interpolant specified by input T within the range of input A to input B.</td>
+<td style="text-align: left;">Returns the result of linearly interpolating between input A and input B by input T.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="Smoothstep-Node.html"><strong>Smoothstep</strong></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/SmoothstepNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Returns the result of a smooth Hermite interpolation between 0 and 1, if input In is between inputs Edge1 and Edge2.</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="matrix">Matrix</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><a href="Matrix-Construction-Node.html">Matrix Construction</a></th>
+<th style="text-align: left;"><a href="Matrix-Determinant-Node.html">Matrix Determinant</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><img src="images/MatrixConstructionNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"><img src="images/MatrixDeterminantNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Constructs square matrices from the four input vectors M0, M1, M2 and M3.</td>
+<td style="text-align: left;">Returns the determinant of the matrix defined by input In.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="Matrix-Split-Node.html"><strong>Matrix Split</strong></a></td>
+<td style="text-align: left;"><a href="Matrix-Transpose-Node.html"><strong>Matrix Transpose</strong></a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/MatrixSplitNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"><img src="images/MatrixTransposeNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Splits a square matrix defined by input In into vectors.</td>
+<td style="text-align: left;">Returns the transposed value of the matrix defined by input In.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="range">Range</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><a href="Clamp-Node.html">Clamp</a></th>
+<th style="text-align: left;"><a href="Fraction-Node.html">Fraction</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><img src="images/ClampNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"><img src="images/FractionNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Returns the input In clamped between the minimum and maximum values defined by inputs Min and Max respectively.</td>
+<td style="text-align: left;">Returns the fractional (or decimal) part of input In; which is greater than or equal to 0 and less than 1.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="Maximum-Node.html"><strong>Maximum</strong></a></td>
+<td style="text-align: left;"><a href="Minimum-Node.html"><strong>Minimum</strong></a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/MaximumNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"><img src="images/MinimumNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Returns the largest of the two inputs values A and B.</td>
+<td style="text-align: left;">Returns the smallest of the two inputs values A and B.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="One-Minus-Node.html"><strong>One Minus</strong></a></td>
+<td style="text-align: left;"><a href="Random-Range-Node.html"><strong>Random Range</strong></a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/OneMinusNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"><img src="images/RandomRangeNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Returns the result of input In subtracted from 1.</td>
+<td style="text-align: left;">Returns a pseudo-random number that is between the minimum and maximum values defined by inputs Min and Max.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="Remap-Node.html"><strong>Remap</strong></a></td>
+<td style="text-align: left;"><a href="Saturate-Node.html"><strong>Saturate</strong></a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/RemapNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"><img src="images/SaturateNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Remaps the value of input In from between the values of input Out Min Max to between the values of input In Min Max.</td>
+<td style="text-align: left;">Returns the value of input In clamped between 0 and 1.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="round">Round</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><a href="Ceiling-Node.html">Ceiling</a></th>
+<th style="text-align: left;"><a href="Floor-Node.html">Floor</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><img src="images/CeilingNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"><img src="images/FloorNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Returns the smallest integer value, or whole number, that is greater than or equal to the value of input In.</td>
+<td style="text-align: left;">Returns the largest integer value, or whole number, that is less than or equal to the value of input In.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="Round-Node.html"><strong>Round</strong></a></td>
+<td style="text-align: left;"><a href="Sign-Node.html"><strong>Sign</strong></a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/RoundNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"><img src="images/SignNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Returns the value of input In rounded to the nearest integer, or whole number.</td>
+<td style="text-align: left;">Returns -1 if the value of input In is less than zero, 0 if equal to zero and 1 if greater than zero.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="Step-Node.html"><strong>Step</strong></a></td>
+<td style="text-align: left;"><a href="Truncate-Node.html"><strong>Truncate</strong></a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/StepNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"><img src="images/TruncateNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Returns 1 if the value of input In is greater than or equal to the value of input Edge, otherwise returns 0.</td>
+<td style="text-align: left;">Returns the integer, or whole number, component of the value of input In.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="trigonometry">Trigonometry</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><a href="Arccosine-Node">Arccosine</a></th>
+<th style="text-align: left;"><a href="Arcsine-Node.html">Arcsine</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><img src="images/ArccosineNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"><img src="images/ArcsineNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Returns the arccosine of each component the input In as a vector of equal length.</td>
+<td style="text-align: left;">Returns the arcsine of each component the input In as a vector of equal length.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="Arctangent-Node.html"><strong>Arctangent</strong></a></td>
+<td style="text-align: left;"><a href="Arctangent2-Node.html"><strong>Arctangent2</strong></a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/ArctangentNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"><img src="images/Arctangent2NodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Returns the arctangent of the value of input In. Each component should be within the range of -Pi/2 to Pi/2.</td>
+<td style="text-align: left;">Returns the arctangent of the values of both input A and input B.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="Cosine-Node.html"><strong>Cosine</strong></a></td>
+<td style="text-align: left;"><a href="Degrees-To-Radians-Node.html"><strong>Degrees to Radians</strong></a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/CosineNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"><img src="images/DegreesToRadiansNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Returns the cosine of the value of input In.</td>
+<td style="text-align: left;">Returns the value of input In converted from degrees to radians.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="Hyperbolic-Cosine-Node.html"><strong>Hyperbolic Cosine</strong></a></td>
+<td style="text-align: left;"><a href="Hyperbolic-Sine-Node.html"><strong>Hyperbolic Sine</strong></a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/HyperbolicCosineNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"><img src="images/HyperbolicSineNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Returns the hyperbolic cosine of input In.</td>
+<td style="text-align: left;">Returns the hyperbolic sine of input In.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="Hyperbolic-Tangent-Node.html"><strong>Hyperbolic Tangent</strong></a></td>
+<td style="text-align: left;"><a href="Radians-To-Degrees-Node.html"><strong>Radians to Degrees</strong></a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/HyperbolicTangentNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"><img src="images/RadiansToDegreesNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Returns the hyperbolic tangent of input In.</td>
+<td style="text-align: left;">Returns the value of input In converted from radians to degrees.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="Sine-Node.html"><strong>Sine</strong></a></td>
+<td style="text-align: left;"><a href="Tangent-Node.html"><strong>Tangent</strong></a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/SineNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"><img src="images/TangentNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Returns the sine of the value of input In.</td>
+<td style="text-align: left;">Returns the tangent of the value of input In.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="vector">Vector</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><a href="Cross-Product-Node.html">Cross Product</a></th>
+<th style="text-align: left;"><a href="Distance-Node.html">Distance</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><img src="images/CrossProductNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"><img src="images/DistanceNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Returns the cross product of the values of the inputs A and B.</td>
+<td style="text-align: left;">Returns the Euclidean distance between the values of the inputs A and B.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="Dot-Product-Node.html"><strong>Dot Product</strong></a></td>
+<td style="text-align: left;"><a href="Fresnel-Effect-Node.html"><strong>Fresnel Effect</strong></a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/DotProductNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"><img src="images/FresnelEffectNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Returns the dot product, or scalar product, of the values of the inputs A and B.</td>
+<td style="text-align: left;">Fresnel Effect is the effect of differing reflectance on a surface depending on viewing angle, where as you approach the grazing angle more light is reflected.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="Projection-Node.html"><strong>Projection</strong></a></td>
+<td style="text-align: left;"><a href="Reflection-Node.html"><strong>Reflection</strong></a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/ProjectionNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"><img src="images/ReflectionNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Returns the result of projecting the value of input A onto a straight line parallel to the value of input B.</td>
+<td style="text-align: left;">Returns a reflection vector using input In and a surface normal Normal.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="Rejection-Node.html"><strong>Rejection</strong></a></td>
+<td style="text-align: left;"><a href="Rotate-About-Axis-Node.html"><strong>Rotate About Axis</strong></a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/RejectionNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"><img src="images/RotateAboutAxisNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Returns the result of the projection of the value of  input A onto the plane orthogonal, or perpendicular, to the value of  input B.</td>
+<td style="text-align: left;">Rotates the input vector In around the axis Axis by the value of Rotation.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="Projection-Node.html"><strong>Projection</strong></a></td>
+<td style="text-align: left;"><a href="Rejection-Node.html"><strong>Rejection</strong></a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/ProjectionNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"><img src="images/RejectionNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Returns the result of projecting the value of input A onto a straight line parallel to the value of input B.</td>
+<td style="text-align: left;">Returns the result of the projection of the value of  input A onto the plane orthogonal, or perpendicular, to the value of  input B.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="Sphere-Mask-Node.html"><strong>Sphere Mask</strong></a></td>
+<td style="text-align: left;"><a href="Transform-Node.html"><strong>Transform</strong></a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/SphereMaskNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"><img src="images/TransformNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Creates a sphere mask originating from input Center.</td>
+<td style="text-align: left;">Returns the result of transforming the value of input In from one coordinate space to another.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="wave">Wave</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><a href="Noise-Sine-Wave-Node.html">Noise Sine Wave</a></th>
+<th style="text-align: left;"><a href="Sawtooth-Wave-Node.html">Sawtooth Wave</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><img src="images/NoiseSineWaveNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"><img src="images/SawtoothWaveNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Returns the sine of the value of input In. For variance, random noise is added to the amplitude of the sine wave.</td>
+<td style="text-align: left;">Returns a sawtooth wave from the value of input In.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="Matrix-Split-Node.html"><strong>Matrix Split</strong></a></td>
+<td style="text-align: left;"><a href="Matrix-Transpose-Node.html"><strong>Matrix Transpose</strong></a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/MatrixSplitNodeThumb.png" alt="Image"></td>
+<td style="text-align: left;"><img src="images/MatrixTransposeNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Splits a square matrix defined by input In into vectors.</td>
+<td style="text-align: left;">Returns the transposed value of the matrix defined by input In.</td>
+</tr>
+</tbody>
+</table>
+<p>Noise Sine Wave
+Sawtooth Wave
+Square Wavve
+Triangle Wave</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

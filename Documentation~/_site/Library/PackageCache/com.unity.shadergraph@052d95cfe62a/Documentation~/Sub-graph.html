@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Sub Graph | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Sub Graph | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="sub-graph">Sub Graph</h1>
+
+<h2 id="description">Description</h2>
+<p>A Sub Graph is a special type of Shader Graph, which you can reference from inside other graphs. This is useful when you wish to perform the same operations multiple times in one graph or across multiple graphs. A Sub Graph differs from a Shader Graph in three main ways:</p>
+<ul>
+<li><a href="Property-Types.html">Properties</a> in the <a href="Blackboard.html">Blackboard</a> of a Sub Graph define the input <a href="Port.html">Ports</a> of a <a href="Sub-graph-Node.html">Sub Graph Node</a> when you reference the Sub Graph from inside another graph.</li>
+<li>A Sub Graph has its own Asset type. For more information, including instructions on how to make a new Sub Graph, see <a href="Sub-graph-Asset.html">Sub Graph Asset</a>.</li>
+<li>A Sub Graph does not have a <a href="Master-Stack.html">Master Stack</a>. Instead, it has a <a href="Node.html">Node</a> called <strong>Output</strong>.</li>
+</ul>
+<p>For information about the components of a Sub Graph, see <a href="Sub-graph-Asset.html">Sub Graph Asset</a>.</p>
+<h2 id="output-node">Output Node</h2>
+<p><img src="images/SubGraph-Output-Node.png" alt=""></p>
+<p>The Output Node defines the output ports of a <a href="Sub-graph-Node.html">Sub Graph Node</a> when you reference the Sub Graph from inside another graph. To add and remove ports, use the <a href="Custom-Port-Menu.html">Custom Port Menu</a> in the <strong>Node Settings</strong> tab of the <a href="Internal-Inspector.html">Graph Inspector</a> by clicking on the Sub Graph Output node.</p>
+<p>The preview used for Sub Graphs is determined by the first port of the Output Node. Valid <a href="Data-Types.html">Data Types</a> for the first port are <code>Float</code>, <code>Vector 2</code>, <code>Vector 3</code>, <code>Vector 4</code>, <code>Matrix2</code>, <code>Matrix3</code>, <code>Matrix4</code>, and <code>Boolean</code>. Any other data type will produce an error in the preview shader and the Sub Graph will become invalid.</p>
+<h2 id="sub-graphs-and-shader-stages">Sub Graphs and shader stages</h2>
+<p>If a Node within a Sub Graph specifies a shader stage (for example, how the <a href="Sample-Texture-2D-Node.html">Sample Texture 2D Node</a> specifies the <strong>fragment</strong> shader stage), the Editor locks the entire Sub Graph to that stage. You cannot connect any Nodes that specify a different shader stage to the Sub Graph Output Node, and the Editor locks any Sub Graph Nodes that references the graph to that shader stage.</p>
+<p>From 10.3 onward, Texture and SamplerState type inputs and outputs to Sub Graphs benefit from an improved data structure. For a detailed explanation, see <a href="Custom-Function-Node.html">Custom Function Node</a>.</p>
+<h2 id="sub-graphs-and-keywords">Sub Graphs and Keywords</h2>
+<p><a href="Keywords.html">Keywords</a> that you define on the <a href="Blackboard.html">Blackboard</a> in a Sub Graph behave similarly to those in regular Shader Graphs. When you add a Sub Graph Node to a Shader Graph, Unity defines all Keywords in that Sub Graph in the Shader Graph as well, so that the Sub Graph works as intended.</p>
+<p>To use a Sub Graph Keyword inside a Shader Graph, or to expose that Keyword in the Material Inspector, copy it from the Sub Graph to the Shader Graph's Blackboard.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

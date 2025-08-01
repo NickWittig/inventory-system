@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Shader Graph Window | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Shader Graph Window | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="shader-graph-window">Shader Graph Window</h1>
+
+<h2 id="description">Description</h2>
+<p>The <strong>Shader Graph Window</strong> contains the workspace for creating shaders with the <strong>Shader Graph</strong> system. To open the <strong>Shader Graph Window</strong>, you must first create a <a href="index.html">Shader Graph Asset</a>. For more information, refer to the <a href="Getting-Started.html">Getting Started</a> section.</p>
+<p>The <strong>Shader Graph</strong> window contains various individual elements such as the <a href="Blackboard.html">Blackboard</a>, <a href="Internal-Inspector.html">Graph Inspector</a>, and <a href="Main-Preview.html">Main Preview</a>. You can move these elements around inside the workspace. They automatically anchor to the nearest corner when scaling the <strong>Shader Graph Window</strong>.</p>
+<h2 id="toolbar">Toolbar</h2>
+<p>The toolbar at the top of the <strong>Shader Graph Window</strong> contains the following commands.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Icon</th>
+<th style="text-align: left;">Item</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><img src="images/sg-save-icon.png" alt="Image"></td>
+<td style="text-align: left;"><strong>Save Asset</strong></td>
+<td style="text-align: left;">Save the graph to update the <a href="index.html">Shader Graph Asset</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/sg-dropdown-icon.png" alt="Image"></td>
+<td style="text-align: left;"><strong>Save As</strong></td>
+<td style="text-align: left;">Save the <a href="index.html">Shader Graph Asset</a> under a new name.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><strong>Show In Project</strong></td>
+<td style="text-align: left;">Highlight the <a href="index.html">Shader Graph Asset</a> in the <a href="https://docs.unity3d.com/Manual/ProjectView.html">Project Window</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><strong>Check Out</strong></td>
+<td style="text-align: left;">If version control is enabled, check out the <a href="index.html">Shader Graph Asset</a> from the source control provider.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/sg-color-mode-selector.png" alt="Image"></td>
+<td style="text-align: left;"><strong>Color Mode Selector</strong></td>
+<td style="text-align: left;">Select a <a href="Color-Modes.html">Color Mode</a> for the graph.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/sg-blackboard-icon.png" alt="Image"></td>
+<td style="text-align: left;"><strong>Blackboard</strong></td>
+<td style="text-align: left;">Toggle the visibility of the <a href="Blackboard.html">Blackboard</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/sg-graph-inspector-icon.png" alt="Image"></td>
+<td style="text-align: left;"><strong>Graph Inspector</strong></td>
+<td style="text-align: left;">Toggle the visibility of the <a href="Internal-Inspector.html">Graph Inspector</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/sg-main-preview-icon.png" alt="Image"></td>
+<td style="text-align: left;"><strong>Main Preview</strong></td>
+<td style="text-align: left;">Toggle the visibility of the <a href="Main-Preview.html">Main Preview</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/sg-help_icon.png" alt="Image"></td>
+<td style="text-align: left;"><strong>Help</strong></td>
+<td style="text-align: left;">Open the Shader Graph documentation in the browser.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/sg-dropdown-icon.png" alt="Image"></td>
+<td style="text-align: left;"><strong>Resources</strong></td>
+<td style="text-align: left;">Contains links to Shader Graph resources (like samples and User forums).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="workspace">Workspace</h2>
+<p>The workspace is where you create <a href="Node.html">Node</a> networks.
+To navigate the workspace, do the following:</p>
+<ul>
+<li>Press and hold the Alt key and drag with the left mouse button to pan.</li>
+<li>Use the mouse scroll wheel to zoom in and out.</li>
+</ul>
+<p>You can hold the left mouse button and drag to select multiple <a href="Node.html">Nodes</a> with a marquee. There are also various <a href="Keyboard-shortcuts.html">shortcut keys</a> you can use for better workflow.</p>
+<h2 id="context-menu">Context Menu</h2>
+<p>Right-click within the workspace to open a context menu. However, if you right-click on an item within the workspace, such as a <a href="Node.html">Node</a>, the context menu for that item opens. The workspace context menu provides the following options.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Item</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Create Node</strong></td>
+<td style="text-align: left;">Opens the <a href="Create-Node-Menu.html">Create Node Menu</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Create Sticky Note</strong></td>
+<td style="text-align: left;">Creates a new <a href="Sticky-Notes.html">Sticky Note</a> on the Graph.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Collapse All Previews</strong></td>
+<td style="text-align: left;">Collapses previews on all <a href="Node.html">Nodes</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Cut</strong></td>
+<td style="text-align: left;">Removes the selected <a href="Node.html">Nodes</a> from the graph and places them in the clipboard.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Copy</strong></td>
+<td style="text-align: left;">Copies the selected <a href="Node.html">Nodes</a> to the clipboard.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Paste</strong></td>
+<td style="text-align: left;">Pastes the <a href="Node.html">Nodes</a> from the clipboard.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Delete</strong></td>
+<td style="text-align: left;">Deletes the selected <a href="Node.html">Nodes</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Duplicate</strong></td>
+<td style="text-align: left;">Duplicates the selected <a href="Node.html">Nodes</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Select / Unused Nodes</strong></td>
+<td style="text-align: left;">Selects all nodes on the graph that are not contributing to the final shader output from the <a href="Master-Stack.html">Master Stack</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>View / Collapse Ports</strong></td>
+<td style="text-align: left;">Collapses unused ports on all selected <a href="Node.html">Nodes</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>View / Expand Ports</strong></td>
+<td style="text-align: left;">Expands unused ports on all selected <a href="Node.html">Nodes</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>View / Collapse Previews</strong></td>
+<td style="text-align: left;">Collapses previews on all selected <a href="Node.html">Nodes</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>View / Expand Previews</strong></td>
+<td style="text-align: left;">Expands previews on all selected <a href="Node.html">Nodes</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Precision / Inherit</strong></td>
+<td style="text-align: left;">Sets the precision of all selected Nodes to Inherit.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Precision / Float</strong></td>
+<td style="text-align: left;">Sets the precision of all selected nodes to Float.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Precision / Half</strong></td>
+<td style="text-align: left;">Sets the precision of all selected nodes to Half.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="Color-Modes.html">Color Modes</a></li>
+<li><a href="Create-Node-Menu.html">Create Node Menu</a></li>
+<li><a href="Keyboard-shortcuts.html">Keyboard shortcuts</a></li>
+<li><a href="Master-Stack.html">Master Stack</a></li>
+<li><a href="Node.html">Nodes</a></li>
+<li><a href="Sticky-Notes.html">Sticky Notes</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

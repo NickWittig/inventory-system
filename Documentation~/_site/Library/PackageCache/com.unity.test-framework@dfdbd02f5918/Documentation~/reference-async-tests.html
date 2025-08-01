@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Async tests | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Async tests | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="async-tests">Async tests</h1>
+
+<p>You can use the dotnet Task asynchronous programming model to write asynchronous tests. If you're new to asynchronous programming and its applications, see the <a href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/">Microsoft documentation</a> for a comprehensive guide. See also the documentation for NUnit <a href="https://docs.nunit.org/articles/nunit/writing-tests/attributes/test.html">Test</a>, which explains the requirements for an async test. Async code is run on the main thread and Unity Test Framework will <code>await</code> it by checking if the task is done on each <a href="https://docs.unity3d.com/ScriptReference/PlayerLoop.Update.html">update</a> for Play Mode or on each <a href="https://docs.unity3d.com/ScriptReference/EditorApplication-update.html">EditorApplication.update</a> outside Play Mode.</p>
+<p>Note that any failing log messages will first be evaluated after the async test has completed. This means that if you have a failing log message in an async test, it will not be reported until the test has completed.</p>
+<p>The following code snippet demonstrates an async test based on Microsoft's making breakfast example. Note that the test method is marked with the <code>async</code> keyword and has return type <code>Task</code>. We set up a list of Tasks corresponding to asynchronous methods representing parts of the breakfast making process. We use <code>await</code> to start these tasks in a non-blocking way, write to the log when each one completes, and write again to the log when all are completed.</p>
+<pre><code>using System.Collections.Generic;
+using System.Threading.Tasks;
+using NUnit.Framework;
+using UnityEngine;
+
+public class AsyncExample
+{
+    [Test]
+    public async Task MakeBreakfast_InTheMorning_IsEdible()
+    {
+        var eggsTask = FryEggsAsync(2);
+        var baconTask = FryBaconAsync(3);
+        var toastTask = MakeToastWithButterAndJamAsync(2);
+
+        var breakfastTasks = new List&lt;Task&gt; { eggsTask, baconTask, toastTask };
+        while (breakfastTasks.Count &gt; 0)
+        {
+            Task finishedTask = await Task.WhenAny(breakfastTasks);
+            if (finishedTask == eggsTask)
+            {
+                Debug.Log(&quot;eggs are ready&quot;);
+            }
+            else if (finishedTask == baconTask)
+            {
+                Debug.Log(&quot;bacon is ready&quot;);
+            }
+            else if (finishedTask == toastTask)
+            {
+                Debug.Log(&quot;toast is ready&quot;);
+            }
+            breakfastTasks.Remove(finishedTask);
+        }
+
+        Debug.Log(&quot;Breakfast is ready!&quot;);
+    }
+
+    static async Task&lt;Toast&gt; MakeToastWithButterAndJamAsync(int number)
+    {
+        var toast = await ToastBreadAsync(number);
+        ApplyButter(toast);
+        ApplyJam(toast);
+
+        return toast;
+    }
+
+    private static Juice PourOJ()
+    {
+        Debug.Log(&quot;Pouring orange juice&quot;);
+        return new Juice();
+    }
+
+    private static void ApplyJam(Toast toast) =&gt;
+        Debug.Log(&quot;Putting jam on the toast&quot;);
+
+    private static void ApplyButter(Toast toast) =&gt;
+        Debug.Log(&quot;Putting butter on the toast&quot;);
+
+    private static async Task&lt;Toast&gt; ToastBreadAsync(int slices)
+    {
+        for (int slice = 0; slice &lt; slices; slice++)
+        {
+            Debug.Log(&quot;Putting a slice of bread in the toaster&quot;);
+        }
+        Debug.Log(&quot;Start toasting...&quot;);
+        await Task.Delay(3000);
+        Debug.Log(&quot;Remove toast from toaster&quot;);
+
+        return new Toast();
+    }
+
+    private static async Task&lt;Bacon&gt; FryBaconAsync(int slices)
+    {
+        Debug.Log($&quot;putting {slices} slices of bacon in the pan&quot;);
+        Debug.Log(&quot;cooking first side of bacon...&quot;);
+        await Task.Delay(3000);
+        for (int slice = 0; slice &lt; slices; slice++)
+        {
+            Debug.Log(&quot;flipping a slice of bacon&quot;);
+        }
+        Debug.Log(&quot;cooking the second side of bacon...&quot;);
+        await Task.Delay(3000);
+        Debug.Log(&quot;Put bacon on plate&quot;);
+
+        return new Bacon();
+    }
+
+    private static async Task&lt;Egg&gt; FryEggsAsync(int howMany)
+    {
+        Debug.Log(&quot;Warming the egg pan...&quot;);
+        await Task.Delay(3000);
+        Debug.Log($&quot;cracking {howMany} eggs&quot;);
+        Debug.Log(&quot;cooking the eggs ...&quot;);
+        await Task.Delay(3000);
+        Debug.Log(&quot;Put eggs on plate&quot;);
+
+        return new Egg();
+    }
+
+    private static Coffee PourCoffee()
+    {
+        Debug.Log(&quot;Pouring coffee&quot;);
+        return new Coffee();
+    }
+
+    public struct Toast
+    {
+
+    }
+
+    public struct Juice
+    {
+
+    }
+
+    public struct Bacon
+    {
+
+    }
+
+    public struct Egg
+    {
+
+    }
+
+    public struct Coffee
+    {
+
+    }
+}
+</code></pre>
+<p>The following shows the result of running this example in the <strong>Test Runner</strong> window:</p>
+<p><img src="./images/async.png" alt="Run async test example"></p>
+<h2 id="editor-freezing-on-assertthrowsasync-and-workaround">Editor freezing on <code>Assert.ThrowsAsync</code> and workaround</h2>
+<p>NUnit's assertion for asynchronous code, <a href="https://docs.nunit.org/articles/nunit/writing-tests/assertions/classic-assertions/Assert.ThrowsAsync.html">Assert.ThrowsAsync</a>, blocks the calling thread until the async function you pass in completes. By default Unity runs asynchronous functions on the main thread in case they need to call the Editor API, which means <code>Assert.ThrowsAsync</code> can lock up the main thread and cause the Editor to freeze.</p>
+<p>To workaround this problem, you can unwrap the <code>Assert.ThrowsAsync</code> logic into your own <code>try</code>/<code>catch</code> blocks and assert that you caught something. For example, <strong>do</strong> this:</p>
+<pre><code>[Test]
+public async Task ThisDoesNotLockTheMainThread()
+ {
+  bool caught = false;
+  try
+  { 
+    await Task.Delay(1000); throw new System.Exception(&quot;Hello world.&quot;); }
+    catch (System.Exception x)
+   {
+     caught = true;
+   }
+   Assert.That(caught);
+}
+</code></pre>
+<p><strong>Instead of</strong> this:</p>
+<pre><code>[Test]
+public void ThisLocksTheMainThread()
+ {
+  Assert.ThrowsAsync&lt;System.Exception&gt;(async () =&gt;
+   { await Task.Delay(1000); throw new System.Exception(&quot;Hello world.&quot;); }
+  );
+}
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

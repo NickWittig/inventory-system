@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Changelog | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Changelog | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="changelog">Changelog</h1>
+
+<p>All notable changes to this package will be documented in this file.</p>
+<p>The format is based on <a href="http://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>
+and this project adheres to <a href="http://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
+<h2 id="208---2025-05-29">[2.0.8] - 2025-05-29</h2>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>Samples will now use appropriate material colors in projects using HDRP or URP. Install the <strong>com.unity.shadergraph</strong> package to show the materials correctly for built-in render pipeline projects.</li>
+</ul>
+<h2 id="207---2025-04-09">[2.0.7] - 2025-04-09</h2>
+<h3 id="changed">Changed</h3>
+<ul>
+<li>The minimum supported editor version is Unity 6 LTS. Compatibility with Unity 2023.2 is no longer guaranteed going forward.</li>
+</ul>
+<h3 id="fixed-1">Fixed</h3>
+<ul>
+<li>Baking NavMeshSurface no longer fails when the game object name has invalid file name characters.</li>
+</ul>
+<h2 id="206---2025-02-04">[2.0.6] - 2025-02-04</h2>
+<h3 id="added">Added</h3>
+<ul>
+<li>New <strong>OffMesh Link Converter</strong> tool in the <strong>Window</strong> &gt; <strong>AI</strong> &gt; <strong>Navigation Updater</strong> window to help you automatically replace <strong>OffMesh Links</strong> with <strong>NavMesh Links</strong> in the scenes and prefabs of your project.</li>
+</ul>
+<h3 id="fixed-2">Fixed</h3>
+<ul>
+<li>Fixed a regression that caused controls in the navigation scene view overlay popup to display on top of one another when foldouts were open. (Requires Unity 6000.0.22f1 or newer)</li>
+<li>The AI Navigation overlay was rarely needed upon the initial installation of the package. Now it is hidden by default and you can enable it through the <a href="https://docs.unity3d.com/Manual/display-and-hide-overlay.html">Overlay Menu</a>.</li>
+<li>Fixed a regression that caused the Editor to allocate unnecessary memory on some platforms, when the project contained package test files.</li>
+</ul>
+<h2 id="205---2024-11-18">[2.0.5] - 2024-11-18</h2>
+<h3 id="fixed-3">Fixed</h3>
+<ul>
+<li>NavMesh Link would not update when switching from the <strong>Not Walkable</strong> area type to any other area type in the inspector. (NAVB-87)</li>
+<li>A few documentation paragraphs and links were not accurate.</li>
+</ul>
+<h2 id="204---2024-08-30">[2.0.4] - 2024-08-30</h2>
+<h3 id="fixed-4">Fixed</h3>
+<ul>
+<li>NavMesh Modifier was not overriding the area type in a NavMesh built from within an <code>Awake()</code> method (<a href="https://issuetracker.unity3d.com/issues/building-navmesh-with-navmeshsurface-does-not-bake-areas-into-navmeshtriangulation-when-buildnavmesh-is-called-in-awake">NAVB-39</a>)</li>
+</ul>
+<h2 id="203---2024-07-16">[2.0.3] - 2024-07-16</h2>
+<h3 id="changed-1">Changed</h3>
+<ul>
+<li>The ends of the NavMesh Link are solely determined by the Transforms they reference. If a link's end doesn't reference a Transform, it is placed in the scene according to the local Point position set for it. This differs from version 2.0.0 where the Point was used together with, and relative to, the end's Transform, which always pointed to some GameObject. NavMesh Links saved using version 2.0.0 will now find their endpoints in different positions compared to where they would be in version 2.0.0. NavMesh Links saved with versions earlier than 2.0.0 remain unaffected and will continue to function with their existing data as they used to.</li>
+<li>NavMesh Links saved with version 2.0.0 upgrade automatically to the correct format. Any link endpoint that has previously been defined by a position relative to a GameObject will now reference a new GameObject created as a child of the original transform and moved to the same world position that the endpoint had before.</li>
+<li>To modify the cost of an individual NavMesh Link you can now select &quot;Cost Override&quot; in the Inspector and then input the new value. NavMesh Links that are saved with this version cannot be loaded correctly with earlier versions of the package.</li>
+<li>Improved the user manual pages that describe the NavMesh Link and the NavMesh Surface components.</li>
+</ul>
+<h3 id="fixed-5">Fixed</h3>
+<ul>
+<li>Fixed navigation objects created from the GameObject menu being created in the scene instead of a prefab hierarchy when in prefab isolation mode.</li>
+<li>Fixed creation of navigation objects from the GameObject menu resulting in more than one operation on the undo stack.</li>
+<li>In accordance with other workflows, creating navigation objects from the GameObject menu now places them directly at the parent's position, instead of at the center of the scene view, when a parent is selected.</li>
+<li>Fixed regression whereby changing NavMeshLink activated or cost modifier properties in the Inspector would not update the link while in play mode.</li>
+<li>Added missing tooltips and support for localization throughout Inspector UI.</li>
+<li>The Navigation window was sometimes issuing errors related to the .png file used as icon.</li>
+<li>Added a cleanup step for Navigation components static data, so that the components support entering play mode without any domain reload.</li>
+<li>Fixed warnings in the console when undoing creation of navigation objects from the GameObject menu.</li>
+<li>Swapping the start and end points of a NavMeshLink via the Inspector now supports undo and redo.</li>
+<li>Moving the GameObject via the Re-center operation in the NavMesh Link Inspector now supports undo and redo.</li>
+<li>The deprecated properties <code>autoUpdatePositions</code>, <code>biDirectional</code>, <code>costOverride</code> and the deprecated <code>UpdatePositions</code> method of NavMeshLink correctly map now one-to-one to the members <code>autoUpdate</code>, <code>bidirectional</code>, <code>costModifier</code> and <code>UpdateLink</code>. This change removes any values that were stored by a serialized object specifically for the deprecated properties.</li>
+<li>Updated the use of several methods that have been moved between classes as of 2023.3.</li>
+<li>Added missing documentation for method parameters in <code>NavMeshComponentsGUIUtility</code>.</li>
+</ul>
+<h2 id="202---2024-07-02">[2.0.2] - 2024-07-02</h2>
+<p><em>Version not published.</em></p>
+<h2 id="201---2023-12-06">[2.0.1] - 2023-12-06</h2>
+<p><em>Version not published.</em></p>
+<h2 id="200---2023-10-17">[2.0.0] - 2023-10-17</h2>
+<p><em>NavMesh Link sets incorrect endpoint transforms and positions. Use version 2.0.3 instead.</em></p>
+<h3 id="fixed-6">Fixed</h3>
+<ul>
+<li>When the &quot;Auto Update Position&quot; option of NavMeshLink is enabled, the link now correctly updates the connection in the next frame after any of the link's ends change their world position.</li>
+</ul>
+<h2 id="200-pre4---2023-09-28">[2.0.0-pre.4] - 2023-09-28</h2>
+<h3 id="fixed-7">Fixed</h3>
+<ul>
+<li>Long warning popping up when user starts playmode while editing a prefab that contains NavMesh components (<a href="https://issuetracker.unity3d.com/product/unity/issues/guid/NAVB-47">NAVB-47</a>)</li>
+</ul>
+<h2 id="200-pre3---2023-05-31">[2.0.0-pre.3] - 2023-05-31</h2>
+<h3 id="added-1">Added</h3>
+<ul>
+<li>New <code>activated</code> property in NavMeshLink, useful to control whether agents are allowed to traverse the link</li>
+<li>New <code>occupied</code> property in NavMeshLink, useful to determine whether an agent is using the link</li>
+<li>New <code>startTransform</code>, <code>endTransform</code> properties in NavMeshLink, useful to define the ends of the link through Transform references as an alternative to points in 3D space</li>
+<li>New <code>autoUpdatePositions</code>, <code>biDirectional</code>, <code>costOverride</code> properties and the <code>UpdatePositions()</code> method, introduced as &quot;deprecated&quot; in order to facilitate the upgrade from OffMeshLinks</li>
+</ul>
+<h3 id="changed-2">Changed</h3>
+<ul>
+<li>The <code>costModifier</code> property is now of type <code>float</code>, as expected by the Navigation system.</li>
+</ul>
+<h3 id="fixed-8">Fixed</h3>
+<ul>
+<li>Published the missing API reference documentation for the properties made available with 2022.2</li>
+</ul>
+<h3 id="removed">Removed</h3>
+<ul>
+<li>The &quot;Navigation (Obsolete)&quot; window has been removed. This in turn removes the deprecated abilities to enable the &quot;Navigation Static&quot; flag on scene objects and to bake a single NavMesh embedded in the scene.</li>
+</ul>
+<h2 id="113---2023-04-13">[1.1.3] - 2023-04-13</h2>
+<h3 id="changed-3">Changed</h3>
+<ul>
+<li>Remove some unnecessary files from the package</li>
+</ul>
+<h2 id="112---2023-04-03">[1.1.2] - 2023-04-03</h2>
+<h3 id="changed-4">Changed</h3>
+<ul>
+<li>The <em>AI Navigation</em> overlay in the scene view remembers which sections have been collapsed</li>
+<li>Updated a large part of the documentation to reflect the current functionality</li>
+</ul>
+<h2 id="111---2022-10-21">[1.1.1] - 2022-10-21</h2>
+<h3 id="changed-5">Changed</h3>
+<ul>
+<li>Clarified the information text displayed by the NavMesh Updater</li>
+</ul>
+<h2 id="110-pre2---2022-08-09">[1.1.0-pre.2] - 2022-08-09</h2>
+<h3 id="changed-6">Changed</h3>
+<ul>
+<li>The Dungeon scene included in the package samples now uses tile prefabs that contain a <code>NavMeshSurface</code> component instead of the <code>NavMeshPrefabInstance</code> script.</li>
+<li>The Drop Plank scene included in the package samples now has a <code>NavMeshSurface</code> component and the <code>NavMeshSurfaceUpdater</code> script on the geometry, as well as the <code>DynamicNavMeshObject</code> script on the Plank prefab for dynamically updating the <code>NavMesh</code> when new Planks are instantiated.</li>
+<li>The offset when instantiating Planks in the Drop Plank scene has been reduced.</li>
+<li>The Sliding Window Infinite and the Sliding Window Terrain scenes included in the package samples now use the <code>NavMeshSurfaceVolumeUpdater</code> script instead of the <code>LocalNavMeshBuilder</code> and <code>NavMeshSourceTag</code> scripts for dynamically updating the <code>NavMesh</code>.</li>
+<li>The Modify Mesh scene included in the package samples now uses a <code>NavMeshSurface</code> component on the Mesh Tool for dynamically updating the <code>NavMesh</code> instead of the <code>LocalNavMeshBuilder</code> and <code>NavMeshSourceTag</code> scripts. The <code>MeshTool</code> script now uses the <code>Update()</code> method of <code>NavMeshSurface</code> for updating the <code>NavMesh</code> whenever the mesh is modified.</li>
+</ul>
+<h3 id="fixed-9">Fixed</h3>
+<ul>
+<li>The Drop Plank scene included in the package samples now destroys instantiated Planks that have fallen off the edge.</li>
+<li>Missing agent type references in the samples.</li>
+</ul>
+<h3 id="removed-1">Removed</h3>
+<ul>
+<li>The <code>NavMeshPrefabInstance</code> and <code>NavMeshPrefabInstanceEditor</code> scripts from the package samples were removed.</li>
+<li>The prefab editing scene <code>7b_dungeon_tile_prefabs</code> from the package samples was removed. The tiles can now be edited directly as prefabs.</li>
+<li>The <code>LocalNavMeshBuilder</code> and <code>NavMeshSourceTag</code> scripts from the package samples were removed.</li>
+</ul>
+<h2 id="110-pre1---2022-04-27">[1.1.0-pre.1] - 2022-04-27</h2>
+<h3 id="added-2">Added</h3>
+<ul>
+<li>NavMeshSurface supports links generation.</li>
+<li>NavMeshSurface supports HeightMesh baking.</li>
+<li>New package Navigation window adapting the obsolete Unity Navigation window functionalities to the package workflow.</li>
+</ul>
+<h3 id="changed-7">Changed</h3>
+<ul>
+<li>NavMeshSurface is using the <em>Background Tasks</em> window to report the baking progress</li>
+<li>Minimum supported version is increased to Unity 2022.2</li>
+</ul>
+<h2 id="100-exp4---2021-07-19">[1.0.0-exp.4] - 2021-07-19</h2>
+<h3 id="changed-8">Changed</h3>
+<ul>
+<li>Documentation updated with changes from Unity manual</li>
+<li>Test scripts moved into namespaces Unity.AI.Navigation.Tests and Unity.AI.Navigation.Editor.Tests</li>
+</ul>
+<h2 id="100-exp3---2021-06-16">[1.0.0-exp.3] - 2021-06-16</h2>
+<h3 id="fixed-10">Fixed</h3>
+<ul>
+<li>An assembly definition in the package sample was referencing an invalid AsmDef</li>
+</ul>
+<h2 id="100-exp2---2021-05-19">[1.0.0-exp.2] - 2021-05-19</h2>
+<h3 id="fixed-11">Fixed</h3>
+<ul>
+<li>Baking a NavMeshSurface with a bounding volume was not detecting the geometry nearby the bounds (1027006)</li>
+</ul>
+<h3 id="changed-9">Changed</h3>
+<ul>
+<li>New note in the documentation about the bounding volume of a NavMeshSurface</li>
+</ul>
+<h2 id="100-exp1---2021-04-06">[1.0.0-exp.1] - 2021-04-06</h2>
+<p>This is the first release of the <em>AI Navigation</em> package. It contains the scripts that were previously known as <em>NavMeshComponents</em> and it adds a few improvements.</p>
+<h3 id="fixed-12">Fixed</h3>
+<ul>
+<li>Disabling a NavMeshLink component in the Editor does not remove the link</li>
+</ul>
+<h3 id="added-3">Added</h3>
+<ul>
+<li>New <code>minRegionArea</code> property in <code>NavMeshSurface</code> that prevents small isolated patches from being built in the NavMesh</li>
+<li>Documentation for the new <code>minRegionArea</code> property</li>
+</ul>
+<h3 id="changed-10">Changed</h3>
+<ul>
+<li>Documentation updated</li>
+<li>Script namespaces changed to Unity.AI.Navigation.*</li>
+<li>The <a href="LICENSE.html">license</a> has changed.</li>
+<li>The folder structure has changed in accordance to the requirements of the Unity standards for packages.</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

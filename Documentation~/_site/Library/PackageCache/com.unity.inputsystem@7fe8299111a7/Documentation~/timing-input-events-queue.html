@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>The input events queue | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="The input events queue | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="the-input-events-queue">The input events queue</h1>
+
+<p>The Input System receives information from hardware input devices as a stream of events. These events represent either system events received from the input device, or snapshots in time based on frequent samples from the device.</p>
+<p>The incoming events are stored in a queue, and by default are processed each frame. Input controls which have discrete (on/off) states, such as a button on a gamepad or mouse, generate corresponding single discrete events when they change state. Input controls with a range of motion, for example a stick or trigger on a gamepad that can be gradually moved over a period of time, generate a stream of individual events in rapid succession that approximates the smooth change in value.</p>
+<p><img src="./Images/TimingEventGrouping.png" alt="image alt text"></p>
+<p><em>A diagram showing an example of events coming from a smoothly changing analog input such as a gamepad stick over a period of four frames. In this example, the events are occurring faster than the game’s frame rate, which means multiple events are received each frame.</em></p>
+<p>Because a device can cause events at times when the input system can't process them (for example, during the rendering phase of the player loop), these events are placed in an incoming queue, and the input system processes them in batches at frequent intervals.</p>
+<h2 id="input-event-queue-processing">Input Event Queue Processing</h2>
+<p>Unity’s player loop repeats at frequent intervals depending on how fast your game or app is running. The player loop repeats once per frame, and performs the Update and FixedUpdate calls. However, the player loop in your game or app usually runs at a rate that's different to the rate of incoming events from input controls, which tend to have their own rate of operation.</p>
+<p>This means that each time an Update cycle occurs while a user is moving an input control, there's likely to be a queue of events representing the gradual change in values that occurred between the last frame and the current frame. This queue is processed at the beginning of the next Update or FixedUpdate, depending on which <a href="timing-select-mode.html"><strong>Input Update Mode</strong></a> you're using.</p>
+<h2 id="event-grouping-and-processing">Event grouping and processing</h2>
+<p>To pass through these incoming input events to your code, the Input System groups and processes them at a specific time within the <a href="https://docs.unity3d.com/Manual/ExecutionOrder.html">Player Loop</a>. This is either just before the next <code>Update</code> if the Input Update Mode is set to <strong>Process Events In Dynamic Update</strong>, or just before the next <code>FixedUpdate</code> if the Input Mode is set to <strong>Process Events in Fixed Update</strong>.</p>
+<p>The following diagram shows how each batch of events (labeled with letters) is processed at the start of the subsequent frame, when the Input Update mode is set to <strong>Process Events in Dynamic Update</strong>. Events (<strong>a</strong>), (<strong>b</strong>) &amp; (<strong>c</strong>) occurred during frame 1, and so are processed at the start of frame 2, before frame 2’s Update() call. Events (<strong>d</strong>), (<strong>e</strong>), (<strong>f</strong>) &amp; (<strong>g</strong>) occurred during frame 2, and so are processed at the start of frame 3. Events (<strong>h</strong>) &amp; (<strong>i</strong>) occur during frame 3, and so are processed at the start of frame 4.</p>
+<p><img src="./Images/TimingInputsPerFrame.png" alt="image alt text"></p>
+<p>This means that the exact time that your code receives the events isn't the same as the time the event was received by the input system in Unity. For this reason, when you're using event callbacks (as opposed to polling), the Input System includes time stamps for each event so that you can know when each event was generated.</p>
+<p>For example, event (<strong>d</strong>) in the diagram is received from the device by the input system at time 0.012 s, but the time at which your code receives the event callback is at the start of the next frame, at about 0.03 s. It retains its timestamp of 0.012 s, but it, along with events (<strong>e</strong>), (<strong>f</strong>), and (<strong>g</strong>), are all processed by your code at almost exactly the same time, each marked with their own time stamps.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

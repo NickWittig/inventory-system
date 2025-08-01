@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>TestPlayerBuildModifier attribute | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="TestPlayerBuildModifier attribute | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="testplayerbuildmodifier-attribute">TestPlayerBuildModifier attribute</h1>
+
+<p>You can use the <code>TestPlayerBuildModifier</code> attribute to accomplish a couple of different scenarios:</p>
+<h2 id="modify-the-player-build-options-for-play-mode-tests">Modify the Player build options for Play Mode tests</h2>
+<p>It is possible to change the <a href="https://docs.unity3d.com/ScriptReference/BuildPlayerOptions.html">BuildPlayerOptions</a> for the test <strong>Player</strong>, to achieve custom behavior when running <strong>Play Mode</strong> tests. Modifying the build options allows for changing the target location of the build as well as changing <a href="https://docs.unity3d.com/ScriptReference/BuildOptions.html">BuildOptions</a>.</p>
+<p>To modify the <code>BuildPlayerOptions</code>, do the following:</p>
+<ul>
+<li>Implement the <code>ITestPlayerBuildModifier</code></li>
+<li>Reference the implementation type in a <code>TestPlayerBuildModifier</code> attribute on an assembly level.</li>
+</ul>
+<h3 id="example">Example</h3>
+<pre><code class="lang-c#">using UnityEditor;
+using UnityEditor.TestTools;
+
+[assembly:TestPlayerBuildModifier(typeof(BuildModifier))]
+public class BuildModifier : ITestPlayerBuildModifier
+{
+    public BuildPlayerOptions ModifyOptions(BuildPlayerOptions playerOptions)
+    {
+        if (playerOptions.target == BuildTarget.iOS)
+        {
+            playerOptions.options |= BuildOptions.SymlinkLibraries; // Enable symlink libraries when running on iOS
+        }
+        
+        playerOptions.options |= BuildOptions.AllowDebugging; // Enable allow Debugging flag on the test Player.
+        return playerOptions;
+    }
+}
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> When building the Player, it includes all <code>TestPlayerBuildModifier</code> attributes across all loaded assemblies, independent of the currently used test filter. As the implementation references the <code>UnityEditor</code> namespace, the code is typically implemented in an Editor only assembly, as the <code>UnityEditor</code> namespace is not available otherwise.</p>
+</blockquote>
+<h2 id="split-build-and-run">Split build and run</h2>
+<p>It is possible to use the Unity Editor for building the Player with tests, without <a href="workflow-run-playmode-test-standalone.html">running the tests</a>. This allows for running the Player on e.g. another machine. In this case, it is necessary to modify the Player to build and implement a custom handling of the test result.</p>
+<p>By using <code>TestPlayerBuildModifier</code>, you can alter the <code>BuildOptions</code> to not start the Player after the build as well as build the Player at a specific location. Combined with <a href="reference-setup-and-cleanup.html#prebuildsetup-and-postbuildcleanup">PostBuildCleanup</a>, you can automatically exit the Editor on completion of the build.</p>
+<h3 id="example-1">Example</h3>
+<pre><code class="lang-c#">using System;
+using System.IO;
+using System.Linq;
+using Tests;
+using UnityEditor;
+using UnityEditor.TestTools;
+using UnityEngine;
+using UnityEngine.TestTools;
+
+[assembly:TestPlayerBuildModifier(typeof(HeadlessPlayModeSetup))]
+[assembly:PostBuildCleanup(typeof(HeadlessPlayModeSetup))]
+
+namespace Tests
+{
+    public class HeadlessPlayModeSetup : ITestPlayerBuildModifier, IPostBuildCleanup
+    {
+        private static bool s_RunningPlayerTests;
+        public BuildPlayerOptions ModifyOptions(BuildPlayerOptions playerOptions)
+        {
+            // Do not launch the player after the build completes.
+            playerOptions.options &amp;= ~BuildOptions.AutoRunPlayer;
+
+            // Set the headlessBuildLocation to the output directory you desire. It does not need to be inside the project.
+            var headlessBuildLocation = Path.GetFullPath(Path.Combine(Application.dataPath, &quot;.//..//PlayModeTestPlayer&quot;));
+            var fileName = Path.GetFileName(playerOptions.locationPathName);
+            if (!string.IsNullOrEmpty(fileName))
+            {
+                headlessBuildLocation = Path.Combine(headlessBuildLocation, fileName);
+            }
+            playerOptions.locationPathName = headlessBuildLocation;
+
+            // Instruct the cleanup to exit the Editor if the run came from the command line. 
+            // The variable is static because the cleanup is being invoked in a new instance of the class.
+            s_RunningPlayerTests = true;
+            return playerOptions;
+        }
+
+        public void Cleanup()
+        {
+            if (s_RunningPlayerTests &amp;&amp; IsRunningTestsFromCommandLine())
+            {
+                // Exit the Editor on the next update, allowing for other PostBuildCleanup steps to run.
+                EditorApplication.update += () =&gt; { EditorApplication.Exit(0); };
+            }
+        }
+
+        private static bool IsRunningTestsFromCommandLine()
+        {
+            var commandLineArgs = Environment.GetCommandLineArgs();
+            return commandLineArgs.Any(value =&gt; value == &quot;-runTests&quot;);
+        }
+    }
+}
+</code></pre>
+<p>If the Editor is still running after the Play Mode tests have run, the Player tries to report the results back, using <a href="https://docs.unity3d.com/ScriptReference/Networking.PlayerConnection.PlayerConnection.html">PlayerConnection</a>, which has a reference to the IP address of the Editor machine, when built.</p>
+<p>To implement a custom way of reporting the results of the test run, let one of the assemblies in the Player include a <a href="reference-attribute-testruncallback.html">TestRunCallback</a>. At <code>RunFinished</code>, it is possible to get the full test report as XML from the <a href="http://www.nunit.org/">NUnit</a> test result by calling <code>result.ToXml(true)</code>. You can save the result and then save it on the device or send it to another machine as needed.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

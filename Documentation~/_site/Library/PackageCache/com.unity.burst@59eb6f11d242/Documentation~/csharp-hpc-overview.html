@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title> | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content=" | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+
+<h2 id="hpc-overview">HPC# overview</h2>
+<p>Burst uses a high performance subset of C# called High Performance C# (HPC#).</p>
+<h2 id="supported-c-features-in-hpc">Supported C# features in HPC#</h2>
+<p>HPC# supports most expressions and statements in C#. It supports the following:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Supported feature</strong></th>
+<th><strong>Notes</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Extension methods.</td>
+<td></td>
+</tr>
+<tr>
+<td>Instance methods of structs.</td>
+<td></td>
+</tr>
+<tr>
+<td>Unsafe code and pointer manipulation.</td>
+<td></td>
+</tr>
+<tr>
+<td>Loading from static read-only fields.</td>
+<td>For more information, see the documentation on <a href="csharp-static-read-only-support.html">Static read-only fields and static constructors</a>.</td>
+</tr>
+<tr>
+<td>Regular C# control flows.</td>
+<td><code>if</code><br><code>else</code><br><code>switch</code><br><code>case</code><br><code>for</code><br><code>while</code><br><code>break</code><br><code>continue</code></td>
+</tr>
+<tr>
+<td><code>ref</code> and <code>out</code> parameters</td>
+<td></td>
+</tr>
+<tr>
+<td><code>fixed</code> statements</td>
+<td></td>
+</tr>
+<tr>
+<td>Some <a href="https://docs.microsoft.com/en-us/dotnet/api/system.reflection.emit.opcodes?view=net-6.0">IL opcodes</a>.</td>
+<td><code>cpblk</code><br> <code>initblk</code><br> <code>sizeof</code></td>
+</tr>
+<tr>
+<td><code>DLLImport</code> and internal calls.</td>
+<td>For more information, see the documentation on <a href="csharp-burst-intrinsics-dllimport.html"><code>DLLImport</code> and internal calls</a>.</td>
+</tr>
+<tr>
+<td><code>try</code> and <code>finally</code> keywords. Burst also supports the associated <a href="https://docs.microsoft.com/en-us/dotnet/api/system.idisposable?view=net-6.0">IDisposable</a> patterns, <code>using</code> and <code>foreach</code>.</td>
+<td>If an exception happens in Burst, the behavior is different from .NET. In .NET, if an exception occurs inside a <code>try</code> block, control flow goes to the <code>finally</code> block. However, in Burst, if an exception happens inside or outside a <code>try</code> block, the exception throws as if any <code>finally</code> blocks do not exist. Invoking <code>foreach</code> calls is supported by Burst, but there is a <code>foreach</code> edge case that burst currently does not support (see <a href="#foreach-and-while">&quot;Foreach and While&quot; section</a> for more details).</td>
+</tr>
+<tr>
+<td>Strings and <code>ProfilerMarker</code>.</td>
+<td>For more information, see the documentation on <a href="debugging-profiling-tools.html#profiler-markers">Support for Unity Profiler markers</a>.</td>
+</tr>
+<tr>
+<td><code>throw</code> expressions.</td>
+<td>Burst only supports simple <code>throw</code> patterns, for example, <code>throw new ArgumentException(&quot;Invalid argument&quot;)</code>. When you use simple patterns like this, Burst extracts the static string exception message and includes it in the generated code.</td>
+</tr>
+<tr>
+<td>Strings and <code>Debug.Log</code>.</td>
+<td>Only partially supported. For more information, see the documentation on <a href="csharp-string-support.html">String support and <code>Debug.Log</code></a>.</td>
+</tr>
+</tbody>
+</table>
+<p>Burst also provides alternatives for some C# constructions not directly accessible to HPC#:</p>
+<ul>
+<li><a href="csharp-function-pointers.html">Function pointers</a> as an alternative to using delegates within HPC#</li>
+<li><a href="csharp-shared-static.html">Shared static</a> to access static mutable data from both C# and HPC#</li>
+</ul>
+<h3 id="exception-expressions">Exception expressions</h3>
+<p>Burst supports <code>throw</code> expressions for exceptions. Exceptions thrown in the Editor can be caught by managed code, and are reported in the console window. Exceptions thrown in Player builds always cause the application to abort. Thus with Burst you should only use exceptions for exceptional behavior. To ensure that code doesn't end up relying on exceptions for things like general control flow, Burst produces the following warning on code that tries to <code>throw</code> within a method not attributed with <code>[Conditional(&quot;ENABLE_UNITY_COLLECTIONS_CHECKS&quot;)]</code>:</p>
+<blockquote>
+<p>Burst warning BC1370: An exception was thrown from a function without the correct [Conditional(&quot;ENABLE_UNITY_COLLECTIONS_CHECKS&quot;)] guard. Exceptions only work in the editor and so should be protected by this guard</p>
+</blockquote>
+<p><a name="foreach-and-while"></a></p>
+<h3 id="foreach-and-while">Foreach and While</h3>
+<p>Burst supports invoking <code>foreach</code> and <code>while</code>. However, there is an edge case which is currently unsupported - methods that take one or more generic collection parameters <code>T: IEnumerable&lt;U&gt;</code> and invoke <code>foreach</code> or <code>while</code> on at least one of the collections in the method body.
+To illustrate, the following example methods exemplify this limitation:</p>
+<pre><code class="lang-c#">public static void IterateThroughConcreteCollection(NativeArray&lt;int&gt; list)
+{
+    foreach (var element in list)
+    {
+        // This works
+    }
+}
+
+public static void IterateThroughGenericCollection&lt;S&gt;(S list) where S : struct, IEnumerable&lt;int&gt;
+{
+    foreach (var element in list)
+    {
+        // This doesn't work
+    }
+}
+</code></pre>
+<p>Note that the uppermost method <code>IterateThroughConcreteCollection()</code>'s parameter is specified to be a <em>concrete</em> collection type, in this case <code>NativeArray&lt;int&gt;</code>. Because it's concrete iterating through it inside the method will compile in Burst.
+In the method <code>IterateThroughGenericCollection()</code> below it, however, the parameter is specified to be a <em>generic</em> collection type <code>S</code>. Iterating through <code>S</code> inside the method will therefore <em>not</em> compile in Burst. It will instead throw the following error:</p>
+<blockquote>
+<p>Can't call the method (method name) on the generic interface object type (object name). This may be because you are trying to do a foreach over a generic collection of type IEnumerable.</p>
+</blockquote>
+<h2 id="unsupported-c-features-in-hpc">Unsupported C# features in HPC#</h2>
+<p>HPC# doesn't support the following C# features:</p>
+<ul>
+<li>Catching exceptions <code>catch</code> in a <code>try</code>/<code>catch</code>.</li>
+<li>Storing to static fields except via <a href="csharp-shared-static.html">Shared Static</a>.</li>
+<li>Any methods related to managed objects, for example, string methods.</li>
+</ul>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="csharp-static-read-only-support.html">Static read-only fields and static constructor support</a></li>
+<li><a href="csharp-string-support.html">String support</a></li>
+<li><a href="csharp-type-support.html">C#/.NET type support</a></li>
+<li><a href="csharp-system-support.html">C#/.NET System namespace support</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

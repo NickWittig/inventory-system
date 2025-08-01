@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Burst Inspector window reference | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Burst Inspector window reference | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="burst-inspector-window-reference">Burst Inspector window reference</h1>
+
+<p>The Burst Inspector window displays all the jobs and other Burst compile targets in the project. To open the Burst Inspector window, go to <strong>Jobs</strong> &gt; <strong>Burst</strong> &gt; <strong>Open Inspector</strong>.</p>
+<p>The Burst Inspector displays all the jobs Burst can compile. It also displays the generated intermediate and native assembly code.</p>
+<p>When opening a new target job in the Burst Inspector, it will try to focus the assembly directly related to the chosen bursted job. If branch flow arrows are shown and fill more than half of the assembly view, the inspector scrolls horizontally rightwards to focus the code instead of the branches.</p>
+<p><img src="images/burst-inspector.png" alt="Burst Inspector"><br><em>Burst Inspector with Branch Flow enabled</em></p>
+<h2 id="burst-inspector-panes">Burst Inspector panes</h2>
+<p>The <strong>Compile Targets</strong> pane on the left of the window displays an alphabetical list of jobs in the project that Burst can compile. By default jobs either in the Unity namespace or with &quot;.Generated&quot; in the name are excluded. This can be changed via the toggles <strong>Show Unity Namespace</strong> and <strong>Show &quot;.Generated&quot;</strong> respectively. Disabled jobs in the list don't have the <code>[BurstCompile]</code> attribute.</p>
+<p>The right output pane of the Burst Inspector window displays options to view the assembly and intermediate code for the job you've selected in the <strong>Compile Targets</strong> list. To expand or collapse elements of the code, select the colored boxes (some with ellipses). By default the Burst Inspector automatically collapses non-essential blocks, such as most directives and data.</p>
+<p>It is possible to select lines of assembly. This will highlight the selected line, by underlining it. If this line contains any registers, the usage of these registers will be highlighted throughout the code; note that implicit registers are ignored for this feature.</p>
+<p>To select and copy the text in this pane, either click and drag with your mouse, or use Shift + arrow keys to select the text. To copy the text, either right-click and select <strong>Copy Selection</strong>, or press Ctrl + C (Command + C on macOS). Default behavior for the Burst Inspector's copy is to include underlying color tags. To change this, right-click with the mouse on the right pane, to open up the context menu, and untick <strong>Copy Color Tags</strong>.</p>
+<p>At the top of the window, the following display options are available:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Display option</strong></th>
+<th><strong>Function</strong></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Output dropdown</strong></td>
+<td>Use the dropdown to select how to output the information in the Burst Inspector window</td>
+<td></td>
+</tr>
+<tr>
+<td>Plain Without Debug Information</td>
+<td>Displays the raw output.</td>
+<td></td>
+</tr>
+<tr>
+<td>Plain With Debug Information</td>
+<td>Displays the raw output with debug information.</td>
+<td></td>
+</tr>
+<tr>
+<td>Enhanced with Minimal Debug Information<br>(Only available in <strong>Assembly</strong> view)</td>
+<td>Displays the line information interweaved with the assembly to guide you to what line in your code matches what assembly output. If you've enabled <strong>Show Branch Flow</strong>, the branch flow indicates where jump instruction might branch off to.</td>
+<td></td>
+</tr>
+<tr>
+<td>Enhanced With Full Debug Information<br>(Only available in <strong>Assembly</strong> view)</td>
+<td>Displays the same information as Enhanced with Minimal Debug Information but with debug information included.</td>
+<td></td>
+</tr>
+<tr>
+<td>Coloured With Minimal Debug Information<br>(Only available in <strong>Assembly</strong> view)</td>
+<td>Displays the same information as Enhanced with Minimal Debug Information, but displays the output in color.</td>
+<td></td>
+</tr>
+<tr>
+<td>Coloured With Full Debug Information<br>(Only available in <strong>Assembly</strong> view)</td>
+<td>Displays the same information as Enhanced with Full Debug Information, but displays the output in color.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Safety Checks</strong></td>
+<td>Enable this option to generate code that includes container access safety checks, for example, to check if a job is attempting to write to a read-only native container.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Font Size</strong></td>
+<td>Select the size of the text in the output pane.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Architecture dropdown</strong></td>
+<td>Select the target architecture for your build.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Focus on Code</strong><br>(Only available in <strong>Enhanced</strong> or <strong>Coloured</strong> output)</td>
+<td>Collapses the least important blocks of the disassembly. When you select this, Unity hides most of the assembly language directives and non code segments, allowing you to focus on the code itself.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Expand all</strong> <br>(Only available in <strong>Enhanced</strong> or <strong>Coloured</strong> output)</td>
+<td>Expands all collapsed blocks of disassembly and displays all the hidden assembly language directives and data elements.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Show Branch Flow</strong><br>(Only available in <strong>Enhanced</strong> or <strong>Coloured</strong> output)</td>
+<td>Enable this option to display arrows that show branch flow in the code. When enabled, the code moves to the right, to make space to display the arrows.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Highlight SIMD Scalar vs Packed</strong><br>(Only available in <strong>Enhanced</strong> or <strong>Coloured</strong> output)</td>
+<td>Enable this option to display SIMD instruction differently depending on their nature (Whether they work on packed or scalar inputs). This can be used to quickly assess the quality of the generated vectorized code (see <a href="https://youtu.be/BpwvXkoFcp8?t=447">SIMD smell test by Andreas Fredriksson</a>).</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Assembly</strong></td>
+<td>Displays the final optimized native code that Burst generated.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>.NET IL</strong></td>
+<td>Displays the original .NET IL extracted from the job method.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>LLVM IR (Unoptimized)</strong></td>
+<td>Displays the internal LLVM IR before optimizations.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>LLVM IR (Optimized)</strong></td>
+<td>Displays the internal LLVM IR after optimizations.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>LLVM IR Optimization Diagnostics</strong></td>
+<td>Displays LLVM diagnostics of the optimizations, such as if they succeeded or failed.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="editor-burst-menu.html">Burst menu</a></li>
+<li><a href="xref:um-job-system">Job system</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

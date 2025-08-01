@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Attach a graph file to a Script Machine or State Machine | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Attach a graph file to a Script Machine or State Machine | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="attach-a-graph-file-to-a-script-machine-or-state-machine">Attach a graph file to a Script Machine or State Machine</h1>
+
+<p>To use a Script Graph or State Graph file in your project, you must attach it to a Script Machine or State Machine.</p>
+<p>A Script Machine or State Machine is a component. Components attach to GameObjects, and help define their behavior. For more information on components and GameObjects, see <a href="https://docs.unity3d.com/2021.1/Documentation/Manual/UsingComponents.html">Using components</a> or <a href="https://docs.unity3d.com/2021.1/Documentation/Manual/GameObjects.html">GameObjects</a> in the Unity User Manual.</p>
+<h2 id="add-a-script-machine-or-state-machine-component-to-a-gameobject">Add a Script Machine or State Machine component to a GameObject</h2>
+<ol>
+<li><p>Go to <strong>Window</strong> &gt; <strong>General</strong> &gt; <strong>Hierarchy</strong>, or press Ctrl+4 (macOS: Cmd+4) to open the <a href="https://docs.unity3d.com/Manual/Hierarchy.html">Hierarchy window</a>.</p>
+</li>
+<li><p>In the Hierarchy window, select a GameObject where you'd like to add a Script Machine or State Machine.</p>
+</li>
+<li><p>With the GameObject selected in the Hierarchy window, go to <strong>Window</strong> &gt; <strong>General</strong> &gt; <strong>Inspector</strong>, or press Ctrl+3 (macOS: Cmd+3) to open the <a href="https://docs.unity3d.com/Documentation/Manual/UsingTheInspector.html">Inspector window</a>.</p>
+</li>
+<li><p>In the GameObject's Inspector window, select <strong>Add Component</strong>.</p>
+<p>The Components menu opens.</p>
+</li>
+<li><p>Do one of the following:</p>
+<ul>
+<li>To add a Script Machine or State Machine, in the Components menu, go to <strong>Visual Scripting</strong> and select <strong>Script Machine</strong> or <strong>State Machine</strong>.</li>
+<li>Use the search bar to find the Script Machine or State Machine component.</li>
+</ul>
+</li>
+</ol>
+<p>The new Script Machine or State Machine component appears in the Inspector window for the GameObject:</p>
+<p><img src="images/vs-script-machine-blank.png" alt="A new blank Script Machine component in the Inspector window for a GameObject"></p>
+<h2 id="attach-a-graph-file-to-the-script-machine-or-state-machine">Attach a graph file to the Script Machine or State Machine</h2>
+<ol>
+<li><p>In the Inspector window, locate your Script Machine or State Machine component.</p>
+</li>
+<li><p>Set the <strong>Source</strong> to <strong>Graph</strong>.</p>
+</li>
+<li><p>Do one of the following:</p>
+<ul>
+<li>In the <strong>Graph</strong> field, select the object picker (circle icon) and choose a compatible graph file from your project.</li>
+<li>Click and drag a file from your Project window and drop it into the <strong>Graph</strong> field.</li>
+</ul>
+</li>
+</ol>
+<p>For more information on how to create Script or State Graphs, see <a href="vs-create-graph.html">Create a new graph file</a>.</p>
+<h2 id="next-steps">Next steps</h2>
+<p>After you attach a graph to a Script Machine or State Machine, you can open the graph and edit. For more information, see <a href="vs-open-graph-edit.html">Open a graph file</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

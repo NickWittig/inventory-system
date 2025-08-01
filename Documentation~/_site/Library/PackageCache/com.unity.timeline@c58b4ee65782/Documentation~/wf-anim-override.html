@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Override upper-body animation | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Override upper-body animation | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="override-upper-body-animation">Override upper-body animation</h1>
+
+<p>This workflow demonstrates how to use an Animation Override track and an Avatar Mask to replace the upper-body animation of an Animation track. For example, you can use this technique to animate a humanoid to walk while celebrating a victory.</p>
+<p>This workflow uses the humanoid model named <code>DefaultMale</code> and animation source assets from the <a href="samp-gameplay-demo.html">Gameplay Sequence sample</a> for its examples. Consult <a href="samp-overview.html">Timeline Samples</a> for information on the samples available from the Timeline package and how to import these samples into your projects.</p>
+<p>This workflow starts with a Timeline instance that has an Animation track bound to the <code>DefaultMale</code> humanoid model. The Animation track has a single Animation clip that starts at frame 0 and loops twice for a duration of 216 frames.</p>
+<p><img src="images/tl-mask-start.png" alt=""></p>
+<p><em>The <code>DefaultMale</code> humanoid model linked to a Timeline instance (<code>OverrideTL</code>) with an Animation track bound to the same model (<code>DefaultMale</code>) with a Walk Animation clip that loops twice.</em></p>
+<p>In this workflow, to add an Animation Override track and override the upper-body animation, follow these steps:</p>
+<ol>
+<li>In the Track Header for the Animation track, click the <strong>More</strong> (<strong>⋮</strong>) menu and choose <strong>Add Override Track</strong>. An Animation Override track, named <code>Override 0</code>, is linked to the selected Animation track.</li>
+</ol>
+<p>Notice that the Animation Override track is not bound to a GameObject. Because the Animation Override track is linked to the Animation track above, the Override track is bound to the same GameObject: the <code>DefaultMale</code> humanoid.</p>
+<p><img src="images/tl-mask-override.png" alt=""></p>
+<p><em>Animation track with an Animation Override track. The More (⋮) menu icon is indicated in red.</em></p>
+<ol start="2">
+<li><p>From your Project, drag an animation source asset with upper-body animation into the Override track. This workflow uses the <code>Vct_Dnc_anim1</code> animation source asset from the <a href="samp-gameplay-demo.html">Gameplay Sequence sample</a>.</p>
+</li>
+<li><p>Position and resize the clip to choose the upper-body animation to combine with the Walk clip. The Animation clip on the Override track should also match the size of Walk clip.</p>
+</li>
+</ol>
+<p><img src="images/tl-celebrate-clip.png" alt=""></p>
+<p><em>The Animation Override track contains a trimmed part of the full <code>Vct_Dnc_anim1</code> animation source asset (frames 630 to 846). This clip was also positioned and resized to match the Animation clip (<code>Walk</code>) on the parent Animation track.</em></p>
+<ol start="4">
+<li><p>Play the Timeline instance. The victory dance clip, <code>Vct_Dnc_anim1</code>, completely overrides the <code>Walk</code> clip. To combine the lower-body animation from one Animation clip with the upper-body animation from the Animation Override clip, you must specify an Avatar Mask for the Animation Override track.</p>
+</li>
+<li><p>To specify an Avatar Mask, select the Override track to view its <a href="insp-trk-anim.html">track properties in the Inspector window</a>.</p>
+</li>
+</ol>
+<p><img src="images/insp-override-track-props.png" alt=""></p>
+<p><em>The track properties for an Animation Override track are the same as an Animation track</em></p>
+<ol start="6">
+<li>In the Inspector window, specify an Avatar Mask that masks the lower body animation for the Avatar Mask property. If you do not have an Avatar Mask that masks the lower body, consult <a href="https://docs.unity3d.com/Manual/class-AvatarMask.html">Avatar Mask window</a> for information on how to create one.</li>
+</ol>
+<p>Once you have specified a lower body Avatar Mask, select the mask and enable the <strong>Apply Avatar Mask</strong> checkbox. An Avatar Mask toggle appears beside the Override track name.</p>
+<p><img src="images/tl-avatar-mask-icon.png" alt=""></p>
+<p><em>In the track header, the enabled Avatar Mask indicates that the Animation Override track uses an Avatar Mask.</em></p>
+<ol start="7">
+<li>Play the Timeline instance. In this example, the <code>DefaultMale</code> humanoid uses upper-body animation from the <code>Vct_Dnc_anim1</code> clip and the lower body animation from the Walk clip.</li>
+</ol>
+<p>To temporarily disable the Avatar Mask, toggle the Avatar Mask toggle off. This is the same as disabling the <strong>Apply Avatar Mask</strong> checkbox in the Inspector window.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Animation track properties | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Animation track properties | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="animation-track-properties">Animation track properties</h1>
+
+<p>Use the Inspector window to change the name of an Animation track, set how track offsets are applied, use an avatar mask, and set which transforms are modified by default when you <a href="clip-match.html">match clip offsets</a>.</p>
+<p><img src="images/insp-trk-anim.png" alt=""></p>
+<p><em>Inspector window when selecting an Animation track in the Timeline window</em></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Property</strong></th>
+<th style="text-align: left;"></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Display Name</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">The name of the Animation track displayed in the Timeline window and in the Playable Director component. The Display Name applies to the Timeline asset and all of its Timeline instances. The Display Name is set to <code>Animation Track</code> by default.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Track Offsets</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Applies a position and rotation offset to the start of each Animation clip on the selected Animation track. The position and rotation offset starts from a specific position and rotation or from the position and rotation relative to a state machine or another Timeline instance.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Apply Transform Offsets</td>
+<td style="text-align: left;">Starts the animation in each Animation clip from a specific position and rotation offset. Use the Move and Rotate tools, and the Position and Rotation fields, to set the starting position and rotation.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Apply Scene Offsets</td>
+<td style="text-align: left;">Starts the animated GameObject from its current position and rotation in the Scene. Use this mode to build a Timeline instance that transitions to and from a state machine or to and from another Timeline instance.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Auto (deprecated)</td>
+<td style="text-align: left;">If you load a Scene or Project that was built before 2018.3, Track Offsets is automatically set to Auto. This is a special offset for backwards compatibility.<br><br>If you select Auto, a warning states that this mode should not be selected because it will be deprecated. You should choose one of the other Track Offsets. The Auto offset also disables animation recording.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/button-move-tool.png" alt=""><br><strong>Move tool</strong><br></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Enable the Move tool displays the Move Gizmo in the Scene view. Use the Move Gizmo to visually position the transform offset. Positioning the Move Gizmo changes the Position properties.<br><br>The Move tool only appears when Track Offsets is set to Apply Transform Offsets.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/button-rotate-tool.png" alt=""><br><strong>Rotate tool</strong><br></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Enable the Rotate tool displays the Rotate Gizmo in the Scene view. Use the Rotate Gizmo to visually rotate the track offset. Rotating the Rotate Gizmo changes the Rotation properties.<br><br>The Rotate tool only appears when Track Offsets is set to Apply Transform Offsets.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Position</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Sets the track position offset in X, Y, and Z coordinates. The Position fields only appears when Track Offsets is set to Apply Transform Offsets.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Rotation</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Sets the track rotation offset in X, Y, and Z coordinates. The Rotation fields appear when Track Offsets is set to Apply Transform Offsets.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Apply Avatar Mask</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Enables Avatar masking. When enabled, Timeline applies the animation of all Animation clips on the track based on the selected Avatar Mask.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Avatar Mask</td>
+<td style="text-align: left;">Selects the Avatar Mask applied to all Animation clips on the Animation track.<br>An Avatar Mask defines which humanoid body parts are animated by Animation clips on the selected Animation track. The body parts that are masked are animated by other Animation tracks in the Timeline asset.<br><br>For example, you can use an Avatar Mask to combine the lower-body animation on an Animation track with the upper body animation on an <a href="wf-anim-override.html">Override Animation track</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Default Offset Match Fields</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Expand to display a series of checkboxes that choose which transforms are matched when <a href="clip-match.html">matching clip offsets</a> between Animation clips.<br><br>The Default Offset Match Fields set the default matching options for all Animation clips on the same track. Use the <a href="insp-clip-anim.html">Animation Playable Asset properties</a> to override these defaults for each Animation clip.</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

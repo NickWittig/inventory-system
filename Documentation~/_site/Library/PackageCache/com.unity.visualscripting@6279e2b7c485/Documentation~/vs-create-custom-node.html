@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Custom C# nodes | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Custom C# nodes | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="custom-c-nodes">Custom C# nodes</h1>
+
+<p>You can create your own Custom C# node with a C# script. Use your node in Script Graphs to run your own custom logic, and provide the script file to other users to let them use it in their own Visual Scripting projects.</p>
+<p>You can create nodes that change the flow of logic in your graph, nodes that manipulate data, or both. You can also create <a href="vs-custom-events.html">nodes for custom events</a>.</p>
+<p>To create a Custom C# node, you must:</p>
+<ol>
+<li><a href="#create-the-initial-c-script">Create a C# script</a>.</li>
+<li><a href="#add-ports">Add ports</a>.</li>
+<li><a href="#add-logic">Add logic</a>.</li>
+<li><a href="#add-relations">Add relations</a>.</li>
+</ol>
+<h2 id="create-the-initial-c-script">Create the initial C# script</h2>
+<p>All custom nodes start with a C# file.</p>
+<p>After you create a C# file, you must regenerate your Node Library through your <a href="vs-configuration.html">project settings</a>. This allows Visual Scripting to recognize your Custom C# node and add it to <a href="vs-interface-overview.html#the-fuzzy-finder">the fuzzy finder</a> for use in your project's graphs.</p>
+<p>After you regenerate your Node Library the first time, you only need to regenerate your Node Library again if you change the location of a node in the fuzzy finder. You can change the location through the <a href="vs-create-custom-node-attributes-reference.html#unitcategory">[UnitCategory] attribute</a>.</p>
+<p>For more information on how to create your initial C# script, see <a href="vs-create-custom-node-empty.html">Create a new simple Custom C# node</a>.</p>
+<h2 id="add-ports">Add ports</h2>
+<p>Add ports to a node to specify what triggers Visual Scripting to run logic in a node, and decide what data it sends or receives. For more information on ports and nodes, see <a href="vs-nodes.html#connections-and-ports">Nodes</a>.</p>
+<h3 id="port-types">Port types</h3>
+<p>Visual Scripting has four different port types that you can add to a node:</p>
+<ul>
+<li><p><code>ControlInput</code>: Provides a connection to a previous node, which tells Visual Scripting when to start the logic in a node.</p>
+</li>
+<li><p><code>ControlOutput</code>: Provides a connection to another node, which tells Visual Scripting when to run the logic for the next connected node in a Script Graph.</p>
+</li>
+<li><p><code>ValueInput</code>: Provides a connection that allows you to pass data into a node for use in its logic.</p>
+</li>
+<li><p><code>ValueOutput</code>: Provides a connection that allows you to pass data out of a node for use in other nodes.</p>
+</li>
+</ul>
+<p>You can add any number of ports to a node. You can also choose what data type the <code>ValueInput</code> or <code>ValueOutput</code> ports send and receive:</p>
+<ul>
+<li><p><strong>Generic</strong>: The port can receive or output any data type. Corresponds to Unity's <strong>Object</strong> type.</p>
+</li>
+<li><p><strong>Type Value</strong>: The port can only receive or output a specific data type. For example, <code>string</code>, <code>float</code>, or <code>integer</code>.</p>
+</li>
+</ul>
+<p>For more information on types in Visual Scripting, see <a href="vs-types.html">Object types</a>. For more information on how to add ports to your node, see <a href="vs-create-custom-node-add-ports.html">Add ports to your Custom C# node</a>.</p>
+<h2 id="add-logic">Add logic</h2>
+<p>Add logic to a node to specify what it does when it runs in a Script Graph. If there isn't any internal logic written for a node, the node can't trigger another node, or modify any of the data it receives from other nodes in a Script Graph.</p>
+<p>For more information on how to add logic to a node, see <a href="vs-create-custom-node-add-logic.html">Add logic to a Custom C# node</a>.</p>
+<h2 id="add-relations">Add relations</h2>
+<p>Relations help define how a node and its Play mode animations appear in Visual Scripting. Without relations, Visual Scripting doesn't know how to animate or display a node in the <a href="vs-interface-overview.html#the-graph-editor">Graph Editor</a>.</p>
+<h3 id="relation-types">Relation types</h3>
+<p>You can add three types of relations to a node to help correctly display its internal flow of logic:</p>
+<ul>
+<li><p><strong>Assignment</strong>: Assignment relations are usually between a control input port and a data output port. Set an Assignment relation to tell Visual Scripting that a specific port needs to run before the node sends data to a data output port.</p>
+</li>
+<li><p><strong>Succession</strong>: Succession relations are usually between a control input port and a control output port. Set a Succession relation to tell Visual Scripting that a control input port exits at a control output port.</p>
+</li>
+<li><p><strong>Requirement</strong>: Requirement relations are usually between a control input port and a data port or ports. Set a Requirement relation to let Visual Scripting know that a specific data port or ports must have a value before the node can run any logic.</p>
+</li>
+</ul>
+<div class="NOTE">
+<h5>Note</h5>
+<p>If you don't set any Succession relations in a node, and <strong>Dim</strong> is enabled in <a href="vs-interface-overview.html#the-graph-toolbar">the Graph toolbar</a>, Visual Scripting dims your Custom C# node and any of its connected nodes in the Graph Editor during Play mode.</p>
+</div>
+<p>For more information on how to add relations to a node, see <a href="vs-create-custom-node-add-relations.html">Add relations to a node</a>.</p>
+<h2 id="optional-steps-and-customization">Optional steps and customization</h2>
+<p>After you've added relations, you can choose to <a href="vs-create-custom-node-add-docs.html">add documentation for a node</a>. Visual Scripting displays documentation in the <a href="vs-interface-overview.html#the-graph-inspector">Graph Inspector</a> when a user selects a node in a Script Graph. Add documentation to help other users understand the purpose of each part of a node.</p>
+<p>You can also choose to <a href="vs-create-custom-node-attributes-reference.html">customize a node with node attributes</a>. You can add specific <a href="vs-create-custom-node-attributes-reference.html#node-class-attributes">node class attributes</a> to customize the entire node, or add <a href="vs-create-custom-node-attributes-reference.html#port-attributes">port attributes</a> to only customize specific ports. The attribute type determines the location where you must place the attribute in the node's C# file. Node class attributes must be placed above a node class definition, while port attributes must be placed above the variable definition for each port.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

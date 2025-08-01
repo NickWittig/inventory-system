@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>1. Running a test in a Unity project | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="1. Running a test in a Unity project | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../../index.html">
+            <img id="logo" class="svg" src="../../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="1-running-a-test-in-a-unity-project">1. Running a test in a Unity project</h1>
+
+<h2 id="learning-objectives">Learning objectives</h2>
+<p>This exercise will teach you how to set up a simple Unity project with a test assembly and tests. It will also introduce the structure of unit tests based on NUnit.</p>
+<h2 id="intro-and-motivation">Intro and motivation</h2>
+<p>At Unity, our main way of testing content is using the Unity Test Framework, which comes as a default package in the Unity Editor. Knowing how to set up a basic project with tests can help you get started on your journey.</p>
+<h2 id="exercise">Exercise</h2>
+<p>Import the <a href="welcome.html#import-samples">sample</a> <code>1_RunningTest_Project</code> into your Unity Editor (version 2019.2 or newer) from the Package Manager window.</p>
+<p><strong>Note:</strong> The project contains one <code>.cs</code> file (<code>MyMath.cs</code>), which is a simple math implementation. The exercise is to create unit tests for this class.</p>
+<p>Open up the Test Runner UI (<strong>Window &gt; General &gt; TestRunner</strong>) and set up a new EditMode test assembly alongside the MyExercise folder. Detailed instructions are available in the <a href="../workflow-create-test-assembly.html">Getting started section</a>. Create a new test inside the new test assembly folder (default name is <code>Tests</code>) either from the Test Runner UI or by right-clicking in the Project window and selecting <strong>Create &gt; Testing &gt; C# test script</strong>. Before we do the test, it is also necessary to link up our test assembly with the existing code assembly. Click on the test assembly you created in the Project window to see it in the <strong>Inspector</strong> (Click on the Tests folder &gt; Tests).</p>
+<p>In the Assembly Definition References, you will see that <code>UnityEngine.TestRunner</code> and <code>UnityEditor.TestRunner</code> are already referenced, along with an assembly reference to NUnit. Click the `+` button in the Assembly Definition Reference part to add a new reference. Click on the little circle and select <code>MyExercise</code> and click <strong>Apply</strong> in the bottom of the inspector (you might need to scroll down).</p>
+<p>Open up the C# solution with your IDE (Visual Studio or Rider) and open up the test file you created. You can delete the method with the <code>[UnityTest]</code> attribute, as you won't be needing that. In the method with <code>[Test]</code> attribute, you can add an assert statement, to verify that <code>MyMath.Add</code> works correctly. E.g. using <code>Assert.AreEqual</code>. Rename the method to be something more descriptive. A good practice is that the method name should describe what is being tested. For example, the class name could be <code>MyMathTests</code> and the first test could then be <code>AddsTwoPositiveIntegers</code>. If you want to, you can add additional methods that test other number combinations. It is a best practice that each test should have just one check.</p>
+<p>Switch back to Unity and go to the Test Runner UI. Here you should now see a tree structure which includes your test assembly name, the class name and method name. This reflects the general structure of tests with NUnit, which is the framework that Unity Test Framework is built on top of. Each class can have multiple tests and there can be multiple test classes in a namespace / assembly. You can double click on your test name or any of its parents to run the test. You will see a green checkmark if your test code passes and a red cross if your test code failed. Note that if you do not see any tests, remember to check your console log. Any compile error would block all tests from being shown.</p>
+<p>You can now go back to your test code and add tests for the <code>Subtract</code> method. Note that you will likely see the tests fail, as there is a bug in our <code>Subtract</code> method. After you have seen your test fail with a meaningful error (e.g. <code>Expected 2, but got 6</code>), you can go to <code>MyMath.cs</code> and fix the return value to be just <code>return a - b;</code>. Then rerun the test to verify that you fixed the error.</p>
+<h2 id="hints">Hints</h2>
+<ul>
+<li>Sometimes the UI for creating a test assembly and creating your first test file can be a bit hard to use. If the Test Runner UI does not register your assembly, try clicking on the folder in the project window or navigate to the folder with the asmdef.</li>
+</ul>
+<h2 id="solution">Solution</h2>
+<p>A solution for this exercise can be found in the sample <code>1_RunningTest_Project_Solution</code>. The solution contains a <code>Tests</code> folder with an <code>asmdef</code> file and and one <code>.cs</code> file, containing the tests.</p>
+<h2 id="further-reading-and-resources">Further reading and resources</h2>
+<p>Read more about <a href="https://docs.unity3d.com/Manual/ScriptCompilationAssemblyDefinitionFiles.html">Assembly Definitions in the Unity manual.</a><br>
+You can read more about unit tests in general at <a href="https://www.raywenderlich.com/9454-introduction-to-unity-unit-testing">Introduction To Unity Unit Testing</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

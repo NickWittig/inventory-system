@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>6. SetUp and TearDown | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="6. SetUp and TearDown | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../../index.html">
+            <img id="logo" class="svg" src="../../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="6-setup-and-teardown">6. SetUp and TearDown</h1>
+
+<h2 id="learning-objectives">Learning objectives</h2>
+<p>In this exercise, you will get practical experience in using the NUnit attributes <code>[SetUp]</code> and <code>[TearDown]</code> in order to reduce code duplication in your tests.</p>
+<h2 id="intro-and-motivation">Intro and motivation</h2>
+<p>It's good practice to always let your test code clean up after itself and you also often need to set things up before running a test. If you have multiple tests, then that can easily become a lot of code duplication and if your test fails, your cleanup might not even be run, if you have not wrapped it in <code>try</code> and <code>finally</code> blocks.</p>
+<p>As a solution to this, NUnit has the <code>[SetUp]</code> and <code>[TearDown]</code> attributes. Methods with this attribute will be run before and after any of the classes respectively. If you are running multiple tests in your class at once, then the teardown and setup are run in between each of the tests.</p>
+<pre><code>public class TestClass
+{
+ [SetUp]
+ public void MySetUp() { ... }
+
+ [Test]
+ public void MyFirstTest() { ... }
+
+ [Test]
+ public void MySecondTest() { ... }
+
+ [TearDown]
+ public void MyTearDown() { ... }
+}
+</code></pre>
+<h2 id="exercise">Exercise</h2>
+<p>Import the <a href="welcome.html#import-samples">sample</a> <code>6_SetUpTearDown</code>.</p>
+<p>In this project there is a class called <code>FileCreator</code>. It has two methods:</p>
+<ul>
+<li><p><code>CreateEmptyFile(fileName)</code> - Creates an empty file in an <code>OutputFiles</code> directory</p>
+</li>
+<li><p><code>CreateFile(string fileName, string content)</code> - Creates a file with the given content in an <code>OutputFiles</code> directory</p>
+</li>
+</ul>
+<p>The catch is that it will throw a <code>DirectoryNotFoundException</code>, if there is no output called <code>OutputFiles</code> in the current directory. You will need to create this directory inside a <code>SetUp</code> method and remove it again afterwards with a <code>TearDown</code>. Your test can then assume that it starts with an emtpy directory, which simplifies the assertion.</p>
+<h2 id="hints">Hints</h2>
+<ul>
+<li>You can use <code>Directory.CreateDirectory</code> to create a directory.</li>
+<li>You can use <code>Directory.Delete</code> with the recursive flag (second argument) set to delete the directory along with all its files.</li>
+<li><code>Directory.GetFiles</code> can be used to get files in a given directory.</li>
+<li><code>Path.Combine</code> is a handy method for combining parts of a file path. For example the directory name and the file name.</li>
+</ul>
+<h2 id="solution">Solution</h2>
+<p>The exercise can be solved with a test like the following:</p>
+<pre><code>[SetUp]
+public void Setup()
+{
+ Directory.CreateDirectory(FileCreator.k_Directory);
+}
+
+[Test]
+public void CreatesEmptyFile()
+{
+ var fileCreatorUnderTest = new FileCreator();
+ var expectedFileName = &quot;MyEmptyFile.txt&quot;;
+ 
+ fileCreatorUnderTest.CreateEmptyFile(expectedFileName);
+
+ var files = Directory.GetFiles(FileCreator.k_Directory);
+ Assert.That(files.Length, Is.EqualTo(1), &quot;Expected one file.&quot;);
+ var expectedFilePath = Path.Combine(FileCreator.k_Directory, expectedFileName);
+ Assert.That(files[0], Is.EqualTo(expectedFilePath));
+}
+
+[Test]
+public void CreatesFile()
+{
+ var fileCreatorUnderTest = new FileCreator();
+ var expectedFileName = &quot;MyFile.txt&quot;;
+ var expectedContent = &quot;TheFileContent&quot;;
+ 
+ fileCreatorUnderTest.CreateFile(expectedFileName, expectedContent);
+
+ var files = Directory.GetFiles(FileCreator.k_Directory);
+ Assert.That(files.Length, Is.EqualTo(1), &quot;Expected one file.&quot;);
+ var expectedFilePath = Path.Combine(FileCreator.k_Directory, expectedFileName);
+ Assert.That(files[0], Is.EqualTo(expectedFilePath));
+ var content = File.ReadAllText(expectedFilePath);
+ Assert.That(content, Is.EqualTo(expectedContent));
+}
+
+[TearDown]
+public void Teardown()
+{
+ Directory.Delete(FileCreator.k_Directory, true);
+}
+</code></pre>
+<p>A full project with the solution can be found in the sample <code>6_SetUpTearDown.</code></p>
+<h2 id="further-reading-and-resources">Further reading and resources</h2>
+<p><a href="https://docs.nunit.org/articles/nunit/technical-notes/usage/SetUp-and-TearDown.html">Nunit documentation for SetUp and TearDown</a></p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

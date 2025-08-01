@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Allocator benchmarks | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Allocator benchmarks | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="allocator-benchmarks">Allocator benchmarks</h1>
+
+<p>The Collections package has different allocators that you can use to manage memory allocations. The different allocators organize and track their memory in different ways. These are the allocators available:</p>
+<ul>
+<li><a href="allocator-overview.html#allocatortemp">Allocator.Temp</a>: A fast allocator for short-lived allocations, which is created on every thread.</li>
+<li><a href="allocator-overview.html#allocatortempjob">Allocator.TempJob</a>: A short-lived allocator, which must be deallocated within 4 frames of their creation.</li>
+<li><a href="allocator-overview.html#allocatorpersistent">Allocator.Persistent</a>: The slowest allocator for indefinite lifetime allocations.</li>
+<li><a href="allocator-rewindable.html">Rewindable allocator</a>: A custom allocator that's fast and thread safe, and can rewind and free all your allocations at one point.</li>
+</ul>
+<p>The <a href="https://docs.unity3d.com/Packages/com.unity.entities@latest">Entities package</a> has its own set of custom prebuilt allocators:</p>
+<ul>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.entities@latest/index.html?subfolder=/manual/allocators-world-update.html">World update allocator</a>: A double rewindable allocator that a world owns, which is fast and thread safe.</li>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.entities@latest/index.html?subfolder=/manual/allocators-entity-command-buffer.html">Entity command buffer allocator</a>: A rewindable allocator that an entity command buffer system owns and uses to create entity command buffers.</li>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.entities@latest/index.html?subfolder=/manual/allocators-system-group.html">System group allocator</a>: An optional double rewindable allocator that a component system group creates when setting its rate manager. It's for allocations in a system of fixed or variable rate system group that ticks at different rate from the world update.</li>
+</ul>
+<p>For more information, see the Entities documentation on <a href="https://docs.unity3d.com/Packages/com.unity.entities@latest/index.html?subfolder=/manual/allocators-custom-prebuilt.html">Custom prebuilt allocators</a>.</p>
+<h2 id="allocator-feature-comparison">Allocator feature comparison</h2>
+<p>The different allocators have the following different features:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Allocator type</strong></th>
+<th><strong>Custom Allocator</strong></th>
+<th><strong>Need to create before use</strong></th>
+<th><strong>Lifetime</strong></th>
+<th><strong>Automatically freed allocations</strong></th>
+<th><strong>Can pass to jobs</strong></th>
+<th><strong>Min Allocation Alignment (bytes)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="allocator-overview.html#allocatortemp">Allocator.Temp</a></td>
+<td>No</td>
+<td>No</td>
+<td>A frame or a job</td>
+<td>Yes</td>
+<td>No</td>
+<td>64</td>
+</tr>
+<tr>
+<td><a href="allocator-overview.html#allocatortempjob">Allocator.TempJob</a></td>
+<td>No</td>
+<td>No</td>
+<td>Within 4 frames of creation</td>
+<td>No</td>
+<td>Yes</td>
+<td>16</td>
+</tr>
+<tr>
+<td><a href="allocator-overview.html#allocatorpersistent">Allocator.Persistent</a></td>
+<td>No</td>
+<td>No</td>
+<td>Indefinite</td>
+<td>No</td>
+<td>Yes</td>
+<td>16</td>
+</tr>
+<tr>
+<td><a href="allocator-rewindable.html">Rewindable allocator</a></td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Indefinite</td>
+<td>No</td>
+<td>Yes</td>
+<td>64</td>
+</tr>
+</tbody>
+</table>
+<h2 id="performance-test-results">Performance test results</h2>
+<p>The following performance tests compare Temp, TempJob, Persistent and rewindable allocators. Because the world update allocator, entity command buffer allocator, and system group allocator are rewindable allocators, their performance is reflected in the rewindable allocator test results. The allocators are tested in single thread cases and in multithread cases by scheduling allocations in jobs across all the cores.</p>
+<p>For results, refer to the <a href="performance-comparison-allocators.html">Performance comparison of allocators</a> documentation.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

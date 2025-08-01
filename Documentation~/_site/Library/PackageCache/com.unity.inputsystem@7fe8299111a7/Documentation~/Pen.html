@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Pen, tablet, and stylus support | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Pen, tablet, and stylus support | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="input-system-pen">
+<h1 id="pen-tablet-and-stylus-support">Pen, tablet, and stylus support</h1>
+
+<p>Pen support comprises both tablets on desktops (such as the various tablets produced by Wacom), and styluses on mobile devices (such as the stylus on the Samsung Note, the Apple Pencil on iOS, or the Surface Pen on the Microsoft Surface line of notebooks).</p>
+<p>Pens generally offer pressure sensitivity, in-range detection (being able to control the cursor while not yet touching the tablet/screen surface), and often the ability to flip the pen for eraser-like behavior.</p>
+<p>Pens are represented by the <a href="../api/UnityEngine.InputSystem.Pen.html"><code>Pen</code></a> Device layout implemented by the <a href="../api/UnityEngine.InputSystem.Pen.html"><code>Pen</code></a> class. Pens are based on the <a href="Pointers.html"><code>Pointer</code></a> layout.</p>
+<p>You can query the last used or last added pen with <a href="../api/UnityEngine.InputSystem.Pen.html#UnityEngine_InputSystem_Pen_current"><code>Pen.current</code></a>.</p>
+<blockquote>
+<p><strong>Note</strong>:</p>
+<ul>
+<li>Pen/tablet support is currently implemented on Windows, UWP, iOS, and Android. macOS is supported in Unity 2020.1+.</li>
+<li>Some devices support tracking multiple pens independently. Unity's Input System doesn't support this currently.</li>
+<li>iOS: The double-tap interaction on the side of the Apple Pencil is not surfaced as input at the moment. Also, no in-range detection is supported and <a href="../api/UnityEngine.InputSystem.Pen.html#UnityEngine_InputSystem_Pen_inRange"><code>inRange</code></a> will remain at its default value.</li>
+</ul>
+</blockquote>
+<h2 id="controls">Controls</h2>
+<p>In addition to the <a href="Pointers.html#controls">Controls inherited from <code>Pointer</code></a>, pen Devices implement the following Controls:</p>
+<table>
+<thead>
+<tr>
+<th>Control</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.Pen.html#UnityEngine_InputSystem_Pen_tip"><code>tip</code></a></td>
+<td><a href="../api/UnityEngine.InputSystem.Controls.ButtonControl.html"><code>ButtonControl</code></a></td>
+<td>Whether the tip of the pen touches the surface. Same as the inherited <a href="../api/UnityEngine.InputSystem.Pointer.html#UnityEngine_InputSystem_Pointer_press"><code>Pointer.press</code></a>.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.Pen.html#UnityEngine_InputSystem_Pen_eraser"><code>eraser</code></a></td>
+<td><a href="../api/UnityEngine.InputSystem.Controls.ButtonControl.html"><code>ButtonControl</code></a></td>
+<td>Whether the eraser/back end of the pen touches the surface.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.Pen.html#UnityEngine_InputSystem_Pen_firstBarrelButton"><code>firstBarrelButton</code></a></td>
+<td><a href="../api/UnityEngine.InputSystem.Controls.ButtonControl.html"><code>ButtonControl</code></a></td>
+<td>Whether the first button on the barrel of the pen is pressed.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.Pen.html#UnityEngine_InputSystem_Pen_secondBarrelButton"><code>secondBarrelButton</code></a></td>
+<td><a href="../api/UnityEngine.InputSystem.Controls.ButtonControl.html"><code>ButtonControl</code></a></td>
+<td>Whether the second button on the barrel of the pen is pressed.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.Pen.html#UnityEngine_InputSystem_Pen_thirdBarrelButton"><code>thirdBarrelButton</code></a></td>
+<td><a href="../api/UnityEngine.InputSystem.Controls.ButtonControl.html"><code>ButtonControl</code></a></td>
+<td>Whether the third button on the barrel of the pen is pressed.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.Pen.html#UnityEngine_InputSystem_Pen_fourthBarrelButton"><code>fourthBarrelButton</code></a></td>
+<td><a href="../api/UnityEngine.InputSystem.Controls.ButtonControl.html"><code>ButtonControl</code></a></td>
+<td>Whether the forth button on the barrel of the pen is pressed.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.Pen.html#UnityEngine_InputSystem_Pen_inRange"><code>inRange</code></a></td>
+<td><a href="../api/UnityEngine.InputSystem.Controls.ButtonControl.html"><code>ButtonControl</code></a></td>
+<td>Whether the pen is currently in detection range of the tablet. If unsupported, this control will remain at a value of 1.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.Pen.html#UnityEngine_InputSystem_Pen_tilt"><code>tilt</code></a></td>
+<td><a href="../api/UnityEngine.InputSystem.Controls.Vector2Control.html"><code>Vector2Control</code></a></td>
+<td>Tilt of the pen relative to the surface.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.Pen.html#UnityEngine_InputSystem_Pen_twist"><code>twist</code></a></td>
+<td><a href="../api/UnityEngine.InputSystem.Controls.AxisControl.html"><code>AxisControl</code></a></td>
+<td>Rotation of the pen around its own axis. Only supported on a limited number of pens, such as the Wacom Art Pen.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="pressure-tilt-and-twist">Pressure, tilt, and twist</h2>
+<p><strong>Pressure:</strong> You can access the pen's current pressure via  <a href="../api/UnityEngine.InputSystem.Pointer.html#UnityEngine_InputSystem_Pointer_pressure"><code>Pen.pressure</code></a>, where 0 means no pressure, and 1 means maximum pressure. However, pressure can go over 1 if the system applies a custom pressure curve where a pressure value of 1 doesn't require pressing the pen down all the way to the maximum force the hardware supports. If a pen doesn't support  different pressure levels, the  <a href="../api/UnityEngine.InputSystem.Pointer.html#UnityEngine_InputSystem_Pointer_pressure"><code>pressure</code></a> Control always returns 1.</p>
+<p><strong>Tilt:</strong> If supported, the <a href="../api/UnityEngine.InputSystem.Pen.html#UnityEngine_InputSystem_Pen_tilt"><code>Pen.tilt</code></a> Control represents the angle at which the pen tilts towards the tablet or screen surface. The X and Y axes correspond to the respective screen axes. A value of 1 on either axis means that the pen is fully parallel to the tablet or screen surface on that axis. A value of 0 means that the pen is perpendicular to the tablet or screen surface on that axis. If a pen doesn't support tilt angles, <code>Pen.tilt</code> is always <code>(0,0)</code>.</p>
+<p><strong>Twist:</strong> Some pens also support twist detection (the pen rotating around its own axis). If supported, <a href="../api/UnityEngine.InputSystem.Pen.html#UnityEngine_InputSystem_Pen_twist"><code>Pen.twist</code></a> represents the current rotation, where 0 means that the pen is facing up towards the Y axis, and values close to 1 mean that the pen is fully rotated clockwise around its own axis.</p>
+<h2 id="in-range-detection">In-range detection</h2>
+<p>A pen might not need to touch the tablet or screen surface in order to be able to control the cursor. You can use the <a href="../api/UnityEngine.InputSystem.Pen.html#UnityEngine_InputSystem_Pen_inRange"><code>inRange</code></a> button Control to determine whether the pen is currently in detection range. If <a href="../api/UnityEngine.InputSystem.Pen.html#UnityEngine_InputSystem_Pen_inRange"><code>inRange</code></a> reports as pressed, the pen registers with the tablet or screen. For Devices that don't support this feature, <a href="../api/UnityEngine.InputSystem.Pen.html#UnityEngine_InputSystem_Pen_inRange"><code>inRange</code></a> always reports as pressed.</p>
+<h2 id="barrel-buttons">Barrel buttons</h2>
+<p>Pen Devices often have one or multiple buttons on the side of the pen. These are represented by the <a href="../api/UnityEngine.InputSystem.Pen.html#UnityEngine_InputSystem_Pen_firstBarrelButton"><code>firstBarrelButton</code></a>, <a href="../api/UnityEngine.InputSystem.Pen.html#UnityEngine_InputSystem_Pen_secondBarrelButton"><code>secondBarrelButton</code></a>, <a href="../api/UnityEngine.InputSystem.Pen.html#UnityEngine_InputSystem_Pen_thirdBarrelButton"><code>thirdBarrelButton</code></a>, and <a href="../api/UnityEngine.InputSystem.Pen.html#UnityEngine_InputSystem_Pen_fourthBarrelButton"><code>fourthBarrelButton</code></a> where applicable.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

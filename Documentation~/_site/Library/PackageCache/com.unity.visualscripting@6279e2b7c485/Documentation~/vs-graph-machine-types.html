@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Script Machines and State Machines | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Script Machines and State Machines | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="script-machines-and-state-machines">Script Machines and State Machines</h1>
+
+<p>A Script Machine is a GameObject component that lets you use a Script Graph in an application. You can't use a Script Graph unless it's attached to a Script Machine. For more information on components, see <a href="https://docs.unity3d.com/Manual/Components.html">Introduction to components</a> in the Unity User Manual.</p>
+<p>Script Machines can either link to a graph asset, or they can contain an embedded Script Graph asset.</p>
+<p><img src="images/vs-script-machine-blank.png" alt="An image of the Unity Inspector that displays a blank Script Machine component on a GameObject."></p>
+<p>A State Machine is the same as a Script Machine, except it contains a State Graph.</p>
+<p><img src="images/vs-state-machine-blank.png" alt="An image of the Unity Inspector that displays a blank State Machine component on a GameObject."></p>
+<p>For more information on the difference between a Script Graph and a State Graph, see <a href="vs-graph-types.html">Graphs</a>.</p>
+<p>Add a Script Machine or State Machine component to a GameObject and Visual Scripting automatically adds a Variables component. The Variables component holds any Object variables that you define in a Script Graph or State Graph attached to the GameObject. For more information on variables, see <a href="vs-variables.html">Variables</a>.</p>
+<p>For more information on how to add a Script Machine or State Machine to a GameObject and attach a graph file, see <a href="vs-attach-graph-machine.html">Attach a graph file to a Script Machine or State Machine</a></p>
+<h2 id="source-types">Source types</h2>
+<p>Script Machines and State Machines have two options for their Source: a graph file (<strong>Graph</strong>), or an embedded asset (<strong>Embed</strong>).</p>
+<p>Set the <strong>Source</strong> for a Script Machine or State Machine at any time. If you switch the Source from <strong>Graph</strong> to <strong>Embed</strong>, the graph file still exists as a separate file from the State Machine or Script Machine inside of your project.</p>
+<div class="CAUTION">
+<h5>Caution</h5>
+<p>If you switch your Source from <strong>Embed</strong> to <strong>Graph</strong>, you will lose the embedded graph asset. You can copy the nodes from an embedded graph to a graph asset to avoid data loss.</p>
+</div>
+<p>Other features of Visual Scripting, such as transitions, Super States, and Subgraphs, also have these source type options.</p>
+<h3 id="the-graph-source-type">The Graph source type</h3>
+<p>Use the <strong>Graph</strong> source type to make your graphs faster to load and easier to maintain. Any changes made to a graph file apply to every Script Machine or State Machine that links to that graph file, even if those GameObjects don't use the same Prefab.</p>
+<p>To use the same graph across multiple GameObjects, use a <strong>Graph</strong> source type. You might encounter some situations where an embedded graph works best.</p>
+<h3 id="the-embed-source-type">The Embed source type</h3>
+<p>An <strong>Embed</strong> graph exists only in the scene where it's created, if it isn't attached to a Prefab. This can cause problems with source control systems.</p>
+<p>If you delete a GameObject with an <strong>Embed</strong> graph asset, you will lose your graph. Changes made to an embedded graph aren't saved while the Editor is in Play mode.</p>
+<p>Use the <strong>Embed</strong> source type if:</p>
+<ul>
+<li>You need references to GameObjects from the current scene in the graph and the graph isn't on a Prefab.</li>
+<li>The graph is on a Prefab that you plan to instantiate in the application during runtime.</li>
+<li>You only need to use the logic in the graph once in the application.</li>
+</ul>
+<p>You can't reuse an embedded graph across multiple GameObjects unless the graph is on a Prefab. An embed graph only exists on the Script Machine or State Machine where you created it. This means you can share the graph across instances of a Prefab, but not on more than one GameObject. For more information about Prefabs, see <a href="https://docs.unity3d.com/Manual/Prefabs.html">Prefabs</a> in the User Manual.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

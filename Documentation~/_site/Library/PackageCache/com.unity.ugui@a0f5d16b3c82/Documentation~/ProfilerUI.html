@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>UI and UI Details Profiler | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="UI and UI Details Profiler | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="um-profiler-ui">
+<h1 id="ui-and-ui-details-profiler">UI and UI Details Profiler</h1>
+
+<p>The UI and UI Details Profiler modules provide information on how much time and resources Unity spends laying out and rendering the user interface within your application. You can use this module to understand how Unity handles UI batching for your application, including why and how it batches objects. You can also use this module to find out which part of the UI is responsible for slow performance, or to preview the UI while you scrub the timeline.</p>
+<p>To open the Profiler window, go to <strong>Window &gt; Analysis &gt; Profiler</strong>. For more information on how to use the Profiler window, refer to <a href="ProfilerWindow">The Profiler window</a>.</p>
+<p><img src="../uploads/Main/ui-profiler-module.png" alt="The UI and UI Details Profiler module"></p>
+<h2 id="chart-categories">Chart categories</h2>
+<p>The UI and UI Details Profiler modules’ charts are divided into five categories. To change the order of the categories in the chart, you can drag and drop them in the chart’s legend. You can also click a category’s colored legend to toggle its display.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Chart</strong></th>
+<th></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>UI Profiler module</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Layout</td>
+<td>How much time Unity has spent performing the layout pass for the UI. This includes calculations done by <a href="https://docs.unity3d.com/Packages/com.unity.ugui@latest/index.html?subfolder=/api/UnityEngine.UI.HorizontalLayoutGroup.html">HorizontalLayoutGroup</a>, <a href="https://docs.unity3d.com/Packages/com.unity.ugui@latest/index.html?subfolder=/api/UnityEngine.UI.VerticalLayoutGroup.html">VerticalLayoutGroup</a>, and <a href="https://docs.unity3d.com/Packages/com.unity.ugui@latest/index.html?subfolder=/api/UnityEngine.UI.GridLayoutGroup.html">GridLayoutGroup</a>.</td>
+</tr>
+<tr>
+<td></td>
+<td>Render</td>
+<td>How much time the UI has spent doing its portion of rendering. This is either the cost of rendering directly to the graphics device or rendering to the main render queue.</td>
+</tr>
+<tr>
+<td><strong>UI Details Profile module</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Batches</td>
+<td>Displays the total number of draw calls that are batched together.</td>
+</tr>
+<tr>
+<td></td>
+<td>Vertices</td>
+<td>The total number of vertices that are used to render a section of UI.</td>
+</tr>
+<tr>
+<td></td>
+<td>Markers</td>
+<td>Displays event markers. Unity records markers when the user interacts with the UI (for example, a button click, or a slider value change) and then draws them as vertical lines and labels on the chart.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="module-details-pane">Module details pane</h2>
+<p>When you select the UI or the UI Details Profiler module, the module details pane at the bottom of the Profiler window displays more details on the UI in your application. You can use it to inspect the profiling information about the UI objects in your application. The pane is divided into the following columns:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Column</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Object</strong></td>
+<td>A list of UI canvases your application used during the period profiled. Double click on a row to highlight the matching object in the Scene.</td>
+</tr>
+<tr>
+<td><strong>Self Batch Count</strong></td>
+<td>How many batches Unity generated for the canvas.</td>
+</tr>
+<tr>
+<td><strong>Cumulative Batch Count</strong></td>
+<td>How many batches Unity generated for the canvas and all of its nested canvases</td>
+</tr>
+<tr>
+<td><strong>Self Vertex Count</strong></td>
+<td>How many vertices this canvas is rendering.</td>
+</tr>
+<tr>
+<td><strong>Cumulative Vertex Count</strong></td>
+<td>How many vertices this canvas and nested canvases are rendering</td>
+</tr>
+<tr>
+<td><strong>Batch Breaking Reason</strong></td>
+<td>Why Unity split the batch. Sometimes Unity might not be able to batch objects together. Common reasons include: <br><br><strong>Not Coplanar With Canvas</strong>, where the batching needs the object’s rect transform to be coplanar (unrotated) with the canvas. <br><strong>CanvasInjectionIndex</strong>, where a CanvasGroup component is present and forces a new batch, such as when it displays the drop down list of a combo box on top of the rest.<br><strong>Different Material Instance, Rect clipping, Texture, or A8TextureUsage</strong>, where Unity can only batch together objects with identical materials, masking, textures, and texture alpha channel usage.</td>
+</tr>
+<tr>
+<td><strong>GameObject Count</strong></td>
+<td>How many GameObjects are part of this batch</td>
+</tr>
+<tr>
+<td><strong>GameObjects</strong></td>
+<td>The list of GameObjects in the batch.</td>
+</tr>
+</tbody>
+</table>
+<p>When you select a UI object from the list, a preview of it appears on the right hand side of the pane. Above the preview there are the following options in the toolbar:</p>
+<ul>
+<li><strong>Detach:</strong> Select this button to open the UI canvas in a separate window. To reattach the window, close it.</li>
+<li><strong>Preview background:</strong> Use the dropdown to change the color of the preview background. You can choose from <strong>Checkerboard</strong>, <strong>Black</strong>, or <strong>White</strong>. This is useful if your UI has a particularly light or dark color scheme.</li>
+<li><strong>Preview type:</strong> Use the dropdown to select from <strong>Standard</strong>, <strong>Overdraw</strong>, or <strong>Composite Overdraw</strong>.</li>
+</ul>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="ProfilerWindow">Profiler window introduction</a></li>
+<li><a href="profiler-profiling-applications">Profiling your application</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

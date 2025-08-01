@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Use shader methods from the SRP Core shader library | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Use shader methods from the SRP Core shader library | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="use-shader-methods-from-the-srp-core-shader-library">Use shader methods from the SRP Core shader library</h1>
+
+<p>SRP Core has a library of High-Level Shader Language (HLSL) shader files that contain helper methods. You can import these files into your custom shader files and use the helper methods.</p>
+<p>To use the following methods, add <code>#include &quot;Packages/com.unity.render-pipelines.core/ShaderLibrary/SpaceTransforms.hlsl&quot;</code> inside the <code>HLSLPROGRAM</code> in your shader file.</p>
+<h3 id="get-matrices">Get matrices</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Method</strong></th>
+<th><strong>Syntax</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CreateTangentToWorld</code></td>
+<td><code>real3x3 CreateTangentToWorld(real3 normal, real3 tangent, real flipSign)</code></td>
+<td>Returns the matrix that converts tangents to world space.</td>
+</tr>
+<tr>
+<td><code>GetObjectToWorldMatrix()</code></td>
+<td><code>float4x4 GetObjectToWorldMatrix()</code></td>
+<td>Returns the matrix that converts positions in object space to world space.</td>
+</tr>
+<tr>
+<td><code>GetViewToHClipMatrix()</code></td>
+<td><code>float4x4 GetViewToHClipMatrix()</code></td>
+<td>Returns the matrix that converts positions in view space to clip space.</td>
+</tr>
+<tr>
+<td><code>GetViewToWorldMatrix()</code></td>
+<td><code>float4x4 GetViewToWorldMatrix()</code></td>
+<td>Returns the matrix that converts positions in view space to world space.</td>
+</tr>
+<tr>
+<td><code>GetWorldToHClipMatrix()</code></td>
+<td><code>float4x4 GetWorldToHClipMatrix()</code></td>
+<td>Returns the matrix that converts positions in world space to clip space.</td>
+</tr>
+<tr>
+<td><code>GetWorldToObjectMatrix()</code></td>
+<td><code>float4x4 GetWorldToObjectMatrix()</code></td>
+<td>Returns the matrix that converts positions in world space to object space.</td>
+</tr>
+<tr>
+<td><code>GetWorldToViewMatrix()</code></td>
+<td><code>float4x4 GetWorldToViewMatrix()</code></td>
+<td>Returns the matrix that converts positions in world space to view space.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="transform-positions">Transform positions</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Method</strong></th>
+<th><strong>Syntax</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TransformObjectToHClip</code></td>
+<td><code>float4 TransformObjectToHClip(float3 positionInObjectSpace)</code></td>
+<td>Converts a position in object space to clip space.</td>
+</tr>
+<tr>
+<td><code>TransformObjectToWorld</code></td>
+<td><code>float3 TransformObjectToWorld(float3 positionInObjectSpace)</code></td>
+<td>Converts a position in object space to world space.</td>
+</tr>
+<tr>
+<td><code>TransformViewToWorld</code></td>
+<td><code>float3 TransformViewToWorld(float3 positionInViewSpace)</code></td>
+<td>Converts a position in view space to world space.</td>
+</tr>
+<tr>
+<td><code>TransformWorldToHClip</code></td>
+<td><code>float4 TransformWorldToHClip(float3 positionInWorldSpace)</code></td>
+<td>Converts a position in world space to clip space.</td>
+</tr>
+<tr>
+<td><code>TransformWorldToObject</code></td>
+<td><code>float3 TransformWorldToObject(float3 positionInWorldSpace)</code></td>
+<td>Converts a position in world space to object space.</td>
+</tr>
+<tr>
+<td><code>TransformWorldToView</code></td>
+<td><code>float3 TransformWorldToView(float3 positionInWorldSpace)</code></td>
+<td>Converts a position in world space to view space.</td>
+</tr>
+<tr>
+<td><code>TransformWViewToHClip</code></td>
+<td><code>float4 TransformWViewToHClip(float3 positionInViewSpace)</code></td>
+<td>Converts a position in view space to clip space.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="transform-directions">Transform directions</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Method</strong></th>
+<th><strong>Syntax</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TransformObjectToTangent</code></td>
+<td><code>real3 TransformObjectToTangent(real3 directionInObjectSpace, real3x3 tangentToWorldMatrix)</code></td>
+<td>Converts a direction in object space to tangent space, using a tangent-to-world matrix.</td>
+</tr>
+<tr>
+<td><code>TransformObjectToWorldDir</code></td>
+<td><code>float3 TransformObjectToWorldDir(float3 directionInObjectSpace, bool normalize = true)</code></td>
+<td>Converts a direction in object space to world space.</td>
+</tr>
+<tr>
+<td><code>TransformTangentToObject</code></td>
+<td><code>real3 TransformTangentToObject(real3 dirTS, real3x3 tangentToWorldMatrix)</code></td>
+<td>Converts a direction in tangent space to object space, using a tangent-to-world matrix.</td>
+</tr>
+<tr>
+<td><code>TransformTangentToWorldDir</code></td>
+<td><code>real3 TransformTangentToWorldDir(real3 directionInWorldSpace, real3x3 tangentToWorldMatrix, bool normalize = false)</code></td>
+<td>Converts a direction in tangent space to world space, using a tangent-to-world matrix.</td>
+</tr>
+<tr>
+<td><code>TransformViewToWorldDir</code></td>
+<td><code>real3 TransformViewToWorldDir(real3 directionInViewSpace, bool normalize = false)</code></td>
+<td>Converts a direction in view space to world space.</td>
+</tr>
+<tr>
+<td><code>TransformWorldToHClipDir</code></td>
+<td><code>real3 TransformWorldToHClipDir(real3 directionInWorldSpace, bool normalize = false)</code></td>
+<td>Converts a direction in world space to clip space.</td>
+</tr>
+<tr>
+<td><code>TransformWorldToObjectDir</code></td>
+<td><code>float3 TransformWorldToObjectDir(float3 directionInWorldSpace, bool normalize = true)</code></td>
+<td>Converts a direction in world space to object space.</td>
+</tr>
+<tr>
+<td><code>TransformWorldToTangentDir</code></td>
+<td><code>real3 TransformWorldToTangentDir(real3 directionInWorldSpace, real3x3 tangentToWorldMatrix, bool normalize = false)</code></td>
+<td>Converts a direction in world space to tangent space, using a tangent-to-world matrix.</td>
+</tr>
+<tr>
+<td><code>TransformWorldToViewDir</code></td>
+<td><code>real3 TransformWorldToViewDir(real3 directionInWorldSpace, bool normalize = false)</code></td>
+<td>Converts a direction in world space to view space.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="transform-surface-normals">Transform surface normals</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Method</strong></th>
+<th><strong>Syntax</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TransformObjectToWorldNormal</code></td>
+<td><code>float3 TransformObjectToWorldNormal(float3 normalInObjctSpace, bool normalize = true)</code></td>
+<td>Converts a normal in object space to world space.</td>
+</tr>
+<tr>
+<td><code>TransformTangentToWorld</code></td>
+<td><code>float3 TransformTangentToWorld(float3 normalInTangentSpace, real3x3 tangentToWorldMatrix, bool normalize = false)</code></td>
+<td>Converts a normal in tangent space to world space, using a tangent-to-world matrix.</td>
+</tr>
+<tr>
+<td><code>TransformViewToWorldNormal</code></td>
+<td><code>real3 TransformViewToWorldNormal(real3 normalInViewSpace, bool normalize = false)</code></td>
+<td>Converts a normal in view space to world space.</td>
+</tr>
+<tr>
+<td><code>TransformWorldToObjectNormal</code></td>
+<td><code>float3 TransformWorldToObjectNormal(float3 normalInWorldSpace, bool normalize = true)</code></td>
+<td>Converts a normal in world space to object space.</td>
+</tr>
+<tr>
+<td><code>TransformWorldToTangent</code></td>
+<td><code>float3 TransformWorldToTangent(float3 normalInWorldSpace, real3x3 tangentToWorldMatrix, bool normalize = true)</code></td>
+<td>Converts a normal in world space to tangent space using a tangent-to-world matrix.</td>
+</tr>
+<tr>
+<td><code>TransformWorldToViewNormal</code></td>
+<td><code>real3 TransformWorldToViewNormal(real3 normalInWorldSpace, bool normalize = false)</code></td>
+<td>Converts a normal in world space to view space.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="https://docs.unity3d.com/Manual/SL-ShaderPrograms.html">HLSL in Unity</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

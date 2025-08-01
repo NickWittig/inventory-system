@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Marking code for Burst compilation | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Marking code for Burst compilation | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="marking-code-for-burst-compilation">Marking code for Burst compilation</h1>
+
+<p>Apply the <a href="xref:Unity.Burst.BurstCompileAttribute"><code>[BurstCompile]</code></a> attribute to the parts of your code you want Burst to compile. You can apply the <code>[BurstCompile]</code> attribute to the following:</p>
+<ul>
+<li><strong>Jobs</strong>: When you apply <code>[BurstCompile]</code> to a job definition, Burst compiles everything within the job. For more information on jobs, refer to <a href="xref:um-job-system">Job system</a> in the Unity Manual.</li>
+<li><strong>Classes</strong>: Apply <code>[BurstCompile]</code> to a class definition if the class contains static methods that are also marked with <code>[BurstCompile]</code>. Burst can't compile the class itself but only its member methods.</li>
+<li><strong>Structs</strong>: Apply <code>[BurstCompile]</code> to a regular (non-job) struct definition if the struct contains static methods that are also marked with <code>[BurstCompile]</code>.</li>
+<li><strong>Static methods</strong>: Apply <code>[BurstCompile]</code> to the method and its parent type. To work with dynamic functions that process data based on other data states, refer to <a href="csharp-function-pointers.html">Function pointers</a>.</li>
+<li><strong>Assemblies</strong>: Apply <code>[BurstCompile]</code> to an assembly to set options for all Burst jobs and function-pointers within the assembly. For more information, refer to <a href="compilation-burstcompile-assembly.html">Defining Burst options for an assembly</a>.</li>
+</ul>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>You don't always need to mark a method with the <code>[BurstCompile]</code> attribute for Burst to compile it. Any method where the program execution switches from managed to Burst-compiled code is referred to as a Burst entry point. If a static entry point method is marked with <code>[BurstCompile]</code>, Burst also compiles any methods it calls into, even if they're not marked <code>[BurstCompile]</code>.</p>
+</div>
+<h2 id="configure-burst-compilation-with-parameters">Configure Burst compilation with parameters</h2>
+<p>You can supply parameters to the <a href="xref:Unity.Burst.BurstCompileAttribute"><code>[BurstCompile]</code></a> attribute to modify aspects of compilation and improve Burst's performance. You can use attribute parameters to:</p>
+<ul>
+<li>Use a different accuracy for math functions (for example, sin, cos).</li>
+<li>Relax the order of math computations so that Burst can rearrange the floating point calculations.</li>
+<li>Force a synchronous compilation of a job (only for <a href="compilation.html">just-in-time compilation</a>).</li>
+</ul>
+<p>For example, you can use the <code>[BurstCompile]</code> attribute to change the <a href="xref:Unity.Burst.FloatPrecision">floating precision</a> and <a href="xref:Unity.Burst.FloatMode">float mode</a> of Burst like so:</p>
+<pre><code>[BurstCompile(FloatPrecision.Medium, FloatMode.Fast)]
+</code></pre>
+<h2 id="floatprecision">FloatPrecision</h2>
+<p>Use the <a href="xref:Unity.Burst.FloatPrecision"><code>FloatPrecision</code></a> enumeration to define Burst's floating precision accuracy.</p>
+<p>Float precision is measured in ulp (unit in the last place or unit of least precision). This is the space between floating-point numbers: the value the least significant digit represents if it's 1. <code>Unity.Burst.FloatPrecision</code> provides the following accuracy:</p>
+<ul>
+<li><code>FloatPrecision.Standard</code>: Default value, which is the same as <code>FloatPrecision.Medium</code>. This provides an accuracy of 3.5 ulp.</li>
+<li><code>FloatPrecision.High</code>: Provides an accuracy of 1.0 ulp.</li>
+<li><code>FloatPrecision.Medium</code>: Provides an accuracy of 3.5 ulp.</li>
+<li><code>FloatPrecision.Low</code>: Has an accuracy defined per function, and functions might specify a restricted range of valid inputs.</li>
+</ul>
+<p><strong>Note:</strong> In previous versions of the Burst API, the <code>FloatPrecision</code> enum was named <code>Accuracy</code>.</p>
+<h3 id="floatprecisionlow">FloatPrecision.Low</h3>
+<p>If you use the <a href="xref:Unity.Burst.FloatPrecision"><code>FloatPrecision.Low</code></a> mode, the following functions have a precision of 350.0 ulp. All other functions inherit the ulp from <code>FloatPrecision.Medium</code>.</p>
+<ul>
+<li><code>Unity.Mathematics.math.sin(x)</code></li>
+<li><code>Unity.Mathematics.math.cos(x)</code></li>
+<li><code>Unity.Mathematics.math.exp(x)</code></li>
+<li><code>Unity.Mathematics.math.exp2(x)</code></li>
+<li><code>Unity.Mathematics.math.exp10(x)</code></li>
+<li><code>Unity.Mathematics.math.log(x)</code></li>
+<li><code>Unity.Mathematics.math.log2(x)</code></li>
+<li><code>Unity.Mathematics.math.log10(x)</code></li>
+<li><code>Unity.Mathematics.math.pow(x, y)</code>
+<ul>
+<li>Negative <code>x</code> to the power of a fractional <code>y</code> aren't supported.</li>
+</ul>
+</li>
+<li><code>Unity.Mathematics.math.fmod(x, y)</code></li>
+</ul>
+<h2 id="floatmode">FloatMode</h2>
+<p>Use the <a href="xref:Unity.Burst.FloatMode"><code>FloatMode</code></a> enumeration to define Burst's floating point math mode. It provides the following modes:</p>
+<ul>
+<li><code>FloatMode.Default</code>: Defaults to <code>FloatMode.Strict</code> mode.</li>
+<li><code>FloatMode.Strict</code>: Burst doesn't perform any re-arrangement of the calculation and respects special floating point values (such as denormals, NaN). This is the default value.</li>
+<li><code>FloatMode.Fast</code>: Burst can perform instruction re-arrangement and use dedicated or less precise hardware SIMD instructions.</li>
+<li><code>FloatMode.Deterministic</code>: Unsupported. Deterministic mode is reserved for a future iteration of Burst.</li>
+</ul>
+<p>For hardware that can support Multiply and Add (e.g mad <code>a * b + c</code>) into a single instruction, you can use <code>FloatMode.Fast</code> to enable this optimization. However, the reordering of these instructions might lead to a lower accuracy.</p>
+<p>Use <code>FloatMode.Fast</code> for scenarios where the exact order of the calculation and the uniform handling of NaN values aren't required.</p>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="xref:Unity.Burst.BurstCompileAttribute"><code>[BurstCompile]</code> attribute API reference</a></li>
+<li><a href="compilation-burstcompile-assembly.html">Defining Burst options for an assembly</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Playable Director component | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Playable Director component | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="playable-director-component">Playable Director component</h1>
+
+<p>The Playable Director component stores the link between a Timeline instance and a Timeline asset. The Playable Director component controls when the Timeline instance plays, how the Timeline instance updates its clock, and what happens when the Timeline instance finishes playing.</p>
+<p><img src="images/playable-director.png" alt=""></p>
+<p><em>Playable Director component added to the GameObject named <code>Ground</code>. The GameObject is associated with the <code>GroundCTL</code> Timeline asset.</em></p>
+<p>The Playable Director component also displays the list of tracks from the associated Timeline asset (<strong>Playable</strong> property) that animate GameObjects in the Scene. The link between Timeline asset tracks and GameObjects in the Scene is referred to as <strong>binding</strong> or <strong>Track binding</strong>. For more on binding and the relationship between Timeline assets and Timeline instances, consult the <a href="tl-overview.html">Timeline assets and instances topic</a>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Property</strong></th>
+<th style="text-align: left;"></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Playable</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Associates a Timeline asset with a GameObject in the Scene. When you make this association, you create a Timeline instance for the selected Timeline asset.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Update Method</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Sets the clock source that the Timeline instance uses to update its timing.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">DSP</td>
+<td style="text-align: left;">Select for sample accurate audio scheduling. When selected, the Timeline instance uses the same clock source that processes audio. DSP stands for digital signal processing.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Game Time</td>
+<td style="text-align: left;">Select to use the same clock source as the game clock. This clock source is affected by <a href="https://docs.unity3d.com/Manual/TimeFrameManagement.html">time scaling</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Unscaled Game Time</td>
+<td style="text-align: left;">Select to use the same clock source as the game clock, but without being affected by time scaling.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Manual</td>
+<td style="text-align: left;">Select to not use a clock source and to manually set the clock time through scripting.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Play on Awake</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Whether the Timeline instance is played when gameplay is initiated. By default, a Timeline instance is set to begin as soon as the Scene begins playback. To disable the default behavior, disable Play on Awake.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Wrap Mode</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">The behavior when the Timeline instance ends playback.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Hold</td>
+<td style="text-align: left;">Plays the Timeline instance once and holds on the last frame until playback is interrupted.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Loop</td>
+<td style="text-align: left;">Plays the Timeline instance repeatedly until playback is interrupted.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">Plays the Timeline instance once.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Initial Time</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">The time (in seconds) at which the Timeline instance begins playing. The Initial Time adds a delay in seconds before the Timeline instance actually begins.<br><br>For example, when Play On Awake is enabled and Initial Time is set to five seconds, if you click Play in the Unity Toolbar, <a href="https://docs.unity3d.com/Manual/GameView.html">Play mode</a> starts and the Timeline instance begins five seconds later.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Current Time</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Displays the progression of time according to the Timeline instance in the Timeline window. Use the Current Time field when the Timeline window is hidden.<br><br>The Current Time field appears in the Playable Director component when in Timeline Playback mode or when Unity is in Game Mode. The Current Time field matches the Playhead Location field.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Bindings</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Displays the link between GameObjects in the Scene with tracks from the associated Timeline asset (Playable). The Bindings area is split into two columns:<br><br>The first column lists the tracks from the Timeline asset. Each track is identified by an icon and its track type. Select a track to reveal its Timeline asset in the Project window.<br><br>The second column lists the GameObject linked (or bound) to each track. Select a GameObject to reveal its location in the Hierarchy view.<br><br>The Bindings area does not list Track groups, Track sub-groups, or tracks that are not linked to GameObjects.</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Tangent modes and types | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Tangent modes and types | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="tangent-modes-and-types">Tangent modes and types</h1>
+
+<p>This topic describes <a href="#keytangents">keyframe tangents</a>, <a href="#tangentmodes">tangent modes</a>, <a href="#tangenttypes">tangent types</a>, and <a href="#weighted">weighted tangents</a>. Many of the features described in this topic are similar to <a href="https://docs.unity3d.com/Manual/animeditor-AnimationCurves.html">editing tangents in the Editing Curves topic</a> in the Animation window.</p>
+<p><a name="keytangents"></a></p>
+<h2 id="keyframe-tangents">Keyframe tangents</h2>
+<p>Use keyframe tangents to modify the shape of the animation curve between keyframes. Each keyframe has one or two tangents depending on the location of the keyframe on its animation curve.</p>
+<p><img src="images/spec-tangents.png" alt=""></p>
+<p><strong>(A)</strong> The first keyframe has a single right tangent that controls the shape of the animation curve after the keyframe.<br>
+<strong>(B)</strong> Most keyframes have two tangents where the left tangent controls the shape of the animation curve before the keyframe, and the right tangent controls the shape after the keyframe.<br>
+<strong>(C)</strong> The last keyframe has a single left tangent that controls the shape of the animation curve before the last keyframe.<br></p>
+<p>By default, left and right tangents are joined. Rotating a joined tangent handle rotates both tangents which changes the shape of the animation curve both before and after the keyframe.</p>
+<p>You can break joined tangents to modify the left and right tangent handles independently. In addition, each keyframe has a <a href="#tangentmodes">tangent mode</a> and a <a href="#tangenttypes">tangent type</a> that controls tangents and the shape of the animation curve.</p>
+<p><a name="tangentmodes"></a></p>
+<h2 id="tangent-modes">Tangent modes</h2>
+<p>The term <strong>tangent mode</strong> refers to the algorithm that automatically adjusts tangent handles when you modify the time or value of a keyframe.</p>
+<p>To display the tangent mode for a keyframe, right-click the keyframe. A context menu displays the selected tangent mode with a checkmark. In some cases, a keyframe can have more than one tangent mode. For example, keyframe tangents can be both <strong>Free Smooth</strong> and <strong>Flat</strong>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Tangent mode</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Clamped Auto</strong></td>
+<td style="text-align: left;">This is the default tangent mode. In this mode, the Curves view automatically adjusts the rotation of each tangent handle to ensure that the animation curve smoothly passes through the keyframe.<br><br>For example, if you drag a keyframe to modify its time or value, the <strong>Clamped Auto</strong> tangent mode automatically adjusts the rotation of each tangent handle.<br><br>When in <strong>Clamped Auto</strong> mode, if you rotate a keyframe tangent handle, its tangent mode changes to <strong>Free Smooth</strong>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Auto</strong></td>
+<td style="text-align: left;">Do not select this tangent mode. This is a legacy tangent mode that is only included for backward compatibility with projects prior to Unity 5.5. If you have a keyframe set to this tangent mode, you should change it to another tangent mode.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Free Smooth</strong></td>
+<td style="text-align: left;">Joins broken tangent handles. Selecting this tangent mode may rotate the tangent handles as they are joined.<br><br>This tangent mode does not use an algorithm to automatically adjust tangent handles. For example, if you drag a keyframe set to the <strong>Free Smooth</strong> tangent mode, the rotation of the each tangent handles are not adjusted.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Flat</strong></td>
+<td style="text-align: left;">Use this tangent mode to join tangent handles and flatten them horizontally. This tangent mode is linked to the <strong>Free Smooth</strong> tangent mode.<br><br>For example, if you change the tangent mode from <strong>Clamped Auto</strong> to <strong>Flat</strong>, the keyframe is set to both the <strong>Free Smooth</strong> and <strong>Flat</strong> tangent modes.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Broken</strong></td>
+<td style="text-align: left;">Select this mode to break joined tangent handles. When tangent handles are broken, you can control the left and right tangent handles independently. In some cases, both the <strong>Free Smooth</strong> and <strong>Broken</strong> tangent modes may be selected.</td>
+</tr>
+</tbody>
+</table>
+<p>The tangent mode is automatically selected in the following cases:</p>
+<ul>
+<li>If you <a href="#tangenttypes">select the tangent type</a> for the <strong>Left Tangent</strong>, <strong>Right Tangent</strong>, or <strong>Both Tangents</strong> of a keyframe, the tangent mode changes to either <strong>Free Smooth</strong> or <strong>Broken</strong>.</li>
+<li>If you rotate the left or right tangent handle of a keyframe, the tangents are broken and the tangent mode changes to <strong>Broken</strong>.</li>
+</ul>
+<p><a name="tangenttypes"></a></p>
+<h2 id="tangent-types">Tangent types</h2>
+<p>Select a tangent type to have greater control over the shape and slope of the animation curve before and after a keyframe.</p>
+<p>The term <strong>tangent type</strong> refers to the interpolation algorithm that determines the shape of an animation curve between keyframes. The term <strong>interpolation</strong> refers to the estimation of values between two known points.</p>
+<p>To set the tangent type of a keyframe tangent, do the following:</p>
+<ol>
+<li>Right-click a keyframe. A context menu appears.</li>
+<li>Select a tangent type from the <strong>Left Tangent</strong>, <strong>Right Tangent</strong>, or <strong>Both Tangents</strong> sub-menu.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Tangent type</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Free</strong></td>
+<td style="text-align: left;">Select this tangent type to freely rotate the left tangent handle (Left Tangent), right tangent handle (Right Tangent), or both tangent handles (Both Tangents).<br><br>When you select <strong>Free</strong> this breaks joined tangent handles and sets the tangent mode to <strong>Broken</strong>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Linear</strong></td>
+<td style="text-align: left;">Select this tangent type to draw a straight line to the keyframe (Left Tangent), away from the keyframe (Right Tangent), or both to and away from the keyframe (Both Tangents).<br><br>When you select this tangent type, the tangent is hidden. Selecting this tangent type also breaks joined tangent handles and sets the tangent mode to <strong>Broken</strong>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Constant</strong></td>
+<td style="text-align: left;">Select this tangent type to keep a constant value from the last keyframe to this keyframe (Left Tangent), from this keyframe to the next keyframe (Right Tangent), or both (Both Tangents).<br><br>When you select this tangent type, the tangent is hidden. Selecting this tangent type also breaks joined tangent handles and sets the tangent mode to <strong>Broken</strong>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Weighted</strong></td>
+<td style="text-align: left;">Select this tangent type to use a weighted tangent to modify the shape and slope of the animation curve before the keyframe (Left Tangent), after the keyframe (Right Tangent), or both before and after the keyframe (Both Tangents). Consult <a href="#weighted">weighted tangents</a> for more information.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="weighted"></a></p>
+<h2 id="weighted-tangents">Weighted tangents</h2>
+<p>Use weighted tangents to modify the shape and slope of an animation curve. You can modify the length of a weighted tangent which modifies the slope of its animation curve. This provides greater control over the animation when compared to the default tangent.</p>
+<p>By default, tangents are non-weighted: you can only rotate a non-weighted tangent to modify the shape of its animation curve. You cannot modify the slope of the animation curve because the tangent is set to a fixed length.</p>
+<p><img src="images/spec-tangents-weighted.png" alt=""></p>
+<p><strong>(A)</strong> Keyframe with default non-weighted tangents. The length of the tangent cannot be changed.<br>
+<strong>(B)</strong> Keyframe with weighted tangents. Its tangent handles are drawn as outlines. In this example, the left and right tangents are set to different lengths.<br></p>
+<p>To change a non-weighted tangent to a weighted tangent, do the following:</p>
+<ol>
+<li>Right-click a keyframe. A context menu appears.</li>
+<li>Select <strong>Weighted</strong> as the tangent type for the <strong>Left Tangent</strong>, <strong>Right Tangent</strong>, or <strong>Both Tangents</strong> sub-menu.</li>
+</ol>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

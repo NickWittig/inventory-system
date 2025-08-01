@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Create Node Menu | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Create Node Menu | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="create-node-menu">Create Node Menu</h1>
+
+<h2 id="description">Description</h2>
+<p>Use the <strong>Create Node Menu</strong> to create <a href="Node.html">nodes</a> in Shader Graph. To open the <strong>Create Node Menu</strong>, either right-click on the workspace in the <a href="Shader-Graph-Window.html">Shader Graph Window</a> and select <strong>Create Node</strong>, or press the spacebar.</p>
+<p>At the top of the <strong>Create Node Menu</strong> is a search bar. To search for a node, type any part of its name in the search field. The search box gives you autocomplete options, and you can press Tab to accept the predictive text. It highlights matching text in yellow.</p>
+<p>The <strong>Create Node Menu</strong> lists all nodes that are available in Shader Graph, categorized by their function. User-created <a href="Sub-graph.html">Sub Graphs</a> are also available in the <strong>Create Node Menu</strong> under <strong>Sub Graph Assets</strong>, or in a custom category that you define in the Sub Graph Asset.</p>
+<p>To add a node to the workspace, double-click it in the <strong>Create Node Menu</strong>.</p>
+<h3 id="contextual-create-node-menu">Contextual Create Node Menu</h3>
+<p>A contextual <strong>Create Node Menu</strong> filters the available nodes, and only shows those that use the <a href="Data-Types.html">Data Type</a> of a selected edge. It lists every available <a href="Port.html">Port</a> on nodes that match that Data Type.</p>
+<p>To open a contextual <strong>Create Node Menu</strong>, click and drag an <a href="Edge.html">Edge</a> from a Port, and then release it in an empty area of the workspace.</p>
+<h3 id="master-stack-create-node-menu">Master Stack Create Node Menu</h3>
+<p>To add a new <a href="">Block Node</a> to the <a href="">Master Stack</a>, either right click and select <strong>Create Node</strong> or press spacebar with the stack selected.</p>
+<p>The <strong>Create Node Menu</strong> will display all available blocks for the master stack based on the render pipelines in your project. Any block can be added to the master stack via the <strong>Create Node Menu</strong>. If the block added is not compatible with the current Graph settings, the block will be disabled until the settings are configured to support it.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

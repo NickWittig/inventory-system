@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Add tracks | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Add tracks | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="add-tracks">Add tracks</h1>
+
+<p>The Timeline window supports many different methods of adding tracks to the Track list. Depending on the method you choose, the Timeline window may also add track bindings to the Track header, clips to tracks, and components to GameObjects.</p>
+<p>The simplest method to add a track is to click the <strong>Add</strong> (<strong>+</strong>) menu and choose the track to add. You can also right-click an empty area of the Track list to add a track.</p>
+<p><img src="images/tl-add-track-menu.png" alt=""></p>
+<p><em>Add (+) menu</em></p>
+<p>Timeline supports adding the following tracks:</p>
+<ul>
+<li><strong>Activation</strong>: Use this track to control when its bound GameObject is active. When you select an Activation track, its <a href="insp-trk-act.html">track properties</a> appear in the Inspector window.</li>
+<li><strong>Animation</strong>: Use this track to animate GameObjects and humanoids. When you select an Animation track, its <a href="insp-trk-anim.html">track properties</a> appear in the Inspector window.</li>
+<li><strong>Audio</strong>: Use this track to play Audio clips. When you select an Audio track, its <a href="insp-trk-audio.html">track properties</a> appear in the Inspector window. You can also <a href="curves-overview.html#curvesviewaudiotrack">animate Audio track properties</a> with the Curves view.</li>
+<li><strong>Control</strong>: Use this track to schedule a Sub-Timeline or to control a particle system, a prefab, or a script that uses ITimeControl. The Control track itself has no track properties. Instead, a Control track depends on its Control clips. It is recommended to add a Control track by dragging a GameObject into the Content view. Consult <a href="insp-clip-control.html#aboutctrlclips">About Control clips</a> for more on Control clips and Control tracks.</li>
+<li><strong>Playable</strong>: Use this track to add Playable clips. Each Playable clip is bound to a script that uses the <a href="https://docs.unity3d.com/Manual/Playables.html">Playables API</a> to create custom animation tools, effects, or gameplay mechanisms. Note that the script must inherit from <code>PlayableAsset</code> to be detected automatically and create a Playable Track. Consult the <a href="samp-custom-samples.html#tweensamp">Tween Track sample</a> for an example of how to create a custom Playable track.</li>
+<li><strong>Signal</strong>: Use this track to schedule Signal Emitters that send signals to its bound GameObject. The bound GameObject must have a Signal Receiver component with a reaction to successfully receive signals and perform a reaction. The Signal track itself has no track properties.</li>
+</ul>
+<h2 id="dragging-into-the-track-list">Dragging into the Track list</h2>
+<p>Drag a GameObject into an empty area in the Track list and choose the type of track to add from the context menu. Depending on the type of track selected, the Timeline window performs different actions:</p>
+<ul>
+<li>Select <strong>Animation Track</strong> and the Timeline window binds the GameObject to the Animation track. If the GameObject doesn't already have an Animator component, the Timeline window creates an Animator component for the GameObject.</li>
+<li>Select <strong>Activation Track</strong> and the Timeline window binds the GameObject to the Activation track. There are some limitations when creating an Activation track when dragging a GameObject. For example, the main GameObject with the Playable Director component should not be bound to an Activation track. Because this is the same GameObject that links the Timeline asset to the Scene, activating and disabling the GameObject affects the length of Timeline instance.</li>
+<li>Select <strong>Audio Track</strong> and the Timeline window adds an Audio Source component to the GameObject and binds this Audio Source component to the Audio track.</li>
+<li>Select <strong>Signal Track</strong> and the Timeline window binds the GameObject to the Signal track. If the GameObject doesn't already have a Signal Receiver component, the Timeline window adds a Signal Receiver component to the GameObject.</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

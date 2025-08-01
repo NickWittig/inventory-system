@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Data Types | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Data Types | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="data-types">Data Types</h1>
+
+<h2 id="description">Description</h2>
+<p>There are a number of <strong>Data Types</strong> in <a href="index.html">Shader Graph</a>. Each <strong>Port</strong> on a <a href="Node.html">Node</a> has an associated <strong>Data Type</strong> that defines what edges can be connected to it. The <strong>Data Types</strong> have colors for usability, these colors are applied to ports and edges of that <strong>Data Type</strong>.</p>
+<p>Some <strong>Data Types</strong> have associated <a href="Property-Types.html">Property Types</a> for exposing these values to the <a href="https://docs.unity3d.com/Manual/UsingTheInspector.html">Inspector</a> for <a href="https://docs.unity3d.com/Manual/class-Material.html">Materials</a> that use the shader.</p>
+<h2 id="data-types-1">Data Types</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Color</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Float</td>
+<td style="text-align: left;">Light Blue</td>
+<td style="text-align: left;">A <strong>Float</strong> or scalar value</td>
+</tr>
+<tr>
+<td style="text-align: left;">Vector 2</td>
+<td style="text-align: left;">Green</td>
+<td style="text-align: left;">A <strong>Vector 2</strong> value</td>
+</tr>
+<tr>
+<td style="text-align: left;">Vector 3</td>
+<td style="text-align: left;">Yellow</td>
+<td style="text-align: left;">A <strong>Vector 3</strong> value</td>
+</tr>
+<tr>
+<td style="text-align: left;">Vector 4</td>
+<td style="text-align: left;">Pink</td>
+<td style="text-align: left;">A <strong>Vector 4</strong> value</td>
+</tr>
+<tr>
+<td style="text-align: left;">Dynamic Vector</td>
+<td style="text-align: left;">Light Blue</td>
+<td style="text-align: left;">See <strong>Dynamic Data Types</strong> below</td>
+</tr>
+<tr>
+<td style="text-align: left;">Matrix 2</td>
+<td style="text-align: left;">Blue</td>
+<td style="text-align: left;">A <strong>Matrix 2x2</strong> value</td>
+</tr>
+<tr>
+<td style="text-align: left;">Matrix 3</td>
+<td style="text-align: left;">Blue</td>
+<td style="text-align: left;">A <strong>Matrix 3x3</strong> value</td>
+</tr>
+<tr>
+<td style="text-align: left;">Matrix 4</td>
+<td style="text-align: left;">Blue</td>
+<td style="text-align: left;">A <strong>Matrix 4x4</strong> value</td>
+</tr>
+<tr>
+<td style="text-align: left;">Dynamic Matrix</td>
+<td style="text-align: left;">Blue</td>
+<td style="text-align: left;">See <strong>Dynamic Data Types</strong> below</td>
+</tr>
+<tr>
+<td style="text-align: left;">Dynamic</td>
+<td style="text-align: left;">Blue</td>
+<td style="text-align: left;">See <strong>Dynamic Data Types</strong> below</td>
+</tr>
+<tr>
+<td style="text-align: left;">Boolean</td>
+<td style="text-align: left;">Purple</td>
+<td style="text-align: left;">A <strong>Boolean</strong> value. Defined as a float in the generated shader</td>
+</tr>
+<tr>
+<td style="text-align: left;">Texture 2D</td>
+<td style="text-align: left;">Red</td>
+<td style="text-align: left;">A <a href="https://docs.unity3d.com/Manual/class-TextureImporter.html">Texture 2D</a> asset</td>
+</tr>
+<tr>
+<td style="text-align: left;">Texture 2D Array</td>
+<td style="text-align: left;">Red</td>
+<td style="text-align: left;">A <a href="https://docs.unity3d.com/Manual/class-TextureImporter.html">Texture 2D Array</a> asset</td>
+</tr>
+<tr>
+<td style="text-align: left;">Texture 3D</td>
+<td style="text-align: left;">Red</td>
+<td style="text-align: left;">A <a href="https://docs.unity3d.com/Manual/class-TextureImporter.html">Texture 3D</a> asset</td>
+</tr>
+<tr>
+<td style="text-align: left;">Cubemap</td>
+<td style="text-align: left;">Red</td>
+<td style="text-align: left;">A <a href="https://docs.unity3d.com/Manual/class-Cubemap.html">Cubemap</a> asset</td>
+</tr>
+<tr>
+<td style="text-align: left;">Virtual Texture</td>
+<td style="text-align: left;">Gray</td>
+<td style="text-align: left;">A <a href="https://docs.unity3d.com/2020.1/Documentation/Manual/svt-use-in-shader-graph.html">Texture Stack</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Gradient</td>
+<td style="text-align: left;">Gray</td>
+<td style="text-align: left;">A <strong>Gradient</strong> value. Defined as a struct in the generated shader</td>
+</tr>
+<tr>
+<td style="text-align: left;">SamplerState</td>
+<td style="text-align: left;">Gray</td>
+<td style="text-align: left;">A state used for sampling a texture</td>
+</tr>
+</tbody>
+</table>
+<h2 id="promotingtruncating">Promoting/Truncating</h2>
+<p>All <strong>Vector</strong> types can be promoted or truncated to match any <strong>Vector</strong> type <a href="Port.html">Port</a>. This behaviour occurs only when the <a href="Port.html">Port</a> in question is not of type <strong>Dynamic Vector</strong>. When truncating, excess channels are simply removed. When promoting, the extra required channels are filled by default values. These values are (0, 0, 0, 1).</p>
+<h2 id="dynamic-data-types">Dynamic Data Types</h2>
+<p>Some <strong>Data Types</strong> are dynamic. This means a port using these <strong>Data Types</strong> can change their underlying <strong>Concrete Data Type</strong> based on what <strong>Data Type</strong> is connected to it. By default, <a href="Node.html">Nodes</a> using dynamic <strong>Data Types</strong> can only have one <strong>Concrete Data Type</strong>, meaning that once a connected edge has applied its <strong>Data Type</strong> to that port, all other <strong>Dynamic Data Type</strong> slots of that <a href="Node.html">Node</a> will apply the same <strong>Data Type</strong>.</p>
+<p>One notable exception to this is the <a href="Multiply-Node.html">Multiply Node</a> which allows both <strong>Dynamic</strong> <strong>Matrix</strong> and <strong>Vector</strong> types.</p>
+<h3 id="dynamic-vector">Dynamic Vector</h3>
+<p>The <strong>Dynamic Vector</strong> type allows connected edges of any <strong>Vector</strong> type. All connected edges are automatically truncated to the type with the lowest dimension, unless the lowest dimension is 1, in which case the <strong>Float</strong> is promoted.</p>
+<h3 id="dynamic-matrix">Dynamic Matrix</h3>
+<p>The <strong>Dynamic Matrix</strong> type allows connected edges of any <strong>Matrix</strong> type. All connected edges are automatically truncated to the type with the lowest dimension.</p>
+<h3 id="dynamic">Dynamic</h3>
+<p>The <strong>Dynamic</strong> type is a special case. <a href="Node.html">Nodes</a> that support it must define how it is validated. In the case of the <a href="Multiply-Node.html">Multiply Node</a>, it allows connections of any <strong>Vector</strong> or <strong>Matrix</strong> type, ensuring the correct multiplication is applied depending on the mix of <strong>Data Types</strong>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

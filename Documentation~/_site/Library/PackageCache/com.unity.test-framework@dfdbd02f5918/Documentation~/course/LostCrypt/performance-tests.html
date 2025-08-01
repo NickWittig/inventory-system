@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>8. Performance Tests | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="8. Performance Tests | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../../../index.html">
+            <img id="logo" class="svg" src="../../../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="8-performance-tests">8. Performance Tests</h1>
+
+<h2 id="learning-objectives">Learning Objectives</h2>
+<p>One final thing we'll explore is a package that extends Unity Test Framework with Performance Tests.</p>
+<h2 id="exercise">Exercise</h2>
+<p>The Performance Testing package can be used to measure performance in our game. This is a great tool if we want to track various regressions/progressions that happen over time in our project. In this example, you'll learn how to create a test that measures game average frames.</p>
+<ol>
+<li>LostCrypt does not include the Performance Testing package installed by default. Install it by following <a href="https://docs.unity3d.com/Packages/com.unity.test-framework.performance@2.8/manual/index.html">these instructions</a>.</li>
+<li>Add the package as a dependency to the <a href="https://docs.unity3d.com/Manual/upm-manifestPrj.html">project manifest</a>.</li>
+<li>When the package is installed, add a reference to <code>Unity.PerformanceTesting</code> in your <strong>PlayModeTests</strong> assembly definition to access the performance testing APIs.</li>
+<li>Create a new C# class under <strong>Assets/Tests/PlayModeTests</strong> called <strong>PerformanceTests.cs</strong>.</li>
+</ol>
+<p>You're now ready to complete your objective. In <code>PerformanceTests.cs</code> create a new function called <code>MainScene_MeasureAverageFrames()</code>. In this function move your character to the wand position and wait until the wand pickup effect is over. During all that time, measure the frames.</p>
+<h2 id="bonus">Bonus</h2>
+<ul>
+<li>Try to measure the average FPS in LostCrypt. You might need to use <code>Time.deltaTime</code> from UnityEngine API and <code>Measure.Custom</code> from the Performance Testing package API.</li>
+</ul>
+<h2 id="hints">Hints</h2>
+<ul>
+<li>The first handful of frames after loading Scene are usually unstable, let's utilize the <code>Measure.Frames().Scope()</code> API to measure them into a separate scope.</li>
+<li>After your test finishes, performance results can be viewed under <strong>Window &gt; Analysis &gt; Performance Test Report</strong> or you can even hook into results using <a href="https://docs.unity3d.com/Packages/com.unity.test-framework@1.1/manual/extension-get-test-results.html">Callback API</a>.</li>
+</ul>
+<h2 id="solution">Solution</h2>
+<p>PerformanceTests.cs</p>
+<pre><code>using System.Collections;
+using Unity.PerformanceTesting;
+using UnityEngine;
+using UnityEngine.TestTools;
+using UnityEngine.SceneManagement;
+
+public class PerformanceTests
+{
+    private Transform _characterTransform;
+    private float _wandLocation = 21.080f;
+        
+    [UnityTest, Performance]
+    public IEnumerator MainScene_MeasureAverageFrames()
+    {
+        SceneManager.LoadScene(&quot;Assets/Scenes/Main.unity&quot;, LoadSceneMode.Single);
+        using (Measure.Frames().Scope(&quot;Frames.MainSceneOnLoad.Unstable&quot;))
+        {
+            for (var i = 0; i &lt; 25; i++)
+            {
+                yield return null;
+            }
+        }
+
+        using (Measure.Frames().Scope(&quot;Frames.MainSceneGameplay&quot;))
+        {
+            yield return GoRight();
+            while (GetCurrentCharacterPosition() &lt;= _wandLocation)
+            {
+                yield return null;
+            }
+
+            StopMoving();
+            yield return new WaitForSeconds(15);
+        }
+    }
+
+    private float GetCurrentCharacterPosition()
+    {
+        // Get Main character's Transform which is used to manipulate position.
+        if (_characterTransform == null)
+        {
+            _characterTransform = GameObject.Find(&quot;Sara Variant&quot;).transform;
+        }
+
+        return _characterTransform.position.x;
+    }
+
+    private IEnumerator GoRight()
+    {
+        TestInputControl.MoveLeft = false;
+        yield return null;
+        TestInputControl.MoveRight = true;
+    }
+
+    private void StopMoving()
+    {
+        TestInputControl.MoveRight = false;
+        TestInputControl.MoveLeft = false;
+    }
+}
+</code></pre>
+<p>Bonus Solution</p>
+<p><code>Measure.Custom(&quot;FPS&quot;, (int)(1f / Time.deltaTime));</code></p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

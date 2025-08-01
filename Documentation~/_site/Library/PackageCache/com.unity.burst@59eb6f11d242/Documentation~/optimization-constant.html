@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Constant intrinsic | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Constant intrinsic | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="constant-intrinsic">Constant intrinsic</h1>
+
+<p>Use the <a href="xref:Unity.Burst.CompilerServices.Constant.IsConstantExpression*"><code>IsConstantExpression</code></a> intrinsic to check if a given expression is constant at compile-time:</p>
+<pre><code class="lang-c#">using static Unity.Burst.CompilerServices.Constant;
+
+var somethingWhichWillBeConstantFolded = math.pow(42.0f, 42.0f);
+
+if (IsConstantExpression(somethingWhichWillBeConstantFolded))
+{
+    // Burst knows that somethingWhichWillBeConstantFolded is a compile-time constant
+}
+</code></pre>
+<p>This is useful to check if a complex expression is always constant folded. You can use it for optimizations for a known constant value. For example, if you want to implement a <code>pow</code>-like function for integer powers:</p>
+<pre><code class="lang-c#">using static Unity.Burst.CompilerServices.Constant;
+
+public static float MyAwesomePow(float f, int i)
+{
+    if (IsConstantExpression(i) &amp;&amp; (2 == i))
+    {
+        return f * f;
+    }
+    else
+    {
+        return math.pow(f, (float)i);
+    }
+}
+</code></pre>
+<p>The <code>IsConstantExpression</code> check means that Burst always removes the branch  if <code>i</code> isn't constant, because the if condition is false. This means that if <code>i</code> is constant and is equal to 2, you can use a more efficient simple multiply instead.</p>
+<p>The result of <code>IsConstantExpression</code> intentionally depends on the result of the optimizations being run. Therefore the result can change based on whether a function gets inlined or not. For example, in the previous case: <code>IsConstantExpression(i)</code> is false on its own, because <code>i</code> is a function
+argument which is not constant. However, if <code>MyAwesomePow</code> gets inlined with a constant value for <code>i</code>, then it evaluates true. If <code>MyAwesomePow</code> ends up not being inlined, then <code>IsConstantExpression(i)</code> remains false.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Constant folding only takes place during optimizations. If you've disabled optimizations, the intrinsic returns false.</p>
+</div>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="xref:Unity.Burst.CompilerServices.Constant.IsConstantExpression*"><code>[IsConstantExpression]</code> API reference</a></li>
+<li><a href="csharp-burst-intrinsics.html">Burst intrinsics overview</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>About Unity Test Framework | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="About Unity Test Framework | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="about-unity-test-framework">About Unity Test Framework</h1>
+
+<p>The Unity Test Framework (UTF) enables Unity users to test their code in both <strong>Edit Mode</strong> and <strong>Play Mode</strong>, and also on target platforms such as <a href="https://docs.unity3d.com/Manual/Standalone.html">Standalone</a>, Android, iOS, etc.</p>
+<p>This package provides a standard test framework for users of Unity and developers at Unity so that both benefit from the same features and can write tests the same way.</p>
+<p>UTF uses a Unity integration of NUnit library, which is an open-source unit testing library for .Net languages. UTF currently uses NUnit version 3.5. For more information about NUnit, see the <a href="http://www.nunit.org/">official NUnit website</a> and the <a href="https://docs.nunit.org/">NUnit documentation</a>.</p>
+<blockquote>
+<p><strong>Note</strong>: UTF is not a new concept or toolset; it is an adjusted and more descriptive naming for the toolset otherwise known as Unity Test Runner, which is now available as this package.</p>
+</blockquote>
+<h1 id="installing-unity-test-framework">Installing Unity Test Framework</h1>
+<p>The Test Framework package is shipped with the Unity Editor and should be automatically included in any project created with Unity 2019.2 or later. If you need to install the package manually, you can do so in any of the standard ways documented in the <a href="https://docs.unity3d.com/Packages/com.unity.package-manager-ui@latest/index.html">Package Manager documentation</a>.</p>
+<blockquote>
+<p><strong>Note</strong>: If you're adding the package by name, the canonical name to use is <code>com.unity.test-framework</code>. If you're adding it from the registry, the package is listed under the display name <code>Test Framework</code>.</p>
+</blockquote>
+<h1 id="using-unity-test-framework">Using Unity Test Framework</h1>
+<p>To learn how to use the Unity Test Framework package in your project, read the <a href="manual.html">manual</a>.</p>
+<h1 id="technical-details">Technical details</h1>
+<h2 id="requirements">Requirements</h2>
+<p>This version of the Unity Test Framework is compatible with the following versions of the Unity Editor:</p>
+<ul>
+<li>2019.2 and later.</li>
+</ul>
+<h2 id="known-limitations">Known limitations</h2>
+<p>Unity Test Framework version 1.3.x includes the following known limitations:</p>
+<ul>
+<li>The <code>UnityTest</code> attribute does not support WSA platform.</li>
+<li>The <code>UnityTest</code> attribute does not support <a href="https://github.com/nunit/docs/wiki/Parameterized-Tests">Parameterized tests</a> (except for <code>ValueSource</code>).</li>
+<li>The <code>UnityTest</code> attribute does not support the <code>NUnit</code> <a href="https://github.com/nunit/docs/wiki/Repeat-Attribute">Repeat</a> attribute.</li>
+<li>Nested test fixture cannot run from the Editor UI.</li>
+<li>When using the <code>NUnit</code> <a href="https://github.com/nunit/docs/wiki/Retry-Attribute">Retry</a> attribute in PlayMode tests, it throws <code>InvalidCastException</code>.</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

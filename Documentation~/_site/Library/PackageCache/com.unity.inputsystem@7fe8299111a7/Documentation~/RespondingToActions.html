@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Responding to Actions | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Responding to Actions | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="responding-to-actions">Responding to Actions</h1>
+
+<p>There are two main techniques you can use to respond to Actions in your project. These are to either use <strong>polling</strong> or an <strong>event-driven</strong> approach.</p>
+<ul>
+<li>The <strong>Polling</strong> approach refers to the technique of repeatedly checking the current state of the Actions you are interested in. Typically you would do this in the <code>Update()</code> method of a <code>MonoBehaviour</code> script.</li>
+<li>The <strong>Event-driven</strong> approach involves creating your own methods in code that are automatically called when an action is performed.</li>
+</ul>
+<p>For most common scenarios, especially action games where the user's input should have a continuous effect on an in-game character, <strong>Polling</strong> is usually simpler and easier to implement.</p>
+<p>For other situations where input is less frequent and directed to various different GameObjects in your scene, an event-driven approach might be more suitable.</p>
+<h2 id="polling-actions">Polling Actions</h2>
+<p>You can poll the current value of an Action using <a href="../api/UnityEngine.InputSystem.InputAction.html#UnityEngine_InputSystem_InputAction_ReadValue__1"><code>InputAction.ReadValue&lt;&gt;()</code></a>:</p>
+<pre><code class="lang-CSharp">using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class Example : MonoBehaviour
+{
+    InputAction moveAction;
+
+    private void Start()
+    {
+        moveAction = InputSystem.actions.FindAction(&quot;Move&quot;);
+    }
+
+    void Update()
+    {
+        Vector2 moveValue = moveAction.ReadValue&lt;Vector2&gt;();
+        // your code would then use moveValue to apply movement
+        // to your GameObject
+    }
+}
+</code></pre>
+<p>Note that the value type has to correspond to the value type of the control that the value is being read from.</p>
+<p>There are two methods you can use to poll for <code>performed</code> <a href="#action-callbacks">action callbacks</a> to determine whether an action was performed or stopped performing in the current frame.</p>
+<p>These methods differ from <a href="../api/UnityEngine.InputSystem.InputAction.html#UnityEngine_InputSystem_InputAction_WasPressedThisFrame"><code>InputAction.WasPressedThisFrame()</code></a> and <a href="../api/UnityEngine.InputSystem.InputAction.html#UnityEngine_InputSystem_InputAction_WasReleasedThisFrame"><code>InputAction.WasReleasedThisFrame()</code></a> in that these depend directly on the <a href="Interactions.html">Interactions</a> driving the action (including the <a href="Interactions.html#default-interaction">default Interaction</a> if no specific interaction has been added to the action or binding).</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.InputAction.html#UnityEngine_InputSystem_InputAction_WasPerformedThisFrame"><code>InputAction.WasPerformedThisFrame()</code></a></td>
+<td>True if the <a href="../api/UnityEngine.InputSystem.InputAction.html#UnityEngine_InputSystem_InputAction_phase"><code>InputAction.phase</code></a> of the action has, at any point during the current frame, changed to <a href="../api/UnityEngine.InputSystem.InputActionPhase.html#UnityEngine_InputSystem_InputActionPhase_Performed"><code>Performed</code></a>.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.InputAction.html#UnityEngine_InputSystem_InputAction_WasCompletedThisFrame"><code>InputAction.WasCompletedThisFrame()</code></a></td>
+<td>True if the <a href="../api/UnityEngine.InputSystem.InputAction.html#UnityEngine_InputSystem_InputAction_phase"><code>InputAction.phase</code></a> of the action has, at any point during the current frame, changed away from <a href="../api/UnityEngine.InputSystem.InputActionPhase.html#UnityEngine_InputSystem_InputActionPhase_Performed"><code>Performed</code></a> to any other phase. This can be useful for <a href="#button">Button</a> actions or <a href="#value">Value</a> actions with interactions like <a href="Interactions.html#press">Press</a> or <a href="Interactions.html#hold">Hold</a> when you want to know the frame the interaction stops being performed. For actions with the <a href="Interactions.html#default-interaction">default Interaction</a>, this method will always return false for <a href="#value">Value</a> and <a href="#pass-through">Pass-Through</a> actions (since the phase stays in <a href="../api/UnityEngine.InputSystem.InputActionPhase.html#UnityEngine_InputSystem_InputActionPhase_Started"><code>Started</code></a> for Value actions and stays in <a href="../api/UnityEngine.InputSystem.InputActionPhase.html#UnityEngine_InputSystem_InputActionPhase_Performed"><code>Performed</code></a> for Pass-Through).</td>
+</tr>
+</tbody>
+</table>
+<p>This example uses the Interact action from the <a href="ProjectWideActions.html#the-default-actions">default actions</a>, which has a <a href="Interactions.html#hold">Hold</a> interaction to make it perform only after the bound control is held for a period of time (for example, 0.4 seconds):</p>
+<pre><code class="lang-CSharp">using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class Example : MonoBehaviour
+{
+    InputAction interactAction;
+
+    private void Start()
+    {
+        interactAction = InputSystem.actions.FindAction(&quot;Interact&quot;);
+    }
+
+    void Update()
+    {
+        if (interactAction.WasPerformedThisFrame())
+        {
+            // your code to respond to the first frame that the Interact action is held for enough time
+        }
+
+        if (interactAction.WasCompletedThisFrame())
+        {
+            // your code to respond to the frame that the Interact action is released after being held for enough time
+        }
+    }
+}
+</code></pre>
+<p>Finally, there are three methods you can use to poll for button presses and releases:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.InputAction.html#UnityEngine_InputSystem_InputAction_IsPressed"><code>InputAction.IsPressed()</code></a></td>
+<td>True if the level of <a href="../api/UnityEngine.InputSystem.InputControl.html#UnityEngine_InputSystem_InputControl_EvaluateMagnitude">actuation</a> on the action has crossed the <a href="../api/UnityEngine.InputSystem.InputSettings.html#UnityEngine_InputSystem_InputSettings_defaultButtonPressPoint">press point</a> and did not yet fall to or below the <a href="../api/UnityEngine.InputSystem.InputSettings.html#UnityEngine_InputSystem_InputSettings_buttonReleaseThreshold">release threshold</a>.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.InputAction.html#UnityEngine_InputSystem_InputAction_WasPressedThisFrame"><code>InputAction.WasPressedThisFrame()</code></a></td>
+<td>True if the level of <a href="../api/UnityEngine.InputSystem.InputControl.html#UnityEngine_InputSystem_InputControl_EvaluateMagnitude">actuation</a> on the action has, at any point during the current frame, reached or gone above the <a href="../api/UnityEngine.InputSystem.InputSettings.html#UnityEngine_InputSystem_InputSettings_defaultButtonPressPoint">press point</a>.</td>
+</tr>
+<tr>
+<td><a href="../api/UnityEngine.InputSystem.InputAction.html#UnityEngine_InputSystem_InputAction_WasReleasedThisFrame"><code>InputAction.WasReleasedThisFrame()</code></a></td>
+<td>True if the level of <a href="../api/UnityEngine.InputSystem.InputControl.html#UnityEngine_InputSystem_InputControl_EvaluateMagnitude">actuation</a> on the action has, at any point during the current frame, gone from being at or above the <a href="../api/UnityEngine.InputSystem.InputSettings.html#UnityEngine_InputSystem_InputSettings_defaultButtonPressPoint">press point</a> to at or below the <a href="../api/UnityEngine.InputSystem.InputSettings.html#UnityEngine_InputSystem_InputSettings_buttonReleaseThreshold">release threshold</a>.</td>
+</tr>
+</tbody>
+</table>
+<p>This example uses three actions called Shield, Teleport and Submit (which are not included in the <a href="ProjectWideActions.html#the-default-actions">default actions</a>):</p>
+<pre><code class="lang-CSharp">using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class Example : MonoBehaviour
+{
+    InputAction shieldAction;
+    InputAction teleportAction;
+    InputAction submitAction;
+
+    private void Start()
+    {
+        shieldAction = InputSystem.actions.FindAction(&quot;Shield&quot;);
+        teleportAction = InputSystem.actions.FindAction(&quot;Teleport&quot;);
+        submitAction = InputSystem.actions.FindAction(&quot;Submit&quot;);
+    }
+
+    void Update()
+    {
+        if (shieldAction.IsPressed())
+        {
+            // shield is active for every frame that the shield action is pressed
+        }
+
+        if (teleportAction.WasPressedThisFrame())
+        {
+            // teleport occurs on the first frame that the action is pressed, and not again until the button is released
+        }
+
+        if (submit.WasReleasedThisFrame())
+        {
+            // submit occurs on the frame that the action is released, a common technique for buttons relating to UI controls.
+        }
+    }
+}
+</code></pre>
+<h2 id="responding-to-actions-using-callbacks">Responding to Actions using callbacks</h2>
+<p>When you set up callbacks for your Action, the Action informs your code that a certain type of input has occurred, and your code can then respond accordingly.</p>
+<p>There are several ways to do this:</p>
+<ol>
+<li>You can use the <a href="Workflow-PlayerInput.html">PlayerInput component</a> to set up callbacks in the inspector.</li>
+<li>Each Action has a <a href="#action-callbacks"><code>started</code>, <code>performed</code>, and <code>canceled</code> callback</a>.</li>
+<li>Each Action Map has an <a href="#inputactionmapactiontriggered-callback"><code>actionTriggered</code> callback</a>.</li>
+<li>The Input System has a global <a href="#inputsystemonactionchange-callback"><code>InputSystem.onActionChange</code> callback</a>.</li>
+<li><a href="#inputactiontrace"><code>InputActionTrace</code></a> can record changes happening on Actions.</li>
+</ol>
+<h4 id="the-playerinput-component">The PlayerInput component</h4>
+<p>The PlayerInput component is the simplest way to set up Action callbacks. It provides an interface in the inspector that allows you set up callbacks directly to your methods without requiring intermediate code. <a href="Workflow-PlayerInput.html">Read more about the PlayerInput component</a>.</p>
+<p>Alternatively, you can implement callbacks entirely from your own code using the following workflow:</p>
+<h4 id="action-callbacks">Action callbacks</h4>
+<p>Every Action has a set of distinct phases it can go through in response to receiving input.</p>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Disabled</code></td>
+<td>The Action is disabled and can't receive input.</td>
+</tr>
+<tr>
+<td><code>Waiting</code></td>
+<td>The Action is enabled and is actively waiting for input.</td>
+</tr>
+<tr>
+<td><code>Started</code></td>
+<td>The Input System has received input that started an Interaction with the Action.</td>
+</tr>
+<tr>
+<td><code>Performed</code></td>
+<td>An Interaction with the Action has been completed.</td>
+</tr>
+<tr>
+<td><code>Canceled</code></td>
+<td>An Interaction with the Action has been canceled.</td>
+</tr>
+</tbody>
+</table>
+<p>You can read the current phase of an action using <a href="../api/UnityEngine.InputSystem.InputAction.html#UnityEngine_InputSystem_InputAction_phase"><code>InputAction.phase</code></a>.</p>
+<p>The <code>Started</code>, <code>Performed</code>, and <code>Canceled</code> phases each have a callback associated with them:</p>
+<pre><code class="lang-CSharp">    var action = new InputAction();
+
+    action.started += context =&gt; /* Action was started */;
+    action.performed += context =&gt; /* Action was performed */;
+    action.canceled += context =&gt; /* Action was canceled */;
+</code></pre>
+<p>Each callback receives an <a href="../api/UnityEngine.InputSystem.InputAction.CallbackContext.html"><code>InputAction.CallbackContext</code></a> structure, which holds context information that you can use to query the current state of the Action and to read out values from Controls that triggered the Action (<a href="../api/UnityEngine.InputSystem.InputAction.CallbackContext.html#UnityEngine_InputSystem_InputAction_CallbackContext_ReadValue__1"><code>InputAction.CallbackContext.ReadValue</code></a>).</p>
+<blockquote>
+<p><strong>Note</strong>: The contents of the structure are only valid for the duration of the callback. In particular, it isn't safe to store the received context and later access its properties from outside the callback.</p>
+</blockquote>
+<p>When and how the callbacks are triggered depends on the <a href="Interactions.html">Interactions</a> present on the respective Bindings. If the Bindings have no Interactions that apply to them, the <a href="Interactions.html#default-interaction">default Interaction</a> applies.</p>
+<h5 id="inputactionmapactiontriggered-callback"><code>InputActionMap.actionTriggered</code> callback</h5>
+<p>Instead of listening to individual actions, you can listen on an entire Action Map for state changes on any of the Actions in the Action Map.</p>
+<pre><code class="lang-CSharp">var actionMap = new InputActionMap();
+actionMap.AddAction(&quot;action1&quot;, &quot;&lt;Gamepad&gt;/buttonSouth&quot;);
+actionMap.AddAction(&quot;action2&quot;, &quot;&lt;Gamepad&gt;/buttonNorth&quot;);
+
+actionMap.actionTriggered +=
+    context =&gt; { ... };
+</code></pre>
+<p>The argument received is the same <code>InputAction.CallbackContext</code> structure that you receive through the <a href="#action-callbacks"><code>started</code>, <code>performed</code>, and <code>canceled</code> callbacks</a>.</p>
+<blockquote>
+<p><strong>Note</strong>: The Input System calls <code>InputActionMap.actionTriggered</code> for all three of the individual callbacks on Actions. That is, you get <code>started</code>, <code>performed</code>, and <code>canceled</code> all on a single callback.</p>
+</blockquote>
+<h5 id="inputsystemonactionchange-callback"><code>InputSystem.onActionChange</code> callback</h5>
+<p>Similar to <code>InputSystem.onDeviceChange</code>, your app can listen for any action-related change globally.</p>
+<pre><code class="lang-CSharp">InputSystem.onActionChange +=
+    (obj, change) =&gt;
+    {
+        // obj can be either an InputAction or an InputActionMap
+        // depending on the specific change.
+        switch (change)
+        {
+            case InputActionChange.ActionStarted:
+            case InputActionChange.ActionPerformed:
+            case InputActionChange.ActionCanceled:
+                Debug.Log($&quot;{((InputAction)obj).name} {change}&quot;);
+                break;
+        }
+    }
+</code></pre>
+<h4 id="inputactiontrace"><code>InputActionTrace</code></h4>
+<p>You can trace Actions to generate a log of all activity that happened on a particular set of Actions. To do so, use <a href="../api/UnityEngine.InputSystem.Utilities.InputActionTrace.html"><code>InputActionTrace</code></a>. This behaves in a similar way to <a href="../api/UnityEngine.InputSystem.LowLevel.InputEventTrace.html"><code>InputEventTrace</code></a> for events.</p>
+<blockquote>
+<p><strong>Note</strong>: <code>InputActionTrace</code> allocates unmanaged memory and needs to be disposed of so that it doesn't create memory leaks.</p>
+</blockquote>
+<pre><code class="lang-CSharp">var trace = new InputActionTrace();
+
+// Subscribe trace to single Action.
+// (Use UnsubscribeFrom to unsubscribe)
+trace.SubscribeTo(myAction);
+
+// Subscribe trace to entire Action Map.
+// (Use UnsubscribeFrom to unsubscribe)
+trace.SubscribeTo(myActionMap);
+
+// Subscribe trace to all Actions in the system.
+trace.SubscribeToAll();
+
+// Record a single triggering of an Action.
+myAction.performed +=
+    ctx =&gt;
+    {
+        if (ctx.ReadValue&lt;float&gt;() &gt; 0.5f)
+            trace.RecordAction(ctx);
+    };
+
+// Output trace to console.
+Debug.Log(string.Join(&quot;,\n&quot;, trace));
+
+// Walk through all recorded Actions and then clear trace.
+foreach (var record in trace)
+{
+    Debug.Log($&quot;{record.action} was {record.phase} by control {record.control}&quot;);
+
+    // To read out the value, you either have to know the value type or read the
+    // value out as a generic byte buffer. Here, we assume that the value type is
+    // float.
+
+    Debug.Log(&quot;Value: &quot; + record.ReadValue&lt;float&gt;());
+
+    // If it's okay to accept a GC hit, you can also read out values as objects.
+    // In this case, you don't have to know the value type.
+
+    Debug.Log(&quot;Value: &quot; + record.ReadValueAsObject());
+}
+trace.Clear();
+
+// Unsubscribe trace from everything.
+trace.UnsubscribeFromAll();
+
+// Release memory held by trace.
+trace.Dispose();
+</code></pre>
+<p>Once recorded, a trace can be safely read from multiple threads as long as it is not concurrently being written to and as long as the Action setup (that is, the configuration data accessed by the trace) is not concurrently being changed on the main thread.</p>
+<h3 id="action-types">Action types</h3>
+<p>Each Action can be one of three different <a href="../api/UnityEngine.InputSystem.InputActionType.html">Action types</a>. You can select the Action type in the Input Action editor window, or by specifying the <code>type</code> parameter when calling the <a href="../api/UnityEngine.InputSystem.InputAction.html#UnityEngine_InputSystem_InputAction__ctor_System_String_UnityEngine_InputSystem_InputActionType_System_String_System_String_System_String_System_String_"><code>InputAction()</code></a> constructor. The Action type influences how the Input System processes state changes for the Action. The default Action type is <code>Value</code>.</p>
+<h4 id="value">Value</h4>
+<p>This is the default Action type. Use this for any inputs which should track continuous changes to the state of a Control.</p>
+<p><a href="../api/UnityEngine.InputSystem.InputActionType.html#UnityEngine_InputSystem_InputActionType_Value"><code>Value</code></a> type actions continuously monitor all the Controls which are bound to the Action, and then choose the one which is the most actuated to be the Control driving the Action, and report the values from that Control in callbacks, triggered whenever the value changes. If a different bound Control actuated more, then that Control becomes the Control driving the Action, and the Action starts reporting values from that Control. This process is called <a href="ActionBindings.html#conflicting-inputs">conflict resolution</a>. This is useful if you want to allow different Controls to control an Action in the game, but only take input from one Control at the same time.</p>
+<p>When the Action initially enables, it performs an <a href="ActionBindings.html#initial-state-check">initial state check</a> of all bound Controls. If any of them is actuated, the Action then triggers a callback with the current value.</p>
+<h4 id="button">Button</h4>
+<p>This is very similar to <a href="../api/UnityEngine.InputSystem.InputActionType.html#UnityEngine_InputSystem_InputActionType_Value"><code>Value</code></a>, but <a href="../api/UnityEngine.InputSystem.InputActionType.html#UnityEngine_InputSystem_InputActionType_Button"><code>Button</code></a> type Actions can only be bound to <a href="../api/UnityEngine.InputSystem.Controls.ButtonControl.html"><code>ButtonControl</code></a> Controls, and don't perform an initial state check like <a href="../api/UnityEngine.InputSystem.InputActionType.html#UnityEngine_InputSystem_InputActionType_Value"><code>Value</code></a> Actions do (see the Value section above). Use this for inputs that trigger an Action once every time they are pressed. The initial state check is usually not useful in such cases, because it can trigger actions if the button is still held down from a previous press when the Action was enabled.</p>
+<h4 id="pass-through">Pass-Through</h4>
+<p><a href="../api/UnityEngine.InputSystem.InputActionType.html#UnityEngine_InputSystem_InputActionType_PassThrough"><code>Pass-Through</code></a> Actions bypass the <a href="ActionBindings.html#conflicting-inputs">conflict resolution</a> process described above for <code>Value</code> Actions and don't use the concept of a specific Control driving the Action. Instead, any change to any bound Control triggers a callback with that Control's value. This is useful if you want to process all input from a set of Controls.</p>
+<h3 id="debugging-actions">Debugging Actions</h3>
+<p>To see currently enabled Actions and their bound Controls, use the <a href="Debugging.html#debugging-actions">Input Debugger</a>.</p>
+<p>You can also use the <a href="Debugging.html#inputactionvisualizer"><code>InputActionVisualizer</code></a> component from the Visualizers sample to get an on-screen visualization of an Action's value and Interaction state in real-time.</p>
+<h3 id="using-actions-with-multiple-players">Using Actions with multiple players</h3>
+<p>You can use the same Action definitions for multiple local players (for example, in a local co-op game). For more information, see documentation on the <a href="PlayerInputManager.html">Player Input Manager</a> component.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

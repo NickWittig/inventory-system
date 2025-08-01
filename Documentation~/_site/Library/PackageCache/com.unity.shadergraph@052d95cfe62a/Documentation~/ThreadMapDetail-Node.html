@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>ThreadMapDetail node | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="ThreadMapDetail node | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="threadmapdetail-node">ThreadMapDetail node</h1>
+
+<p>The ThreadMapDetail node adds tileable thread map detail information to a fabric material. The node outputs a thread map that you can apply to a fabric material.</p>
+<p><img src="images/sg-threadmapdetail-node.png" alt="An image showing the ThreadMapDetail node in the Shader Graph window"></p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>This node is a Subgraph node: it represents a Subgraph instead of directly representing Unity's shader code. Double-click the node in any Shader Graph to view its Subgraph.</p>
+</div>
+
+<p>A thread map is a Texture with 4 channels. Like a detail map, a thread map contains information about ambient occlusion, the normal x-axis and normal y-axis, and smoothness.</p>
+<p>For more information on Detail maps, see <a href="https://docs.unity3d.com/Manual/StandardShaderMaterialParameterDetail.html">Secondary Maps (Detail Maps) &amp; Detail Mask</a> in the Unity User Manual.</p>
+<h2 id="create-node-menu-category">Create Node menu category</h2>
+<p>The ThreadMapDetail node is under the <strong>Utility</strong> &gt; <strong>High Definition Render Pipeline</strong> &gt; <strong>Fabric</strong> category in the Create Node menu.</p>
+<h2 id="compatibility">Compatibility</h2>
+<p>node is supported on the following render pipelines:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Built-in Render Pipeline</strong></th>
+<th><strong>Universal Render Pipeline (URP)</strong></th>
+<th><strong>High Definition Render Pipeline (HDRP)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p>For more information on the HDRP, see <a href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@latest">Unity's HDRP package documentation</a>.</p>
+<p>node can also be connected to any Block node in either Context. For more information on Block nodes and Contexts, see <a href="Master-Stack.html">Master Stack</a>.</p>
+<h2 id="inputs">Inputs</h2>
+<p>node has the following input ports:</p>
+<table>
+    <thead>
+        <tr>
+            <th><strong>Name</strong></th>
+            <th><strong>Type</strong></th>
+            <th><strong>Binding</strong></th>
+            <th><strong>Description</strong></th>
+         </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Use Thread Map</strong></td>
+            <td>Boolean</td>
+            <td>None</td>
+            <td>Use the port's default input to enable or disable the ThreadMapDetail node. You can also connect a node that outputs a Boolean to choose when to enable or disable the thread map.</td>
+        </tr>
+        <tr>
+            <td><strong>ThreadMap</strong></td>
+            <td>Texture 2D</td>
+            <td>None</td>
+            <td>The texture that contains the detailed information of a fabric's thread pattern. The texture should contain 4 channels:
+                <ul>
+                    <li>R - The ambient occlusion</li>
+                    <li>G - The normal Y-axis</li>
+                    <li>B - The smoothness</li>
+                    <li>A - The normal X-axis</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>UV</strong></td>
+            <td>Vector 2</td>
+            <td>UV</td>
+            <td>The UV coordinates the ThreadMapDetail node should use to map the ThreadMap texture on the geometry.</td>
+        </tr>
+        <tr>
+            <td><strong>Normals</strong></td>
+            <td>Vector 3</td>
+            <td>None</td>
+            <td>The base normal map that you want your Shader Graph to apply to the geometry before it applies the thread map.</td>
+    </tr>
+    <tr>
+        <td><strong>Smoothness</strong></td>
+        <td>Float</td>
+        <td>None</td>
+        <td>The base smoothness value that you want your Shader Graph to apply to the geometry before it applies the thread map.</td>
+    </tr>
+    <tr>
+<td><strong>Alpha</strong></td>
+<td>Float</td>
+<td>None</td>
+<td>The base alpha value that you want your Shader Graph to apply to the geometry before it applies the thread map.</td>
+</tr>
+<tr>
+<td><strong>Ambient Occlusion</strong></td>
+<td>Float</td>
+<td>None</td>
+<td>The base ambient occlusion value that you want your Shader Graph to apply to the geometry before it applies the thread map.</td>
+</tr>
+<tr>
+<td><strong>Thread AO Strength</strong></td>
+<td>Float</td>
+<td>None</td>
+<td>Specify a value of <code>0</code> or <code>1</code> to determine how the <strong>ThreadMap</strong>'s ambient occlusion should impact the final shader result:
+<ul>
+<li>If you provide a value of <code>0</code>, the <strong>ThreadMap</strong>'s ambient occlusion has no effect on the final output of the shader.</li>
+<li>If you provide a value of <code>1</code>, Shader Graph multiplies your base <strong>Ambient Occlusion</strong> value by the ambient occlusion value specified in your <strong>ThreadMap</strong> to determine the final output of the shader.</li></ul></td>
+</tr>
+<tr>
+<td><strong>Thread Normal Strength</strong></td>
+<td>Float</td>
+<td>None</td>
+<td>Specify a value of <code>0</code> or <code>1</code> to determine how the <strong>ThreadMap</strong>'s normal should impact the final shader result:
+<ul>
+<li>If you provide a value of <code>0</code>, the <strong>ThreadMap</strong>'s normal has no effect on the final output of the shader.</li>
+<li>If you provide a value of <code>1</code>, Shader Graph blends the values from your base <strong>Normals</strong> with the normal specified in your <strong>ThreadMap</strong> to determine the final output of the shader.</li></ul></td>
+</tr>
+<tr>
+<td><strong>Thread Smoothness Strength</strong></td>
+<td>Float</td>
+<td>None</td>
+<td>Specify a value of <code>0</code> or <code>1</code> to determine how the <strong>ThreadMap</strong>'s smoothness should impact the final shader result:
+<ul>
+<li>If you provide a value of <code>0</code>, the <strong>ThreadMap</strong>'s smoothness value has no effect on the final output of the shader.</li>
+<li>If you provide a value of <code>1</code>, Shader Graph adds the smoothness value specified in your <strong>ThreadMap</strong> to your base <strong>Smoothness</strong> value to determine the final output of the shader. For this calculation, Shader Graph remaps the value of your <strong>ThreadMap</strong>'s smoothness from (0,1) to (-1, 1).</li></ul></td>
+</tr>
+</tbody>
+</table>
+<h2 id="outputs">Outputs</h2>
+<p>node has the following output ports:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Name</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Normal</strong></td>
+<td>Vector 3</td>
+<td>The final normal output of the thread map.</td>
+</tr>
+<tr>
+<td><strong>Smoothness</strong></td>
+<td>Float</td>
+<td>The final smoothness output of the thread map.</td>
+</tr>
+<tr>
+<td><strong>Ambient Occlusion</strong></td>
+<td>Float</td>
+<td>The final ambient occlusion output of the thread map.</td>
+</tr>
+<tr>
+<td><strong>Alpha</strong></td>
+<td>Float</td>
+<td>The final alpha output of the thread map. Shader Graph calculates this alpha value by multiplying the input <strong>Alpha</strong> value by the <strong>Thread AO Strength</strong> value.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="example-graph-usage">Example graph usage</h2>
+<p>For an example use of the ThreadMapDetail node, see either of the HDRP's Fabric shaders.</p>
+<p>To view these Shader Graphs:</p>
+<ol>
+<li><p>Create a new material and assign it the <strong>HDRP</strong> &gt; <strong>Fabric</strong> &gt; <strong>Silk</strong> or <strong>HDRP</strong> &gt; <strong>Fabric</strong> &gt; <strong>CottonWool</strong> shader, as described in the Unity User Manual section <a href="https://docs.unity3d.com/Documentation/Manual/materials-introduction.html">Creating a material asset, and assigning a shader to it</a>.</p>
+</li>
+<li><p>Next to the <strong>Shader</strong> dropdown, select <strong>Edit</strong>.</p>
+</li>
+</ol>
+<p>Your chosen Fabric's Shader Graph opens. You can view the ThreadMapDetail node, its Subgraph, and the other nodes that create HDRP's Fabric shaders.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

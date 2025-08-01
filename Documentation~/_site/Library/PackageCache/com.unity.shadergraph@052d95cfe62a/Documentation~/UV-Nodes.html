@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>UV Nodes | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="UV Nodes | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="uv-nodes">UV Nodes</h1>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><a href="Flipbook-Node.html">Flipbook</a></th>
+<th style="text-align: left;"><a href="Polar-Coordinates-Node.html">Polar Coordinates</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><img src="images/FlipbookNodeThumb.png" alt="Example of the Flipbook Node"></td>
+<td style="text-align: left;"><img src="images/PolarCoordinatesNodeThumb.png" alt="Example of the Polar Coordinates Node"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Creates a flipbook, or texture sheet animation, of the UVs supplied to input In.</td>
+<td style="text-align: left;">Converts the value of input UV to polar coordinates.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="Radial-Shear-Node.html"><strong>Radial Shear</strong></a></td>
+<td style="text-align: left;"><a href="Rotate-Node.html"><strong>Rotate</strong></a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/RadialShearNodeThumb.png" alt="Example of the Radial Shear Node"></td>
+<td style="text-align: left;"><img src="images/RotateNodeThumb.png" alt="Example of the Rotate Node"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Applies a radial shear warping effect similar to a wave to the value of input UV.</td>
+<td style="text-align: left;">Rotates the value of input UV around a reference point defined by input Center by the amount of input Rotation.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="Spherize-Node.html"><strong>Spherize</strong></a></td>
+<td style="text-align: left;"><a href="Tiling-And-Offset-Node.html"><strong>Tiling and Offset</strong></a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/SpherizeNodeThumb.png" alt="Example of the Spherize Node"></td>
+<td style="text-align: left;"><img src="images/TilingAndOffsetNodeThumb.png" alt="Example of the Tiling and Offset Node"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Applies a spherical warping effect similar to a fisheye camera lens to the value of input UV.</td>
+<td style="text-align: left;">Tiles and offsets the value of input UV by the inputs Tiling and Offset respectively.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="Triplanar-Node.html"><strong>Triplanar</strong></a></td>
+<td style="text-align: left;"><a href="Twirl-Node.html"><strong>Twirl</strong></a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/TriplanarNodeThumb.png" alt="Example of the Triplanar Node"></td>
+<td style="text-align: left;"><img src="images/TwirlNodeThumb.png" alt="Example of the Twirl Node"></td>
+</tr>
+<tr>
+<td style="text-align: left;">A method of generating UVs and sampling a texture by projecting in world space.</td>
+<td style="text-align: left;">Applies a twirl warping effect similar to a black hole to the value of input UV.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="Parallax-Mapping-Node.html"><strong>Parallax Mapping</strong></a></td>
+<td style="text-align: left;"><a href="Parallax-Occlusion-Mapping-Node.html"><strong>Parallax Occlusion Mapping</strong></a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/ParallaxOcclusionMappingThumb.png" alt="Example of the Parallax Mapping Node"></td>
+<td style="text-align: left;"><img src="images/ParallaxOcclusionMappingNodeThumb.PNG" alt="Example of the Parallax Occlusion Mapping Node"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Creates a parallax effect that displaces a material's UVs.</td>
+<td style="text-align: left;">Creates a parallax effect that displaces a material's UVs and depth.</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

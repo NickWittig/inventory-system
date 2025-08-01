@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Blend Node | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Blend Node | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="blend-node">Blend Node</h1>
+
+<h2 id="description">Description</h2>
+<p>Blends the value of input <strong>Blend</strong> onto input <strong>Base</strong> using the blending mode defined by the <strong>Mode</strong> parameter. The strength of the blend is defined by input <strong>Opacity</strong>. An <strong>Opacity</strong> value of 0 will return the input <strong>Base</strong>, unaltered.</p>
+<h2 id="ports">Ports</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Direction</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Binding</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Base</td>
+<td style="text-align: left;">Input</td>
+<td style="text-align: left;">Dynamic Vector</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">Base layer value</td>
+</tr>
+<tr>
+<td style="text-align: left;">Blend</td>
+<td style="text-align: left;">Input</td>
+<td style="text-align: left;">Dynamic Vector</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">Blend layer value</td>
+</tr>
+<tr>
+<td style="text-align: left;">Opacity</td>
+<td style="text-align: left;">Input</td>
+<td style="text-align: left;">Float</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">Strength of blend</td>
+</tr>
+<tr>
+<td style="text-align: left;">Out</td>
+<td style="text-align: left;">Output</td>
+<td style="text-align: left;">Dynamic Vector</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">Output value</td>
+</tr>
+</tbody>
+</table>
+<h2 id="controls">Controls</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Options</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Mode</td>
+<td style="text-align: left;">Dropdown</td>
+<td style="text-align: left;">Burn, Darken, Difference, Dodge, Divide, Exclusion, HardLight, HardMix, Lighten, LinearBurn, LinearDodge, LinearLight, LinearLightAddSub, Multiply, Negation, Overlay, PinLight, Screen, SoftLight, Subtract, VividLight, Overwrite</td>
+<td style="text-align: left;">Blend mode to apply</td>
+</tr>
+</tbody>
+</table>
+<h2 id="generated-code-example">Generated Code Example</h2>
+<p>The following example code represents one possible outcome of this node per blend mode.</p>
+<p><strong>Burn</strong></p>
+<pre><code>void Unity_Blend_Burn_float4(float4 Base, float4 Blend, float Opacity, out float4 Out)
+{
+    Out =  1.0 - (1.0 - Blend)/Base;
+    Out = lerp(Base, Out, Opacity);
+}
+</code></pre>
+<p><strong>Darken</strong></p>
+<pre><code>void Unity_Blend_Darken_float4(float4 Base, float4 Blend, float Opacity, out float4 Out)
+{
+    Out = min(Blend, Base);
+    Out = lerp(Base, Out, Opacity);
+}
+</code></pre>
+<p><strong>Difference</strong></p>
+<pre><code>void Unity_Blend_Difference_float4(float4 Base, float4 Blend, float Opacity, out float4 Out)
+{
+    Out = abs(Blend - Base);
+    Out = lerp(Base, Out, Opacity);
+}
+</code></pre>
+<p><strong>Dodge</strong></p>
+<pre><code>void Unity_Blend_Dodge_float4(float4 Base, float4 Blend, float Opacity, out float4 Out)
+{
+    Out = Base / (1.0 - Blend);
+    Out = lerp(Base, Out, Opacity);
+}
+</code></pre>
+<p><strong>Divide</strong></p>
+<pre><code>void Unity_Blend_Divide_float4(float4 Base, float4 Blend, float Opacity, out float4 Out)
+{
+    Out = Base / (Blend + 0.000000000001);
+    Out = lerp(Base, Out, Opacity);
+}
+</code></pre>
+<p><strong>Exclusion</strong></p>
+<pre><code>void Unity_Blend_Exclusion_float4(float4 Base, float4 Blend, float Opacity, out float4 Out)
+{
+    Out = Blend + Base - (2.0 * Blend * Base);
+    Out = lerp(Base, Out, Opacity);
+}
+</code></pre>
+<p><strong>HardLight</strong></p>
+<pre><code>void Unity_Blend_HardLight_float4(float4 Base, float4 Blend, float Opacity, out float4 Out)
+{
+    float4 result1 = 1.0 - 2.0 * (1.0 - Base) * (1.0 - Blend);
+    float4 result2 = 2.0 * Base * Blend;
+    float4 zeroOrOne = step(Blend, 0.5);
+    Out = result2 * zeroOrOne + (1 - zeroOrOne) * result1;
+    Out = lerp(Base, Out, Opacity);
+}
+</code></pre>
+<p><strong>HardMix</strong></p>
+<pre><code>void Unity_Blend_HardMix_float4(float4 Base, float4 Blend, float Opacity, out float4 Out)
+{
+    Out = step(1 - Base, Blend);
+    Out = lerp(Base, Out, Opacity);
+}
+</code></pre>
+<p><strong>Lighten</strong></p>
+<pre><code>void Unity_Blend_Lighten_float4(float4 Base, float4 Blend, float Opacity, out float4 Out)
+{
+    Out = max(Blend, Base);
+    Out = lerp(Base, Out, Opacity);
+}
+</code></pre>
+<p><strong>LinearBurn</strong></p>
+<pre><code>void Unity_Blend_LinearBurn_float4(float4 Base, float4 Blend, float Opacity, out float4 Out)
+{
+    Out = Base + Blend - 1.0;
+    Out = lerp(Base, Out, Opacity);
+}
+</code></pre>
+<p><strong>LinearDodge</strong></p>
+<pre><code>void Unity_Blend_LinearDodge_float4(float4 Base, float4 Blend, float Opacity, out float4 Out)
+{
+    Out = Base + Blend;
+    Out = lerp(Base, Out, Opacity);
+}
+</code></pre>
+<p><strong>LinearLight</strong></p>
+<pre><code>void Unity_Blend_LinearLight_float4(float4 Base, float4 Blend, float Opacity, out float4 Out)
+{
+    Out = Blend &lt; 0.5 ? max(Base + (2 * Blend) - 1, 0) : min(Base + 2 * (Blend - 0.5), 1);
+    Out = lerp(Base, Out, Opacity);
+}
+</code></pre>
+<p><strong>LinearLightAddSub</strong></p>
+<pre><code>void Unity_Blend_LinearLightAddSub_float4(float4 Base, float4 Blend, float Opacity, out float4 Out)
+{
+    Out = Blend + 2.0 * Base - 1.0;
+    Out = lerp(Base, Out, Opacity);
+}
+</code></pre>
+<p><strong>Multiply</strong></p>
+<pre><code>void Unity_Blend_Multiply_float4(float4 Base, float4 Blend, float Opacity, out float4 Out)
+{
+    Out = Base * Blend;
+    Out = lerp(Base, Out, Opacity);
+}
+</code></pre>
+<p><strong>Negation</strong></p>
+<pre><code>void Unity_Blend_Negation_float4(float4 Base, float4 Blend, float Opacity, out float4 Out)
+{
+    Out = 1.0 - abs(1.0 - Blend - Base);
+    Out = lerp(Base, Out, Opacity);
+}
+</code></pre>
+<p><strong>Overlay</strong></p>
+<pre><code>void Unity_Blend_Overlay_float4(float4 Base, float4 Blend, float Opacity, out float4 Out)
+{
+    float4 result1 = 1.0 - 2.0 * (1.0 - Base) * (1.0 - Blend);
+    float4 result2 = 2.0 * Base * Blend;
+    float4 zeroOrOne = step(Base, 0.5);
+    Out = result2 * zeroOrOne + (1 - zeroOrOne) * result1;
+    Out = lerp(Base, Out, Opacity);
+}
+</code></pre>
+<p><strong>PinLight</strong></p>
+<pre><code>void Unity_Blend_PinLight_float4(float4 Base, float4 Blend, float Opacity, out float4 Out)
+{
+    float4 check = step (0.5, Blend);
+    float4 result1 = check * max(2.0 * (Base - 0.5), Blend);
+    Out = result1 + (1.0 - check) * min(2.0 * Base, Blend);
+    Out = lerp(Base, Out, Opacity);
+}
+</code></pre>
+<p><strong>Screen</strong></p>
+<pre><code>void Unity_Blend_Screen_float4(float4 Base, float4 Blend, float Opacity, out float4 Out)
+{
+    Out = 1.0 - (1.0 - Blend) * (1.0 - Base);
+    Out = lerp(Base, Out, Opacity);
+}
+</code></pre>
+<p><strong>SoftLight</strong></p>
+<pre><code>void Unity_Blend_SoftLight_float4(float4 Base, float4 Blend, float Opacity, out float4 Out)
+{
+    float4 result1 = 2.0 * Base * Blend + Base * Base * (1.0 - 2.0 * Blend);
+    float4 result2 = sqrt(Base) * (2.0 * Blend - 1.0) + 2.0 * Base * (1.0 - Blend);
+    float4 zeroOrOne = step(0.5, Blend);
+    Out = result2 * zeroOrOne + (1 - zeroOrOne) * result1;
+    Out = lerp(Base, Out, Opacity);
+}
+</code></pre>
+<p><strong>Subtract</strong></p>
+<pre><code>void Unity_Blend_Subtract_float4(float4 Base, float4 Blend, float Opacity, out float4 Out)
+{
+    Out = Base - Blend;
+    Out = lerp(Base, Out, Opacity);
+}
+</code></pre>
+<p><strong>VividLight</strong></p>
+<pre><code>void Unity_Blend_VividLight_float4(float4 Base, float4 Blend, float Opacity, out float4 Out)
+{
+    float4 result1 = 1.0 - (1.0 - Blend) / (2.0 * Base);
+    float4 result2 = Blend / (2.0 * (1.0 - Base));
+    float4 zeroOrOne = step(0.5, Base);
+    Out = result2 * zeroOrOne + (1 - zeroOrOne) * result1;
+    Out = lerp(Base, Out, Opacity);
+}
+</code></pre>
+<p><strong>Overwrite</strong></p>
+<pre><code>void Unity_Blend_Overwrite_float4(float4 Base, float4 Blend, float Opacity, out float4 Out)
+{
+    Out = lerp(Base, Blend, Opacity);
+}
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

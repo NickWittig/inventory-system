@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Navigation Areas and Costs | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Navigation Areas and Costs | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="navigation-areas-and-costs">Navigation Areas and Costs</h1>
+
+<p>The <strong>Navigation Area</strong> defines how difficult it is to walk across a specific area. This is important for finding the path with the lowest total cost. In addition, each <a href="NavMeshAgent.html">NavMesh Agent</a> has an <strong>Area Mask</strong> which you can use to specify which areas the agent can move on.</p>
+<p><img src="./Images/NavMeshAreaType.svg" alt="A scene with a door that only some agents can traverse, and a water area that is more expensive to walk through."></p>
+<p>In the example above the area types are used for two common use cases:</p>
+<ul>
+<li>The <strong>Water</strong> area is made more costly to walk through by assigning it a higher cost, to deal with a scenario where walking in shallow water is slower.</li>
+<li>The <strong>Door</strong> area is made accessible to specific characters, to create a scenario where humans can walk through doors, but zombies cannot.</li>
+</ul>
+<p>You can assign the area type to every object that is included in the <a href="Glossary.html#NavMesh" title="A mesh that Unity generates to approximate the walkable areas and obstacles in your environment for path finding and AI-controlled navigation."><strong>NavMesh</strong></a> baking. In addition, each <strong>NavMesh Link</strong> has a property to specify the area type.</p>
+<h2 id="pathfinding-cost">Pathfinding Cost</h2>
+<p>In a nutshell, the cost allows you to control which areas the pathfinder favors when finding a path. For example, if you set the cost of an area to 3.0, traveling across that area is considered to be three times longer than alternative routes.</p>
+<p>To fully understand how the cost works, let’s take a look at how the pathfinder works.</p>
+<p><img src="./Images/NavMeshNodePositions.svg" alt="Nodes and links visited during pathfinding."></p>
+<p>Nodes and links visited during pathfinding.</p>
+<p>Unity uses A* to calculate the shortest path on the NavMesh. A* works on a graph of connected nodes. The algorithm starts from the nearest node to the path start and visits the connect nodes until the destination is reached.</p>
+<p>Since the Unity navigation representation is a <a href="Glossary.html#Mesh" title="The main graphics primitive of Unity. Meshes make up a large part of your 3D worlds. Unity supports triangulated or Quadrangulated polygon meshes. Nurbs, Nurms, Subdiv surfaces must be converted to polygons."><strong>mesh</strong></a> of polygons, the first thing the pathfinder needs to do is to place a point on each polygon, which is the location of the node. The shortest path is then calculated between these nodes.</p>
+<p>The yellow dots and lines in the above picture shows how the nodes and links are placed on the NavMesh, and in which order they are traversed during the A*.</p>
+<p>The cost to move between two nodes depends on the distance to travel and the cost associated with the area type of the polygon under the link, that is, <em>distance * cost</em>. In practice this means, that if the cost of an area is 2.0, the distance across such polygon will appear to be twice as long. The A* algorithm requires that all costs must be larger than 1.0.</p>
+<p>The effect of the costs on the resulting path can be hard to tune, especially for longer paths. The best way to approach costs is to treat them as hints. For example, if you want the agents to not use <strong>NavMesh Links</strong> too often, you could increase their cost. But it can be challenging to tune a behavior where the agents prefer to walk on sidewalks.</p>
+<p>Another thing you may notice on some levels is that the pathfinder does not always choose the shortest path. The reason for this is the node placement. The effect can be noticeable in scenarios where big open areas are next to tiny obstacles, which results in a navigation mesh with very big and small polygons. In such cases the nodes on the big polygons may get placed anywhere in the big polygon and from the pathfinder’s point of view it looks like a detour.</p>
+<p>The <em>cost</em> per <em>area type</em> can be set globally in the <em>Areas</em> tab, or you can override them per agent using a script.</p>
+<h2 id="area-types">Area Types</h2>
+<p><img src="./Images/NavMeshAreaTypeList.png" alt="A table of areas, each showing their cost."></p>
+<p>The area types are specified in the <em>Navigation Window</em>’s <em>Areas</em> tab. There are 29 custom types, and 3 built-in types: <em>Walkable</em>, <em>Not Walkable</em>, and <em>Jump</em>.</p>
+<ul>
+<li><strong>Walkable</strong> is a generic area type which specifies that the area can be walked on.</li>
+<li><strong>Not Walkable</strong> is a generic area type which prevents navigation. It is useful for cases where you want to mark certain object to be an obstacle, but without getting NavMesh on top of it.</li>
+<li><strong>Jump</strong> is an area type that is assigned to all auto-generated <strong>NavMesh Links</strong>.</li>
+</ul>
+<p>If several objects of different area types are overlapping, the resulting NavMesh area type will generally be the one with the highest index. There is one exception however: <em>Not Walkable</em> always takes precedence. Which can be helpful if you need to block out an area.</p>
+<h2 id="area-mask">Area Mask</h2>
+<p><img src="./Images/NavMeshAreaMask.svg" alt="The Area Mask dropdown list, with four selected options: Walkable, Not Walkable, Jump, and Water."></p>
+<p>Each agent has an <em>Area Mask</em> which describes which areas it can use when navigating. The area mask can be set in the agent properties, or the bitmask can be manipulated using a script at runtime.</p>
+<p>The area mask is useful when you want only certain types characters to be able to walk through an area. For example, in a zombie evasion game, you could mark the area under each door with a <em>Door</em> area type, and uncheck the Door area from the zombie character’s Area Mask.</p>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="CreateNavMesh.html" title="Workflow to create a NavMesh.">Create a NavMesh</a></li>
+<li><a href="NavMeshModifier.html" title="Use for affecting the NavMesh generation of NavMesh area types based on the transform hierarchy.">NavMesh Modifier component reference</a></li>
+<li><a href="NavMeshModifierVolume.html" title="Use for affecting the NavMesh generation of NavMesh area types based on volume.">NavMesh Modifier Volume component reference</a></li>
+<li><a href="https://docs.unity3d.com/6000.0/Documentation/ScriptReference/AI.NavMeshAgent-areaMask.html" title="Script API to set which area types an agent can use for movement.">NavMeshAgent.areaMask scripting reference</a></li>
+<li><a href="https://docs.unity3d.com/6000.0/Documentation/ScriptReference/AI.NavMeshAgent.SetAreaCost.html" title="Script API to set what cost an agent considers for each area type.">NavMeshAgent.SetAreaCost() scripting reference</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

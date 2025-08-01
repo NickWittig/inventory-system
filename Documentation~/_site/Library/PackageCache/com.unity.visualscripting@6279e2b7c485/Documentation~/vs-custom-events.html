@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Custom Events | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Custom Events | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="custom-events">Custom Events</h1>
+
+<p>Events trigger, or start, a chain of logic in a Script Graph based on a specific occurrence in your application. Some Event types, such as On Start or On Update, exist by default in Visual Scripting. These Event nodes tell Visual Scripting to run the nodes they're connected to after the Script Graph starts, or on every frame while the Script Graph is active.</p>
+<p>You can also create your own custom Scripting Events to specify conditions for when a Script Graph's logic runs.</p>
+<p>Visual Scripting has two types of custom Events:</p>
+<ul>
+<li><p>Custom Event nodes: Use Custom Event nodes and Custom Event Trigger nodes to raise simple custom Events that don't require complex logic.</p>
+</li>
+<li><p>Custom Scripting Events: Create your own Custom Scripting Event nodes to raise more complex Event logic.</p>
+</li>
+</ul>
+<h2 id="custom-event-nodes">Custom Event nodes</h2>
+<p>Custom Event nodes are always accessible from the fuzzy finder. You don't need to write your own code to use these custom Events in a Script Graph. They don't require an event listener.</p>
+<p>You can use the Custom Event node to create multiple custom Events, as long as you give each Event a unique name. You can also customize the number of arguments that the Custom Event node can send.</p>
+<p>To configure a Custom Event node, you need to provide:</p>
+<ul>
+<li><p>A unique name.</p>
+</li>
+<li><p>A GameObject.</p>
+</li>
+<li><p>The number of arguments the Custom Event receives.</p>
+</li>
+</ul>
+<p>For more information on how to configure and use a Custom Event node, see <a href="vs-add-custom-event-node.html">Add a Custom Event node</a>.</p>
+<p>To trigger a Custom Event, use a Custom Event Trigger node and provide the unique name of the Event. For more information, see <a href="vs-add-custom-event-node-trigger.html">Add a Custom Event Trigger node</a>.</p>
+<p>Visual Scripting displays errors in the <a href="vs-interface-overview.html#the-graph-inspector">Graph Inspector</a> if the Custom Event node and a Custom Event Trigger node have different values for:</p>
+<ul>
+<li>The name of the Event.</li>
+<li>The provided GameObject for the Event.</li>
+<li>The number of arguments for the Event.</li>
+</ul>
+<p><img src="images/vs-events-custom-event-trigger-node-error-2.png" alt="An image of the Graph Editor and Graph Inspector. An On Keyboard Input node with its Key set to Space and its Action set to Hold connects to a Custom Event Trigger node. The node triggers the MyEvent Custom Event node, which connects to a Debug Log node to write the value of Arg. 0 to the console. The Custom Event Trigger node displays in red, because its Arguments field is set to 0, while the Custom Event node has its Arguments set to 2. The Graph Inspector displays an Index out of Range Exception error."></p>
+<p>All arguments on a Custom Event Trigger node must have values, even if the Custom Event node doesn't give those values to another node. In the following example, Visual Scripting displays an error for both <strong>Arg. 0</strong> and <strong>Arg. 1</strong>, even though <strong>Arg. 1</strong> isn't used.</p>
+<p><img src="images/vs-events-custom-event-trigger-node-error.png" alt="An image of the Graph Editor and Graph Inspector. An On Keyboard Input node with its Key set to Space and its Action set to Hold connects to a Custom Event Trigger node. The node triggers the MyEvent Custom Event node, which connects to a Debug Log node to write the value of Arg. 0 to the console. The Custom Event Trigger node displays in orange because its Arg. 0 and Arg. 1 input ports don't receive any input values. The Graph Inspector displays two warnings that state that Arg. 0 is missing, and Arg. 1 is missing."></p>
+<h2 id="custom-scripting-events">Custom Scripting Events</h2>
+<p>You can create a Custom Scripting Event node with a C# script. With C#, you can customize all aspects of your Custom Scripting Event, such as which category or categories to use for your node in the fuzzy finder. For more information, see <a href="vs-create-own-custom-event-node.html">Create a Custom Scripting Event node</a>.</p>
+<p><img src="images/vs-custom-event-nodes-example.png" alt="An image of the Graph Editor, that displays a Custom Scripting Event node and a Custom Scripting Event Sender node. An On Keyboard Input node with its Key set to Space and its Action set to Down connects to the Send My Custom Event node. When a user presses the Spacebar, the graph triggers the Send My Custom Event node, which triggers the On My Custom Event node. The On My Custom Event node connects to a Debug Log node, which logs the Result to the console."></p>
+<p>To use and trigger the Event, code a Custom Scripting Event Sender node or another C# script:</p>
+<ul>
+<li><p>For more information on how to send or trigger an Event with a node in a Script Graph, see <a href="vs-create-own-custom-event-send-node.html">Create a Custom Scripting Event Sender node</a>.</p>
+</li>
+<li><p>For more information on how to send or trigger an Event with code, see <a href="vs-create-own-custom-event-node-trigger-code.html">Trigger a Custom Scripting Event from a C# script</a>.</p>
+</li>
+</ul>
+<p>You can also use a C# script to listen to or receive your Event after you trigger it in a Script Graph. You can use your receiver script to trigger more logic in your application. For more information, see <a href="vs-create-own-custom-event-listen-code.html">Listen to a Custom Scripting Event from a C# script</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

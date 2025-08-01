@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Navigation Samples | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Navigation Samples | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="navigation-samples">Navigation Samples</h1>
+
+<p>The Navigation Samples showcase various usages of the NavMesh. They contain eight samples:</p>
+<ol>
+<li><p>Multiple Agent Sizes: Demonstrates how a different radius on an agent type can change the way agents navigate through the same scene.</p>
+</li>
+<li><p>Drop Plank: Demonstrates dynamically changing walkable paths by allowing the player to add walkable planks by pressing space.</p>
+</li>
+<li><p>Free Orientation: Demonstrates a controllable agent that can walk on a tilted plane.</p>
+</li>
+<li><p>Sliding Window Infinite: Demonstrates a controllable agent that can walk through a dynamically created world that gets updated to simulate infinity as the agent walks through it. The NavMesh is only built in some set bounds that follow the agent.</p>
+</li>
+<li><p>Sliding Window Terrain: Demonstrates a controllable agent that can walk through a terrain for which the NavMesh is only generated within a set distance of the agent.</p>
+</li>
+<li><p>Modify Mesh: Demonstrates agents walking aimlessly on planes whose mesh can be modified dynamically by the player.</p>
+</li>
+<li><p>Dungeon: Demonstrates a controllable agent that can walk through a maze generated from pre-baked tiles that connect to each other at runtime. The link traversal animation can be modified with some presets (teleport, normal speed, parabola, curve).</p>
+</li>
+<li><p>Height Mesh: Demonstrates two agents walking down stairs. The environment on the left uses <code>NavMeshSurface</code> with a Height Mesh which allows the agent to snap to each step in the stairs as it goes down. The environment on the right uses a <code>NavMeshSurface</code> with no Height Mesh; the agent simply slides down the stairs.</p>
+</li>
+</ol>
+<p>Note that some of these samples require that the <code>Packages/manifest.json</code> file of your project <a href="https://docs.unity3d.com/Manual/upm-manifestPrj.html">references</a> the following default modules:</p>
+<pre><code>&quot;com.unity.modules.physics&quot;: &quot;1.0.0&quot;,
+&quot;com.unity.modules.terrain&quot;: &quot;1.0.0&quot;,
+&quot;com.unity.modules.terrainphysics&quot;: &quot;1.0.0&quot;
+</code></pre>
+<p>If the samples are being imported into a project that uses the Built-In Render Pipeline, you’ll also need to install <code>com.unity.shadergraph</code>.</p>
+<h1 id="introduction-to-navmesh">Introduction to NavMesh</h1>
+<p>The Navigation package allows you to set up pathfinding AI in your Unity project. Two fundamental concepts of pathfinding are (1) agents and (2) world representation.</p>
+<ol>
+<li><p>An agent is a game entity that travels autonomously between two points in a scene. In Unity, a GameObject can be turned into a navigation agent by adding a <code>NavMeshAgent</code> component to it.</p>
+</li>
+<li><p>World representation is what allows the pathfinding program of an agent to understand the traversable surfaces of a world. It is a simplification of a 3D world. In Unity, a traversable surface is represented as a mesh of polygons which we refer to as NavMesh.</p>
+</li>
+</ol>
+<p>To convert some or all of the geometry in your scene into a surface that is traversable by an agent, you can use the <code>NavMeshSurface</code> component. However, you must also generate the data of the <code>NavMeshSurface</code> by using the <code>Bake</code> button in the Inspector. The process of baking is what actually creates a representation of the geometry in your scene that agents and their pathfinding program can understand.</p>
+<p>Whenever there are modifications done to the scene's geometry that can impact the navigation, the related <code>NavMeshSurface</code> component must be rebaked. The baking process is not done automatically because it can be a long process depending on the size and complexity of the input geometry. Note that baking cannot be done from the Inspector during Playmode.</p>
+<p>In order for an agent to move, it must know its destination. In Unity, the destination of a <code>NavMeshAgent</code> can be set through code with the <code>destination</code> property or the <code>SetDestination()</code> method. You can find an example of this in the <code>ClickToMove</code> script.</p>
+<p>For more information, refer to the <a href="https://docs.unity3d.com/Packages/com.unity.ai.navigation@latest">AI Navigation package manual</a>.</p>
+<h1 id="agent-types">Agent Types</h1>
+<p>The following agent types are created and used by the samples:</p>
+<pre><code>1.  Name: Humanoid for Navigation Sample
+    Radius: 0.5
+    Height: 2.0
+    Step Height: 0.75
+    Max Slope: 45
+
+
+2.  Name: Ogre for Navigation Sample
+    Radius: 1.0
+    Height: 2.0
+    Step Height: 0.4
+    Max Slope: 36
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

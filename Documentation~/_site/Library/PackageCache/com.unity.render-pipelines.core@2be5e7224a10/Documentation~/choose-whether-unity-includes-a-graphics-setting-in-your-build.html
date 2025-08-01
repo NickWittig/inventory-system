@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Include or exclude a setting in your build | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Include or exclude a setting in your build | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="include-or-exclude-a-setting-in-your-build">Include or exclude a setting in your build</h1>
+
+<p>By default, Unity doesn't include a setting (&quot;strips&quot; the setting) in your built project to optimize performance and reduce build size. For example, if you create a custom reference property that points to a shader asset, by default Unity doesn't include that property in your build.</p>
+<p>You can choose to include a setting in your build instead. The value of the property is read-only at runtime.</p>
+<h2 id="include-a-setting-in-your-build">Include a setting in your build</h2>
+<p>To include a setting in your build by default, set the <code>IsAvailableInPlayerBuild</code> property of your <a href="add-custom-graphics-settings.html">settings group class</a> to <code>true</code>.</p>
+<p>For example:</p>
+<pre><code class="lang-c#">public class MySettings: IRenderPipelineGraphicsSettingsStripper
+{
+  ...
+  // Make settings in this class available in your build
+  public bool IsAvailableInPlayerBuild =&gt; true;
+}
+</code></pre>
+<h2 id="create-your-own-stripping-code">Create your own stripping code</h2>
+<p>To conditionally control whether Unity includes or excludes a setting in your build, override the <code>IsAvailableInPlayerBuild</code> property by implementing the <code>IRenderPipelineGraphicsSettingsStripper</code> interface.</p>
+<p>Follow these steps:</p>
+<ol>
+<li>Create a class that implements the <code>IRenderPipelineGraphicsSettingsStripper</code> interface, and pass in your <a href="add-custom-graphics-settings.html">settings class</a>.</li>
+<li>Implement the <code>active</code> property. If you set <code>active</code> to <code>false</code>, the code in the class doesn't run.</li>
+<li>Implement the <code>CanRemoveSettings</code> method with your own code that decides whether to include the setting. Return <code>true</code> to strip the setting, or <code>false</code> to include the setting.</li>
+</ol>
+<p>For example:</p>
+<pre><code class="lang-c#">using UnityEngine;
+using UnityEngine.Rendering;
+
+// Implement the IRenderPipelineGraphicsSettingsStripper interface, and pass in our settings class
+class SettingsStripper : IRenderPipelineGraphicsSettingsStripper&lt;MySettings&gt;
+{
+
+  // Make this stripper active
+  public bool active =&gt; true;
+
+  // Implement the CanRemoveSettings method with our own code
+  public bool CanRemoveSettings(MySettings settings)
+  {
+    // Strip the setting (return true) if useMyFeature is false
+    return !settings.useMyFeature;
+  }
+}
+</code></pre>
+<p>If you implement <code>IRenderPipelineGraphicsSettingsStripper</code> multiple times for one setting, Unity only strips the setting if they all return <code>true</code>.</p>
+<h2 id="check-if-your-build-includes-a-setting">Check if your build includes a setting</h2>
+<p>You can check if a setting exists at runtime. A setting might not exist at runtime for one of the following reasons:</p>
+<ul>
+<li>Unity didn't include the setting in your build.</li>
+<li>The current pipeline doesn't support the setting.</li>
+<li>The setting is in an assembly that Unity doesn't include in your build. Refer to <a href="xref:um-script-compilation-assembly-definition-files">Organizing scripts into assemblies</a> for more information.</li>
+</ul>
+<p>To check if the setting exists, use the <code>TryGetRenderPipelineSettings</code> API. <code>TryGetRenderPipelineSettings</code> puts the setting in an <code>out</code> variable if the setting exists. Otherwise it returns <code>false</code>.</p>
+<p>For example, the following code checks whether a settings group called <code>MySettings</code> exists at runtime:</p>
+<pre><code class="lang-c#">if (GraphicsSettings.TryGetRenderPipelineSettings&lt;MySettings&gt;(out var mySetting)){
+  Debug.Log(&quot;The setting is in the build and its value is {mySetting.myValue}&quot;);
+}
+</code></pre>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="xref:um-script-compilation-assembly-definition-files">Organizing scripts into assemblies</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

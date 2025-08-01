@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>2. Arrange, Act, Assert | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="2. Arrange, Act, Assert | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../../index.html">
+            <img id="logo" class="svg" src="../../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="2-arrange-act-assert">2. Arrange, Act, Assert</h1>
+
+<h2 id="learning-objectives">Learning Objectives</h2>
+<p>In this exercise, you will learn about the core unit testing principle of AAA (Arrange, Act, Assert), which will help you structure your unit test.</p>
+<h2 id="intro-and-motivation">Intro and Motivation</h2>
+<p>The Arrange, Act, Assert concept is an industry standard in unit testing. It allows for a clear distinction of the code for setting up your test, carrying out the test, and evaluation. Using this can make your test more readable both for yourself and for your colleagues.</p>
+<p>In the first part of the code, we arrange all the elements needed for the test. In the middle part, we act on the object that is under test. In the final part, we assert on the result of the act part. The three parts of the code are usually separated by an empty line.</p>
+<p>An example of Arrange, Act, Assert could look like the following:</p>
+<pre><code>[Test]
+public void StringWriterTest()
+{
+ // Arrange
+ var stringWriterUnderTest = new StringWriter();
+ stringWriterUnderTest.NewLine = &quot;\\n&quot;;
+ var testStringA = &quot;I am testing&quot;;
+ var testStringB = &quot;with new line&quot;;
+
+ // Act
+ stringWriterUnderTest.WriteLine(testStringA);
+ stringWriterUnderTest.WriteLine(testStringB);
+
+ // Assert
+ Assert.AreEqual(&quot;I am testing\\nwith new line\\n&quot;, stringWriterUnderTest.ToString());
+}
+</code></pre>
+<p>It is good practice to use <code>XUnderTest</code> as a variable name of the class that is being tested. This helps to keep the focus of the test clean.</p>
+<p>The Act part of the code should have as few lines as possible, reflecting what is actually being tested. The assert should in the optimal case only contain assert calls, but it can also be necessary to include some lines of logic to allow for the assertion.</p>
+<h2 id="exercise">Exercise</h2>
+<p>Import the <a href="welcome.html#import-samples">sample</a> <code>2_ActArrangeAssert</code> into your Unity Editor (version 2019.2 or newer) from the Package Manager window.</p>
+<p>In this project we have a class called <code>StringFormatter</code>. It has two methods of interest: <code>void Configure(string joinDelimiter)</code> and <code>string Join(object[] args)</code>.</p>
+<p>The goal of this exercise is to write one or more tests, testing the <code>Join</code> method. For example, testing that it can join with a &quot;;&quot; (semicolon) delimiter.</p>
+<h2 id="hints">Hints</h2>
+<ul>
+<li>Setup of the test input and the call to <code>Configure(&quot;;&quot;)</code> would go into the <code>Arrange</code> part of your test.</li>
+<li>It is good practice to separate the three parts of your test (arrange, act and assert) with a blank line.</li>
+</ul>
+<h2 id="solution">Solution</h2>
+<p>The exercise can be solved with a test like the following:</p>
+<pre><code>[Test]
+public void JoinsObjectsWithSemiColon()
+{
+ // Arrange
+ var formatterUnderTest = new StringFormatter();
+ formatterUnderTest.Configure(&quot;;&quot;);
+ var objects = new object[] {&quot;a&quot;, &quot;bc&quot;, 5, &quot;d&quot;};
+ 
+ // Act
+ var result = formatterUnderTest.Join(objects);
+ 
+ // Assert
+ Assert.AreEqual(&quot;a;bc;5;d&quot;, result);
+}
+</code></pre>
+<p>A full project with the solution can be found in the sample <code>2_ActArrangeAssert_Solution.</code></p>
+<h2 id="further-reading-and-resources">Further reading and Resources</h2>
+<p>The AAA concept is a widely used standard which you can read more about in many online sources, including <a href="https://defragdev.com/blog/?p=783">this blogpost.</a></p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

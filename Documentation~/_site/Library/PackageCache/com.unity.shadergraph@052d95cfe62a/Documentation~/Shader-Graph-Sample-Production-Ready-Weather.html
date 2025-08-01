@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Weather | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Weather | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="weather">Weather</h1>
+
+<p>This sample comes with a full set of weather-related subgraphs (rain and snow) that can be mixed and matched depending on the requirements of the object type they’re applied to.</p>
+<h3 id="rain">Rain</h3>
+<p>There are several subgraphs that generate rain effects. Each has a different subset of the available rain effects. Applying all of the effects at once is a bit expensive on performance, so it’s best to choose the option with just the effects you need for the specific type of object/surface.</p>
+<h4 id="rain-1">Rain</h4>
+<p>The Rain subgraph combines all of the rain effect - drops, drips, puddles, wetness - to create a really nice rain weather effect - but it’s the most expensive on performance. Puddles are a bit expensive to generate as are drips, so this version should only be used on objects that will have both flat horizontal surfaces as well as vertical surfaces.</p>
+<h4 id="rain-floor">Rain Floor</h4>
+<p>The Rain Floor subgraph creates puddle and drop effects, but it does not have the drip effects that would run down vertical surfaces. This subgraph is best used for flat, horizontal surfaces.</p>
+<h4 id="rain-props">Rain Props</h4>
+<p>The Rain Props subgraph has the drop and drip effects but does not include the puddles.  It’s best for small prop objects.</p>
+<h4 id="rain-rocks">Rain Rocks</h4>
+<p>The Rain Rocks subgraph has been specifically tuned for use on rocks. It includes drips and drops, but not puddles. It also includes the LOD0 parameter that is meant to turn off close-up features on LODs other than the first one.</p>
+<h4 id="components">Components</h4>
+<h5 id="puddles">Puddles</h5>
+<p>The puddles subgraph creates procedurally-generated puddles on flat, up-facing surfaces. It outputs a mask that controls where the puddles appear and normals from the puddles. It uses the PuddleWindRipples and RainRipples subgraph to generate both wind and rain ripples in the puddles.</p>
+<h5 id="puddlewindripples">PuddleWindRipples</h5>
+<p>The PuddleWindRipples subgraph creates puddle wind ripples by scrolling two normal map textures.  It’s used by the Puddles subgraph.</p>
+<h5 id="rain_drips">Rain_Drips</h5>
+<p>This subgraph creates drips that drip down the sides of an object. The drips are projected in world space, so they work well for static objects but are not meant for moving objects. The speed of the drips is controlled by the permeability of the material. Smooth, impermeable surfaces have fast moving drips while permeable surfaces have slow-moving drips.</p>
+<h5 id="rain_dripsonthelens">Rain_DripsOnTheLens</h5>
+<p>This subgraph is very similar to the Rain_Drips subgraph, but it’s adapted to work correctly for the RainOnTheLens post-process shader.</p>
+<h5 id="rain_drops">Rain_Drops</h5>
+<p>This subgraph applies animated rain drops to objects.  The drops are projected in world space from the top down. Because of the world space projection, these rain drops are not designed to be added to objects that move in the scene but instead should be used for static objects. The IsRaining input port turns the effect on and off (when the input value is 1 and 0).</p>
+<h5 id="rain_parameters">Rain_Parameters</h5>
+<p>A common set of rain parameters used by most of the rain subgraphs. Setting parameters once in this subgraph means you don’t have to set them all over in multiple places.</p>
+<h5 id="raindropsonthelens">RainDropsOnTheLens</h5>
+<p>This subgraph is very similar to the RainDrops subgraph, but it’s adapted to work correctly for the RainOnTheLens post-process shader.</p>
+<h5 id="rainripple">RainRipple</h5>
+<p>Creates an animated circular ripple pattern. This subgraph is used multiple times in the RainRipples subgraph to create a really nice-looking pattern of multiple overlapping ripples.</p>
+<h5 id="rainripples">RainRipples</h5>
+<p>The RainRipples subgraph creates ripples from rain drops in a puddle or pool of water. It combines four instances of the RainRipple subgraph (each with its own scale, position, and timing offset) to create the chaotic appearance of multiple ripples all happening at once. It’s used by the Puddles subgraph to add rain ripples to the puddles.</p>
+<h5 id="wet">Wet</h5>
+<p>This subgraph makes surfaces look wet by darkening and saturating their base color and by increasing their smoothness. The effect is different depending on how permeable the surface is.</p>
+<h3 id="snow">Snow</h3>
+<p>The Snow subgraph creates a snow effect and applies it to the tops of objects. The snow material includes color, smoothness, normal, metallic, and emissive - where the emissive is used to apply sparkles to the snow.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

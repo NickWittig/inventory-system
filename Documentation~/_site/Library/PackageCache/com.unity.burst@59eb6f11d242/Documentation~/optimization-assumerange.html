@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>AssumeRange attribute | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="AssumeRange attribute | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="assumerange-attribute">AssumeRange attribute</h1>
+
+<p>Use the <a href="xref:Unity.Burst.CompilerServices.AssumeRangeAttribute"><code>AssumeRange</code></a> attribute to tell Burst that a given scalar-integer lies within a certain constrained range. If Burst has this information, it can improve the performance of your application. The following code is an example of this:</p>
+<pre><code class="lang-c#">[return:AssumeRange(0u, 13u)]
+static uint WithConstrainedRange([AssumeRange(0, 26)] int x)
+{
+    return (uint)x / 2u;
+}
+</code></pre>
+<p>This example tells Burst the following:</p>
+<ul>
+<li>The variable <code>x</code> is in the closed-interval range <code>[0..26]</code>, or more plainly that <code>x &gt;= 0 &amp;&amp; x &lt;= 26</code>.</li>
+<li>The return value from <code>WithConstrainedRange</code> is in the closed-interval range <code>[0..13]</code>, or more plainly that <code>x &gt;= 0 &amp;&amp; x &lt;= 13</code>.</li>
+</ul>
+<p>Burst uses these assumptions to create better code generation. However, there are some restrictions:</p>
+<ul>
+<li>You can only place these on scalar-integer (signed or unsigned) types.</li>
+<li>The type of the range arguments must match the type being attributed.</li>
+</ul>
+<p>Burst has deductions for the <code>.Length</code> property of <code>NativeArray</code> and <code>NativeSlice</code> which indicates that these always return non-negative integers:</p>
+<pre><code class="lang-c#">static bool IsLengthNegative(NativeArray&lt;float&gt; na)
+{
+    // Burst always replaces this with the constant false
+    return na.Length &lt; 0;
+}
+</code></pre>
+<p>For example, if you have a container like the following:</p>
+<pre><code class="lang-c#">struct MyContainer
+{
+    public int Length;
+    
+    // Some other data...
+}
+</code></pre>
+<p>The following example shows how to tell Burst that <code>Length</code> is always a positive integer:</p>
+<pre><code class="lang-c#">struct MyContainer
+{
+    private int _length;
+
+    [return: AssumeRange(0, int.MaxValue)]
+    private int LengthGetter()
+    {
+        return _length;
+    }
+
+    public int Length
+    {
+        get =&gt; LengthGetter();
+        set =&gt; _length = value;
+    }
+
+    // Some other data...
+}
+</code></pre>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="xref:Unity.Burst.CompilerServices.AssumeRangeAttribute"><code>[AssumeRange]</code> attribute API reference</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

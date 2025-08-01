@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Memory aliasing | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Memory aliasing | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="memory-aliasing">Memory aliasing</h1>
+
+<p>Memory aliasing is a way to tell Burst how your code uses data. This can improve and optimize the performance of your application.</p>
+<p>Memory aliasing happens when locations in the memory overlap each other.</p>
+<p>The following example shows a job that copies data from an input array to an output array:</p>
+<pre><code class="lang-c#">[BurstCompile]
+private struct CopyJob : IJob
+{
+    [ReadOnly]
+    public NativeArray&lt;float&gt; Input;
+
+    [WriteOnly]
+    public NativeArray&lt;float&gt; Output;
+
+    public void Execute()
+    {
+        for (int i = 0; i &lt; Input.Length; i++)
+        {
+            Output[i] = Input[i];
+        }
+    }
+}
+</code></pre>
+<h2 id="no-memory-aliasing">No memory aliasing</h2>
+<p>If the arrays <code>Input</code> and <code>Output</code> don't overlap, which means that their respective memory location doesn't overlap, the code returns the following result after running this job on a sample input/output:</p>
+<p><img src="images/burst-noalias.png" alt=""><br><em>Memory with no aliasing</em></p>
+<p>If Burst is <a href="aliasing-noalias.html">noalias</a> aware, it can work at the scalar level to optimize the previous scalar loop. It does this through a process called vectorizing, where it rewrites the loop to process elements in a small batch. For example, Burst could work at vector level in 4 by 4 elements:</p>
+<p><img src="images/burst-noalias-vectorized.png" alt=""><br><em>Memory with no aliasing vectorized</em></p>
+<h2 id="memory-aliasing-1">Memory aliasing</h2>
+<p>If the <code>Output</code> array overlaps the <code>Input</code> array by one element (for example <code>Output[0]</code> points to <code>Input[1]</code>), then this means that the memory is aliasing. This gives the following result when you run <code>CopyJob</code> without the auto vectorizer:</p>
+<p><img src="images/burst-alias.png" alt="Memory with aliasing"><br><em>Memory with aliasing</em></p>
+<p>If <a href="aliasing-noalias.html">Burst isn't aware of the memory aliasing</a>, it tries to auto vectorize the loop, which results in the following:</p>
+<p><img src="images/burst-alias-vectorized.png" alt=""><br><em>Memory with aliasing and invalid vectorized code</em></p>
+<p>The result of this code is invalid and might lead to bugs if Burst can't identify them.</p>
+<h2 id="generated-code">Generated code</h2>
+<p>In the <code>CopyJob</code> example, there is an <code>x64</code> assembly targeted at <code>AVX2</code> in its loop. The instruction <code>vmovups</code> moves 8 floats, so a single auto vectorized loop moves 4 × 8 floats, which equals 32 floats copied per loop iteration, instead of just one:</p>
+<pre><code class="lang-x86asm">.LBB0_4:
+    vmovups ymm0, ymmword ptr [rcx - 96]
+    vmovups ymm1, ymmword ptr [rcx - 64]
+    vmovups ymm2, ymmword ptr [rcx - 32]
+    vmovups ymm3, ymmword ptr [rcx]
+    vmovups ymmword ptr [rdx - 96], ymm0
+    vmovups ymmword ptr [rdx - 64], ymm1
+    vmovups ymmword ptr [rdx - 32], ymm2
+    vmovups ymmword ptr [rdx], ymm3
+    sub     rdx, -128
+    sub     rcx, -128
+    add     rsi, -32
+    jne     .LBB0_4
+    test    r10d, r10d
+    je      .LBB0_8
+</code></pre>
+<p>The following example shows the same Burst compiled loop, but Burst's aliasing is artificially disabled:</p>
+<pre><code class="lang-x86asm">.LBB0_2:
+    mov     r8, qword ptr [rcx]
+    mov     rdx, qword ptr [rcx + 16]
+    cdqe
+    mov     edx, dword ptr [rdx + 4*rax]
+    mov     dword ptr [r8 + 4*rax], edx
+    inc     eax
+    cmp     eax, dword ptr [rcx + 8]
+    jl      .LBB0_2
+</code></pre>
+<p>The result is entirely scalar and runs approximately 32 times slower than the highly optimized, vectorized variant that the original alias analysis produces.</p>
+<h2 id="function-cloning">Function cloning</h2>
+<p>For function calls where Burst knows about the aliasing between parameters to the function, Burst can infer the aliasing. It can then propagate this onto the called function to improve optimization:</p>
+<pre><code class="lang-c#">[MethodImpl(MethodImplOptions.NoInlining)]
+int Bar(ref int a, ref int b)
+{
+    a = 42;
+    b = 13;
+    return a;
+}
+
+int Foo()
+{
+    var a = 53;
+    var b = -2;
+
+    return Bar(ref a, ref b);
+}
+</code></pre>
+<p>The assembly for <code>Bar</code> would be:</p>
+<pre><code class="lang-x86asm">mov     dword ptr [rcx], 42
+mov     dword ptr [rdx], 13
+mov     eax, dword ptr [rcx]
+ret
+</code></pre>
+<p>This is because Burst doesn't know the aliasing of <code>a</code> and <code>b</code> within the <code>Bar</code> function. This is in line with what other compiler technologies do with this code snippet.</p>
+<p>Burst is smarter than this though. Through a process of function cloning, Burst creates a copy of <code>Bar</code> where it knows that the aliasing properties of <code>a</code> and <code>b</code> don't alias. It then replaces the original call to <code>Bar</code> with a call to the copy. This results in the following assembly:</p>
+<pre><code class="lang-x86asm">mov     dword ptr [rcx], 42
+mov     dword ptr [rdx], 13
+mov     eax, 42
+ret
+</code></pre>
+<p>In this scenario, Burst doesn't perform the second load from <code>a</code>.</p>
+<h2 id="aliasing-checks">Aliasing checks</h2>
+<p>Because aliasing is key to Burst's ability to optimize for performance, there are some aliasing intrinsics:</p>
+<ul>
+<li><a href="xref:Unity.Burst.CompilerServices.Aliasing.ExpectAliased*"><code>Unity.Burst.CompilerServices.Aliasing.ExpectAliased</code></a> expects that the two pointers do alias, and generates a compiler error if not.</li>
+<li><a href="xref:Unity.Burst.CompilerServices.Aliasing.ExpectNotAliased*"><code>Unity.Burst.CompilerServices.Aliasing.ExpectNotAliased</code></a> expects that the two pointers don't alias, and generates a compiler error if not.</li>
+</ul>
+<p>An example:</p>
+<pre><code class="lang-c#">using static Unity.Burst.CompilerServices.Aliasing;
+
+[BurstCompile]
+private struct CopyJob : IJob
+{
+    [ReadOnly]
+    public NativeArray&lt;float&gt; Input;
+
+    [WriteOnly]
+    public NativeArray&lt;float&gt; Output;
+
+    public unsafe void Execute()
+    {
+        // NativeContainer attributed structs (like NativeArray) cannot alias with each other in a job struct!
+        ExpectNotAliased(Input.getUnsafePtr(), Output.getUnsafePtr());
+
+        // NativeContainer structs cannot appear in other NativeContainer structs.
+        ExpectNotAliased(in Input, in Output);
+        ExpectNotAliased(in Input, Input.getUnsafePtr());
+        ExpectNotAliased(in Input, Output.getUnsafePtr());
+        ExpectNotAliased(in Output, Input.getUnsafePtr());
+        ExpectNotAliased(in Output, Output.getUnsafePtr());
+
+        // But things definitely alias with themselves!
+        ExpectAliased(in Input, in Input);
+        ExpectAliased(Input.getUnsafePtr(), Input.getUnsafePtr());
+        ExpectAliased(in Output, in Output);
+        ExpectAliased(Output.getUnsafePtr(), Output.getUnsafePtr());
+    }
+}
+</code></pre>
+<p>These checks only run when optimizations are enabled, because proper aliasing deduction is intrinsically linked to the optimizer's ability to see through functions via inlining.</p>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="aliasing-noalias.html">NoAlias attribute</a></li>
+<li><a href="aliasing-job-system.html">Aliasing and the job system</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

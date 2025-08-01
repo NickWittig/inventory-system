@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Get custom graphics settings | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Get custom graphics settings | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="get-custom-graphics-settings">Get custom graphics settings</h1>
+
+<p>To get a custom setting and read its value, use the <code>GetRenderPipelineSettings</code> method.</p>
+<p>For example, the following script gets the <code>MySettings</code> settings class from the example in the <a href="add-custom-graphics-setting.html">Add a setting</a> page, then logs the value of the <code>mySetting</code> setting:</p>
+<pre><code class="lang-c#">using UnityEngine;
+using UnityEngine.Rendering;
+
+public class LogMySettingsValue : MonoBehaviour
+{
+    // Unity calls the Update method once per frame
+    void Update()
+    {
+        // Get the MySettings settings
+        var mySettings = GraphicsSettings.GetRenderPipelineSettings&lt;MySettings&gt;();  
+
+        // Log the value of the MyValue setting
+        Debug.Log(mySettings.mySetting);
+    }
+}
+</code></pre>
+<h2 id="get-a-notification-when-a-setting-changes">Get a notification when a setting changes</h2>
+<p>To configure a property so it notifies other scripts when its value changes, use the <code>SetValueAndNotify</code> method. You can use this to debug, update UI elements, or trigger other actions when a setting changes.</p>
+<p>This only works while you're editing your project, not at runtime. If you use <code>SetValueAndModify</code> in a built application, Unity throws an exception.</p>
+<p>Follow these steps:</p>
+<ol>
+<li><p>Create a public getter and setter in your setting class.</p>
+</li>
+<li><p>In the setter, set the value using the <code>SetValueAndNotify</code> method, so changing the setting value sends a notification to other scripts.</p>
+<p>For example:</p>
+<pre><code class="lang-c#">using UnityEngine;
+using UnityEngine.Rendering;
+using System;
+
+[Serializable]
+[SupportedOnRenderPipeline(typeof(UniversalRenderPipelineAsset))] 
+
+// Create a settings group by implementing the IRenderPipelineGraphicsSettings interface
+public class MySettings : IRenderPipelineGraphicsSettings
+{
+    // Implement the version field
+    public int version =&gt; 0;
+
+    // Create a MyValue setting and set its default value to 100
+    [SerializeField] private int MyValue = 100;
+
+    public int myValue
+    {
+        get =&gt; MyValue;
+        set =&gt; this.SetValueAndNotify(ref MyValue, value);
+    }
+}
+</code></pre>
+</li>
+<li><p>Use the <code>GraphicsSettings.Subscribe</code> method to subscribe to notifications from the setting, and call an <code>Action</code> when the setting changes.</p>
+<p>For example:</p>
+<pre><code class="lang-c#">using System;
+using UnityEngine;
+using UnityEngine.Rendering;
+
+public class DetectSettingsChange : MonoBehaviour
+{
+
+    // Unity calls the Awake method when it loads the script instance.
+    void Awake()
+    {
+
+        // Log the new value of the setting
+        Action&lt;MySettings, string&gt; onSettingChanged = (setting, name) =&gt;
+        {
+            Debug.Log($&quot;{name} changed to {setting.myValue}&quot;);
+        };
+
+        // Subscribe to notifications from the MySettings settings, and call the OnSettingsChanged Action when notified
+        GraphicsSettings.Subscribe&lt;MySettings&gt;(onSettingChanged);
+    }
+}
+</code></pre>
+</li>
+</ol>
+<h3 id="unsubscribe-from-the-notifications-from-a-setting">Unsubscribe from the notifications from a setting</h3>
+<p>To stop calling a method when a setting changes, use the <code>GraphicsSettings.Unsubscribe</code> method. For example:</p>
+<pre><code class="lang-c#">GraphicsSettings.Unsubscribe&lt;MySettings&gt;(onSettingChanged);
+</code></pre>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="https://docs.unity3d.com/6000.1/Documentation/ScriptReference/Rendering.IRenderPipelineGraphicsSettings.html"><code>IRenderPipelineGraphicsSettings</code></a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

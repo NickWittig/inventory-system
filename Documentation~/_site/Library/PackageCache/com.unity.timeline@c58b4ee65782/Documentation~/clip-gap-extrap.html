@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Set gap extrapolation | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Set gap extrapolation | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="set-gap-extrapolation">Set gap extrapolation</h1>
+
+<p>Gap extrapolation refers to how an Animation track approximates animation data in the gaps before and after an Animation clip.</p>
+<p>The main purpose for extrapolating animation data in the gaps between Animation clips is to avoid animation anomalies. Depending on the GameObject bound to the Animation track, these anomalies could be a GameObject jumping between two transformations, or a humanoid jumping between different poses.</p>
+<p>Each Animation clip has two gap extrapolation properties:</p>
+<ul>
+<li><strong>Pre-Extrapolate</strong>, which controls how animation data is approximated in the gap before an Animation clip.</li>
+<li><strong>Post-Extrapolate</strong>, which controls how animation data extends in the gap after an Animation clip.</li>
+</ul>
+<p>By default, Timeline sets both extrapolation properties to <strong>Hold</strong>. This sets the gap before the Animation clip to the animation on the first frame, and the gap after the Animation clip to the animation on the last frame. Each gap holds the animation at a certain frame. Icons before and after an Animation clip indicate the selected extrapolation modes.</p>
+<p><img src="images/tl-extrap-pre-post-hold.png" alt=""></p>
+<p><em>Icons indicate the pre-extrapolate and post-extrapolate modes</em></p>
+<p>When an Animation track contains a gap between two Animation clips, the <strong>Post-Extrapolate</strong> property of the left clip sets the gap extrapolation by default. If the <strong>Post-Extrapolate</strong> property of the clip to the left of a gap is set to <strong>None</strong>, the <strong>Pre-Extrapolate</strong> property of the right clip sets the gap extrapolation. Icons before and after Animation clips indicate whether the extrapolation for a gap is taken from the <strong>Post-Extrapolate</strong> property of the clip to the left or from the <strong>Pre-Extrapolate</strong> property of the clip to the right.</p>
+<p><img src="images/tl-extrap-two-tracks.png" alt=""></p>
+<p><strong>(A)</strong> The gap extrapolation is taken from the the Post-Extrapolate property of the left clip.<br>
+<strong>(B)</strong> The gap extrapolation is taken from the Pre-Extrapolate property of the right clip.</p>
+<p>To change the Pre-Extrapolate and Post-Extrapolate properties, select the Animation clip and use the Animation Extrapolation properties in the Inspector window.</p>
+<p><img src="images/insp-pre-post-extrap.png" alt=""></p>
+<p><em>Use Pre-Extrapolate and Post-Extrapolate to set the extrapolation modes for the selected Animation clip</em></p>
+<p>The Pre-Extrapolate property is hidden when one of the following is true:</p>
+<ul>
+<li>The gap before the Animation clip is set by the Post-Extrapolation mode of the previous clip.</li>
+<li>There is no gap before the Animation clip.</li>
+</ul>
+<p>Use the Pre-Extrapolation property to set the gap extrapolation of the gap before the selected Animation clip. The following table describes each pre-extrapolation mode.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Icon/Name</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>None</strong><br>(no icon)</td>
+<td style="text-align: left;">Turns off pre-extrapolation. In the gap before the selected Animation clip, the GameObject uses its transform, pose, or state from the Scene. Select <strong>None</strong> if, for example, you want to create an ease-in between the motion of a GameObject in the Scene and an Animation clip. Consult <a href="clip-ease.html">Easing-in and Easing-out Clips</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/icon-gap-hold.png" alt=""><br><strong>Hold</strong><br>(default)</td>
+<td style="text-align: left;">In the gap before the selected Animation clip, the GameObject bound to the Animation track uses the values assigned at the start of the Animation clip.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/icon-gap-loop.png" alt=""><br><strong>Loop</strong></td>
+<td style="text-align: left;">Turns off pre-extrapolation. In the gap before the selected Animation clip, the GameObject uses its transform, pose, or state from the Scene. Select <strong>None</strong> if, for example, you want to create an ease-in between the motion of a GameObject in the Scene and an Animation clip. Consult <a href="clip-ease.html">Easing-in and Easing-out Clips</a> for details.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/icon-gap-pingpong.png" alt=""><br><strong>Ping Pong</strong></td>
+<td style="text-align: left;">In the gap before the selected Animation clip, the GameObject bound to the Animation track repeats the entire animation forwards, then backwards. Use the <strong>Clip In</strong> property to offset the start of the loop. Changing the <strong>Clip In</strong> property affects the start of the loop when looping forward, and the end of the loop when looping backwards.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/icon-gap-continue.png" alt=""><br><strong>Continue</strong></td>
+<td style="text-align: left;">In the gap before the selected Animation clip, the GameObject bound to the Animation track either holds or loops the animation based on the settings of its source asset. For example, if the selected Animation clip uses the motion file <code>Recorded(2)</code> as its source asset and <code>Recorded(2)</code> is set to <strong>Loop</strong>, then selecting <strong>Continue</strong> loops the animation according to the <code>Recorded(2)</code> Loop Time settings.</td>
+</tr>
+</tbody>
+</table>
+<p>Use the Post-Extrapolate property to set the gap extrapolation of the gap after the selected Animation clip. The following table describes each post-extrapolation mode.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Icon/Name</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>None</strong><br>(no icon)</td>
+<td style="text-align: left;">Turns off post-extrapolation. In the gap after the selected Animation clip, the GameObject uses its transform, pose, or state from the Scene. Selecting <strong>None</strong> is useful if, for example, you want to create an ease-out between an Animation clip and the motion of a GameObject in the Scene. Consult <a href="clip-ease.html">Easing-in and Easing-out Clips</a> for details.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/icon-gap-hold.png" alt=""><br><strong>Hold</strong><br>(default)</td>
+<td style="text-align: left;">In the gap after the selected Animation clip, the GameObject bound to the Animation track uses the values assigned at the end of the Animation clip.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/icon-gap-loop.png" alt=""><br><strong>Loop</strong></td>
+<td style="text-align: left;">In the gap after the selected Animation clip, the GameObject bound to the Animation track repeats the entire animation as a forward loop: from start to end. To offset the start of the loop, use the <strong>Clip In</strong> property..</td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/icon-gap-pingpong.png" alt=""><br><strong>Ping Pong</strong></td>
+<td style="text-align: left;">In the gap after the selected Animation clip, the GameObject bound to the Animation track repeats the entire animation forwards, then backwards. Use the <strong>Clip In</strong> property to offset the start of the loop. Changing the <strong>Clip In</strong> property affects the start of the loop when looping forward, and the end of the loop when looping backwards.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><img src="images/icon-gap-continue.png" alt=""><br><strong>Continue</strong></td>
+<td style="text-align: left;">In the gap after the selected Animation clip, the GameObject bound to the Animation track either holds or loops the animation based on the settings of its source asset. For example, if the selected Animation clip uses the motion file <code>Recorded(2)</code> as its source asset and <code>Recorded(2)</code> is set to <strong>Loop</strong>, then selecting <strong>Continue</strong> loops the animation according to the <code>Recorded(2)</code> Loop Time settings.</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>SimpleDemo_UsingState | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="SimpleDemo_UsingState | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../../index.html">
+            <img id="logo" class="svg" src="../../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+
+<p>This sample shows how to set up a simple character controller using the input system. As there is more than one way to do it, the sample illustrates several ways. Each demonstration is set up as a separate scene. The basic functionality in all the scenes is the same. You can move and look around and fire projectiles (colored cubes) into the scene. In some scenes, only gamepads are supported but the more involved demonstrations support several different inputs concurrently.</p>
+<h1 id="simpledemo_usingstate">SimpleDemo_UsingState</h1>
+<p><a href="./SimpleController_UsingState.cs">Source</a></p>
+<p>This starts off at the lowest level by demonstrating how to wire up input by polling input state directly in a <code>MonoBehaviour.Update</code> function. For simplicity's sake it only deals with gamepads but the same mechanism works in equivalent ways for other types of input devices (e.g. using <code>Mouse.current</code> and <code>Keyboard.current</code>).</p>
+<p>The key APIs demonstrated here are <code>Gamepad.current</code> and <code>InputControl.ReadValue</code>.</p>
+<pre><code class="lang-CSharp">public class SimpleController_UsingState : MonoBehaviour
+{
+    //...
+
+    public void Update()
+    {
+        var gamepad = Gamepad.current;
+        if (gamepad == null)
+            return;
+
+        var move = Gamepad.leftStick.ReadValue();
+        //...
+    }
+}
+</code></pre>
+<h1 id="simpledemo_usingactions">SimpleDemo_UsingActions</h1>
+<p><a href="./SimpleController_UsingActions.cs">Source</a></p>
+<p>This moves one level higher and moves input over to &quot;input actions&quot;. These are input abstractions that allow you to bind to input sources indirectly.</p>
+<p>In this scene, the actions are embedded directly into the character controller component. This allows setting up the bindings for the actions directly in the inspector. To see the actions and their bindings, select the <code>Player</code> object in the hierarchy and look at the <code>SimpleController_UsingActions</code> component in the inspector.</p>
+<p>The key APIs demonstrated here are <code>InputAction</code> and its <code>Enable</code>/<code>Disable</code> methods and its <code>ReadValue</code> method.</p>
+<pre><code class="lang-CSharp">public class SimpleController_UsingActions : MonoBehaviour
+{
+    public InputAction moveAction;
+    //...
+
+    public void OnEnable()
+    {
+        moveAction.Enable();
+        //...
+    }
+
+    public void OnDisable()
+    {
+        moveAction.Disable();
+        //...
+    }
+
+    public void Update()
+    {
+        var move = moveAction.ReadValue&lt;Vector2&gt;();
+        //...
+    }
+}
+</code></pre>
+<p>The sample also demonstrates how to use a <code>Tap</code> and a <code>SlowTap</code> interaction on the fire action to implement a charged shooting mechanism. Note that in this case, we run the firing logic right from within the action using the action's <code>started</code>, <code>performed</code>, and <code>canceled</code> callbacks.</p>
+<pre><code class="lang-CSharp">        fireAction.performed +=
+            ctx =&gt;
+        {
+            if (ctx.interaction is SlowTapInteraction)
+            {
+                StartCoroutine(BurstFire((int)(ctx.duration * burstSpeed)));
+            }
+            else
+            {
+                Fire();
+            }
+            m_Charging = false;
+        };
+        fireAction.started +=
+            ctx =&gt;
+        {
+            if (ctx.interaction is SlowTapInteraction)
+                m_Charging = true;
+        };
+        fireAction.canceled +=
+            ctx =&gt;
+        {
+            m_Charging = false;
+        };
+</code></pre>
+<h1 id="simpledemo_usingactionasset">SimpleDemo_UsingActionAsset</h1>
+<p><a href="./SimpleController_UsingActionAsset.cs">Source</a></p>
+<p>As more and more actions are added, it can become quite tedious to manually set up and <code>Enable</code> and <code>Disable</code> all the actions. We could use an <code>InputActionMap</code> in the component like so</p>
+<pre><code class="lang-CSharp">public class SimpleController : MonoBehaviour
+{
+    public InputActionMap actions;
+
+    public void OnEnable()
+    {
+        actions.Enable();
+    }
+
+    public void OnDisable()
+    {
+        actions.Disable();
+    }
+}
+</code></pre>
+<p>but then we would have to look up all the actions manually in the action map. A simpler approach is to put all our actions in a separate asset and generate a C# wrapper class that automatically performs the lookup for us.</p>
+<p>To create such an <code>.inputactions</code> asset, right-click in the Project Browser and click <code>Create &gt;&gt; Input Actions</code>. To edit the actions, double-click the <code>.inputactions</code> asset and a separate window will come up. The asset we use in this example is <a href="SimpleControls.inputactions">SimpleControls.inputactions</a>.</p>
+<p>When you select the asset, note that <code>Generate C# Class</code> is ticked in the import settings. This triggers the generation of <a href="SimpleControls.cs">SimpleControls.cs</a> based on the <code>.inputactions</code> file.</p>
+<p>Regarding the <code>SimpleController_UsingActionAsset</code> script, there are some notable differences.</p>
+<pre><code class="lang-CSharp">public class SimpleController_UsingActionAsset
+{
+    // This replaces the InputAction instances we had before with
+    // the generated C# class.
+    private SimpleControls m_Controls;
+
+    //...
+
+    public void Awake()
+    {
+        // To use the controls, we need to instantiate them.
+        // This can be done arbitrary many times. E.g. there
+        // can be multiple players each with its own SimpleControls
+        // instance.
+        m_Controls = new SimpleControls();
+
+        // The generated C# class exposes all the action map
+        // and actions in the asset by name. Here, we reference
+        // the `fire` action in the `gameplay` action map, for
+        // example.
+        m_Controls.gameplay.fire.performed +=
+        //...
+    }
+
+    //...
+
+    public void Update()
+    {
+        // Same here, we can just look the actions up by name.
+        var look = m_Controls.gameplay.look.ReadValue&lt;Vector2&gt;();
+        var move = m_Controls.gameplay.move.ReadValue&lt;Vector2&gt;();
+
+        //...
+    }
+}
+</code></pre>
+<p>Just for kicks, this sample also adds keyboard and mouse control to the game.</p>
+<h1 id="simpledemo_usingplayerinput">SimpleDemo_UsingPlayerInput</h1>
+<p><a href="./SimpleController_UsingPlayerInput.cs">Source</a></p>
+<p>Finally, we reached the highest level of the input system. While scripting input like in the examples above can be quick and easy, it becomes hard to manage when there can be multiple devices and/or multiple players in the game. This is where <code>PlayerInput</code> comes in.</p>
+<p><code>PlayerInput</code> automatically manages per-player device assignments and can also automatically handle control scheme switching in single player (e.g. when the player switches between a gamepad and mouse&amp;keyboard).</p>
+<p>In our case, we're not getting too much out of it since we don't have control schemes or multiple players but still, let's have a look.</p>
+<p>The first thing you'll probably notice is that now there are two script components on the <code>Player</code> object, one being the usual <code>SimpleController</code> and the other being <code>PlayerInput</code>. The latter is what now refers to <a href="SimpleControls.inputactions">SimpleControls.inputactions</a>. It also has <code>gameplay</code> set as the <code>Default Action Map</code> so that the gameplay actions will get enabled right away when <code>PlayerInput</code> itself is enabled.</p>
+<p>For getting callbacks, we have chosen <code>Invoke Unity Events</code> as the <code>Behavior</code>. If you expand the <code>Events</code> foldout in the inspector, you can see that <code>OnFire</code>, <code>OnMove</code>, and <code>OnLook</code> are added to the respective events. Each callback method here looks like the <code>started</code>, <code>performed</code>, and <code>canceled</code> callbacks we've already seen on <code>fireAction</code> before.</p>
+<pre><code class="lang-CSharp">public class SimpleController_UsingPlayerInput : MonoBehaviour
+{
+    private Vector2 m_Move;
+    //...
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        m_Move = context.ReadValue&lt;Vector2&gt;();
+    }
+
+    //...
+}
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

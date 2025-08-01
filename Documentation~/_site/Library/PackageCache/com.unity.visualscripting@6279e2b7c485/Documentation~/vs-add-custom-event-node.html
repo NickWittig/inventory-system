@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Add a Custom Event node | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Add a Custom Event node | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="add-a-custom-event-node">Add a Custom Event node</h1>
+
+<p>You can add a Custom Event node to a Script Graph to trigger specific logic after an Event occurs. For more information about custom Events, see <a href="vs-custom-events.html">Custom Events</a>.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>To use a Custom Event node, you must configure the node with the following instructions, then add a Custom Event Trigger node to your graph. For more information on how to add a Custom Event Trigger node, see <a href="vs-add-custom-event-node-trigger.html">Add a Custom Event Trigger node</a></p>
+</div>
+<p>To add a Custom Event node to a Script Graph:</p>
+<ol>
+<li><p><a href="vs-open-graph-edit.html">Open the Script Graph</a> where you want to add a Custom Event node.</p>
+</li>
+<li><p>Right-click anywhere in the Graph Editor to open the fuzzy finder..</p>
+</li>
+<li><p>Go to <strong>Events</strong>.</p>
+</li>
+<li><p>Select the <strong>Custom Event</strong> node to add it to your graph.</p>
+</li>
+<li><p>In the <strong>GameObject</strong> field, indicated by the GameObject icon on the node, choose the GameObject where you want to create the Event. Do one of the following:</p>
+<ul>
+<li>Select the object picker (circle icon), and select a GameObject.</li>
+<li>Attach a node to the field's data input port that outputs a GameObject.</li>
+<li>Leave the field as the default value of <strong>This</strong> to use the GameObject where you attached your Script Graph to a Script Machine.</li>
+</ul>
+</li>
+<li><p>In the <strong>Arguments</strong> field, enter the number of arguments you want the custom Event to receive and pass to other nodes in your graph. The default value is 0. If you enter a number greater than 0, Visual Scripting adds the corresponding number of Output ports to the Custom Event node.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Visual Scripting labels your first argument as <code>Arg. 0</code>.</p>
+</div>
+</li>
+<li><p>Enter a unique name for the custom Event through one of the following methods:</p>
+<ul>
+<li>Enter a name in the field next to the <strong>Name</strong> input port.</li>
+<li>Attach a node that outputs a string value to the <strong>Name</strong> input port.</li>
+</ul>
+</li>
+</ol>
+<p>In the following example, a custom Event called <strong>On Damage</strong> returns a single argument when it's triggered in a Script Graph.</p>
+<p><img src="images/vs-events-custom-event-node.png" alt="An image of the Graph window, that displays a Custom Event node. Its Arguments are set to 1, its Target is set to This, and its Name is set to On Damage."></p>
+<h2 id="next-steps">Next steps</h2>
+<p>After you add a Custom Event node to your graph, <a href="vs-add-node-to-graph.html">add more nodes to your graph</a> or <a href="vs-creating-connections.html">connect nodes</a> to specify what happens after your Event triggers.</p>
+<p>Then, <a href="vs-add-custom-event-node-trigger.html">add a Custom Event Trigger node</a> to specify when to trigger the custom Event in your graph.</p>
+<p>To create more complex logic for your custom Event, you can also <a href="vs-create-own-custom-event-node.html">create a Custom Scripting Event node</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Allocator overview | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Allocator overview | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="allocator-overview">Allocator overview</h1>
+
+<p>An <strong>allocator</strong> governs unmanaged memory from which you can make allocations. Different allocators organize and track their memory in different ways. The Collections package includes the following allocators:</p>
+<ul>
+<li><a href="#allocatortemp"><code>Allocator.Temp</code></a>: The fastest allocator, for short-lived allocations. You can't pass this allocator to a job.</li>
+<li><a href="#allocatortempjob"><code>Allocator.TempJob</code></a>: A short-lived allocator that you can pass into jobs.</li>
+<li><a href="#allocatorpersistent"><code>Allocator.Persistent</code></a>: The slowest allocator for indefinite lifetime allocations. You can pass this allocator to a job.</li>
+</ul>
+<h2 id="allocatortemp">Allocator.Temp</h2>
+<p>Each frame, the main thread creates a Temp allocator which it deallocates in its entirety at the end of the frame. Each job also creates one Temp allocator per thread, and deallocates them in their entirety at the end of the job. Because a Temp allocator gets discarded as a whole, you don't need to manually deallocate Temp allocations, and doing so does nothing. The minimum alignment of Temp allocations is 64 bytes.</p>
+<p>Temp allocations are only safe to use in the thread and the scope where they were allocated. While you can make Temp allocations within a job, you can't pass main thread Temp allocations into a job. For example, you can't pass a native array that's Temp allocated in the main thread into a job.</p>
+<h2 id="allocatortempjob">Allocator.TempJob</h2>
+<p>You must deallocate TempJob allocations within 4 frames of their creation. 4 frames is the limit so that you can have an allocation that lasts a couple of frames with some extra margin for error. The minimum alignment of TempJob allocations is 16 bytes.</p>
+<p>For <code>Native-</code> collection types, the disposal safety checks throw an exception if a TempJob allocation lasts longer than 4 frames. For <code>Unsafe-</code> collection types, you must deallocate them within 4 frames, but Unity doesn't perform any safety checks to make sure that you do so.</p>
+<h2 id="allocatorpersistent">Allocator.Persistent</h2>
+<p>Because Persistent allocations can remain indefinitely, safety checks can't detect if a Persistent allocation has outlived its intended lifetime. As such, you must deallocate a Persistent allocation when you no longer need it. The minimum alignment of Persistent allocations is 16 bytes.</p>
+<h2 id="deallocating-an-allocator">Deallocating an allocator</h2>
+<p>Each collection retains a reference to the allocator that allocated its memory. This is because you must specify the allocator to deallocate its memory.</p>
+<ul>
+<li>An <code>Unsafe-</code> collection's <code>Dispose</code> method deallocates its memory.</li>
+<li>A <code>Native-</code> collection's <code>Dispose</code> method deallocates its memory and frees the handles needed for safety checks.</li>
+<li>An enumerator's <code>Dispose</code> method does nothing. The method exists only to fulfill the <code>IEnumerator&lt;T&gt;</code> interface.</li>
+</ul>
+<p>To dispose a collection after the jobs which need it have run, you can use the <code>Dispose(JobHandle)</code> method. This creates and schedules a job which disposes of the collection, and this new job takes the input handle as its dependency. Effectively, the method defers disposal until after the dependency runs:</p>
+<pre><code class="lang-cs" name="allocation_dispose_job">NativeArray&lt;int&gt; nums = new NativeArray&lt;int&gt;(10, Allocator.TempJob);
+
+// Create and schedule a job that uses the array.
+ExampleJob job = new ExampleJob { Nums = nums };
+JobHandle handle = job.Schedule();
+
+// Create and schedule a job that will dispose the array after the ExampleJob has run.
+// Returns the handle of the new job.
+handle = nums.Dispose(handle);
+</code></pre><h3 id="iscreated-property">IsCreated property</h3>
+<p>The <code>IsCreated</code> property of a collection is false only in the following cases:</p>
+<ul>
+<li>Immediately after creating a collection with its default constructor.</li>
+<li>After <code>Dispose</code> has been called on the collection.</li>
+</ul>
+<div class="NOTE">
+<h5>Note</h5>
+<p>You don't need to use a collection's default constructor. The constructor is only available because C# requires all structs have a public default constructor.</p>
+</div>
+<p>Calling <code>Dispose</code> on a collection sets <code>IsCreated</code> to false only for that struct, and not in any copies of the struct. <code>IsCreated</code> might still be true even after the collection's underlying memory is deallocated in the following situations:</p>
+<ul>
+<li><code>Dispose</code> was called on a different copy of the struct.</li>
+<li>The underlying memory was deallocated via an <a href="allocator-aliasing.html">alias</a>.</li>
+</ul>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="allocator-aliasing.html">Aliasing allocators</a></li>
+<li><a href="allocator-rewindable.html">Rewindable allocators</a></li>
+<li><a href="allocator-custom-define.html">Define a custom allocator</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

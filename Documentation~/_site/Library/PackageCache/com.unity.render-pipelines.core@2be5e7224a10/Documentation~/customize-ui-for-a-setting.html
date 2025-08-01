@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Customize the UI of custom settings | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Customize the UI of custom settings | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="customize-the-ui-of-custom-settings">Customize the UI of custom settings</h1>
+
+<p>To change the look of custom settings in the <strong>Graphics</strong> settings window, use the <code>PropertyDrawer</code> API.</p>
+<p>Follow these steps:</p>
+<ol>
+<li>Create a class that inherits from the <a href="xref:UnityEditor.PropertyDrawer"><code>PropertyDrawer</code></a> class.</li>
+<li>Add the <code>[CustomPropertyDrawer]</code> attribute to the class, with a reference to your settings class.</li>
+<li>Override the <code>PropertyDrawer.CreatePropertyGUI</code> method, and return a <code>VisualElement</code> object that contains the UI elements you want to display.</li>
+</ol>
+<p>The following example creates a custom UI for a <code>MySettings</code> class that contains a Boolean and a float field. The Graphics settings window displays the float only when the Boolean field is enabled.</p>
+<p>For more information, refer to <a href="xref:UnityEditor.PropertyDrawer">PropertyDrawer</a>.</p>
+<pre><code class="lang-c#">using UnityEngine;
+using UnityEditor;
+using UnityEngine.UIElements;
+
+// Create a custom UI for the properties in the MySettings class
+[CustomPropertyDrawer(typeof(MySettings))]
+public class MySettingsPropertyDrawer : PropertyDrawer
+{
+    // Override the CreatePropertyGUI method to define the custom UI
+    public override VisualElement CreatePropertyGUI(SerializedProperty property)
+    {
+        // Create a container to hold the UI elements
+        var container = new VisualElement();
+
+        // Find the properties to display
+        var useProperty = property.FindPropertyRelative(&quot;m_UseMyFeature&quot;);
+        var intensityProperty = property.FindPropertyRelative(&quot;m_MyFeatureIntensity&quot;);
+
+        // Create property fields for each property
+        var usePropertyField = new PropertyField(useProperty);
+        var intensityPropertyField = new PropertyField(intensityProperty);
+
+        // Enable or disable the intensity field based on the value of m_UseMyFeature
+        usePropertyField.RegisterValueChangeCallback(evt =&gt;
+        {
+            intensityPropertyField.SetEnabled(useProperty.boolValue);
+        });
+
+        // Add the property fields to the container
+        container.Add(usePropertyField);
+        container.Add(intensityPropertyField);
+
+        // Return the container to be displayed in the Graphics settings window
+        return container;
+    }
+}
+</code></pre>
+<h2 id="customize-the-more--menu-of-a-settings-group">Customize the More (⋮) menu of a settings group</h2>
+<p>To add items to the <strong>More</strong> (⋮) menu of a settings group, follow these steps:</p>
+<ol>
+<li>Create a class that implements the <a href="https://docs.unity3d.com/6000.1/Documentation/ScriptReference/Rendering.IRenderPipelineGraphicsSettingsContextMenu.html"><code>IRenderPipelineGraphicsSettingsContextMenu</code></a> interface.</li>
+<li>Implement the <code>PopulateContextMenu</code> method.</li>
+<li>To add an item, use the <code>AddItem</code> API.</li>
+</ol>
+<p>For example:</p>
+<pre><code class="lang-c#">public class MySettingsContextMenu : IRenderPipelineGraphicsSettingsContextMenu&lt;MySettings&gt;
+{
+    void IRenderPipelineGraphicsSettingsContextMenu&lt;MySettings&gt;.PopulateContextMenu(MySettings setting, PropertyDrawer _, ref GenericMenu menu)
+    {
+        menu.AddItem(new GUIContent(&quot;My custom menu item&quot;), false, () =&gt; { Debug.Log(&quot;Menu item was selected.&quot;); });
+    }
+}
+</code></pre>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="xref:UnityEditor.PropertyDrawer">PropertyDrawer</a></li>
+<li><a href="https://docs.unity3d.com/6000.1/Documentation/ScriptReference/Rendering.IRenderPipelineGraphicsSettingsContextMenu.html">IRenderPipelineGraphicsSettingsContextMenu</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Known Limitations | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Known Limitations | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="input-system-known-limitations">
+<h1 id="known-limitations">Known Limitations</h1>
+
+<p>The following is a list of known limitations that the Input System currently has.</p>
+<h2 id="compatibility-with-other-unity-features">Compatibility with other Unity features</h2>
+<ul>
+<li>Input processing in the background is tied to <code>Application.runInBackground</code> (i.e. the &quot;Run In Background&quot; setting in &quot;Player Preferences&quot;) which, however, Unity always forces to <code>true</code> in <strong>development</strong> players. This means that in development players, input will always be processed, even if the app is in the background. Of course, this only pertains to platforms where the player can actually run in the background (iOS and Android are thus unaffected).</li>
+<li><code>PlayerInput</code> split-screen support does not work with Cinemachine virtual cameras.</li>
+<li>The Input System cannot generate input for IMGUI.</li>
+<li>UI Toolkit can be used with <code>InputSystemUIInputModule</code> but only pointer (mouse, pen, touch) and gamepad input is supported at the moment. XR support is coming.
+<ul>
+<li>Also, UI Toolkit support currently requires use of an <code>EventSystem</code> setup in order to interface the Input System with UITK.</li>
+</ul>
+</li>
+</ul>
+<h3 id="ugui">uGUI</h3>
+<ul>
+<li>After enabling, the UI will not react to a pointer's position until the position is changed.</li>
+<li>The new input system cannot yet feed text input into uGUI and TextMesh Pro input field components. This means that text input ATM is still picked up directly and internally from the Unity native runtime.</li>
+<li>The UI will not consume input such that it will not also trigger in-game actions.</li>
+</ul>
+<h2 id="device-support">Device support</h2>
+<ul>
+<li>Currently, devices whose input sources depend on application focus (generally, keyboards and pointers but can be any device depending on platform) will not automatically sync their current state when the app loses and subsequently regains focus. This means that, for example, if the W key is held when application comes back into the foreground, the key needs to be depressed and pressed again for the input to come through.
+<ul>
+<li>This is being worked on.</li>
+</ul>
+</li>
+<li>(Desktop) We do not yet support distinguishing input from multiple pointers (mouse, pen, touch) or keyboards. There will be a single Mouse, Pen, Touch, and Keyboard device.</li>
+<li>(Windows) Pen input will not work with Wacom devices if &quot;Windows Ink&quot; support is turned off.</li>
+<li>(Windows) HID input is not currently supported in 32-bit players. This means that devices such as the PS4 controller will not work in 32-bit standalone players. Use the 64-bit standalone player instead.</li>
+<li>(Android) We only support a single Touchscreen at the moment.</li>
+<li>(Stadia) The Stadia controller is only supported <strong>in</strong> the Stadia player at the moment. In the editor, use the generic <code>Gamepad</code> for bindings and use any Xbox or PS4 controller for testing.</li>
+<li>Joy-Cons are only supported on Switch.</li>
+<li>Sensors in the PS4 controller are currently only supported on PS4.
+<blockquote>
+<p>NOTE: Support for NDA platforms is distributed as separate packages due to licensing restrictions. The packages, at this point, are made available separately to licensees for download and installation.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="features-supported-by-old-input-manager">Features Supported by Old Input Manager</h2>
+<ul>
+<li><code>MonoBehaviour</code> mouse methods (<code>OnMouseEnter</code>, <code>OnMouseDrag</code>, etc) will not be called by the Input System.</li>
+<li>Unity Remote doesn't currently support the Input System. This is being worked on.</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>SpeedTree 8 Sub Graph Assets | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="SpeedTree 8 Sub Graph Assets | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="speedtree-8-sub-graph-assets">SpeedTree 8 Sub Graph Assets</h1>
+
+<h2 id="prerequisite-information">Prerequisite information</h2>
+<p>This documentation assumes that you are already familiar with the concepts described in the following pages:</p>
+<ul>
+<li><a href="https://docs.unity3d.com/Manual/SpeedTree.html">SpeedTree</a></li>
+<li><a href="Sub-graph-Node.html">Sub Graph Nodes</a></li>
+<li><a href="Sub-graph-Asset.html">Sub Graph Assets</a></li>
+<li><a href="Keywords.html">Keywords</a></li>
+</ul>
+<p>The documentation on <a href="https://docs.unity3d.com/Manual/SL-Properties.html">ShaderLab material properties</a> might also be contextually helpful.</p>
+<h2 id="description">Description</h2>
+<p><a href="https://docs.unity3d.com/Manual/SpeedTree.html">SpeedTree</a> is a third-party solution that includes both ready-to-use tree assets, and modeling software for creating your own tree assets.</p>
+<p>Shader Graph has three built-in SpeedTree Sub Graph Assets:</p>
+<ul>
+<li><a href="#SpeedTree8ColorAlpha">SpeedTree8ColorAlpha</a></li>
+<li><a href="#SpeedTree8Wind">SpeedTree8Wind</a></li>
+<li><a href="#SpeedTree8Billboard">SpeedTree8Billboard</a></li>
+</ul>
+<p>These Sub Graph Assets provide SpeedTree 8 functionality for both the <a href="https://docs.unity3d.com/Manual/urp/urp-introduction.html">Universal Render Pipeline (URP)</a> and <a href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@12.0/manual/index">High Definition Render Pipeline (HDRP)</a>, so that you can work with SpeedTree 8 assets and create your own custom SpeedTree 8 Shader Graphs.</p>
+<p><strong>Note:</strong> The URP-specific versions of these SpeedTree 8 Sub Graph Assets use transparent billboard back faces instead of culling billboard back faces. These Sub Graph Assets can only replace their URP equivalents as a default once URP supports per-material culling overrides in Shader Graphs.</p>
+<h2 id="speedtree8coloralpha-">SpeedTree8ColorAlpha <a name="SpeedTree8ColorAlpha"></a></h2>
+<p>Each SpeedTree asset has four maps: a basemap (color/albedo), bump map (which provides surface normals), extra map (which provides metallic and ambient occlusion data), and  subsurface map (which provides the subsurface scattering color). The basemap provides input color and alpha data.</p>
+<p>This Sub Graph Asset applies all SpeedTree 8 features that modify the basemap's color and alpha data. These features are particularly useful for the following actions:</p>
+<ul>
+<li>Tinting the basemap color</li>
+<li>Varying tree hues</li>
+<li>Crossfading between levels of detail (LODs)</li>
+<li>Hiding geometry seams</li>
+</ul>
+<h3 id="tinting-the-basemap-color">Tinting the basemap color</h3>
+<p>You can use the SpeedTree8ColorAlpha Sub Graph Asset to apply a tint to the basemap color. This is useful if, for example, you want to adjust tree colors for different seasons of the year.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Support</th>
+<th>Purpose</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_ColorTint</code></td>
+<td>URP, HDRP</td>
+<td>Tint the basemap.</td>
+<td>Multiplies the <code>_ColorTint</code> property value by the basemap color.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="varying-tree-hues">Varying tree hues</h3>
+<p>To improve the visual diversity of SpeedTrees, you can use this Sub Graph Asset to modify the color of each tree instance. Both <code>_OldHueVarBehavior</code> and <code>_HueVariationColor</code> use the tree’s absolute <a href="https://learnopengl.com/Getting-started/Coordinate-Systems">world-space position</a> to determine a <a href="https://en.wikipedia.org/wiki/Pseudorandomness">pseudorandomized</a> hue variation intensity value.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Support</th>
+<th>Purpose</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_OldHueVarBehavior</code></td>
+<td>URP</td>
+<td>To match the behavior of URP-specific and Built-In SpeedTree 8 shaders.</td>
+<td>Uses the pseudorandom hue variation intensity value to <a href="https://en.wikipedia.org/wiki/Parametrization_(geometry)">parameterize</a> the <a href="https://en.wikipedia.org/wiki/Linear_interpolation">linear interpolation</a> between the basemap color (t=0) and HueVariation color (t=1) .</td>
+</tr>
+<tr>
+<td><code>_HueVariationColor</code></td>
+<td>URP, HDRP</td>
+<td>To provide SpeedTrees with more hue diversity.</td>
+<td>Uses the pseudorandom hue variation intensity value as its opacity and applies that to the basemap color as an <a href="https://docs.unity3d.com/Manual/SL-BlendOp.html">overlay blend</a>. A more subtle effect than that provided by <code>_OldHueBehavior</code>.</td>
+</tr>
+<tr>
+<td><code>EFFECT_HUE_VARIATION</code></td>
+<td>N/A</td>
+<td>N/A</td>
+<td>This keyword was used in handwritten SpeedTree 8 shaders, but it's not used in these SpeedTree 8 Shader Graphs. This is to ensure compliance with the default shader variant limit.</td>
+</tr>
+<tr>
+<td><code>_HueVariationKwToggle</code></td>
+<td>URP, HDRP, Built-In</td>
+<td>Only to support upgrade functionality.</td>
+<td>See <a href="https://docs.unity3d.com/ScriptReference/SpeedTreeImporter-hueVariation.html">SpeedTreeImporter.hueVariation</a>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crossfading-between-levels-of-detail-lods">Crossfading between levels of detail (LODs)</h3>
+<p>Crossfading dithers between different levels of detail (<a href="https://docs.unity3d.com/Manual/LevelOfDetail.html">LODs</a>) to minimize <a href="https://en.wikipedia.org/wiki/Popping_(computer_graphics)">popping</a> during abrupt transitions. The SpeedTree8ColorAlpha Sub Graph Asset uses a <a href="https://docs.unity3d.com/Packages/com.unity.shadergraph@12.0/manual/Custom-Function-Node.html">Custom Function Node</a> for that purpose.</p>
+<p>This Custom Function Node is not SpeedTree-specific. Enable <strong>Animate Cross-fading</strong> and select an <strong>LOD Fade</strong> setting to use it with any asset that has the LOD Group component. See <a href="https://docs.unity3d.com/Manual/class-LODGroup.html#transitions">Transitioning between LOD levels</a> for more information.</p>
+<h3 id="hiding-geometry-seams">Hiding geometry seams</h3>
+<p>The SpeedTree8ColorAlpha Sub Graph asset applies an alpha gradient to soften the transitions between geometry segments that sample different parts of the basemap.</p>
+<h2 id="speedtree8wind-">SpeedTree8Wind <a name="SpeedTree8Wind"></a></h2>
+<p>The SpeedTree8Wind Sub Graph Asset uses a <a href="https://docs.unity3d.com/Packages/com.unity.shadergraph@12.0/manual/Custom-Function-Node.html">Custom Function Node</a> to deform the vertices of SpeedTree 8 models in response to your application’s wind data. You can use this to make trees appear to bend in the wind.</p>
+<p>Unity applies wind data to the SpeedTree8Wind Sub Graph Asset is as follows:</p>
+<ul>
+<li>When a <a href="https://docs.unity3d.com/Manual/class-WindZone.html">WindZone</a> affects a SpeedTree 8 GameObject that has <a href="https://docs.unity3d.com/Manual/com.unity.modules.wind.html">Wind</a> enabled, Unity generates SpeedTree 8 wind simulation data.</li>
+<li>Unity populates the SpeedTreeWind Cbuffer with that wind simulation data.</li>
+<li>The SpeedTree8Wind Sub Graph Asset bases its deformation behavior on the data in the SpeedTreeWind Cbuffer.</li>
+</ul>
+<p>This asset includes automated LOD vertex interpolation when <strong>LOD Fade</strong> is set to <strong>SpeedTree</strong>. However, it does not support instancing.</p>
+<h2 id="speedtree8billboard-">SpeedTree8Billboard <a name="SpeedTree8Billboard"></a></h2>
+<p>The SpeedTree8Billboard Sub Graph Asset calculates billboard normals from a SpeedTree 8 model's bump map, geometric tangent, and bitangent data. It includes dithering functionality to improve the appearance of billboards at view angles diagonal to the model.</p>
+<p>The keyword toggle associated with this feature is named <code>EFFECT_BILLBOARD</code>.This supports backwards compatibility with previous versions of ShaderGraph, which require keywords and their toggling properties to have identical names.</p>
+<h2 id="speedtree-8-interpolatednormals">SpeedTree 8 InterpolatedNormals</h2>
+<p>All SpeedTree 8 shaders that Unity provides interpolate geometric normals, tangents, and bitangents in the vertex stage, because this results in a better visual appearance than the per-pixel data that Shader Graph nodes provide. You do not need to use this feature if your SpeedTree 8 Shader Graph does not include custom interpolators.</p>
+<p>HDRP and URP do not have identical backface normal transformation behavior. This can become a problem when you use <a href="Custom-Interpolators.html">Custom Interpolators</a> for geometric normal, tangent, and bitangent data. The purpose of the SpeedTree 8 InterpolatedNormals Sub Graph Asset is to allow for that difference. It combines geometric normal data with bump maps in a way that is compatible with the target pipeline's backface normal transformation behavior.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

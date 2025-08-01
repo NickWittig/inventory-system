@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Using Input in the Editor | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Using Input in the Editor | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="input-system-use-in-editor">
+<h1 id="using-input-in-the-editor">Using Input in the Editor</h1>
+
+<p>Unlike Unity's old Input Manager, you can use the new Input System from within <code>EditorWindow</code> code as well. For example, you can gain access to pen pressure information like this:</p>
+<pre><code class="lang-CSharp">class MyEditorWindow : EditorWindow
+{
+    public void OnGUI()
+    {
+        var pen = Pen.current;
+        if (pen != null)
+        {
+            var position = pen.position.ReadValue();
+            var pressure = pen.pressure.ReadValue();
+
+            //...
+        }
+    }
+}
+</code></pre>
+<p>This encompasses all code called from <code>OnGUI()</code> methods, which means that you can also use the Input System in property drawers, Inspectors, and other similar places.</p>
+<blockquote>
+<p><strong>Note</strong>: Unity doesn't support Actions in Edit mode.</p>
+</blockquote>
+<h2 id="coordinate-system">Coordinate System</h2>
+<p>The coordinate system differs between <code>EditorWindow</code> code and <code>UnityEngine.Screen</code>. <code>EditorWindow</code> code has its origin in the upper-left corner, with Y down. <code>UnityEngine.Screen</code> has it in the bottom-left corner, with Y up.</p>
+<p>The Input System compensates for that by automatically converting coordinates depending on whether you call it from your application or from Editor code. In other words, calling <code>Mouse.current.position.ReadValue()</code> from inside <code>EditorWindow</code> code returns mouse coordinates in Editor UI coordinates (Y down), and reading the position elsewhere returns it in application screen coordinates (Y up).</p>
+<p>Internally, an editor-specific Processor called <code>AutoWindowSpace</code> handles this translation.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

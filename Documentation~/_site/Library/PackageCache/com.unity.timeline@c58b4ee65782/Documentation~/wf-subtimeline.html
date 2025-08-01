@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Create a Sub-Timeline instance | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Create a Sub-Timeline instance | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="create-a-sub-timeline-instance">Create a Sub-Timeline instance</h1>
+
+<p>This workflow demonstrates how to create a single cut-scene by nesting a Timeline instance within another Timeline instance.</p>
+<p>This workflow uses the <a href="samp-gameplay-demo.html">Gameplay Sequence sample</a>. Consult <a href="samp-overview.html">Timeline Samples</a> for information on the samples available from the Timeline package and how to import these samples into your projects.</p>
+<p>To demonstrate how to combine two Timeline instances, this workflow is divided into the following main tasks:</p>
+<ol>
+<li><a href="#setupinstance">Set up the main Timeline instance</a>.</li>
+<li><a href="#subtimeline">Add a Control track and create a Sub-Timeline instance</a>.</li>
+<li><a href="#adjclip">Adjust the Control clip</a>.</li>
+<li><a href="#playresult">Play the result</a>.</li>
+</ol>
+<p><a name="setupinstance"></a></p>
+<h2 id="set-up-the-main-timeline-instance">Set up the main Timeline instance</h2>
+<p>This workflow demonstrates how to combine two Timeline instances to create a single cut-scene. By default, in the Gameplay Sequence Demo scene, the <code>CanSubTimeline</code> Sub-Timeline instance is already combined with the <code>GameplaySequence</code> Timeline instance.</p>
+<p>Before demonstrating how to combine two Timeline instances, remove the Sub-Timeline instance. To do this, follow these steps:</p>
+<ol>
+<li><p>Load the <code>GameplaySequence</code> scene and open the <code>GameplaySequence</code> Timeline instance in the Timeline window.</p>
+<p>Consult <a href="samp-gameplay-demo.html">Gameplay Sequence Demo</a> for the steps on how to load the <code>GameplaySequence</code> scene and display the <code>GameplaySequence</code> Timeline instance.</p>
+</li>
+<li><p>In the Timeline window, expand the Props Track group.</p>
+<p>The Props Track group contains tracks that activate and animate the <code>Table</code> and <code>Can</code> GameObjects. The Props Track group also contains the <code>Can Sub-Timeline</code> Control track that nests the <code>CanSubTimeline</code> Timeline instance. This Timeline instance animates the <code>Can</code> GameObject as it bounces and falls off the table.</p>
+<p><img src="images/tl-props-expanded.png" alt="">
+<em>The Props Track group expanded in the Timeline window with the Can Sub-Timeline track selected</em></p>
+<p>Since this workflow demonstrates how to combine two Timeline instances, you should remove the nested <code>CanSubTimeline</code> Timeline instance.</p>
+</li>
+<li><p>To remove the nested <code>CanSubTimeline</code> Timeline instance, delete the <code>Can Sub-Timeline</code> Control track.</p>
+<p>To delete the <code>Can Sub-Timeline</code> Control track, select the More (⋮) menu from its Track Header and choose <strong>Delete</strong>. This is one way to delete a track from a Timeline instance. The Timeline window includes other ways <a href="trk-delete.html">to delete a track</a>.</p>
+</li>
+</ol>
+<p><a name="subtimeline"></a></p>
+<h2 id="add-a-control-track-and-create-a-sub-timeline-instance">Add a Control track and create a Sub-Timeline instance</h2>
+<p>To nest the <code>CanSubTimeline</code> Timeline instance within the <code>GameplaySequence</code> Timeline instance, do the following:</p>
+<ol>
+<li><p>In the scene, select the GameObject associated with the Timeline instance that will be the main Timeline instance.</p>
+<p>In this workflow, the <code>GameplaySequence</code> is the main Timeline instance. It is associated with the <code>Timeline</code> GameObject.</p>
+<p><img src="images/hier-timeline-go.png" alt=""></p>
+<p><em>Select the <code>Timeline</code> GameObject to display the <code>GameplaySequence</code> Timeline instance in the Timeline window</em></p>
+</li>
+<li><p>When the Timeline window displays the <code>GameplaySequence</code> Timeline instance, enable the Lock icon.</p>
+<p>When locked, the Timeline window does not change when you select GameObjects. This makes it easier to set up or modify a Timeline instance.</p>
+</li>
+<li><p>Add a Control track to the Props Track group.</p>
+<p>To do this, click the <strong>Add</strong> (<strong>+</strong>) button beside the Prop Track group name, and choose <strong>Control Track</strong>.</p>
+<p><img src="images/tl-props-add-menu.png" alt=""></p>
+<p><em>The Add button (A) beside the Prop Track group name.</em></p>
+<p>A new Control Track is added at the end of the Prop Track. You may have to scroll the Timeline window to view the new Control track.</p>
+<p>A Control track is a special track for adding a Particle System, a Prefab instance, a ITimeControl Script, or a nested Timeline instance.</p>
+</li>
+<li><p>In the Scene Hierarchy, find the GameObject that is associated with the Timeline instance to be nested.</p>
+<p>In this workflow, you want to nest the <code>CanSubTimeline</code> Timeline instance which is associated with the <code>CanSubTimeline</code> GameObject. This GameObject is within the <code>Table</code> hierarchy.</p>
+<p><img src="images/hier-cansubtimeline-go.png" alt=""></p>
+<p><em>The CanSubTimeline is associated with CanSubTimeline GameObject</em></p>
+</li>
+<li><p>Select and drag the <code>CanSubTimeline</code> GameObject into the Control track that you added to the Props Track group.</p>
+<p>The Timeline window places a Control clip where you release the <code>CanSubTimeline</code> GameObject. The Control clip is set to the same size as the <code>CanSubTimeline</code> Timeline instance.</p>
+<p>When a Timeline instance is nested within another Timeline instance, the nested instance is referred to as a Sub-Timeline instance.</p>
+<p><img src="images/tl-props-control-clip.png" alt=""></p>
+<p><strong>(A)</strong> Control track with a Control clip.<br>
+<strong>(B)</strong> Downward arrow in the Control clip indicates that the Control clip contains a Sub-Timeline instance.<br></p>
+</li>
+<li><p>To view and Sub-Timeline instance, double-click its Control clip.</p>
+<p>The <strong>Local</strong> or <strong>Global</strong> button indicates whether the Timeline ruler displays the time local to the Sub-Timeline instance or the time global to the main Timeline instance.</p>
+<p>When you edit a Sub-Timeline instance, the Timeline title displays a breadcrumb list of Timeline and Sub-Timeline instances. There can be many nested Sub-Timeline instances.</p>
+<p><img src="images/anno-tl-sub-timeline.png" alt=""></p>
+<p><strong>(A)</strong> Local or Global button.<br>
+<strong>(B)</strong> Sub-Timeline instance with breadcrumb list or nested Sub-Timeline instances.<br></p>
+<p>You cannot change the duration of the Sub-Timeline instance. You must return to the main Timeline instance and change the duration of the Control clip to change the duration of the Sub-Timeline instance.</p>
+</li>
+<li><p>Click the name of the main Timeline instance, in the breadcrumb list beside the Timeline selector, to return to the main Timeline instance.</p>
+</li>
+</ol>
+<p><a name="adjclip"></a></p>
+<h2 id="adjust-the-control-clip">Adjust the Control clip</h2>
+<p>After you create a Sub-Timeline instance, you may have to reposition its Control clip to ensure a smooth transition between the animation in the main Timeline instance and the Sub-Timeline instance.</p>
+<p>For example, in this workflow, when the character bumps into the table, the <code>TableBase</code> Animation track animates the table before the Sub-Timeline takes control and animates the can.</p>
+<p>To ensure a smooth transition between these two animations, the Control clip must be repositioned to when the table begins to move. To do this, follow these steps:</p>
+<ol>
+<li><p>In the Timeline instance, select the Control clip for the Can Sub-Timeline.</p>
+<p><img src="images/insp-can-subtimeline.png" alt=""></p>
+<p><em>The properties for the CanSubTimeline Control clip display in the Inspector window</em></p>
+</li>
+<li><p>Set the <strong>Start</strong> for the Control clip to frame 833.</p>
+<p>This is the last frame when the <code>StaticCan</code> Activation clip is active. This is also the frame when the <code>TableBase</code> keyframe animation begins.</p>
+</li>
+</ol>
+<p><a name="playresult"></a></p>
+<h2 id="play-the-result">Play the result</h2>
+<p>To properly preview the entire cut-scene, including the <code>Player</code> character with the looping jog animation, click <a href="https://docs.unity3d.com/Manual/GameView.html">Play in the Game View</a>.</p>
+<p>If you attempt to preview this animation in the Timeline window, the <code>Player</code> character is shown in a T-Stance for most of the cut-scene because the <code>jog</code> Animator state is only available during runtime.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

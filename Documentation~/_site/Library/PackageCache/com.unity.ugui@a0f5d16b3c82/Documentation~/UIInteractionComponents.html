@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interaction Components | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interaction Components | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="interaction-components">Interaction Components</h1>
+
+<p>This section covers components in the UI system that handles interaction, such as mouse or touch events and interaction using a keyboard or controller.</p>
+<p>The interaction components are not visible on their own, and must be combined with one or more <a href="UIVisualComponents.html">visual components</a> in order to work correctly.</p>
+<h2 id="common-functionality">Common Functionality</h2>
+<p>Most of the interaction components have some things in common. They are selectables, which means they have shared built-in functionality for visualising transitions between states (normal, highlighted, pressed, disabled), and for navigation to other selectables using keyboard or controller. This shared functionality is described on the <a href="script-Selectable.html">Selectable</a> page.</p>
+<p>The interaction components have at least one UnityEvent that is invoked when user interacts with the component in specific way. The UI system catches and logs any exceptions that propagate out of code attached to UnityEvent.</p>
+<h2 id="button">Button</h2>
+<p>A Button has an <strong>OnClick</strong> UnityEvent to define what it will do when clicked.</p>
+<p><img src="images/UI_ButtonExample.png" alt=""></p>
+<p>See the <a href="script-Button.html">Button</a> page for details on using the Button component.</p>
+<h2 id="toggle">Toggle</h2>
+<p>A Toggle has an <strong>Is On</strong> checkbox that determines whether the Toggle is currently on or off. This value is flipped when the user clicks the Toggle, and a visual checkmark can be turned on or off accordingly. It also has an <strong>OnValueChanged</strong> UnityEvent to define what it will do when the value is changed.</p>
+<p><img src="images/UI_ToggleExample.png" alt=""></p>
+<p>See the <a href="script-Toggle.html">Toggle</a> page for details on using the Toggle component.</p>
+<h2 id="toggle-group">Toggle Group</h2>
+<p>A Toggle Group can be used to group a set of <a href="script-Toggle.html">Toggles</a> that are mutually exclusive. Toggles that belong to the same group are constrained so that only one of them can be selected at a time - selecting one of them automatically deselects all the others.</p>
+<p><img src="images/UI_ToggleGroupExample.png" alt=""></p>
+<p>See the <a href="script-ToggleGroup.html">Toggle Group</a> page for details on using the Toggle Group component.</p>
+<h2 id="slider">Slider</h2>
+<p>A Slider has a decimal number <strong>Value</strong> that the user can drag between a minimum and maximum value. It can be either horizontal or vertical. It also has a <strong>OnValueChanged</strong> UnityEvent to define what it will do when the value is changed.</p>
+<p><img src="images/UI_SliderExample.png" alt=""></p>
+<p>See the <a href="script-Slider.html">Slider</a> page for details on using the Slider component.</p>
+<h2 id="scrollbar">Scrollbar</h2>
+<p>A Scrollbar has a decimal number <strong>Value</strong> between 0 and 1. When the user drags the scrollbar, the value changes accordingly.</p>
+<p>Scrollbars are often used together with a <a href="script-ScrollRect.html">Scroll Rect</a> and a <a href="script-Mask.html">Mask</a> to create a scroll view. The Scrollbar has a <strong>Size</strong> value between 0 and 1 that determines how big the handle is as a fraction of the entire scrollbar length. This is often controlled from another component to indicate how big a proportion of the content in a scroll view is visible. The Scroll Rect component can automatically do this.</p>
+<p>The Scrollbar can be either horizontal or vertical. It also has a <strong>OnValueChanged</strong> UnityEvent to define what it will do when the value is changed.</p>
+<p><img src="images/UI_ScrollbarExample.png" alt=""></p>
+<p>See the <a href="script-Scrollbar.html">Scrollbar</a> page for details on using the Scrollbar component.</p>
+<h2 id="dropdown">Dropdown</h2>
+<p>A Dropdown has a list of options to choose from. A text string and optionally an image can be specified for each option, and can be set either in the Inspector or dynamically from code. It has a <strong>OnValueChanged</strong> UnityEvent to define what it will do when the currently chosen option is changed.</p>
+<p><img src="images/UI_DropdownExample.png" alt=""></p>
+<p>See the <a href="script-Dropdown.html">Dropdown</a> page for details on using the Dropdown component.</p>
+<h2 id="input-field">Input Field</h2>
+<p>An Input Field is used to make the text of a <a href="script-Text.html">Text Element</a> editable by the user. It has a UnityEvent to define what it will do when the text content is changed, and an another to define what it will do when the user has finished editing it.</p>
+<p><img src="images/UI_InputFieldExample.png" alt=""></p>
+<p>See the <a href="script-InputField.html">Input Field</a> page for details on using the Input Field component.</p>
+<h2 id="scroll-rect-scroll-view">Scroll Rect (Scroll View)</h2>
+<p>A Scroll Rect can be used when content that takes up a lot of space needs to be displayed in a small area. The Scroll Rect provides functionality to scroll over this content.</p>
+<p>Usually a Scroll Rect is combined with a <a href="script-Mask.html">Mask</a> in order to create a scroll view, where only the scrollable content inside the Scroll Rect is visible. It can also additionally be combined with one or two <a href="script-Scrollbar.html">Scrollbars</a> that can be dragged to scroll horizontally or vertically.</p>
+<p><img src="images/UI_ScrollRectExample.png" alt=""></p>
+<p>See the <a href="script-ScrollRect.html">Scroll Rect</a> page for details on using the Scroll Rect component.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

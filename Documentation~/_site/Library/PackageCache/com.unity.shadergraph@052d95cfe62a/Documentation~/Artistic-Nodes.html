@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Artistic Nodes | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Artistic Nodes | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="artistic-nodes">Artistic Nodes</h1>
+
+<h2 id="adjustment">Adjustment</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><a href="Channel-Mixer-Node.html">Channel Mixer</a></th>
+<th style="text-align: center;"><a href="Contrast-Node.html">Contrast</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><img src="images/ChannelMixerNodeThumb.png" alt="Image"></td>
+<td style="text-align: center;"><img src="images/ContrastNodeThumb.png" alt=""></td>
+</tr>
+<tr>
+<td style="text-align: center;">Controls the amount each of the channels of input In contribute to each of the output channels.</td>
+<td style="text-align: center;">Adjusts the contrast of input In by the amount of input Contrast.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><a href="Hue-Node.html"><strong>Hue</strong></a></td>
+<td style="text-align: center;"><a href="Invert-Colors-Node.html"><strong>Invert Colors</strong></a></td>
+</tr>
+<tr>
+<td style="text-align: center;"><img src="images/HueNodeThumb.png" alt="Image"></td>
+<td style="text-align: center;"><img src="images/InvertColorsNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: center;">Offsets the hue of input In by the amount of input Offset.</td>
+<td style="text-align: center;">Inverts the colors of input In on a per channel basis.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><a href="Replace-Color-Node.html"><strong>Replace Color</strong></a></td>
+<td style="text-align: center;"><a href="Saturation-Node.html"><strong>Saturation</strong></a></td>
+</tr>
+<tr>
+<td style="text-align: center;"><img src="images/ReplaceColorNodeThumb.png" alt="Image"></td>
+<td style="text-align: center;"><img src="images/SaturationNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: center;">Replaces values in input In equal to input From to the value of input To.</td>
+<td style="text-align: center;">Adjusts the saturation of input In by the amount of input Saturation.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><a href="White-Balance-Node.html"><strong>White Balance</strong></a></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"><img src="images/WhiteBalanceNodeThumb.png" alt="Image"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">Adjusts the temperature and tint of input In by the amount of inputs Temperature and Tint respectively.</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="blend">Blend</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><a href="Blend-Node.html">Blend</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><img src="images/BlendNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: center;">Blends the value of input Blend onto input Base using the blending mode defined by parameter Mode.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="filter">Filter</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><a href="Dither-Node.html">Dither</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><img src="images/DitherNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: center;">Dither is an intentional form of noise used to randomize quantization error. It is used to prevent large-scale patterns such as color banding in images..</td>
+</tr>
+</tbody>
+</table>
+<h2 id="mask">Mask</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><a href="Channel-Mask-Node.html">Channel Mask</a></th>
+<th style="text-align: center;"><a href="Color-Mask-Node.html">Color Mask</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><img src="images/ChannelMaskNodeThumb.png" alt="Image"></td>
+<td style="text-align: center;"><img src="images/ColorMaskNodeThumb.png" alt=""></td>
+</tr>
+<tr>
+<td style="text-align: center;">Masks values of input In on channels selected in dropdown Channels.</td>
+<td style="text-align: center;">Creates a mask from values in input In equal to input Mask Color.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="normal">Normal</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><a href="Normal-Blend-Node.html">Normal Blend</a></th>
+<th style="text-align: center;"><a href="Normal-From-Height-Node.html">Normal From Height</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><img src="images/NormalBlendNodeThumb.png" alt="Image"></td>
+<td style="text-align: center;"><img src="images/NormalFromHeightNodeThumb.png" alt=""></td>
+</tr>
+<tr>
+<td style="text-align: center;">Blends two normal maps defined by inputs A and B together.</td>
+<td style="text-align: center;">Creates a normal map from a height map defined by input Texture.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><a href="Normal-Strength-Node.html"><strong>Normal Strength</strong></a></td>
+<td style="text-align: center;"><a href="Normal-Unpack-Node.html"><strong>Normal Unpack</strong></a></td>
+</tr>
+<tr>
+<td style="text-align: center;"><img src="images/NormalStrengthNodeThumb.png" alt="Image"></td>
+<td style="text-align: center;"><img src="images/NormalUnpackNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: center;">Adjusts the strength of the normal map defined by input In by the amount of input Strength.</td>
+<td style="text-align: center;">Unpacks a normal map defined by input In.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="utility">Utility</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><a href="Colorspace-Conversion-Node.html">Colorspace Conversion</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><img src="images/ColorspaceConversionNodeThumb.png" alt="Image"></td>
+</tr>
+<tr>
+<td style="text-align: center;">Returns the result of converting the value of input In from one colorspace space to another.</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

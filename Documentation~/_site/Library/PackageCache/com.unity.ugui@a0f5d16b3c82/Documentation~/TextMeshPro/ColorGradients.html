@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Color Gradients | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Color Gradients | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../../index.html">
+            <img id="logo" class="svg" src="../../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="color-gradients">Color Gradients</h1>
+
+<p>You can apply gradients of up to four colors to TextMesh Pro GameObjects. When you add a gradient, TextMesh Pro applies it to each character in the text individually. It stores gradient colors as in each character sprite's vertex colors.</p>
+<p><img src="../images/TMP_ColorGradient_4-Corner-no-legend.png" alt="Example image"></p>
+<p><em>TextMesh Pro text with a four-color gradient</em></p>
+<p>Because each character sprite consists of two triangles, gradients tend to have a dominant direction. This is most obvious in diagonal gradients.</p>
+<p>For example, the dominant direction in gradient below favors the red and black colors in the bottom-left and top-right corners</p>
+<p><img src="../images/TMP_ColorGradient_3-Corner-YBRY_half.png" alt="Example image"></p>
+<p>When you reverse the gradient colors, so both the top-right and bottom-left corners are yellow, the dominant color changes.</p>
+<p><img src="../images/TMP_ColorGradient_3-Corner-RYYB_half.png" alt="Example image"></p>
+<p>TextMesh Pro multiplies gradient colors with the text's main vertex color (<strong>Main Settings &gt; Vertex Color</strong> in the TextMesh Pro Inspector). If the main vertex color is white you see only the gradient colors. If it’s black you don’t see the gradient colors at all.</p>
+<h2 id="applying-a-gradient">Applying a Gradient</h2>
+<p>To apply a gradient to a TextMesh Pro GameObject, edit the <a href="TMPObjectUIText.html#color">Gradient properties</a> in the Inspector.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<ul>
+<li>To apply a gradient to only a portion of the text, use the <a href="RichTextGradient.html">gradient</a> rich text tag.</li>
+<li>To apply a gradient to multiple text objects, use a <a href="ColorGradientsPresets.html">gradient preset</a>.</li>
+</ul>
+</div>
+<p><img src="../images/TMP_ColorGradientInspector.png" alt="Example image"></p>
+<p><strong>To apply a color gradient to a TextMesh Pro GameObject:</strong></p>
+<ol>
+<li><p>Enable the <strong>Main Settings &gt; Color Gradient</strong> property.</p>
+</li>
+<li><p>Set <strong>Main Settings &gt; Color Gradient &gt; Color Mode</strong> to the <a href="ColorGradientsTypes.html">type of gradient</a> you want to apply.</p>
+</li>
+<li><p>Use the <strong>Main Settings &gt; Color Gradient &gt; Colors</strong> settings to choose colors for the gradient. For each color you can:</p>
+</li>
+</ol>
+<ul>
+<li>Click the color swatch to open a <a href="https://docs.unity3d.com/Manual/EditingValueProperties.html">Color Picker</a>.</li>
+<li>Use the eyedropper to pick a color from anywhere on your screen.</li>
+<li>Enter the color’s hexadecimal value directly in the text field.</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

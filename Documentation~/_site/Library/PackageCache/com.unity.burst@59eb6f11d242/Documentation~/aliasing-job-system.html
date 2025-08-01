@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Aliasing and the job system | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Aliasing and the job system | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="aliasing-and-the-job-system">Aliasing and the job system</h1>
+
+<p>Unity's job system infrastructure has some limitations on what can alias within a job struct:</p>
+<ul>
+<li>Structs attributed with <a href="https://docs.unity3d.com/ScriptReference/Unity.Collections.LowLevel.Unsafe.NativeContainerAttribute.html"><code>[NativeContainer]</code></a> (for example, <a href="https://docs.unity3d.com/ScriptReference/Unity.Collections.NativeArray_1.html"><code>NativeArray</code></a> and <a href="https://docs.unity3d.com/ScriptReference/Unity.Collections.NativeSlice_1.html"><code>NativeSlice</code></a>) that are members of a job struct don't alias.</li>
+<li>Job struct members with the <a href="https://docs.unity3d.com/ScriptReference/Unity.Collections.LowLevel.Unsafe.NativeDisableContainerSafetyRestrictionAttribute.html"><code>[NativeDisableContainerSafetyRestriction]</code></a> attribute can alias with other members. This is because this attribute explicitly opts in to this kind of aliasing.</li>
+<li>Pointers to structs attributed with <code>[NativeContainer]</code> can't appear in other structs attributed with <code>[NativeContainer]</code>. For example, you can't have a <code>NativeArray&lt;NativeSlice&lt;T&gt;&gt;</code>.</li>
+</ul>
+<p>The following example job shows how these limitations work in practice:</p>
+<pre><code class="lang-c#">[BurstCompile]
+private struct MyJob : IJob
+{
+    public NativeArray&lt;float&gt; a;
+    public NativeArray&lt;float&gt; b;
+    public NativeSlice&lt;int&gt; c;
+
+    [NativeDisableContainerSafetyRestriction]
+    public NativeArray&lt;byte&gt; d;
+
+    public void Execute() { ... }
+}
+</code></pre>
+<ul>
+<li><code>a</code>, <code>b</code>, and <code>c</code> don't alias with each other.</li>
+<li><code>d</code> can alias with <code>a</code>, <code>b</code>, or <code>c</code>.</li>
+</ul>
+<div class="TIP">
+<h5>Tip</h5>
+<p>If you're used to working with C/C++'s <a href="https://en.wikipedia.org/wiki/Alias_analysis#Type-based_alias_analysis">Type Based Alias Analysis (TBAA)</a>, then you might assume that because <code>d</code> has a different type from <code>a</code>, <code>b</code>, or <code>c</code>, it shouldn't alias. However, in C#, pointers don't have any assumptions that pointing to a different type results in no aliasing. This is why <code>d</code> is assumed to alias with <code>a</code>, <code>b</code>, or <code>c</code>.</p>
+</div>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="aliasing.html">Memory aliasing</a></li>
+<li><a href="aliasing-noalias.html">NoAlias attribute</a></li>
+<li><a href="xref:um-job-system">Job system</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

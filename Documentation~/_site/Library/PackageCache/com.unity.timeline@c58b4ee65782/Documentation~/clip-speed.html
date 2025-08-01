@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Change clip play speed | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Change clip play speed | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="change-clip-play-speed">Change clip play speed</h1>
+
+<p>Change the clip play speed to accelerate or decelerate its audio, animation, or particle effect. Changing the clip play speed affects the duration of the clip. You can only change the play speed for Animation clips, Audio clips, and Control clips.</p>
+<p>To change the clip play speed, first, select the Edit mode to determine how other clips on the same track are affected:</p>
+<ul>
+<li>If the change in duration results in two clips that overlap each other:
+<ul>
+<li>Select Mix mode to create a blend.</li>
+<li>Select Replace mode to cut or remove intersecting clips.</li>
+</ul>
+</li>
+<li>Select Ripple mode to reposition the clips that start after the clip being sped up or slowed down. Ripple mode also preserves the gaps between clips.</li>
+</ul>
+<p>Select the clip and set the <strong>Speed Multiplier</strong> property in the Inspector window. The <strong>Speed Multiplier</strong> property displays the play speed as a multiplier of the original clip speed.</p>
+<p><img src="images/insp-speed-multipler.png" alt=""></p>
+<p><em>Speed Multiplier in the Inspector window</em></p>
+<p>When the <strong>Speed Multiplier</strong> is set to 1, the clip plays at its original speed. To double the play speed, change the <strong>Speed Multiplier</strong> to 2. This changes the duration of the clip. For example, doubling the play speed of a 180 frame Animation clip changes its duration to 90 frames.</p>
+<p><img src="images/tl-victory-double-speed.png" alt=""></p>
+<p><em>A short-dashed line and multiplication factor of 2.00x indicates a clip playing at double its original speed</em></p>
+<p>There are other ways to change the play speed of a clip:</p>
+<ul>
+<li>Right-click the clip and choose <strong>Editing</strong> &gt; <strong>Double Speed</strong> to halve the clip duration. The clip plays at twice its current speed. A short-dashed line and a multiplication factor indicates an accelerated clip. Doubling the clip speed sets the <strong>Speed Multiplier</strong> property to double its current value.</li>
+<li>Right-click the clip and choose <strong>Editing</strong> &gt; <strong>Half Speed</strong> to double the clip duration. The clip plays at half its current speed. A long-dashed line and multiplication factor indicates a decelerated clip. Halving the clip speed sets the <strong>Speed Multiplier</strong> property to half its current value.</li>
+<li>Right-click the clip and choose <strong>Editing</strong> &gt; <strong>Reset Speed</strong> to reset the clip to its original speed. This is the original duration of the clip. Resetting the clip speed sets the <strong>Speed Multiplier</strong> property to 1.</li>
+</ul>
+<p><strong>Note:</strong> The clip play speed only recognizes positive values 0.001 and greater. You cannot set the clip play speed to a negative value. This does not, for example, play an Animation clip in reverse.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

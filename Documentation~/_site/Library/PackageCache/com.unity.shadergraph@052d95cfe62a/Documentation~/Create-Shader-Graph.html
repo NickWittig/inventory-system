@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Creating a new Shader Graph Asset | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Creating a new Shader Graph Asset | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="creating-a-new-shader-graph-asset">Creating a new Shader Graph Asset</h1>
+
+<p>After you configure an SRP, you can create a new Shader Graph Asset. Right-click the Project window, locate <strong>Create</strong> &gt; <strong>Shader Graph</strong> in the context menu, then select your desired type of Shader Graph.</p>
+<p>The type of Shader Graph available is dependent on the render pipelines present in your project. Some options may or may not be present based on the render pipelines.</p>
+<p>The following options are always available:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;"></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Blank Shader Graph</td>
+<td style="text-align: left;">A completely blank shader graph. No target is selected and no blocks are added to the Master Stack.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Sub Graph</td>
+<td style="text-align: left;">A blank sub graph asset.</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<p>A sub menu for each installed render pipeline may be present containing template stacks for standard shading models ( Lit, Unlit, etc ).</p>
+<p>For a full list of provided options, refer to the <a href="https://docs.unity3d.com/Manual/urp/urp-introduction.html">Universal Render Pipeline</a> and <a href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@latest">High Definition Render Pipeline</a> documentation.</p>
+<p>For this example, Universal is installed so a Unversal Lit Shader Graph has been created.</p>
+<p>Double-click your newly created Shader Graph Asset to open it in the Shader Graph window.</p>
+<h2 id="shader-graph-window">Shader Graph window</h2>
+<p>The Shader Graph window consists of the Master Stack, the Preview Window, the Blackboard, and the Graph Inspector.</p>
+<p><img src="images/ShaderGraphWindow.png" alt=""></p>
+<h3 id="master-stack">Master Stack</h3>
+<p>The final connection that determines your shader output. Refer to <a href="Master-Stack">Master Stack</a> for more information.</p>
+<p><img src="" alt=""></p>
+<h3 id="preview-window">Preview window</h3>
+<p>An area to preview the current shader output. Here, you can rotate the object, and zoom in and out. You can also change the basic mesh on which the shader is previewed. Refer to <a href="Main-Preview">Main Preview</a> for more information.</p>
+<p><img src="images/MainPreview.png" alt="img"></p>
+<h3 id="blackboard">Blackboard</h3>
+<p>An area that contains all of the shader's properties in a single, collected view. Use the Blackboard to add, remove, rename, and reorder properties. Refer to <a href="Blackboard">Blackboard</a> for more information.</p>
+<p><img src="images/Blackboard.png" alt=""></p>
+<p>After you've set up a project, and become familiar with the Shader Graph window, refer to <a href="First-Shader-Graph">My first Shader Graph</a> for more information on how to get started.</p>
+<h3 id="internal-inspector">Internal Inspector</h3>
+<p>An area that contains information contextual to whatever the user is currently clicking on. It's a window that automatically is hidden by default and only appears when something is selected that can be edited by the user. Use the Internal Inspector to display and modify properties, node options, and the graph settings. Refer to <a href="Internal-Inspector.html">Internal Inspector</a> for more information.</p>
+<p><img src="images/Inspector.png" alt=""></p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

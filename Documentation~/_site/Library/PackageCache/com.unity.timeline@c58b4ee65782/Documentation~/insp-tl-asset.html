@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Timeline asset properties | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Timeline asset properties | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="timeline-asset-properties">Timeline asset properties</h1>
+
+<p>Use the Inspector window to set the frame rate, the duration mode, and a fixed length for the selected Timeline asset. Select a Timeline asset from the Project window to view its properties.</p>
+<p><img src="images/insp-tl-asset.png" alt=""></p>
+<p><em>Inspector window when you select a Timeline asset in the Project window</em></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Property</strong></th>
+<th style="text-align: left;"></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Frame Rate</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Sets the reference frame rate for the Timeline asset and its Timeline instances. Change the frame rate to align clips at precise frames. Note that the Frame Rate is only visual and has no effect on play speed, keyframes, tracks, or clips.<br><br>To set the Frame Rate, either select a standard frame rate from the drop-down menu or enter a non-standard frame rate in the adjacent field. Timeline supports frame rates from 1e-6 to 1000.<br><br>For Timeline instances associated with the Timeline asset, you can set the Frame Rate in the <a href="tl-options.html">Timeline Options</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Duration Mode</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Choose whether the duration of the Timeline asset extends to the end of the last clip or ends at a specific time or frame.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Based On Clips</td>
+<td style="text-align: left;">Sets the length of the Timeline asset based on the end of the last clip.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Fixed Length</td>
+<td style="text-align: left;">Sets the length of the Timeline asset to a specific number of seconds or frames.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Duration</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Displays the length of the Timeline asset in seconds and frames when the Duration Mode is set to Based on Clips.<br><br>Sets the length of the Timeline asset to a specific number of seconds or frames when the Duration Mode is set to Fixed Length.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Scene Preview</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Enable to preview the affect of the Timeline instance on the Scene. It is recommended to always enable Scene Preview.<br><br>Disable Scene Preview to apply the changes from the Timeline instance to the Scene. Since disabling Scene Preview can be destructive, a warning appears in the Inspector window and a warning icon appears on the <a href="tl-preview.html">Timeline Preview toggle</a>.</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

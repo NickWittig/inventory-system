@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Shader Graph project settings reference | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Shader Graph project settings reference | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="shader-graph-project-settings-reference">Shader Graph project settings reference</h1>
+
+<p>Use the Shader Graph project settings to define shader graph settings for your entire project. To access the Shader Graph project settings, do the following:</p>
+<ol>
+<li>From the main menu select <strong>Edit</strong> &gt; <strong>Project Settings</strong>. The <strong>Project Settings</strong> window is displayed.</li>
+<li>Select <strong>ShaderGraph</strong>.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Property</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Shader Variant Limit</strong></td>
+<td style="text-align: left;">Set the maximum number of variants allowed in the project. If your graph exceeds this maximum value, Unity returns the following error:<br> Validation: Graph is generating too many variants. Either delete Keywords, reduce Keyword variants or increase the Shader Variant Limit in Preferences &gt; Shader Graph. <br>For more information about shader variants, refer to <a href="https://docs.unity3d.com/Manual/SL-MultipleProgramVariants.html">Making multiple shader program variants</a>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="custom-interpolator-channel-settings">Custom Interpolator Channel Settings</h2>
+<p>It's impossible to limit the number of channels users can create in a Shader Graph. Use <strong>Custom Interpolator Channel Settings</strong> to create alerts that let users know when they're close to, or have exceeded, the channel limit for the target platform. Unity uses these settings to help Shader Graph users maintain compatibility with target platforms when using custom interpolators. For more information, refer to <a href="Custom-Interpolators.html">Custom interpolators</a>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Property</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Error Threshold</strong></td>
+<td style="text-align: left;">Specify the number of channels at which users are notified that they're at, or have surpassed, the channel limit. This property has a minimum value of 8 channels and must be higher than <strong>Warning Threshold</strong>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Warning Threshold</strong></td>
+<td style="text-align: left;">Specify the number of channels at which users are warned that they are close to the channel limit. This property must be lower than <strong>Error Threshold</strong> and between 8 and 32 channels.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="heatmap-color-mode-settings">Heatmap Color Mode Settings</h2>
+<p>You can create multiple customized heatmap values assets and swap them in and out based on the current needs of your project. Use <strong>Heatmap Color Mode Settings</strong> to specify which custom heatmap values asset to use for your project.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Property</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Custom Values</strong></td>
+<td style="text-align: left;">Specify which set of customized heatmap values to use for your project.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="Custom-Interpolators.html">Custom interpolators</a></li>
+<li><a href="https://docs.unity3d.com/Manual/SL-MultipleProgramVariants.html">Making multiple shader program variants</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

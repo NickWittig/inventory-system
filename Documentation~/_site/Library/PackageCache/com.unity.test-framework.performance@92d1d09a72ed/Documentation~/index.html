@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Performance Testing Package for Unity Test Framework | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Performance Testing Package for Unity Test Framework | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="performance-testing-package-for-unity-test-framework">Performance Testing Package for Unity Test Framework</h1>
+
+<p>The Unity Performance Testing Package extends Unity Test Framework with performance testing capabilities. It provides an API and test case decorators for taking measurements/samples of Unity profiler markers, and other custom metrics, in the Unity Editor and built players. It also collects configuration metadata that is useful for comparing data across different hardware and configurations, such as build and player settings.</p>
+<p>The Performance Testing Package is intended for use with the Unity Test Framework. You should be familiar with how to create and run tests as described in the <a href="https://docs.unity3d.com/Packages/com.unity.test-framework@latest">Unity Test Framework documentation</a>.</p>
+<blockquote>
+<p><strong>Note:</strong> When tests are run with Unity Test Framework, a development player is always built to support communication between the editor and player, effectively overriding the development build setting from the build settings UI or scripting API.</p>
+</blockquote>
+<h2 id="installing-the-performance-testing-package">Installing the Performance Testing Package</h2>
+<p>Install the Performance Testing Package package using one of the following methods:</p>
+<ul>
+<li>Add the package by <a href="https://docs.unity3d.com/Manual/upm-ui-giturl.html">installing from a Git URL</a>.</li>
+<li>Add the package as a dependency to the <a href="https://docs.unity3d.com/Manual/upm-manifestPrj.html">project manifest</a>.</li>
+</ul>
+<p>Example:</p>
+<ol>
+<li>Open the <code>manifest.json</code> file for your Unity project (located in the YourProject/Packages directory) in a text editor.</li>
+<li>Add <code>&quot;com.unity.test-framework.performance&quot;: &quot;3.0.3&quot;,</code> to the dependencies.</li>
+<li>Save the manifest.json file.</li>
+<li>Verify the Performance Testing Package is now installed by opening the Unity Package Manager window.</li>
+</ol>
+<p>When the package is installed, add a reference to <code>Unity.PerformanceTesting</code> in your assembly definition to access the performance testing APIs.</p>
+<p><img src="images/example04.png" alt="Performance test example01"></p>
+<h2 id="unity-version-compatibility">Unity version compatibility</h2>
+<p>Unity releases can often include changes that break compatibility with the Performance Testing Package, so we cannot currently guarantee latest package version compatability with every Unity version. The table below shows which version of the package is compatible with which Unity release streams.</p>
+<table>
+<thead>
+<tr>
+<th>Unity stream</th>
+<th>Package version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2023.2</td>
+<td>3.0.3</td>
+</tr>
+<tr>
+<td>2023.1</td>
+<td>3.0.3</td>
+</tr>
+<tr>
+<td>2022.2</td>
+<td>3.0.3</td>
+</tr>
+<tr>
+<td>2022.1</td>
+<td>3.0.3</td>
+</tr>
+<tr>
+<td>2021.3</td>
+<td>3.0.3</td>
+</tr>
+<tr>
+<td>2020.3</td>
+<td>3.0.3</td>
+</tr>
+<tr>
+<td>2019.4</td>
+<td>2.8.1-preview</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tips">Tips</h2>
+<h3 id="project-settings">Project settings</h3>
+<ul>
+<li>Remove all but one of the <a href="https://docs.unity3d.com/Manual/class-QualitySettings.html">Quality level settings</a> in <strong>Project Settings &gt; Quality</strong>. Otherwise, you may have different configurations when running on different platforms. If you require different settings per platform then make sure they are being set as expected.</li>
+<li>Disable VSync under <strong>Project Settings &gt; Quality</strong>. Some platforms like Android have a forced VSync and this will not be possible.</li>
+<li>Disable HW Reporting <strong>PlayerSettings -&gt; Other -&gt; Disable HW Reporting</strong>.</li>
+<li>Remove camera and run in batchmode if you are not measuring rendering.</li>
+</ul>
+<h3 id="generating-assets">Generating assets</h3>
+<p>Use <a href="https://docs.unity3d.com/Packages/com.unity.test-framework@1.1/api/UnityEngine.TestTools.IPrebuildSetup.html">IPrebuildSetup</a> attribute when you need to generate assets.
+Place assets in Resources or <a href="https://docs.unity3d.com/Manual/SpecialFolders.html">StreamingAssets</a> folders, scenes can be placed anywhere in the project, but should be added to build settings.</p>
+<h4 id="example-1-iprebuildsetup-implementation">Example 1: IPrebuildSetup implementation</h4>
+<pre><code class="lang-csharp">public class TestsWithPrebuildStep : IPrebuildSetup
+{
+    public void Setup()
+    {
+        // this code is executed before entering playmode or the player is executed
+    }
+}
+
+public class MyAmazingPerformanceTest
+{
+    [Test, Performance]
+    [PrebuildSetup(typeof(TestsWithPrebuildStep))]
+    public void Test()
+    {
+        ...
+    }
+}
+</code></pre>
+<p>When loading scenes in IPrebuildSetup you have to use <code>LoadSceneMode.Additive</code>.</p>
+<h4 id="example-2-using-editorscenemanager-to-create-new-scenes-additively-save-and-add-them-to-build-settings">Example 2: Using EditorSceneManager to create new scenes additively, save and add them to build settings.</h4>
+<pre><code class="lang-csharp">private static string m_ArtifactsPath = &quot;Assets/Artifacts/&quot;;
+
+public static Scene NewScene(NewSceneSetup setup)
+{
+    Scene scene = EditorSceneManager.NewScene(setup, NewSceneMode.Additive);
+    EditorSceneManager.SetActiveScene(scene);
+    return scene;
+}
+
+public static void SaveScene(Scene scene, string name, bool closeScene = true)
+{
+    EditorSceneManager.SaveScene(scene, GetScenePath(name));
+
+    if (closeScene)
+    {
+        foreach (var sceneSetting in EditorBuildSettings.scenes)
+            if (sceneSetting.path == GetScenePath((name)))
+                return;
+
+        EditorSceneManager.CloseScene(scene, true);
+        EditorSceneManager.SetActiveScene(EditorSceneManager.GetSceneAt(0));
+
+        var newListOfScenes = new List&lt;EditorBuildSettingsScene&gt;();
+        newListOfScenes.Add(new EditorBuildSettingsScene(GetScenePath(name), true));
+        newListOfScenes.AddRange(EditorBuildSettings.scenes);
+        EditorBuildSettings.scenes = newListOfScenes.ToArray();
+    }
+}
+
+public static string GetScenePath(string name)
+{
+    return m_ArtifactsPath + name + &quot;.unity&quot;;
+}
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Modding support | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Modding support | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="modding-support">Modding support</h1>
+
+<p>From Unity 2021.1, you can load additional Burst compiled libraries, which provide a way to create modifications that use Burst compiled code.</p>
+<p>Burst only provides a method to load additional libraries, and doesn't provide any tooling to create mods. You need a copy of the Unity Editor to compile the additional libraries.</p>
+<p>This section gives an example approach to modding with Burst and is a proof of concept.</p>
+<h2 id="supported-uses">Supported uses</h2>
+<p>You can use this function in Play mode (or Standalone Players) only.</p>
+<p>Make sure you load the libraries as soon as possible, and before the first Burst-compiled use of a C# method. Unity unloads any Burst libraries that <code>BurstRuntime.LoadAdditionalLibraries</code> loads when you exit Play mode in the Editor or quit a Standalone Player.</p>
+<h2 id="example-modding-system">Example modding system</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<p>This example is limited in scope. You should have knowledge of assemblies and asmdefs to follow this example.</p>
+</div>
+<p>This example declares an interface that the mods abide by:</p>
+<pre><code class="lang-c#">using UnityEngine;
+
+public interface PluginModule
+{
+    void Startup(GameObject gameObject);
+    void Update(GameObject gameObject);
+}
+</code></pre>
+<p>You can use this interface to create new classes which follow these specifications and ship it separate to your application. Passing a single <code>GameObject</code> along limits the state that the plug-ins can affect.</p>
+<h3 id="modding-manager">Modding manager</h3>
+<p>The following is an example of a modding manager:</p>
+<pre><code class="lang-c#">using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
+using UnityEngine;
+using Unity.Burst;
+
+public class PluginManager : MonoBehaviour
+{
+    public bool modsEnabled;
+    public GameObject objectForPlugins;
+
+    List&lt;PluginModule&gt; plugins;
+
+    void Start()
+    {
+        plugins = new List&lt;PluginModule&gt;();
+
+        // If mods are disabled, early out - this allows us to disable mods, enter Play Mode, exit Play Mode
+        //and be sure that the managed assemblies have been unloaded (assuming DomainReload occurs)
+        if (!modsEnabled)
+            return;
+
+        var folder = Path.GetFullPath(Path.Combine(Application.dataPath, &quot;..&quot;, &quot;Mods&quot;));
+        if (Directory.Exists(folder))
+        {
+            var mods = Directory.GetDirectories(folder);
+
+            foreach (var mod in mods)
+            {
+                var modName = Path.GetFileName(mod);
+                var monoAssembly = Path.Combine(mod, $&quot;{modName}_managed.dll&quot;);
+
+                if (File.Exists(monoAssembly))
+                {
+                    var managedPlugin = Assembly.LoadFile(monoAssembly);
+
+                    var pluginModule = managedPlugin.GetType(&quot;MyPluginModule&quot;);
+
+                    var plugin = Activator.CreateInstance(pluginModule) as PluginModule;
+
+                    plugins.Add(plugin);
+                }
+
+                var burstedAssembly = Path.Combine(mod, $&quot;{modName}_win_x86_64.dll&quot;);      // Burst dll (assuming windows 64bit)
+                if (File.Exists(burstedAssembly))
+                {
+                    BurstRuntime.LoadAdditionalLibrary(burstedAssembly);
+                }
+            }
+        }
+
+        foreach (var plugin in plugins)
+        {
+            plugin.Startup(objectForPlugins);
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        foreach (var plugin in plugins)
+        {
+            plugin.Update(objectForPlugins);
+        }
+    }
+}
+
+</code></pre>
+<p>This code scans the <code>Mods</code> folder, and for each folder it finds within, it attempts to load both a managed dll and a Burst-compiled dll. It does this by adding them to an internal list that it can then iterate on and call the respective interface functions.</p>
+<p>The names of the files are arbitrary: refer to <a href="#simple-create-mod-menu-button">Simple Create Mod Menu Button</a>, which is the code that generated those files.</p>
+<p>Because this code loads the managed assemblies into the current domain, you need a domain reload to unload those before you can overwrite them. Unity automatically unloads the Burst dll files automatically unloaded when you exit Play mode. This is why a Boolean to disable the modding system is included, for testing in the Editor.</p>
+<h3 id="a-mod-that-uses-burst">A mod that uses Burst</h3>
+<p>Create a separate Unity project for this to use the project to produce the mod.</p>
+<p>The following script attaches to a UI Canvas that contains a text component called <strong>Main UI Label</strong> and changes the text when the mod is used. The text is either <strong>Plugin Updated : Bursted</strong> or <strong>Plugin Updated : Not Bursted</strong>. You will see the <strong>Plugin Updated : Bursted</strong> by default, but if you comment out the lines that load the Burst library in the PluginManager above, then the Burst compiled code doesn't load and the message changes appropriately.</p>
+<pre><code class="lang-c#">using Unity.Burst;
+using Unity.Collections;
+using Unity.Jobs;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class MyPluginModule : PluginModule
+{
+    Text textComponent;
+
+    public void Startup(GameObject gameObject)
+    {
+        var childTextComponents = gameObject.GetComponentsInChildren&lt;Text&gt;();
+        textComponent = null;
+        foreach (var child in childTextComponents)
+        {
+            if (child.name == &quot;Main UI Label&quot;)
+            {
+                textComponent = child;
+            }
+        }
+
+        if (textComponent==null)
+        {
+            Debug.LogError(&quot;something went wrong and i couldn't find the UI component i wanted to modify&quot;);
+        }
+    }
+
+    public void Update(GameObject gameObject)
+    {
+        if (textComponent != null)
+        {
+            var t = new CheckBurstedJob { flag = new NativeArray&lt;int&gt;(1, Allocator.TempJob, NativeArrayOptions.UninitializedMemory) };
+
+            t.Run();
+
+            if (t.flag[0] == 0)
+                textComponent.text = &quot;Plugin Updated : Not Bursted&quot;;
+            else
+                textComponent.text = &quot;Plugin Updated : Bursted&quot;;
+
+            t.flag.Dispose();
+        }
+    }
+
+    [BurstCompile]
+    struct CheckBurstedJob : IJob
+    {
+        public NativeArray&lt;int&gt; flag;
+
+        [BurstDiscard]
+        void CheckBurst()
+        {
+            flag[0] = 0;
+        }
+
+        public void Execute()
+        {
+            flag[0] = 1;
+            CheckBurst();
+        }
+    }
+
+}
+
+</code></pre>
+<p>Put the above script in a folder along with an assembly definition file with an assembly name of <code>TestMod_Managed</code> so the next script can locate the managed part.</p>
+<h3 id="simple-create-mod-menu-button">Simple Create Mod Menu button</h3>
+<p>The following script adds a menu button. When you use the menu button, it builds a Standalone Player, then copies the C# managed dll and the <code>lib_burst_generated</code>.dll into a chosen <code>Mod</code> folder. This example assumes you are using Windows.</p>
+<pre><code class="lang-c#">using UnityEditor;
+using System.IO;
+using UnityEngine;
+
+public class ScriptBatch
+{
+    [MenuItem(&quot;Modding/Build X64 Mod (Example)&quot;)]
+    public static void BuildGame()
+    {
+        string modName = &quot;TestMod&quot;;
+
+        string projectFolder = Path.Combine(Application.dataPath, &quot;..&quot;);
+        string buildFolder = Path.Combine(projectFolder, &quot;PluginTemp&quot;);
+
+        // Get filename.
+        string path = EditorUtility.SaveFolderPanel(&quot;Choose Final Mod Location&quot;, &quot;&quot;, &quot;&quot;);
+
+        FileUtil.DeleteFileOrDirectory(buildFolder);
+        Directory.CreateDirectory(buildFolder);
+
+        // Build player.
+        var report = BuildPipeline.BuildPlayer(new[] { &quot;Assets/Scenes/SampleScene.unity&quot; }, Path.Combine(buildFolder, $&quot;{modName}.exe&quot;), BuildTarget.StandaloneWindows64, BuildOptions.Development);
+
+        if (report.summary.result == UnityEditor.Build.Reporting.BuildResult.Succeeded)
+        {
+            // Copy Managed library
+            var managedDest = Path.Combine(path, $&quot;{modName}_Managed.dll&quot;);
+            var managedSrc = Path.Combine(buildFolder, $&quot;{modName}_Data/Managed/{modName}_Managed.dll&quot;);
+            FileUtil.DeleteFileOrDirectory(managedDest);
+            if (!File.Exists(managedDest))  // Managed side not unloaded
+                FileUtil.CopyFileOrDirectory(managedSrc, managedDest);
+            else
+                Debug.LogWarning($&quot;Couldn't update managed dll, {managedDest} is it currently in use?&quot;);
+
+            // Copy Burst library
+            var burstedDest = Path.Combine(path, $&quot;{modName}_win_x86_64.dll&quot;);
+            var burstedSrc = Path.Combine(buildFolder, $&quot;{modName}_Data/Plugins/x86_64/lib_burst_generated.dll&quot;);
+            FileUtil.DeleteFileOrDirectory(burstedDest);
+            if (!File.Exists(burstedDest))
+                FileUtil.CopyFileOrDirectory(burstedSrc, burstedDest);
+            else
+                Debug.LogWarning($&quot;Couldn't update bursted dll, {burstedDest} is it currently in use?&quot;);
+        }
+    }
+}
+</code></pre>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="xref:um-plugin-inspector">Import and configure plug-ins</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Setup and cleanup at build time | Inventory System </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Setup and cleanup at build time | Inventory System ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="Inventory System">
+            Inventory System
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="setup-and-cleanup-at-build-time">Setup and cleanup at build time</h1>
+
+<p>In some cases, it is relevant to perform changes to Unity or the file system before building the tests. In the same way, it may be necessary to clean up such changes after the test run. In response to such needs, you can incorporate the pre-build setup and post-build cleanup concepts into your tests in one of the following ways:</p>
+<ol>
+<li>Via implementation of <code>IPrebuildSetup</code> and <code>IPostBuildCleanup</code> interfaces by a test class.</li>
+<li>Via applying the <code>PrebuildSetup</code> attribute and <code>PostBuildCleanup</code> attribute on your test class, one of the tests or the test assembly, providing a class name that implements the corresponding interface as an argument (fx <code>[PrebuildSetup(&quot;MyTestSceneSetup&quot;)]</code>).</li>
+</ol>
+<h2 id="execution-order">Execution order</h2>
+<p>All setups run in a deterministic order one after another. The first to run are the setups defined with attributes. Then any test class implementing the interface runs, in alphabetical order inside their namespace, which is the same order as the tests run.</p>
+<blockquote>
+<p><strong>Note</strong>: Cleanup runs right away for a standalone test run, but only after related tests run in the Unity Editor.</p>
+</blockquote>
+<h2 id="prebuildsetup-and-postbuildcleanup">PrebuildSetup and PostBuildCleanup</h2>
+<p>Both <code>PrebuildSetup</code> and <code>PostBuildCleanup</code> attributes run if the respective test or test class is in the current test run. The test is included either by running all tests or setting a <a href="workflow-create-test.html#filters">filter</a> that includes the test. If multiple tests reference the same pre-built setup or post-build cleanup, then it only runs once.</p>
+<h2 id="iprebuildsetup">IPrebuildSetup</h2>
+<p>Implement this interface if you want to define a set of actions to run as a pre-build step.</p>
+<h3 id="public-methods">Public methods</h3>
+<table>
+<thead>
+<tr>
+<th>Syntax</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>void Setup()</code></td>
+<td>Implement this method to call actions automatically before the build process.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ipostbuildcleanup">IPostBuildCleanup</h2>
+<p>Implement this interface if you want to define a set of actions to execute as a post-build step. Cleanup runs right away for a standalone test run, but only after all the tests run within the Editor.</p>
+<h3 id="public-methods-1">Public methods</h3>
+<table>
+<thead>
+<tr>
+<th>Syntax</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>void Cleanup()</code></td>
+<td>Implement this method to specify actions that should run as a post-build cleanup step.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="example">Example</h2>
+<pre><code class="lang-c#">[TestFixture]
+public class CreateSpriteTest : IPrebuildSetup
+{
+    Texture2D m_Texture;
+    Sprite m_Sprite;
+    
+    public void Setup()
+    {
+
+#if UNITY_EDITOR
+
+        var spritePath = &quot;Assets/Resources/Circle.png&quot;;
+
+        var ti = UnityEditor.AssetImporter.GetAtPath(spritePath) as UnityEditor.TextureImporter;
+
+        ti.textureCompression = UnityEditor.TextureImporterCompression.Uncompressed;
+
+        ti.SaveAndReimport();
+
+#endif
+    }
+
+    [SetUp]
+    public void SetUpTest()
+    {
+        m_Texture = Resources.Load&lt;Texture2D&gt;(&quot;Circle&quot;);
+    }
+
+    [Test]
+    public void WhenNullTextureIsPassed_CreateShouldReturnNullSprite()
+    {
+
+        // Check with Valid Texture.
+
+        LogAssert.Expect(LogType.Log, &quot;Circle Sprite Created&quot;);
+
+        Sprite.Create(m_Texture, new Rect(0, 0, m_Texture.width, m_Texture.height), new Vector2(0.5f, 0.5f));
+
+        Debug.Log(&quot;Circle Sprite Created&quot;);
+
+        // Check with NULL Texture. Should return NULL Sprite.
+
+        m_Sprite = Sprite.Create(null, new Rect(0, 0, m_Texture.width, m_Texture.height), new Vector2(0.5f, 0.5f));
+
+        Assert.That(m_Sprite, Is.Null, &quot;Sprite created with null texture should be null&quot;);
+
+    }
+}
+</code></pre>
+<blockquote>
+<p><strong>Tip</strong>: Use <code>#if UNITY_EDITOR</code> if you want to access Editor only APIs, but the setup/cleanup is inside a <strong>Play Mode</strong> assembly.</p>
+</blockquote>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
