@@ -7,7 +7,7 @@ using UnityEngine;
 namespace InventorySystem.EquipmentInventory
 {
     [Serializable]
-    public class EquipmentInventory : IEquipmentInventory, ISerializationCallbackReceiver
+    internal class EquipmentInventory : IEquipmentInventory, ISerializationCallbackReceiver
     {
 
         /// <inheritdoc/>

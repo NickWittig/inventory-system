@@ -6,8 +6,12 @@ using UnityEngine;
 
 namespace InventorySystem.Inventory
 {
+    /// <summary>
+    /// The concrete implementation of the <see cref="IInventory"/>.
+    /// Manages several <see cref="IInventorySlot"/>s and the <see cref="IItem"/>s inside.
+    /// </summary>
     [Serializable]
-    public class Inventory : IInventory
+    internal class Inventory : IInventory
     {
         [SerializeField] private InventorySlot[] _slots;
         [field: SerializeField] public int Capacity { get; private set; }
@@ -15,16 +19,16 @@ namespace InventorySystem.Inventory
 
         /// <summary>
         ///     Whether any Overflow (i.e., adding an <see cref="IItem" />
-        ///     with a quantity higher than <see cref="ItemSO.maxStackAmount" />)
+        ///     with a quantity higher than <see cref="ItemData.MaxStackAmount" />)
         ///     is being handled further or is being discarded.
         /// </summary>
         [SerializeField] private bool _handlesOverflow;
 
-        /// <inheritdoc/>
-        public event Action<IItem, int> ItemsAdded;
+        /// <inheritdoc cref="IInventory.ItemsAdded" />
+        public event Action<IInventorySlot, int> ItemsAdded;
 
-        /// <inheritdoc/>
-        public event Action<IItem, int> ItemsRemoved;
+        /// <inheritdoc />
+        public event Action<IInventorySlot, int> ItemsRemoved;
 
         /// <inheritdoc cref="IInventory.Items" />
         public IReadOnlyList<IItem> Items => _slots.Select(slot => slot.Item).ToList();
@@ -100,10 +104,9 @@ namespace InventorySystem.Inventory
 
             // here, the slot now contains the item to be added
             var overflow = slot.SetItemAndQuantity(item, quantity);
-            var addedItemAmount = quantity - overflow;
-            OnItemsAdded(item, addedItemAmount);
+            OnItemsAdded(slot, index);
 
-            int remaining = overflow;
+            var remaining = overflow;
             // if there is any overflow, but don't handle it, we return true (item was added until the slot was filled)
             if (remaining > 0 && !_handlesOverflow) return true;
             if (remaining <= 0) return true;
@@ -122,26 +125,30 @@ namespace InventorySystem.Inventory
         }
 
         /// <inheritdoc cref="IInventory.RemoveItem" />
-        public void RemoveItem(IItem item, bool onlyFirstOccurence = false)
+        public void RemoveItem(IItem item, bool isRemovingFirstOccurenceOnly = false, bool isReversed = false)
         {
-            foreach (InventorySlot slot in _slots)
+            if (item == null) return;
+
+            var slots = isReversed
+                ? _slots.Reverse()
+                : _slots;
+
+            foreach (InventorySlot slot in slots)
             {
-                if (slot.Item != item) continue;
+                if (slot.IsEmpty || !slot.Item.IsEquivalentTo(item)) continue;
+
                 ClearSlotWithEvent(slot);
-                if (onlyFirstOccurence) return;
+
+                if (isRemovingFirstOccurenceOnly)
+                    return;
             }
         }
 
 
-  
-
         /// <inheritdoc cref="IInventory.Clear" />
         public void Clear()
         {
-            foreach (InventorySlot slot in _slots)
-            {
-                ClearSlotWithEvent(slot);
-            }
+            foreach (InventorySlot slot in _slots) ClearSlotWithEvent(slot);
         }
 
         /// <inheritdoc cref="IInventory.TryInsertItemAtFront" />
@@ -219,42 +226,48 @@ namespace InventorySystem.Inventory
         }
 
         /// <summary>
-        /// Clear the <see cref="InventorySlot"/> slot and call the <see cref="OnItemsRemoved(IItem, int)"/> method.
+        ///     Clear the <see cref="InventorySlot" /> slot and call the <see cref="OnItemsRemoved(IInventorySlot,int)" /> method.
         /// </summary>
         /// <param name="slot">The slot to be cleared.</param>
         /// <remarks>
-        /// Wrapper for <see cref="InventorySlot.Clear"/>
+        ///     Wrapper for <see cref="InventorySlot.Clear" />
         /// </remarks>
         private void ClearSlotWithEvent(InventorySlot slot)
         {
-            var (slotItem, slotQuantity) = (slot.Item, slot.Quantity);
             slot.Clear();
-            OnItemsRemoved(slotItem, slotQuantity);
+            OnItemsRemoved(slot, GetSlotIndex(slot));
         }
 
         /// <summary>
-        /// Trigger the <see cref="ItemsAdded"/> event.
+        ///     Get the index of the <see cref="IInventorySlot" /> in this.
         /// </summary>
-        /// <param name="item">The <see cref="IItem"/> that was successfully added to this.</param>
-        /// <param name="quantity">The quantity that was successfully added.</param>
-        private void OnItemsAdded(IItem item, int quantity)
+        /// <param name="slot">The <see cref="IInventorySlot" /> for which the index is being looked for.</param>
+        /// <returns></returns>
+        private int GetSlotIndex(InventorySlot slot)
         {
-            if (item == null || quantity < 1) return;
-            ItemsAdded?.Invoke(item, quantity);
+            return Array.IndexOf(_slots, slot);
         }
 
         /// <summary>
-        /// Trigger the <see cref="ItemsRemoved"/> event.
+        ///     Trigger the <see cref="ItemsAdded" /> event.
         /// </summary>
-        /// <param name="item">The <see cref="IItem"/> that was successfully removed from this.</param>
-        /// <param name="quantity">The quantity that was successfully removed.</param>
-        private void OnItemsRemoved(IItem item, int quantity)
+        /// <param name="slot">The <see cref="IInventorySlot" /> the <see cref="IItem" /> was added to.</param>
+        /// <param name="slotIndex">The index of the slot the <see cref="IItem" />s were added to.</param>
+        private void OnItemsAdded(IInventorySlot slot, int slotIndex)
         {
-            if (item == null || quantity < 1) return;
-            ItemsRemoved?.Invoke(item, quantity);
+            if (slot.IsEmpty) return;
+            ItemsAdded?.Invoke(slot, slotIndex);
         }
 
-
-
+        /// <summary>
+        ///     Trigger the <see cref="ItemsRemoved" /> event.
+        /// </summary>
+        /// <param name="slot">The <see cref="InventorySlots" /> the items were removed from.</param>
+        /// <param name="index">The index of the <see cref="IInventorySlot" />.</param>
+        private void OnItemsRemoved(IInventorySlot slot, int index)
+        {
+            if (slot is null) return;
+            ItemsRemoved?.Invoke(slot, index);
+        }
     }
 }

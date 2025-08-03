@@ -1,5 +1,4 @@
-﻿using System;
-using InventorySystem.Items;
+﻿using InventorySystem.Items;
 
 namespace InventorySystem.Inventory
 {
@@ -14,8 +13,7 @@ namespace InventorySystem.Inventory
         ///     Get quantity of <see cref="IInventorySlot.Item" /> in this <see cref="IInventorySlot" />.
         /// </summary>
         /// <remarks>
-        ///     Quantity is limited by <see cref="ItemSO.maxStackAmount" />,
-        ///     which is enforced in <see cref="TryAddQuantity" />.
+        ///     Quantity is limited by <see cref="ItemData.MaxStackAmount" />.
         /// </remarks>
         int Quantity { get; }
 
@@ -27,10 +25,8 @@ namespace InventorySystem.Inventory
 
         /// <summary>
         ///     Check if the <see cref="Quantity" /> greater than or equal
-        ///     to the assigned <see cref="IItem" />s <see cref="ItemSO.maxStackAmount" />.
+        ///     to the assigned <see cref="IItem" />s <see cref="ItemData.MaxStackAmount" />.
         /// </summary>
         bool IsFull { get; }
-
-
     }
 }
