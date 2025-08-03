@@ -1,3 +1,5 @@
+[![docfx GitHub Pages](https://github.com/NickWittig/inventory-system/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/NickWittig/inventory-system/actions/workflows/deploy-pages.yml)
+
 # Inventory System
 
 ## Setup
