@@ -15,3 +15,7 @@
 * Directory structure refactors
 * Changes in IInventory events
 * Made Inventory and EquipmentInventory internal (should only expose the interface)
+* Reordered and renamed ItemData fields
+* General refactor
+* Added additional docstrings
+* Added changelog, license, and documentation url
