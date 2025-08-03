@@ -4,6 +4,14 @@
 - Includes runtime test suite
 
 ## [1.0.1] - 2025-08-01
-### First Release
+### GitHub Pages Release
 - Added Documentation
-- Deployed Documentation on Github Pages
+- Deployed Documentation on GitHub Pages
+
+## [1.0.2] - 2025-08-03
+### Armor/Weapon Removal
+* Removed armor and weapons from the equipment system
+* Style refactors
+* Directory structure refactors
+* Changes in IInventory events
+* Made Inventory and EquipmentInventory internal (should only expose the interface)
