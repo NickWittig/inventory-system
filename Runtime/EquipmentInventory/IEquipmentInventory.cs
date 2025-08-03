@@ -4,6 +4,11 @@ using InventorySystem.Items;
 
 namespace InventorySystem.EquipmentInventory
 {
+    /// <summary>
+    /// The interface for the equipment inventory.
+    /// Manages equipped <see cref="IEquipmentItem"/>s,
+    /// including equipping, unequipping, and getting equipped items.
+    /// </summary>
     public interface IEquipmentInventory
     {
 

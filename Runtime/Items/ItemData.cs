@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace InventorySystem.Items
 {
@@ -13,13 +12,12 @@ namespace InventorySystem.Items
     [CreateAssetMenu(fileName = "Item", menuName = "InventorySystem/Items/Item")]
     public class ItemData : ScriptableObject
     {
-        [FormerlySerializedAs("id")] public int Uid;
-        [FormerlySerializedAs("itemName")] public string ItemName;
-        [FormerlySerializedAs("itemDescription")] public string ItemDescription;
-        [FormerlySerializedAs("maxStackAmount")] public int MaxStackAmount = 1;
-        [FormerlySerializedAs("prefab")] public GameObject Prefab;
-        [FormerlySerializedAs("sprite")] public Sprite Sprite;
-
+        public int Uid;
+        public string ItemName;
+        public string ItemDescription;
+        public int MaxStackAmount = 1;
+        public Sprite Icon;
+        public GameObject Prefab;
     }
 }
 

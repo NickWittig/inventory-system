@@ -6,6 +6,10 @@ using UnityEngine;
 
 namespace InventorySystem.EquipmentInventory
 {
+    /// <summary>
+    /// The concrete implementation of the <see cref="IEquipmentInventory"/>,
+    /// that manages equipped <see cref="IEquipmentItem"/>s.
+    /// </summary>
     [Serializable]
     internal class EquipmentInventory : IEquipmentInventory, ISerializationCallbackReceiver
     {

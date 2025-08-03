@@ -2,6 +2,10 @@
 
 namespace InventorySystem.Inventory
 {
+    /// <summary>
+    /// An inventory slot in an <see cref="IInventory"/>, which
+    /// manages one <see cref="IItem"/> with a certain <see cref="Quantity"/>.
+    /// </summary>
     public interface IInventorySlot
     {
         /// <summary>

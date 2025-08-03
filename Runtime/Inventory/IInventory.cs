@@ -5,7 +5,9 @@ using InventorySystem.Items;
 namespace InventorySystem.Inventory
 {
     /// <summary>
-    ///     Interface for an Inventory.
+    ///     Interface for an Inventory managing <see cref="IInventorySlot"/>s and
+    ///     the <see cref="IItem"/>s inside.
+    ///     Exposes methods for adding, removing, and getting items.
     /// </summary>
     public interface IInventory
     {
@@ -180,7 +182,6 @@ namespace InventorySystem.Inventory
         ///     <see cref="IItem" /> in multiple <see cref="IInventorySlot" />s).
         /// </param>
         /// <param name="isReversed">Start to remove items from the back. Does not have side effects.</param>
-        /// <seealso cref="IInventorySlot.Clear" />
         public void RemoveItem(IItem item, bool isRemovingFirstOccurenceOnly = false, bool isReversed = false);
 
         /// <summary>
