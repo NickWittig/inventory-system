@@ -19,3 +19,8 @@
 * General refactor
 * Added additional docstrings
 * Added changelog, license, and documentation url
+
+## [1.0.3] - 2025-08-03
+### Factories
+* Added factories for Inventory and EquipmentInventory
+* License fix

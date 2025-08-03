@@ -7,16 +7,16 @@ using UnityEngine;
 namespace InventorySystem.EquipmentInventory
 {
     /// <summary>
-    /// The concrete implementation of the <see cref="IEquipmentInventory"/>,
-    /// that manages equipped <see cref="IEquipmentItem"/>s.
+    ///     The concrete implementation of the <see cref="IEquipmentInventory" />,
+    ///     that manages equipped <see cref="IEquipmentItem" />s.
     /// </summary>
     [Serializable]
     internal class EquipmentInventory : IEquipmentInventory, ISerializationCallbackReceiver
     {
-
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public event Action<IItem> ItemEquipped;
-        /// <inheritdoc/>
+
+        /// <inheritdoc />
         public event Action<IItem> ItemUnequipped;
 
         /// <inheritdoc cref="IEquipmentInventory.EquippedItemList" />
@@ -49,19 +49,23 @@ namespace InventorySystem.EquipmentInventory
         ///     FIXME: Currently always creates one slot for each equipment type in <see cref="EquipmentType" />.
         ///     We might want to limit this to certain types (i.e., if used on enemies or player loses equipment slots etc.)
         /// </summary>
-        private EquipmentInventory()
+        private EquipmentInventory(Dictionary<EquipmentType, IEquipmentItem> equippedItems)
         {
-            _equippedItems = new Dictionary<EquipmentType, IEquipmentItem>();
-            foreach (EquipmentType equipmentType in Enum.GetValues(typeof(EquipmentType)).Cast<EquipmentType>())
-                _equippedItems.Add(equipmentType, null);
+            _equippedItems = equippedItems;
         }
 
         /// <summary>
         ///     Create a new <see cref="EquipmentInventory" />.
         /// </summary>
-        public static EquipmentInventory Create()
+        /// <returns>
+        ///     A new empty <see cref="EquipmentInventory" />.
+        /// </returns>
+        internal static EquipmentInventory Create()
         {
-            return new EquipmentInventory();
+            var equippedItems = new Dictionary<EquipmentType, IEquipmentItem>();
+            foreach (EquipmentType equipmentType in Enum.GetValues(typeof(EquipmentType)).Cast<EquipmentType>())
+                equippedItems.Add(equipmentType, null);
+            return new EquipmentInventory(equippedItems);
         }
 
         /// <summary>
@@ -80,27 +84,20 @@ namespace InventorySystem.EquipmentInventory
         {
             _equippedItems = new Dictionary<EquipmentType, IEquipmentItem>();
             foreach (IEquipmentItem equipmentItem in _equippedItemList)
-            {
                 _equippedItems.Add(equipmentItem.EquipmentType, equipmentItem);
-            }
             foreach (EquipmentType equipmentType in Enum.GetValues(typeof(EquipmentType)).Cast<EquipmentType>())
-            {
                 _equippedItems.TryAdd(equipmentType, null);
-            }
         }
 
 
         /// <inheritdoc cref="IEquipmentInventory.TryEquip" />
         public bool TryEquip(IItem item)
         {
-            if (item is not IEquipmentItem itemToEquip) { return false; }
+            if (item is not IEquipmentItem itemToEquip) return false;
             // if equipmentItem.equipmentType is not in _equippedItems,
             // it is not an allowed EquipmentType for this EquipmentInventory 
-            if (!_equippedItems.TryGetValue(itemToEquip.EquipmentType, out IEquipmentItem equippedItem))
-            {
-                return false;
-            }
-            if (equippedItem != null) { return false; }
+            if (!_equippedItems.TryGetValue(itemToEquip.EquipmentType, out IEquipmentItem equippedItem)) return false;
+            if (equippedItem != null) return false;
             _equippedItems[itemToEquip.EquipmentType] = itemToEquip;
             OnItemEquipped(itemToEquip);
             Debug.Log($"Equipped {itemToEquip.ItemData.name} in Slot {itemToEquip.EquipmentType}");
@@ -116,7 +113,8 @@ namespace InventorySystem.EquipmentInventory
                 _equippedItems[equipmentType] = null;
                 OnItemUnequipped(equipmentItem);
                 Debug.Log($"Unequipped {equipmentItem.ItemData.name} in Slot {equipmentItem.EquipmentType}");
-            } 
+            }
+
             return equipmentItem;
         }
 
@@ -128,22 +126,21 @@ namespace InventorySystem.EquipmentInventory
         }
 
         /// <summary>
-        /// Trigger the <see cref="ItemEquipped"/> evennt.
+        ///     Trigger the <see cref="ItemEquipped" /> evennt.
         /// </summary>
-        /// <param name="item">The <see cref="IItem"/> that was succesfully equipped.</param>
+        /// <param name="item">The <see cref="IItem" /> that was successfully equipped.</param>
         private void OnItemEquipped(IItem item)
         {
             ItemEquipped?.Invoke(item);
         }
 
         /// <summary>
-        /// Trigger the <see cref="ItemUnequipped"/> event.
+        ///     Trigger the <see cref="ItemUnequipped" /> event.
         /// </summary>
-        /// <param name="item">The <see cref="IItem"/> that was successfully unequipped.</param>
+        /// <param name="item">The <see cref="IItem" /> that was successfully unequipped.</param>
         private void OnItemUnequipped(IItem item)
         {
             ItemUnequipped?.Invoke(item);
         }
-
     }
 }
