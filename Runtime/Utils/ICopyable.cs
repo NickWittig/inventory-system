@@ -1,6 +1,5 @@
 namespace InventorySystem.Items
 {
-    
     /// <summary>
     /// Make this able to be copied.
     /// </summary>

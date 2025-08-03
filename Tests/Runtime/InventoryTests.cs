@@ -1,11 +1,10 @@
 // Assets/Tests/Runtime/InventoryTests.cs
 
+using System.Collections.Generic;
+using System.Linq;
 using InventorySystem.Inventory;
 using InventorySystem.Items;
 using NUnit.Framework;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
 
 namespace InventorySystemTests
 {
@@ -114,7 +113,7 @@ namespace InventorySystemTests
             _inventory.TryAddItem(_elixir);
             var canAdd = _inventory.IsSlotAvailable(
                 new MockItem(TestUtils.CreateItemSO("Sword", 3)),
-                out var _);
+                out _);
             Assert.IsFalse(canAdd);
         }
 
@@ -255,7 +254,7 @@ namespace InventorySystemTests
         public void RemoveItem_AllOccurrences_RemovesEverything()
         {
             _inventory.TryAddItem(_potion, MAX_STACK * 2);
-            _inventory.RemoveItem(_potion, false);
+            _inventory.RemoveItem(_potion);
             Assert.IsTrue(_inventory.IsEmpty);
             Assert.IsNull(_inventory.TryGetItemAt(0));
             Assert.IsNull(_inventory.TryGetItemAt(1));
@@ -310,26 +309,25 @@ namespace InventorySystemTests
         [Test]
         public void ItemsAdded_Event_FiresWithCorrectPayload_OnSimpleAdd()
         {
-            IItem addedItem = null;
-            int addedQuantity = -1;
-            _inventory.ItemsAdded += (item, qty) =>
+            IInventorySlot slot = null;
+            _inventory.ItemsAdded += (eventSlot, eventIndex) =>
             {
-                addedItem = item;
-                addedQuantity = qty;
+                slot = eventSlot;
+                _ = eventIndex;
             };
 
             _inventory.TryAddItem(_potion, 3);
 
-            Assert.IsNotNull(addedItem);
-            Assert.IsTrue(addedItem.IsEquivalentTo(_potion));
-            Assert.AreEqual(3, addedQuantity);
+            Assert.IsNotNull(slot.Item);
+            Assert.IsTrue(slot.Item.IsEquivalentTo(_potion));
+            Assert.AreEqual(3, slot.Quantity);
         }
 
         [Test]
         public void ItemsAdded_Event_FiresPerSlot_WhenOverflowDistributed()
         {
             var captured = new List<(IItem Item, int Quantity)>();
-            _inventory.ItemsAdded += (item, qty) => captured.Add((item, qty));
+            _inventory.ItemsAdded += (slot, qty) => captured.Add((slot.Item, slot.Quantity));
 
             _inventory.TryAddItem(_potion, 8); // should split across two slots (5 + 3)
 
@@ -344,19 +342,13 @@ namespace InventorySystemTests
         public void ItemsRemoved_Event_Fires_OnRemoveItem()
         {
             _inventory.TryAddItem(_potion, 3);
-            IItem removedItem = null;
-            int removedQuantity = -1;
-            _inventory.ItemsRemoved += (item, qty) =>
-            {
-                removedItem = item;
-                removedQuantity = qty;
-            };
+            IInventorySlot removedSlot = null;
+            _inventory.ItemsRemoved += (slot, index) => { removedSlot = slot; };
 
             _inventory.RemoveItem(_potion, true);
 
-            Assert.IsNotNull(removedItem);
-            Assert.IsTrue(removedItem.IsEquivalentTo(_potion));
-            Assert.AreEqual(3, removedQuantity);
+            Assert.IsNull(removedSlot.Item);
+            Assert.AreEqual(0, removedSlot.Quantity);
         }
 
         [Test]
@@ -364,15 +356,12 @@ namespace InventorySystemTests
         {
             _inventory.TryAddItem(_potion, MAX_STACK * 2); // fills both slots
             var captured = new List<(IItem Item, int Quantity)>();
-            _inventory.ItemsRemoved += (item, qty) => captured.Add((item, qty));
+            _inventory.ItemsRemoved += (slot, index) => captured.Add((slot.Item, slot.Quantity));
 
-            _inventory.RemoveItem(_potion, false); // remove all
+            _inventory.RemoveItem(_potion); // remove all
 
             Assert.That(captured, Is.Not.Empty, "Should fire removal event for each slot touched.");
-            Assert.That(captured.All(c => c.Item.IsEquivalentTo(_potion)), Is.True);
-            var totalRemoved = captured.Sum(c => c.Quantity);
-            Assert.AreEqual(MAX_STACK * 2, totalRemoved);
-            Assert.That(captured.All(c => c.Quantity <= MAX_STACK), Is.True);
+            Assert.That(captured.All(c => c.Quantity == 0), Is.True);
         }
 
         [Test]
@@ -380,18 +369,13 @@ namespace InventorySystemTests
         {
             _inventory.TryAddItem(_potion);
             _inventory.TryAddItem(_elixir);
-            IItem removedItem = null;
-            int removedQuantity = -1;
-            _inventory.ItemsRemoved += (item, qty) =>
-            {
-                removedItem = item;
-                removedQuantity = qty;
-            };
+            IInventorySlot removedSlot = null;
+            _inventory.ItemsRemoved += (slot, index) => { removedSlot = slot; };
 
             _inventory.Clear();
 
-            Assert.IsNotNull(removedItem);
-            Assert.Greater(removedQuantity, 0);
+            Assert.IsNull(removedSlot.Item);
+            Assert.AreEqual(removedSlot.Quantity, 0);
         }
 
         #endregion
