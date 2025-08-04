@@ -153,7 +153,7 @@ namespace InventorySystem.Inventory
         /// <returns>Whether the <see cref="IItem" /> was added to the front.</returns>
         /// <remarks>
         ///     Pushed all other <see cref="IItem" />s already in the <see cref="IInventory" /> one slot up.
-        ///     FIXME: If the <see cref="quantity" /> exceeds <see cref="ItemData.MaxStackAmount" />, it is
+        ///     FIXME: If quantity exceeds <see cref="ItemData.MaxStackAmount" />, it is
         ///     possible that <see cref="IItem" />s that were previously in the <see cref="IInventory" />
         ///     get removed.
         /// </remarks>

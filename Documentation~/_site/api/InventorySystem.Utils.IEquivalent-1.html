@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>Interface IEquivalent&lt;T&gt; | Inventory System </title>
+      <title>Interface IEquivalent&lt;TType&gt; | Inventory System </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="Interface IEquivalent&lt;T&gt; | Inventory System ">
+      <meta name="title" content="Interface IEquivalent&lt;TType&gt; | Inventory System ">
     
     <meta name="description" content="Check if this is equivalent to another &amp;quot;other&amp;quot; object. This is not the same as Equals, as we do not compare the object instance but rather the state of this to &amp;quot;other&amp;quot;.">
       <link rel="shortcut icon" href="../favicon.ico">
@@ -76,22 +76,22 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="InventorySystem.Items.IEquivalent`1">
+            <article class="content wrap" id="_content" data-uid="InventorySystem.Utils.IEquivalent`1">
 
 
 
-  <h1 id="InventorySystem_Items_IEquivalent_1" data-uid="InventorySystem.Items.IEquivalent`1" class="text-break">Interface IEquivalent&lt;T&gt;</h1>
+  <h1 id="InventorySystem_Utils_IEquivalent_1" data-uid="InventorySystem.Utils.IEquivalent`1" class="text-break">Interface IEquivalent&lt;TType&gt;</h1>
   <div class="markdown level0 summary"><p>Check if this is equivalent to another &quot;other&quot; object.
 This is not the same as Equals,
 as we do not compare the object instance
 but rather the state of this to &quot;other&quot;.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="InventorySystem.html">InventorySystem</a>.<a class="xref" href="InventorySystem.Items.html">Items</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="InventorySystem.html">InventorySystem</a>.<a class="xref" href="InventorySystem.Utils.html">Utils</a></h6>
   <h6><strong>Assembly</strong>: InventorySystem.dll</h6>
-  <h5 id="InventorySystem_Items_IEquivalent_1_syntax">Syntax</h5>
+  <h5 id="InventorySystem_Utils_IEquivalent_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IEquivalent&lt;T&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IEquivalent&lt;TType&gt;</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -103,7 +103,7 @@ but rather the state of this to &quot;other&quot;.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="parametername">T</span></td>
+        <td><span class="parametername">TType</span></td>
         <td><p>Type of the class implementing this that can be checked for equivalence.</p>
 </td>
       </tr>
@@ -113,19 +113,19 @@ but rather the state of this to &quot;other&quot;.</p>
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_Items_IEquivalent_1_IsEquivalentTo__0_.md&amp;value=---%0Auid%3A%20InventorySystem.Items.IEquivalent%601.IsEquivalentTo(%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_Utils_IEquivalent_1_IsEquivalentTo__0_.md&amp;value=---%0Auid%3A%20InventorySystem.Utils.IEquivalent%601.IsEquivalentTo(%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Utils/IEquivalent.cs/#L17">View Source</a>
+    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Utils/IEquivalent.cs/#L23">View Source</a>
   </span>
-  <a id="InventorySystem_Items_IEquivalent_1_IsEquivalentTo_" data-uid="InventorySystem.Items.IEquivalent`1.IsEquivalentTo*"></a>
-  <h4 id="InventorySystem_Items_IEquivalent_1_IsEquivalentTo__0_" data-uid="InventorySystem.Items.IEquivalent`1.IsEquivalentTo(`0)">IsEquivalentTo(T)</h4>
-  <div class="markdown level1 summary"><p>Check if this is the same type T in the same internal state as other T.</p>
+  <a id="InventorySystem_Utils_IEquivalent_1_IsEquivalentTo_" data-uid="InventorySystem.Utils.IEquivalent`1.IsEquivalentTo*"></a>
+  <h4 id="InventorySystem_Utils_IEquivalent_1_IsEquivalentTo__0_" data-uid="InventorySystem.Utils.IEquivalent`1.IsEquivalentTo(`0)">IsEquivalentTo(TType)</h4>
+  <div class="markdown level1 summary"><p>Check if this is the same type <code class="typeparamref">TType</code> in the same internal state as other <code class="typeparamref">TType</code>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">bool IsEquivalentTo(T other)</code></pre>
+    <pre><code class="lang-csharp hljs">bool IsEquivalentTo(TType other)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -138,9 +138,9 @@ but rather the state of this to &quot;other&quot;.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">T</span></td>
+        <td><span class="xref">TType</span></td>
         <td><span class="parametername">other</span></td>
-        <td><p>The object T to be compared against.</p>
+        <td><p>The object <code class="typeparamref">TType</code> to be compared against.</p>
 </td>
       </tr>
     </tbody>
@@ -170,10 +170,10 @@ but rather the state of this to &quot;other&quot;.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_Items_IEquivalent_1.md&amp;value=---%0Auid%3A%20InventorySystem.Items.IEquivalent%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_Utils_IEquivalent_1.md&amp;value=---%0Auid%3A%20InventorySystem.Utils.IEquivalent%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
                   </li>
                   <li>
-                    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Utils/IEquivalent.cs/#L10" class="contribution-link">View Source</a>
+                    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Utils/IEquivalent.cs/#L12" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

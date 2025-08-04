@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width">
       <meta name="title" content="Interface IInventory | Inventory System ">
     
-    <meta name="description" content="Interface for an Inventory.">
+    <meta name="description" content="Interface for an Inventory managing s and the s inside. Exposes methods for adding, removing, and getting items.">
       <link rel="shortcut icon" href="../favicon.ico">
       <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../styles/docfx.css">
@@ -81,7 +81,9 @@
 
 
   <h1 id="InventorySystem_Inventory_IInventory" data-uid="InventorySystem.Inventory.IInventory" class="text-break">Interface IInventory</h1>
-  <div class="markdown level0 summary"><p>Interface for an Inventory.</p>
+  <div class="markdown level0 summary"><p>Interface for an Inventory managing <a class="xref" href="InventorySystem.Inventory.IInventorySlot.html">IInventorySlot</a>s and
+the <a class="xref" href="InventorySystem.Items.IItem.html">IItem</a>s inside.
+Exposes methods for adding, removing, and getting items.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <h6><strong>Namespace</strong>: <a class="xref" href="InventorySystem.html">InventorySystem</a>.<a class="xref" href="InventorySystem.Inventory.html">Inventory</a></h6>
@@ -97,7 +99,7 @@
     <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_Inventory_IInventory_Capacity.md&amp;value=---%0Auid%3A%20InventorySystem.Inventory.IInventory.Capacity%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/IInventory.cs/#L38">View Source</a>
+    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/IInventory.cs/#L43">View Source</a>
   </span>
   <a id="InventorySystem_Inventory_IInventory_Capacity_" data-uid="InventorySystem.Inventory.IInventory.Capacity*"></a>
   <h4 id="InventorySystem_Inventory_IInventory_Capacity" data-uid="InventorySystem.Inventory.IInventory.Capacity">Capacity</h4>
@@ -128,7 +130,7 @@
     <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_Inventory_IInventory_InventorySlots.md&amp;value=---%0Auid%3A%20InventorySystem.Inventory.IInventory.InventorySlots%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/IInventory.cs/#L54">View Source</a>
+    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/IInventory.cs/#L61">View Source</a>
   </span>
   <a id="InventorySystem_Inventory_IInventory_InventorySlots_" data-uid="InventorySystem.Inventory.IInventory.InventorySlots*"></a>
   <h4 id="InventorySystem_Inventory_IInventory_InventorySlots" data-uid="InventorySystem.Inventory.IInventory.InventorySlots">InventorySlots</h4>
@@ -150,7 +152,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="InventorySystem.Inventory.IInventorySlot.html">IInventorySlot</a>&gt;</td>
-        <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList&lt;T&gt;</a> of all <a class="xref" href="InventorySystem.Inventory.IInventorySlot.html">IInventorySlot</a>s in this <a class="xref" href="InventorySystem.Inventory.IInventory.html">IInventory</a>.</p>
+        <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList&lt;T&gt;</a> of all <a class="xref" href="InventorySystem.Inventory.IInventorySlot.html">IInventorySlot</a>s in this
+<a class="xref" href="InventorySystem.Inventory.IInventory.html">IInventory</a>.</p>
 </td>
       </tr>
     </tbody>
@@ -164,7 +167,7 @@ Thus, always returns a list of size equal to <a class="xref" href="InventorySyst
     <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_Inventory_IInventory_IsEmpty.md&amp;value=---%0Auid%3A%20InventorySystem.Inventory.IInventory.IsEmpty%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/IInventory.cs/#L43">View Source</a>
+    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/IInventory.cs/#L48">View Source</a>
   </span>
   <a id="InventorySystem_Inventory_IInventory_IsEmpty_" data-uid="InventorySystem.Inventory.IInventory.IsEmpty*"></a>
   <h4 id="InventorySystem_Inventory_IInventory_IsEmpty" data-uid="InventorySystem.Inventory.IInventory.IsEmpty">IsEmpty</h4>
@@ -195,7 +198,7 @@ Thus, always returns a list of size equal to <a class="xref" href="InventorySyst
     <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_Inventory_IInventory_Items.md&amp;value=---%0Auid%3A%20InventorySystem.Inventory.IInventory.Items%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/IInventory.cs/#L65">View Source</a>
+    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/IInventory.cs/#L73">View Source</a>
   </span>
   <a id="InventorySystem_Inventory_IInventory_Items_" data-uid="InventorySystem.Inventory.IInventory.Items*"></a>
   <h4 id="InventorySystem_Inventory_IInventory_Items" data-uid="InventorySystem.Inventory.IInventory.Items">Items</h4>
@@ -233,7 +236,7 @@ Thus, always returns a list of size equal to <a class="xref" href="InventorySyst
     <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_Inventory_IInventory_Clear.md&amp;value=---%0Auid%3A%20InventorySystem.Inventory.IInventory.Clear%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/IInventory.cs/#L182">View Source</a>
+    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/IInventory.cs/#L190">View Source</a>
   </span>
   <a id="InventorySystem_Inventory_IInventory_Clear_" data-uid="InventorySystem.Inventory.IInventory.Clear*"></a>
   <h4 id="InventorySystem_Inventory_IInventory_Clear" data-uid="InventorySystem.Inventory.IInventory.Clear">Clear()</h4>
@@ -249,7 +252,7 @@ Thus, always returns a list of size equal to <a class="xref" href="InventorySyst
     <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_Inventory_IInventory_IsSlotAvailable_InventorySystem_Items_IItem_System_Int32__.md&amp;value=---%0Auid%3A%20InventorySystem.Inventory.IInventory.IsSlotAvailable(InventorySystem.Items.IItem%2CSystem.Int32%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/IInventory.cs/#L95">View Source</a>
+    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/IInventory.cs/#L103">View Source</a>
   </span>
   <a id="InventorySystem_Inventory_IInventory_IsSlotAvailable_" data-uid="InventorySystem.Inventory.IInventory.IsSlotAvailable*"></a>
   <h4 id="InventorySystem_Inventory_IInventory_IsSlotAvailable_InventorySystem_Items_IItem_System_Int32__" data-uid="InventorySystem.Inventory.IInventory.IsSlotAvailable(InventorySystem.Items.IItem,System.Int32@)">IsSlotAvailable(IItem, out int)</h4>
@@ -309,26 +312,26 @@ Only guarantees that there is either an empty <a class="xref" href="InventorySys
 or a non-full <a class="xref" href="InventorySystem.Inventory.IInventorySlot.html">IInventorySlot</a> that is already occupied by the item
 that is to be added.
 It is still possible that the quantity of the <a class="xref" href="InventorySystem.Items.IItem.html">IItem</a> being
-added exceeds the ItemSO.maxStackAmount and thus needs to occupy
+added exceeds the <a class="xref" href="InventorySystem.Items.ItemData.html#InventorySystem_Items_ItemData_MaxStackAmount">MaxStackAmount</a> and thus needs to occupy
 additional Slots to be fully added.</p>
 </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_Inventory_IInventory_RemoveItem_InventorySystem_Items_IItem_System_Boolean_.md&amp;value=---%0Auid%3A%20InventorySystem.Inventory.IInventory.RemoveItem(InventorySystem.Items.IItem%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_Inventory_IInventory_RemoveItem_InventorySystem_Items_IItem_System_Boolean_System_Boolean_.md&amp;value=---%0Auid%3A%20InventorySystem.Inventory.IInventory.RemoveItem(InventorySystem.Items.IItem%2CSystem.Boolean%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/IInventory.cs/#L177">View Source</a>
+    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/IInventory.cs/#L185">View Source</a>
   </span>
   <a id="InventorySystem_Inventory_IInventory_RemoveItem_" data-uid="InventorySystem.Inventory.IInventory.RemoveItem*"></a>
-  <h4 id="InventorySystem_Inventory_IInventory_RemoveItem_InventorySystem_Items_IItem_System_Boolean_" data-uid="InventorySystem.Inventory.IInventory.RemoveItem(InventorySystem.Items.IItem,System.Boolean)">RemoveItem(IItem, bool)</h4>
+  <h4 id="InventorySystem_Inventory_IInventory_RemoveItem_InventorySystem_Items_IItem_System_Boolean_System_Boolean_" data-uid="InventorySystem.Inventory.IInventory.RemoveItem(InventorySystem.Items.IItem,System.Boolean,System.Boolean)">RemoveItem(IItem, bool, bool)</h4>
   <div class="markdown level1 summary"><p>Remove <a class="xref" href="InventorySystem.Items.IItem.html">IItem</a> item from the <a class="xref" href="InventorySystem.Inventory.IInventory.html">IInventory</a>.
 If the <a class="xref" href="InventorySystem.Items.IItem.html">IItem</a> is in the <a class="xref" href="InventorySystem.Inventory.IInventory.html">IInventory</a>,
-we call IInventorySlot.Clear on its <a class="xref" href="InventorySystem.Inventory.IInventorySlot.html">IInventorySlot</a>.</p>
+we clear its <a class="xref" href="InventorySystem.Inventory.IInventorySlot.html">IInventorySlot</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void RemoveItem(IItem item, bool onlyFirstOccurence = false)</code></pre>
+    <pre><code class="lang-csharp hljs">void RemoveItem(IItem item, bool isRemovingFirstOccurenceOnly = false, bool isReversed = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -348,10 +351,16 @@ we call IInventorySlot.Clear on its <a class="xref" href="InventorySystem.Invent
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><span class="parametername">onlyFirstOccurence</span></td>
+        <td><span class="parametername">isRemovingFirstOccurenceOnly</span></td>
         <td><p>Whether only the first occurence of the <a class="xref" href="InventorySystem.Items.IItem.html">IItem</a> in the
 <a class="xref" href="InventorySystem.Inventory.IInventory.html">IInventory</a> gets removed (true) or all of its occurrences (i.e., we have the same
 <a class="xref" href="InventorySystem.Items.IItem.html">IItem</a> in multiple <a class="xref" href="InventorySystem.Inventory.IInventorySlot.html">IInventorySlot</a>s).</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">isReversed</span></td>
+        <td><p>Start to remove items from the back. Does not have side effects.</p>
 </td>
       </tr>
     </tbody>
@@ -361,7 +370,7 @@ we call IInventorySlot.Clear on its <a class="xref" href="InventorySystem.Invent
     <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_Inventory_IInventory_TryAddItem_InventorySystem_Items_IItem_System_Int32_.md&amp;value=---%0Auid%3A%20InventorySystem.Inventory.IInventory.TryAddItem(InventorySystem.Items.IItem%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/IInventory.cs/#L117">View Source</a>
+    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/IInventory.cs/#L125">View Source</a>
   </span>
   <a id="InventorySystem_Inventory_IInventory_TryAddItem_" data-uid="InventorySystem.Inventory.IInventory.TryAddItem*"></a>
   <h4 id="InventorySystem_Inventory_IInventory_TryAddItem_InventorySystem_Items_IItem_System_Int32_" data-uid="InventorySystem.Inventory.IInventory.TryAddItem(InventorySystem.Items.IItem,System.Int32)">TryAddItem(IItem, int)</h4>
@@ -425,7 +434,7 @@ Returns true, even if any leftover is discarded.</p>
     <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_Inventory_IInventory_TryAddItemAt_InventorySystem_Items_IItem_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20InventorySystem.Inventory.IInventory.TryAddItemAt(InventorySystem.Items.IItem%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/IInventory.cs/#L137">View Source</a>
+    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/IInventory.cs/#L145">View Source</a>
   </span>
   <a id="InventorySystem_Inventory_IInventory_TryAddItemAt_" data-uid="InventorySystem.Inventory.IInventory.TryAddItemAt*"></a>
   <h4 id="InventorySystem_Inventory_IInventory_TryAddItemAt_InventorySystem_Items_IItem_System_Int32_System_Int32_" data-uid="InventorySystem.Inventory.IInventory.TryAddItemAt(InventorySystem.Items.IItem,System.Int32,System.Int32)">TryAddItemAt(IItem, int, int)</h4>
@@ -498,11 +507,11 @@ and returns true if any amount was added.</p>
     <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_Inventory_IInventory_TryClearSlotAt_System_Int32_.md&amp;value=---%0Auid%3A%20InventorySystem.Inventory.IInventory.TryClearSlotAt(System.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/IInventory.cs/#L101">View Source</a>
+    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/IInventory.cs/#L109">View Source</a>
   </span>
   <a id="InventorySystem_Inventory_IInventory_TryClearSlotAt_" data-uid="InventorySystem.Inventory.IInventory.TryClearSlotAt*"></a>
   <h4 id="InventorySystem_Inventory_IInventory_TryClearSlotAt_System_Int32_" data-uid="InventorySystem.Inventory.IInventory.TryClearSlotAt(System.Int32)">TryClearSlotAt(int)</h4>
-  <div class="markdown level1 summary"><p>Try to IInventorySlot.Clear the <a class="xref" href="InventorySystem.Inventory.IInventorySlot.html">IInventorySlot</a>, if it's valid.</p>
+  <div class="markdown level1 summary"><p>Try to clear the <a class="xref" href="InventorySystem.Inventory.IInventorySlot.html">IInventorySlot</a>, if it's valid.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -532,7 +541,7 @@ and returns true if any amount was added.</p>
     <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_Inventory_IInventory_TryGetItemAt_System_Int32_.md&amp;value=---%0Auid%3A%20InventorySystem.Inventory.IInventory.TryGetItemAt(System.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/IInventory.cs/#L163">View Source</a>
+    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/IInventory.cs/#L171">View Source</a>
   </span>
   <a id="InventorySystem_Inventory_IInventory_TryGetItemAt_" data-uid="InventorySystem.Inventory.IInventory.TryGetItemAt*"></a>
   <h4 id="InventorySystem_Inventory_IInventory_TryGetItemAt_System_Int32_" data-uid="InventorySystem.Inventory.IInventory.TryGetItemAt(System.Int32)">TryGetItemAt(int)</h4>
@@ -584,7 +593,7 @@ of the <a class="xref" href="InventorySystem.Inventory.IInventory.html#Inventory
     <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_Inventory_IInventory_TryGetSlotAt_System_Int32_.md&amp;value=---%0Auid%3A%20InventorySystem.Inventory.IInventory.TryGetSlotAt(System.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/IInventory.cs/#L73">View Source</a>
+    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/IInventory.cs/#L81">View Source</a>
   </span>
   <a id="InventorySystem_Inventory_IInventory_TryGetSlotAt_" data-uid="InventorySystem.Inventory.IInventory.TryGetSlotAt*"></a>
   <h4 id="InventorySystem_Inventory_IInventory_TryGetSlotAt_System_Int32_" data-uid="InventorySystem.Inventory.IInventory.TryGetSlotAt(System.Int32)">TryGetSlotAt(int)</h4>
@@ -634,7 +643,7 @@ of the <a class="xref" href="InventorySystem.Inventory.IInventory.html#Inventory
     <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_Inventory_IInventory_TryInsertItemAtFront_InventorySystem_Items_IItem_System_Int32_.md&amp;value=---%0Auid%3A%20InventorySystem.Inventory.IInventory.TryInsertItemAtFront(InventorySystem.Items.IItem%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/IInventory.cs/#L152">View Source</a>
+    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/IInventory.cs/#L160">View Source</a>
   </span>
   <a id="InventorySystem_Inventory_IInventory_TryInsertItemAtFront_" data-uid="InventorySystem.Inventory.IInventory.TryInsertItemAtFront*"></a>
   <h4 id="InventorySystem_Inventory_IInventory_TryInsertItemAtFront_InventorySystem_Items_IItem_System_Int32_" data-uid="InventorySystem.Inventory.IInventory.TryInsertItemAtFront(InventorySystem.Items.IItem,System.Int32)">TryInsertItemAtFront(IItem, int)</h4>
@@ -688,7 +697,7 @@ of the <a class="xref" href="InventorySystem.Inventory.IInventory.html#Inventory
   </table>
   <h5 id="InventorySystem_Inventory_IInventory_TryInsertItemAtFront_InventorySystem_Items_IItem_System_Int32__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Pushed all other <a class="xref" href="InventorySystem.Items.IItem.html">IItem</a>s already in the <a class="xref" href="InventorySystem.Inventory.IInventory.html">IInventory</a> one slot up.
-FIXME: If the quantity exceeds ItemSO.maxStackAmount, it is
+FIXME: If quantity exceeds <a class="xref" href="InventorySystem.Items.ItemData.html#InventorySystem_Items_ItemData_MaxStackAmount">MaxStackAmount</a>, it is
 possible that <a class="xref" href="InventorySystem.Items.IItem.html">IItem</a>s that were previously in the <a class="xref" href="InventorySystem.Inventory.IInventory.html">IInventory</a>
 get removed.</p>
 </div>
@@ -699,16 +708,18 @@ get removed.</p>
     <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_Inventory_IInventory_ItemsAdded.md&amp;value=---%0Auid%3A%20InventorySystem.Inventory.IInventory.ItemsAdded%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/IInventory.cs/#L23">View Source</a>
+    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/IInventory.cs/#L26">View Source</a>
   </span>
   <h4 id="InventorySystem_Inventory_IInventory_ItemsAdded" data-uid="InventorySystem.Inventory.IInventory.ItemsAdded">ItemsAdded</h4>
-  <div class="markdown level1 summary"><p>Event invoked when <a class="xref" href="InventorySystem.Items.IItem.html">IItem</a>s were successfully added to this.
-Returns the newly added <a class="xref" href="InventorySystem.Items.IItem.html">IItem</a> and the added quantity.</p>
+  <div class="markdown level1 summary"><p>Event invoked when <a class="xref" href="InventorySystem.Items.IItem.html">IItem</a>s were successfully added to an <a class="xref" href="InventorySystem.Inventory.IInventorySlot.html">IInventorySlot</a> in this
+<a class="xref" href="InventorySystem.Inventory.IInventory.html">IInventory</a>.
+Returns the <a class="xref" href="InventorySystem.Inventory.IInventorySlot.html">IInventorySlot</a> the <a class="xref" href="InventorySystem.Items.IItem.html">IItem</a> was added to and the index of the
+<a class="xref" href="InventorySystem.Inventory.IInventorySlot.html">IInventorySlot</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">event Action&lt;IItem, int&gt; ItemsAdded</code></pre>
+    <pre><code class="lang-csharp hljs">event Action&lt;IInventorySlot, int&gt; ItemsAdded</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-condensed">
@@ -720,7 +731,7 @@ Returns the newly added <a class="xref" href="InventorySystem.Items.IItem.html">
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-2">Action</a>&lt;<a class="xref" href="InventorySystem.Items.IItem.html">IItem</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-2">Action</a>&lt;<a class="xref" href="InventorySystem.Inventory.IInventorySlot.html">IInventorySlot</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -736,16 +747,18 @@ slot, the event will fire again for the second slot.)</p>
     <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_Inventory_IInventory_ItemsRemoved.md&amp;value=---%0Auid%3A%20InventorySystem.Inventory.IInventory.ItemsRemoved%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/IInventory.cs/#L33">View Source</a>
+    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/IInventory.cs/#L38">View Source</a>
   </span>
   <h4 id="InventorySystem_Inventory_IInventory_ItemsRemoved" data-uid="InventorySystem.Inventory.IInventory.ItemsRemoved">ItemsRemoved</h4>
-  <div class="markdown level1 summary"><p>Event invoked when <a class="xref" href="InventorySystem.Items.IItem.html">IItem</a>s were successfully removed from this.
-Returns the newly removed <a class="xref" href="InventorySystem.Items.IItem.html">IItem</a> and the removed quantity.</p>
+  <div class="markdown level1 summary"><p>Event invoked when <a class="xref" href="InventorySystem.Items.IItem.html">IItem</a>s were successfully removed from an <a class="xref" href="InventorySystem.Inventory.IInventorySlot.html">IInventorySlot</a> in this
+<a class="xref" href="InventorySystem.Inventory.IInventory.html">IInventory</a>.
+Returns the <a class="xref" href="InventorySystem.Inventory.IInventorySlot.html">IInventorySlot</a> the <a class="xref" href="InventorySystem.Items.IItem.html">IItem</a> was removed from and the index of the
+<a class="xref" href="InventorySystem.Inventory.IInventorySlot.html">IInventorySlot</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">event Action&lt;IItem, int&gt; ItemsRemoved</code></pre>
+    <pre><code class="lang-csharp hljs">event Action&lt;IInventorySlot, int&gt; ItemsRemoved</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-condensed">
@@ -757,7 +770,7 @@ Returns the newly removed <a class="xref" href="InventorySystem.Items.IItem.html
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-2">Action</a>&lt;<a class="xref" href="InventorySystem.Items.IItem.html">IItem</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-2">Action</a>&lt;<a class="xref" href="InventorySystem.Inventory.IInventorySlot.html">IInventorySlot</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -778,7 +791,7 @@ the quantity taken from that slot.</p>
                     <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_Inventory_IInventory.md&amp;value=---%0Auid%3A%20InventorySystem.Inventory.IInventory%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
                   </li>
                   <li>
-                    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/IInventory.cs/#L10" class="contribution-link">View Source</a>
+                    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/IInventory.cs/#L12" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

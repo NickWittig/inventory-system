@@ -1,6 +1,6 @@
+using InventorySystem.Items;
 using System;
 using System.Collections.Generic;
-using InventorySystem.Items;
 
 namespace InventorySystem.EquipmentInventory
 {

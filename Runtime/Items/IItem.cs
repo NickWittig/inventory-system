@@ -1,6 +1,10 @@
-﻿namespace InventorySystem.Items
+﻿using InventorySystem.Utils;
+
+/// <summary>
+///     Namespace for everything related to Items.
+/// </summary>
+namespace InventorySystem.Items
 {
-    
     /// <summary>
     /// Base interface for anything regarded as an Item.
     /// </summary>

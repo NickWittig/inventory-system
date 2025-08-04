@@ -5,11 +5,11 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>Interface IEquivalent&lt;T&gt; | Inventory System </title>
+      <title>Class InventoryFactory | Inventory System </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="Interface IEquivalent&lt;T&gt; | Inventory System ">
+      <meta name="title" content="Class InventoryFactory | Inventory System ">
     
-    <meta name="description" content="Check if this is equivalent to another &amp;quot;other&amp;quot; object. This is not the same as Equals, as we do not compare the object instance but rather the state of this to &amp;quot;other&amp;quot;.">
+    <meta name="description" content="Static factory to create s.">
       <link rel="shortcut icon" href="../favicon.ico">
       <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../styles/docfx.css">
@@ -76,56 +76,65 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="InventorySystem.Items.IEquivalent`1">
+            <article class="content wrap" id="_content" data-uid="InventorySystem.Inventory.InventoryFactory">
 
 
 
-  <h1 id="InventorySystem_Items_IEquivalent_1" data-uid="InventorySystem.Items.IEquivalent`1" class="text-break">Interface IEquivalent&lt;T&gt;</h1>
-  <div class="markdown level0 summary"><p>Check if this is equivalent to another &quot;other&quot; object.
-This is not the same as Equals,
-as we do not compare the object instance
-but rather the state of this to &quot;other&quot;.</p>
+  <h1 id="InventorySystem_Inventory_InventoryFactory" data-uid="InventorySystem.Inventory.InventoryFactory" class="text-break">Class InventoryFactory</h1>
+  <div class="markdown level0 summary"><p>Static factory to create <a class="xref" href="InventorySystem.Inventory.IInventory.html">IInventory</a>s.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="InventorySystem.html">InventorySystem</a>.<a class="xref" href="InventorySystem.Items.html">Items</a></h6>
-  <h6><strong>Assembly</strong>: InventorySystem.dll</h6>
-  <h5 id="InventorySystem_Items_IEquivalent_1_syntax">Syntax</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IEquivalent&lt;T&gt;</code></pre>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level1"><span class="xref">InventoryFactory</span></div>
   </div>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td><p>Type of the class implementing this that can be checked for equivalence.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="InventorySystem.html">InventorySystem</a>.<a class="xref" href="InventorySystem.Inventory.html">Inventory</a></h6>
+  <h6><strong>Assembly</strong>: InventorySystem.dll</h6>
+  <h5 id="InventorySystem_Inventory_InventoryFactory_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class InventoryFactory</code></pre>
+  </div>
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_Items_IEquivalent_1_IsEquivalentTo__0_.md&amp;value=---%0Auid%3A%20InventorySystem.Items.IEquivalent%601.IsEquivalentTo(%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_Inventory_InventoryFactory_Create_System_Int32_System_Boolean_.md&amp;value=---%0Auid%3A%20InventorySystem.Inventory.InventoryFactory.Create(System.Int32%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Utils/IEquivalent.cs/#L17">View Source</a>
+    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/InventoryFactory.cs/#L8">View Source</a>
   </span>
-  <a id="InventorySystem_Items_IEquivalent_1_IsEquivalentTo_" data-uid="InventorySystem.Items.IEquivalent`1.IsEquivalentTo*"></a>
-  <h4 id="InventorySystem_Items_IEquivalent_1_IsEquivalentTo__0_" data-uid="InventorySystem.Items.IEquivalent`1.IsEquivalentTo(`0)">IsEquivalentTo(T)</h4>
-  <div class="markdown level1 summary"><p>Check if this is the same type T in the same internal state as other T.</p>
-</div>
+  <a id="InventorySystem_Inventory_InventoryFactory_Create_" data-uid="InventorySystem.Inventory.InventoryFactory.Create*"></a>
+  <h4 id="InventorySystem_Inventory_InventoryFactory_Create_System_Int32_System_Boolean_" data-uid="InventorySystem.Inventory.InventoryFactory.Create(System.Int32,System.Boolean)">Create(int, bool)</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">bool IsEquivalentTo(T other)</code></pre>
+    <pre><code class="lang-csharp hljs">public static IInventory Create(int capacity = 2, bool handlesOverflow = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -138,10 +147,14 @@ but rather the state of this to &quot;other&quot;.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">T</span></td>
-        <td><span class="parametername">other</span></td>
-        <td><p>The object T to be compared against.</p>
-</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">capacity</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">handlesOverflow</span></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -155,9 +168,8 @@ but rather the state of this to &quot;other&quot;.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><p>Whether this and other are equivalent in type and internal state.</p>
-</td>
+        <td><a class="xref" href="InventorySystem.Inventory.IInventory.html">IInventory</a></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -170,10 +182,10 @@ but rather the state of this to &quot;other&quot;.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_Items_IEquivalent_1.md&amp;value=---%0Auid%3A%20InventorySystem.Items.IEquivalent%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_Inventory_InventoryFactory.md&amp;value=---%0Auid%3A%20InventorySystem.Inventory.InventoryFactory%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
                   </li>
                   <li>
-                    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Utils/IEquivalent.cs/#L10" class="contribution-link">View Source</a>
+                    <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/InventoryFactory.cs/#L6" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
