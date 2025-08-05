@@ -26,7 +26,7 @@ namespace InventorySystemTests
         public void SetUp()
         {
 
-            _inventory = InventoryFactory.Create(2);
+            _inventory = InventoryFactory.Create(2, true, 5);
 
             _potionSo = TestUtils.CreateItemSO("Potion", MAX_STACK);
             _elixirSo = TestUtils.CreateItemSO("Elixir", MAX_STACK);
@@ -379,6 +379,125 @@ namespace InventorySystemTests
             Assert.AreEqual(removedSlot.Quantity, 0);
         }
 
+        [Test]
+        public void CapacityChanged_Event_Fires_WhenCapacityIsIncreased()
+        {
+            var inventory = InventoryFactory.Create(2, maxCapacity: 4);
+            var fired = false;
+            int newCap = -1;
+
+            inventory.CapacityChanged += (cap) =>
+            {
+                fired = true;
+                newCap = cap;
+            };
+
+            inventory.TryIncreaseCapacity(2);
+
+            Assert.IsTrue(fired);
+            Assert.AreEqual(4, newCap);
+        }
+
+        [Test]
+        public void CapacityChanged_Event_DoesNotFire_WhenIncreaseFails()
+        {
+            var inventory = InventoryFactory.Create(5, maxCapacity: 5);
+            var fired = false;
+
+            inventory.CapacityChanged += (_) => fired = true;
+
+            inventory.TryIncreaseCapacity(1);
+
+            Assert.IsFalse(fired);
+        }
+
+        
         #endregion
+        
+        #region Capacity Increase ----------------------------------------------
+
+        [Test]
+        public void TryIncreaseCapacity_WhenNegativeValue_ReturnsFalseAndDoesNothing()
+        {
+            var result = _inventory.TryIncreaseCapacity(-5);
+
+            Assert.IsFalse(result);
+            Assert.AreEqual(2, _inventory.Capacity);
+        }
+
+        [Test]
+        public void TryIncreaseCapacity_WhenZero_ReturnsFalseAndDoesNothing()
+        {
+            var result = _inventory.TryIncreaseCapacity(0);
+
+            Assert.IsFalse(result);
+            Assert.AreEqual(2, _inventory.Capacity);
+        }
+
+        [Test]
+        public void TryIncreaseCapacity_WhenBelowMax_IncreasesCapacityAndReturnsTrue()
+        {
+            
+            var result = _inventory.TryIncreaseCapacity(2);
+
+            Assert.IsTrue(result);
+            Assert.AreEqual(4, _inventory.Capacity);
+            Assert.AreEqual(4, _inventory.InventorySlots.Count);
+            Assert.AreEqual(4, _inventory.Items.Count);
+        }
+
+        [Test]
+        public void TryIncreaseCapacity_WhenAddingPastMax_ClampsToMaxAndReturnsTrue()
+        {
+            // Assuming your MaxCapacity is 5
+            _inventory.TryIncreaseCapacity(10);
+
+            Assert.AreEqual(5, _inventory.Capacity);
+        }
+
+        [Test]
+        public void TryIncreaseCapacity_WhenAtMax_DoesNothingAndReturnsFalse()
+        {
+            _inventory.TryIncreaseCapacity(3); // Bring to 5
+            var result = _inventory.TryIncreaseCapacity(1); // Already at max
+
+            Assert.IsFalse(result);
+            Assert.AreEqual(5, _inventory.Capacity);
+        }
+
+        [Test]
+        public void TryIncreaseCapacity_WhenNearMax_IncreasesToMaxAndReturnsTrue()
+        {
+            var result = _inventory.TryIncreaseCapacity(10); // More than needed
+
+            Assert.IsTrue(result);
+            Assert.AreEqual(5, _inventory.Capacity);
+        }
+        [Test]
+        public void TryIncreaseCapacity_PreservesExistingSlotsAndAddsEmptyOnes()
+        {
+            // Arrange: Add two items (initial capacity is 2)
+            _inventory.TryAddItem(_potion);
+            _inventory.TryAddItem(_elixir);
+
+            // Act: Increase capacity by 2 (new capacity should be 4)
+            var success = _inventory.TryIncreaseCapacity(2);
+
+            // Assert
+            Assert.IsTrue(success);
+            Assert.AreEqual(4, _inventory.Capacity);
+            Assert.AreEqual(4, _inventory.InventorySlots.Count);
+
+            // Existing items should be preserved
+            Assert.IsTrue(_potion.IsEquivalentTo(_inventory.TryGetItemAt(0)));
+            Assert.IsTrue(_elixir.IsEquivalentTo(_inventory.TryGetItemAt(1)));
+
+            // New slots should be empty
+            Assert.IsTrue(_inventory.TryGetSlotAt(2).IsEmpty);
+            Assert.IsTrue(_inventory.TryGetSlotAt(3).IsEmpty);
+        }
+
+        #endregion
+
     }
 }

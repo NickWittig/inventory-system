@@ -10,7 +10,7 @@
             return new Inventory.Builder()
                 .WithOverflow(handlesOverflow)
                 .WithStartCapacity(capacity)
-                .WithMaxCapacity(2)
+                .WithMaxCapacity(maxCapacity)
                 .Build();
         }
     }
