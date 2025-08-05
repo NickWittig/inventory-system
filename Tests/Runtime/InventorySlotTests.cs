@@ -17,7 +17,7 @@ namespace InventorySystemTests
     public class InventorySlotInterfaceTests
     {
         private const int MAX_STACK = 5;
-        private Inventory _inventory;
+        private IInventory _inventory;
         private ItemData _potionSo;
         private ItemData _elixirSo;
         private IItem _potion;
@@ -26,7 +26,7 @@ namespace InventorySystemTests
         [SetUp]
         public void SetUp()
         {
-            _inventory = Inventory.Create(); // default handlesOverflow = true
+            _inventory = InventoryFactory.Create(); // default handlesOverflow = true
 
             _potionSo = TestUtils.CreateItemSO("Potion", MAX_STACK);
             _elixirSo = TestUtils.CreateItemSO("Elixir", MAX_STACK);
@@ -35,7 +35,7 @@ namespace InventorySystemTests
             _elixir = new MockItem(_elixirSo);
         }
 
-        #region ––––– empty / full / item / quantity via inventory ops –––––
+        #region ï¿½ï¿½ï¿½ï¿½ï¿½ empty / full / item / quantity via inventory ops ï¿½ï¿½ï¿½ï¿½ï¿½
 
         [Test]
         public void NewSlot_IsEmpty_QuantityZero_ItemNull()
@@ -147,13 +147,13 @@ namespace InventorySystemTests
 
         #endregion
 
-        #region ––––– edge / invariants –––––
+        #region ï¿½ï¿½ï¿½ï¿½ï¿½ edge / invariants ï¿½ï¿½ï¿½ï¿½ï¿½
 
         [Test]
         public void FullSlot_RemainsFull_WhenAttemptingToAddSameItemWithoutOverflowHandlingDisabled()
         {
             // default inventory handles overflow: to test "full stays full" we create no-overflow inventory
-            var inv = Inventory.Create(2, false);
+            var inv = InventoryFactory.Create(2, false);
             inv.TryAddItem(_potion, MAX_STACK - 1);
 
             // adding more should not spill into second slot because handlesOverflow=false

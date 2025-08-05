@@ -15,6 +15,8 @@ namespace InventorySystem.Inventory
     {
         [SerializeField] private InventorySlot[] _slots;
         [field: SerializeField] public int Capacity { get; private set; }
+        [SerializeField] private int _maxCapacity;
+        public int MaxCapacity => _maxCapacity;
         public bool IsEmpty => _slots.All(slot => slot.IsEmpty);
 
         /// <summary>
@@ -27,8 +29,11 @@ namespace InventorySystem.Inventory
         /// <inheritdoc cref="IInventory.ItemsAdded" />
         public event Action<IInventorySlot, int> ItemsAdded;
 
-        /// <inheritdoc />
+        /// <inheritdoc cref="IInventory.ItemsRemoved" />
         public event Action<IInventorySlot, int> ItemsRemoved;
+        
+        /// <inheritdoc cref="IInventory.CapacityChanged" />
+        public event Action<int> CapacityChanged ;
 
         /// <inheritdoc cref="IInventory.Items" />
         public IReadOnlyList<IItem> Items => _slots.Select(slot => slot.Item).ToList();
@@ -36,30 +41,13 @@ namespace InventorySystem.Inventory
         /// <inheritdoc cref="IInventory.InventorySlots" />
         public IReadOnlyList<IInventorySlot> InventorySlots => _slots;
 
-        private Inventory(int capacity = 2, bool handlesOverflow = true)
+        private Inventory(int capacity = 2, int maxCapacity = 2, bool handlesOverflow = true)
         {
             Capacity = capacity;
+            _maxCapacity = maxCapacity;
             _handlesOverflow = handlesOverflow;
         }
-
-        /// <summary>
-        ///     Create a new <see cref="Inventory" />.
-        ///     Also, creates and assigns capacity amount of <see cref="InventorySlot" />s.
-        /// </summary>
-        /// <param name="capacity">Amount of <see cref="IInventorySlot" /> in this.</param>
-        /// <param name="handlesOverflow">Whether overflow is handled or discarded.</param>
-        /// <returns>A new <see cref="Inventory" />.</returns>
-        public static Inventory Create(int capacity = 2, bool handlesOverflow = true)
-        {
-            var inventory = new Inventory(capacity, handlesOverflow)
-            {
-                _slots = new InventorySlot[capacity]
-            };
-
-            for (var i = 0; i < capacity; i++) inventory._slots[i] = new InventorySlot();
-
-            return inventory;
-        }
+        
 
         /// <inheritdoc cref="IInventory.IsSlotAvailable" />
         public bool IsSlotAvailable(IItem item, out int addIndex)
@@ -149,6 +137,39 @@ namespace InventorySystem.Inventory
         public void Clear()
         {
             foreach (InventorySlot slot in _slots) ClearSlotWithEvent(slot);
+        }
+
+        /// <inheritdoc cref="IInventory.TryIncreaseCapacity"/>
+        public bool TryIncreaseCapacity(int addedCapacity)
+        {
+            if (addedCapacity <= 0) return false;
+            if (Capacity >= _maxCapacity) return false;
+            
+            if (Capacity + addedCapacity >= _maxCapacity)
+            {
+                Capacity = _maxCapacity;
+            }
+            else
+            {
+                Capacity += addedCapacity;
+            }
+            
+            var existingSlots = _slots.Select(slot => slot.DeepCopy()).ToList();
+            var newSlots = new InventorySlot[Capacity];
+            for (var i = 0; i < Capacity; i++)
+            {
+                if (i <  existingSlots.Count)
+                {
+                    newSlots[i] = existingSlots[i];
+                }
+                else
+                {
+                    newSlots[i] = new InventorySlot();
+                }
+            }
+            _slots = newSlots;
+            OnCapacityIncreased(Capacity);
+            return true;
         }
 
         /// <inheritdoc cref="IInventory.TryInsertItemAtFront" />
@@ -269,5 +290,79 @@ namespace InventorySystem.Inventory
             if (slot is null) return;
             ItemsRemoved?.Invoke(slot, index);
         }
+
+        /// <summary>
+        ///     Trigger the <see cref="CapacityChanged"/> event.
+        /// </summary>
+        /// <param name="newCapacity">
+        ///     The new <see cref="Capacity"/> of this.
+        /// </param>
+        private void OnCapacityIncreased(int newCapacity)
+        {
+            CapacityChanged?.Invoke(newCapacity);
+        }
+
+        
+        #region Builder
+        /// <summary>
+        ///     A builder for creating a new <see cref="Inventory"/>.
+        ///     Also, creates and assigns capacity amount of <see cref="InventorySlot" />s.
+        ///     Can set maximum capacity.
+        /// </summary>
+        /// <returns>
+        ///     A new <see cref="Inventory" />.
+        /// </returns>
+        internal class Builder
+        {
+            int _startCapacity = 2;
+            int _maxCapacity = 2;
+            bool _handlesOverflow = true;
+
+            /// <summary>
+            ///     Set the starting <see cref="Inventory.Capacity"/> of the <see cref="Inventory"/>. 
+            /// </summary>
+            /// <param name="startCapacity">
+            ///     Capacity of the new <see cref="Inventory"/>.
+            /// </param>
+            /// <returns>
+            ///     This <see cref="Builder"/>.
+            /// </returns>
+            public Builder WithStartCapacity(int startCapacity)
+            {
+                _startCapacity = startCapacity;
+                return this;
+            }
+
+            public Builder WithMaxCapacity(int maxCapacity)
+            {
+                _maxCapacity = maxCapacity;
+                return this;
+            }
+            
+            public Builder WithOverflow(bool  handlesOverflow)
+            {
+                _handlesOverflow = handlesOverflow;
+                return this;
+            }
+
+            /// <summary>
+            ///     Builds the new <see cref="Inventory"/> with
+            ///     the values assigned in this.
+            /// </summary>
+            /// <returns>
+            ///     A new <see cref="Inventory"/>.
+            /// </returns>
+            public Inventory Build()
+            {
+                var inventory = new Inventory(_startCapacity, _maxCapacity, _handlesOverflow)
+                {
+                    _slots = new InventorySlot[_startCapacity]
+                };
+
+                for (var i = 0; i < _startCapacity; i++) inventory._slots[i] = new InventorySlot();
+                return inventory;
+            }
+        }
+        #endregion
     }
 }

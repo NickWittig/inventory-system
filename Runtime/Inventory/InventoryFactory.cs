@@ -5,9 +5,13 @@
     /// </summary>
     public static class InventoryFactory
     {
-        public static IInventory Create(int capacity = 2, bool handlesOverflow = false)
+        public static IInventory Create(int capacity = 2, bool handlesOverflow = true, int maxCapacity = 2)
         {
-            return Inventory.Create(capacity, handlesOverflow);
+            return new Inventory.Builder()
+                .WithOverflow(handlesOverflow)
+                .WithStartCapacity(capacity)
+                .WithMaxCapacity(2)
+                .Build();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace InventorySystemTests
     public class InventoryTests
     {
         private const int MAX_STACK = 5;
-        private Inventory _inventory; // default: handlesOverflow = true
+        private IInventory _inventory; // default: handlesOverflow = true
         private ItemData _potionSo;
         private ItemData _elixirSo;
         private IItem _potion;
@@ -25,7 +25,8 @@ namespace InventorySystemTests
         [SetUp]
         public void SetUp()
         {
-            _inventory = Inventory.Create();
+
+            _inventory = InventoryFactory.Create(2);
 
             _potionSo = TestUtils.CreateItemSO("Potion", MAX_STACK);
             _elixirSo = TestUtils.CreateItemSO("Elixir", MAX_STACK);
@@ -178,7 +179,7 @@ namespace InventorySystemTests
         [Test]
         public void TryAddItem_StopsAfterFirstSlot_WhenHandlesOverflowFalse()
         {
-            var inv = Inventory.Create(2, false);
+            var inv = InventoryFactory.Create(2, false);
             var added = inv.TryAddItem(_potion, 10);
             Assert.IsTrue(added);
             Assert.AreEqual(MAX_STACK, inv.TryGetSlotAt(0).Quantity);

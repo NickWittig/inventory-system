@@ -14,9 +14,11 @@ namespace InventorySystem.Inventory
         /// <summary>
         ///     Event invoked when <see cref="IItem" />s were successfully added to an <see cref="IInventorySlot" /> in this
         ///     <see cref="IInventory" />.
+        /// </summary>
+        /// <returns>
         ///     Returns the <see cref="IInventorySlot" /> the <see cref="IItem" /> was added to and the index of the
         ///     <see cref="IInventorySlot" />.
-        /// </summary>
+        /// </returns>
         /// <remarks>
         ///     Triggered per slot that receives items; each invocation returns the added <see cref="IItem" /> and
         ///     the quantity placed into that slot. (i.e., if more <see cref="IItem" />s are added than
@@ -28,19 +30,37 @@ namespace InventorySystem.Inventory
         /// <summary>
         ///     Event invoked when <see cref="IItem" />s were successfully removed from an <see cref="IInventorySlot" /> in this
         ///     <see cref="IInventory" />.
+        /// </summary>
+        /// <returns>
         ///     Returns the <see cref="IInventorySlot" /> the <see cref="IItem" /> was removed from and the index of the
         ///     <see cref="IInventorySlot" />.
-        /// </summary>
+        /// </returns>
         /// <remarks>
         ///     Fired per slot that loses items; each invocation returns the removed <see cref="IItem" /> and
         ///     the quantity taken from that slot.
         /// </remarks>
         public event Action<IInventorySlot, int> ItemsRemoved;
 
+        
+        /// <summary>
+        ///     Event invoked when the <see cref="Capacity"/> of this <see cref="IInventory"/> is changed.
+        /// </summary>
+        /// <returns>
+        ///     Returns the new <see cref="Capacity"/> of this <see cref="IInventory"/>.
+        /// </returns>
+        /// <seealso cref="TryIncreaseCapacity"/>
+        public event Action<int> CapacityChanged;
+        
         /// <summary>
         ///     Maximum amount of items that can be inside the <see cref="IInventory" />.
         /// </summary>
         int Capacity { get; }
+        
+        /// <summary>
+        ///     Maximum capacity of this <see cref="IInventory"/>.
+        /// </summary>
+        /// <seealso cref="TryIncreaseCapacity"/>
+        int MaxCapacity { get; }
 
         /// <summary>
         ///     Whether the entire <see cref="IInventory" /> is empty meaning all <see cref="IInventorySlot" />s are empty.
@@ -188,5 +208,23 @@ namespace InventorySystem.Inventory
         ///     Clear the entire <see cref="IInventory" /> by clearing all <see cref="IInventorySlot" />s.
         /// </summary>
         public void Clear();
+
+        /// <summary>
+        ///     Increases the <see cref="Capacity"/> of this up to <see cref="MaxCapacity"/>.
+        /// </summary>
+        /// <param name="addedCapacity">
+        ///     The amount of capacity to be added.
+        /// </param>
+        /// <returns>
+        ///     Whether the <see cref="Capacity"/> was increased at all.
+        ///     Also returns true, if the <see cref="Capacity"/> was not increased by the full addedCapacity.
+        /// </returns>
+        /// <remarks>
+        ///     Discards negative numbers as this cannot decrease <see cref="Capacity"/>.
+        ///     If <see cref="Capacity"/> is already <see cref="MaxCapacity"/> or adding
+        ///     addedCapacity would increase <see cref="Capacity"/> to be higher than <see cref="MaxCapacity"/>
+        ///     <see cref="Capacity"/> gets set to <see cref="MaxCapacity"/>.
+        /// </remarks>
+        public bool TryIncreaseCapacity(int addedCapacity);
     }
 }
