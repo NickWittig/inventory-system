@@ -10,3 +10,7 @@ Then, "Install package from git URL..." and then simply paste:
 ```
 https://github.com/NickWittig/inventory-system.git
 ```
+
+## Documentation
+
+[Documentation](https://nickwittig.github.io/inventory-system/index.html)

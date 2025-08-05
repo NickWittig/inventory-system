@@ -24,3 +24,12 @@
 ### Factories
 * Added factories for Inventory and EquipmentInventory
 * License fix
+
+## [1.0.4] - 2025-08-05
+### Runtime Resizable (IncreaseCapacity) and Swap and Compact Methods
+* Added IncreaseCapacity method to increase IInventory capacity at runtime
+* Added Swap method to swap to inventory slots in inventory by index
+* Added Compact method to sort the inventory in a compact manner
+* Added docstrings for new methods
+* Added tests for new methods
+* Rebuild docs (docfx)

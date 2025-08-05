@@ -1,5 +1,5 @@
 {
-  "source_base_path": "C:/Users/NickWittig/Documents/Unity/inventory-system/docfx",
+  "source_base_path": "F:/Development/Unity Projects/InventorySystem/docfx",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -135,34 +135,6 @@
       "IsMRef": true,
       "Title": "InventorySystem.Inventory",
       "Summary": null
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/InventorySystem.Items.ICopyable-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/InventorySystem.Items.ICopyable-1.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "InventorySystem.Items.ICopyable<T>",
-      "Summary": "<p sourcefile=\"api/InventorySystem.Items.ICopyable-1.yml\" sourcestartlinenumber=\"1\">Make this able to be copied.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/InventorySystem.Items.IEquivalent-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/InventorySystem.Items.IEquivalent-1.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "InventorySystem.Items.IEquivalent<T>",
-      "Summary": "<p sourcefile=\"api/InventorySystem.Items.IEquivalent-1.yml\" sourcestartlinenumber=\"1\">Check if this is equivalent to another &quot;other&quot; object.\nThis is not the same as Equals,\nas we do not compare the object instance\nbut rather the state of this to &quot;other&quot;.</p>\n"
     },
     {
       "type": "ManagedReference",
