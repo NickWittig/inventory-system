@@ -226,5 +226,30 @@ namespace InventorySystem.Inventory
         ///     <see cref="Capacity"/> gets set to <see cref="MaxCapacity"/>.
         /// </remarks>
         public bool TryIncreaseCapacity(int addedCapacity);
+        
+        
+        /// <summary>
+        /// Swap the content of the <see cref="IInventorySlot"/> at indexA with
+        /// the content of the <see cref="IInventorySlot"/> at indexB.
+        /// </summary>
+        /// <param name="indexA">The index of slot A.</param>
+        /// <param name="indexB">The index of slot B.</param>
+        public void Swap(int indexA, int indexB);
+
+        /// <summary>
+        ///     Makes the <see cref="IInventory"/> compact meaning
+        ///     that all empty gaps between <see cref="IInventorySlot"/>s are
+        ///     filled with <see cref="IInventorySlot"/> after the gaps.
+        /// </summary>
+        /// <remarks>
+        ///     Remains the order of <see cref="IInventorySlot"/>s
+        ///     meaning that the first <see cref="IInventorySlot"/>
+        ///     after a gap is also the first that fills out that slot
+        ///     with the slots filling out empty slots from left to right.
+        /// </remarks>
+        public void Compact();
+
+
     }
+    
 }

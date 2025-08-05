@@ -172,6 +172,50 @@ namespace InventorySystem.Inventory
             return true;
         }
 
+        /// <inheritdoc cref="IInventory.Swap"/>
+        public void Swap(int indexA, int indexB)
+        {
+            if (indexA == indexB) return;
+
+            if (TryGetSlotAt(indexA) is not InventorySlot slotA ||
+                TryGetSlotAt(indexB) is not InventorySlot slotB)
+            {
+                return;
+            }
+
+            var aIsEmpty = slotA.IsEmpty;
+            var bIsEmpty = slotB.IsEmpty;
+
+            if (aIsEmpty && bIsEmpty) return;
+
+            InventorySlot copyA = aIsEmpty ? null : slotA.DeepCopy();
+            InventorySlot copyB = bIsEmpty ? null : slotB.DeepCopy();
+
+            slotA.Clear();
+            slotB.Clear();
+
+            if (copyB != null)
+                slotA.SetItemAndQuantity(copyB.Item, copyB.Quantity);
+
+            if (copyA != null)
+                slotB.SetItemAndQuantity(copyA.Item, copyA.Quantity);
+        }
+
+        /// <inheritdoc cref="IInventory.Compact" />
+        public void Compact()
+        {
+            var gaps = new Queue<int>();
+            for (var i = 0; i < Capacity; i++)
+            {
+                if (!_slots[i].IsEmpty)
+                {
+                    if (!gaps.TryDequeue(out var index)) continue;
+                    Swap(i, index);
+                }
+                gaps.Enqueue(i);
+            }
+        }
+
         /// <inheritdoc cref="IInventory.TryInsertItemAtFront" />
         public bool TryInsertItemAtFront(IItem item, int quantity = 1)
         {

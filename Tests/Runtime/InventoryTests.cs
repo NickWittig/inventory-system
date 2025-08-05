@@ -499,5 +499,172 @@ namespace InventorySystemTests
 
         #endregion
 
+        #region Swap
+
+        [Test]
+        public void Swap_WhenCalled_SwapsItemsBetweenSlots()
+        {
+            _inventory.TryAddItem(_potion, 1);
+            _inventory.TryAddItem(_elixir, 1);
+
+            Assert.IsTrue(_potion.IsEquivalentTo(_inventory.TryGetItemAt(0)));
+            Assert.IsTrue(_elixir.IsEquivalentTo(_inventory.TryGetItemAt(1)));
+
+            _inventory.Swap(0, 1);
+
+            Assert.IsTrue(_elixir.IsEquivalentTo(_inventory.TryGetItemAt(0)));
+            Assert.IsTrue(_potion.IsEquivalentTo(_inventory.TryGetItemAt(1)));
+        }
+
+        [Test]
+        public void Swap_WhenFirstSlotIsEmpty_SecondSlotMovesToFirst()
+        {
+            _inventory.TryAddItemAt(_elixir,1, 1);
+
+            Assert.IsNull(_inventory.TryGetItemAt(0));
+            Assert.IsTrue(_elixir.IsEquivalentTo(_inventory.TryGetItemAt(1)));
+
+            _inventory.Swap(0, 1);
+
+            Assert.IsTrue(_elixir.IsEquivalentTo(_inventory.TryGetItemAt(0)));
+            Assert.IsNull(_inventory.TryGetItemAt(1));
+        }
+
+        [Test]
+        public void Swap_WhenSecondSlotIsEmpty_FirstSlotMovesToSecond()
+        {
+            _inventory.TryAddItem(_potion, 1);
+
+            Assert.IsTrue(_potion.IsEquivalentTo(_inventory.TryGetItemAt(0)));
+            Assert.IsNull(_inventory.TryGetItemAt(1));
+
+            _inventory.Swap(0, 1);
+
+            Assert.IsNull(_inventory.TryGetItemAt(0));
+            Assert.IsTrue(_potion.IsEquivalentTo(_inventory.TryGetItemAt(1)));
+        }
+
+        [Test]
+        public void Swap_WhenBothSlotsAreEmpty_NoChangeOccurs()
+        {
+            Assert.IsNull(_inventory.TryGetItemAt(0));
+            Assert.IsNull(_inventory.TryGetItemAt(1));
+
+            _inventory.Swap(0, 1);
+
+            Assert.IsNull(_inventory.TryGetItemAt(0));
+            Assert.IsNull(_inventory.TryGetItemAt(1));
+        }
+
+        #endregion
+        
+        #region ––––– Compact –––––
+
+        [Test]
+        public void Compact_WhenInventoryIsAlreadyCompact_DoesNothing()
+        {
+            _inventory.TryAddItem(_potion); // Index 0
+            _inventory.TryAddItem(_elixir); // Index 1
+
+            var before = _inventory.Items.ToList();
+
+            _inventory.Compact();
+
+            var after = _inventory.Items.ToList();
+            CollectionAssert.AreEqual(before, after);
+        }
+
+        [Test]
+        public void Compact_WhenOneGapExists_MovesItemLeft()
+        {
+            _inventory.TryAddItem(_potion); // Index 0
+            _inventory.TryAddItem(_elixir); // Index 1
+
+            ((InventorySlot)_inventory.TryGetSlotAt(0)).Clear(); // Now: [null, elixir]
+
+            _inventory.Compact();
+
+            Assert.That(_inventory.TryGetItemAt(0)?.IsEquivalentTo(_elixir), Is.True);
+            Assert.That(_inventory.TryGetItemAt(1), Is.Null);
+        }
+
+        [Test]
+        public void Compact_WhenMultipleGapsExist_MovesAllItemsLeftInOrder()
+        {
+            _inventory = InventoryFactory.Create(4, true, MAX_STACK);
+
+            _inventory.TryAddItem(_potion, 5);  // Index 0, Full
+            _inventory.TryAddItem(_elixir, 5);  // Index 1, Full
+            _inventory.TryAddItem(_potion, 5);  // Index 2, Full
+            _inventory.TryAddItem(_elixir, 5);  // Index 3, Full
+
+            ((InventorySlot)_inventory.TryGetSlotAt(0)).Clear(); // Gap at 0
+            ((InventorySlot)_inventory.TryGetSlotAt(2)).Clear(); // Gap at 2
+
+            // Now: [null, elixir, null, elixir]
+
+            _inventory.Compact();
+
+            Assert.That(_inventory.TryGetItemAt(0)?.IsEquivalentTo(_elixir), Is.True);
+            Assert.That(_inventory.TryGetItemAt(1)?.IsEquivalentTo(_elixir), Is.True);
+            Assert.That(_inventory.TryGetItemAt(2), Is.Null);
+            Assert.That(_inventory.TryGetItemAt(3), Is.Null);
+        }
+
+        [Test]
+        public void Compact_WhenMultipleConsecutiveGapsExist_MovesAllItemsLeftInOrder()
+        {
+            _inventory = InventoryFactory.Create(4, true, MAX_STACK);
+
+            _inventory.TryAddItem(_potion, 5);  // Index 0, Full
+            _inventory.TryAddItem(_elixir, 5);  // Index 1, Full
+            _inventory.TryAddItem(_potion, 5);  // Index 2, Full
+            _inventory.TryAddItem(_elixir, 5);  // Index 3, Full
+
+            ((InventorySlot)_inventory.TryGetSlotAt(1)).Clear(); // Gap at 1
+            ((InventorySlot)_inventory.TryGetSlotAt(2)).Clear(); // Gap at 2
+
+            // Now: [potion, null, null, elixir]
+
+            _inventory.Compact();
+
+            Assert.That(_inventory.TryGetItemAt(0)?.IsEquivalentTo(_potion), Is.True);
+            Assert.That(_inventory.TryGetItemAt(1)?.IsEquivalentTo(_elixir), Is.True);
+            Assert.That(_inventory.TryGetItemAt(2), Is.Null);
+            Assert.That(_inventory.TryGetItemAt(3), Is.Null);
+        }
+        
+        [Test]
+        public void Compact_WhenAllSlotsAreEmpty_DoesNothing()
+        {
+            _inventory = InventoryFactory.Create(3, true, MAX_STACK);
+
+            _inventory.Compact();
+
+            foreach (var item in _inventory.Items)
+                Assert.That(item, Is.Null);
+        }
+
+        [Test]
+        public void Compact_PreservesItemOrder_AfterGapsFilled()
+        {
+            _inventory = InventoryFactory.Create(5, true, MAX_STACK);
+
+            _inventory.TryAddItem(_potion, 5);  // Index 0
+            _inventory.TryAddItem(_elixir,5);  // Index 1
+            _inventory.TryAddItem(_potion,5);  // Index 2
+
+            ((InventorySlot)_inventory.TryGetSlotAt(0)).Clear(); // Gap at 0
+
+            _inventory.Compact();
+            
+            Assert.That(_inventory.Items.Count, Is.EqualTo(5));
+            Assert.That(_inventory.TryGetItemAt(0).IsEquivalentTo(_elixir), Is.True);
+            Assert.IsNotNull(_inventory.TryGetItemAt(1));
+            Assert.That(_inventory.TryGetItemAt(1).IsEquivalentTo(_potion), Is.True);
+        }
+
+        #endregion
+
     }
 }
