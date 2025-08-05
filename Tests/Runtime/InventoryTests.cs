@@ -499,7 +499,7 @@ namespace InventorySystemTests
 
         #endregion
 
-        #region Swap
+        #region Swap ----------------------------------------------
 
         [Test]
         public void Swap_WhenCalled_SwapsItemsBetweenSlots()
@@ -558,7 +558,7 @@ namespace InventorySystemTests
 
         #endregion
         
-        #region ––––– Compact –––––
+        #region Compact ----------------------------------------------
 
         [Test]
         public void Compact_WhenInventoryIsAlreadyCompact_DoesNothing()
@@ -577,10 +577,10 @@ namespace InventorySystemTests
         [Test]
         public void Compact_WhenOneGapExists_MovesItemLeft()
         {
-            _inventory.TryAddItem(_potion); // Index 0
-            _inventory.TryAddItem(_elixir); // Index 1
+            _inventory.TryAddItemAt(_potion, 0); // Index 0
+            _inventory.TryAddItemAt(_elixir, 1); // Index 1
 
-            ((InventorySlot)_inventory.TryGetSlotAt(0)).Clear(); // Now: [null, elixir]
+            _inventory.TryClearSlotAt(0); // Now: [null, elixir]
 
             _inventory.Compact();
 
@@ -593,13 +593,13 @@ namespace InventorySystemTests
         {
             _inventory = InventoryFactory.Create(4, true, MAX_STACK);
 
-            _inventory.TryAddItem(_potion, 5);  // Index 0, Full
-            _inventory.TryAddItem(_elixir, 5);  // Index 1, Full
-            _inventory.TryAddItem(_potion, 5);  // Index 2, Full
-            _inventory.TryAddItem(_elixir, 5);  // Index 3, Full
+            _inventory.TryAddItemAt(_potion, 0);  // Index 0, Full
+            _inventory.TryAddItemAt(_elixir, 1);  // Index 1, Full
+            _inventory.TryAddItemAt(_potion, 2);  // Index 2, Full
+            _inventory.TryAddItemAt(_elixir, 3);  // Index 3, Full
 
-            ((InventorySlot)_inventory.TryGetSlotAt(0)).Clear(); // Gap at 0
-            ((InventorySlot)_inventory.TryGetSlotAt(2)).Clear(); // Gap at 2
+            _inventory.TryClearSlotAt(0); // Gap at 0
+            _inventory.TryClearSlotAt(2); // Gap at 2
 
             // Now: [null, elixir, null, elixir]
 
@@ -616,13 +616,13 @@ namespace InventorySystemTests
         {
             _inventory = InventoryFactory.Create(4, true, MAX_STACK);
 
-            _inventory.TryAddItem(_potion, 5);  // Index 0, Full
-            _inventory.TryAddItem(_elixir, 5);  // Index 1, Full
-            _inventory.TryAddItem(_potion, 5);  // Index 2, Full
-            _inventory.TryAddItem(_elixir, 5);  // Index 3, Full
+            _inventory.TryAddItemAt(_potion, 0);  // Index 0, Full
+            _inventory.TryAddItemAt(_elixir, 1);  // Index 1, Full
+            _inventory.TryAddItemAt(_potion, 2);  // Index 2, Full
+            _inventory.TryAddItemAt(_elixir, 3);  // Index 3, Full
 
-            ((InventorySlot)_inventory.TryGetSlotAt(1)).Clear(); // Gap at 1
-            ((InventorySlot)_inventory.TryGetSlotAt(2)).Clear(); // Gap at 2
+            _inventory.TryClearSlotAt(1); // Gap at 1
+            _inventory.TryClearSlotAt(2); // Gap at 2
 
             // Now: [potion, null, null, elixir]
 
@@ -650,11 +650,11 @@ namespace InventorySystemTests
         {
             _inventory = InventoryFactory.Create(5, true, MAX_STACK);
 
-            _inventory.TryAddItem(_potion, 5);  // Index 0
-            _inventory.TryAddItem(_elixir,5);  // Index 1
-            _inventory.TryAddItem(_potion,5);  // Index 2
+            _inventory.TryAddItemAt(_potion, 0);  // Index 0
+            _inventory.TryAddItemAt(_elixir,1);  // Index 1
+            _inventory.TryAddItemAt(_potion,2);  // Index 2
 
-            ((InventorySlot)_inventory.TryGetSlotAt(0)).Clear(); // Gap at 0
+            _inventory.TryClearSlotAt(0); // Gap at 0
 
             _inventory.Compact();
             
