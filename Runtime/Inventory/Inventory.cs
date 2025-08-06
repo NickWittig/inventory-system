@@ -142,32 +142,17 @@ namespace InventorySystem.Inventory
         /// <inheritdoc cref="IInventory.TryIncreaseCapacity"/>
         public bool TryIncreaseCapacity(int addedCapacity)
         {
-            if (addedCapacity <= 0) return false;
-            if (Capacity >= _maxCapacity) return false;
-            
-            if (Capacity + addedCapacity >= _maxCapacity)
+            if (addedCapacity <= 0 || Capacity >= _maxCapacity) return false;
+
+            int newCapacity = Mathf.Min(Capacity + addedCapacity, _maxCapacity);
+
+            Array.Resize(ref _slots, newCapacity);
+            for (int i = Capacity; i < newCapacity; i++)
             {
-                Capacity = _maxCapacity;
+                _slots[i] = new InventorySlot();
             }
-            else
-            {
-                Capacity += addedCapacity;
-            }
-            
-            var existingSlots = _slots.Select(slot => slot.DeepCopy()).ToList();
-            var newSlots = new InventorySlot[Capacity];
-            for (var i = 0; i < Capacity; i++)
-            {
-                if (i <  existingSlots.Count)
-                {
-                    newSlots[i] = existingSlots[i];
-                }
-                else
-                {
-                    newSlots[i] = new InventorySlot();
-                }
-            }
-            _slots = newSlots;
+
+            Capacity = newCapacity;
             OnCapacityIncreased(Capacity);
             return true;
         }
@@ -175,44 +160,31 @@ namespace InventorySystem.Inventory
         /// <inheritdoc cref="IInventory.Swap"/>
         public void Swap(int indexA, int indexB)
         {
-            if (indexA == indexB) return;
-
-            if (TryGetSlotAt(indexA) is not InventorySlot slotA ||
-                TryGetSlotAt(indexB) is not InventorySlot slotB)
+            if (indexA == indexB
+                || !IsValidSlotIndex(indexA)
+                || !IsValidSlotIndex(indexB))
             {
                 return;
             }
 
-            var aIsEmpty = slotA.IsEmpty;
-            var bIsEmpty = slotB.IsEmpty;
-
-            if (aIsEmpty && bIsEmpty) return;
-
-            InventorySlot copyA = aIsEmpty ? null : slotA.DeepCopy();
-            InventorySlot copyB = bIsEmpty ? null : slotB.DeepCopy();
-
-            slotA.Clear();
-            slotB.Clear();
-
-            if (copyB != null)
-                slotA.SetItemAndQuantity(copyB.Item, copyB.Quantity);
-
-            if (copyA != null)
-                slotB.SetItemAndQuantity(copyA.Item, copyA.Quantity);
+            (_slots[indexA], _slots[indexB]) = (_slots[indexB], _slots[indexA]);
         }
 
         /// <inheritdoc cref="IInventory.Compact" />
         public void Compact()
         {
-            var gaps = new Queue<int>();
-            for (var i = 0; i < Capacity; i++)
+            int nextFree = 0;
+            for (int i = 0; i < Capacity; i++)
             {
+                // whenever we hit a non-empty slot, move it to nextFree (if needed)
                 if (!_slots[i].IsEmpty)
                 {
-                    if (!gaps.TryDequeue(out var index)) continue;
-                    Swap(i, index);
+                    if (i != nextFree)
+                    {
+                        Swap(i, nextFree);
+                    }
+                    nextFree++;
                 }
-                gaps.Enqueue(i);
             }
         }
 

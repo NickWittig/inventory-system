@@ -499,7 +499,7 @@ namespace InventorySystemTests
 
         #endregion
 
-            #region Swap ----------------------------------------------
+        #region Swap ----------------------------------------------
 
         [Test]
         public void Swap_WhenCalled_SwapsItemsBetweenSlots()
@@ -633,7 +633,24 @@ namespace InventorySystemTests
             Assert.That(_inventory.TryGetItemAt(2), Is.Null);
             Assert.That(_inventory.TryGetItemAt(3), Is.Null);
         }
-        
+
+        [Test]
+        public void Compact_WhenMultipleFilledSlotsExist_MovesAllItemsLeftInOrder()
+        {
+            _inventory = InventoryFactory.Create(3, true, MAX_STACK);
+
+            _inventory.TryAddItemAt(_potion, 0);  // Index 0
+            _inventory.TryAddItemAt(_elixir, 1);  // Index 1
+
+            // Now: [potion, elixir, null]
+
+            _inventory.Compact();
+
+            Assert.That(_inventory.TryGetItemAt(0)?.IsEquivalentTo(_potion), Is.True);
+            Assert.That(_inventory.TryGetItemAt(1)?.IsEquivalentTo(_elixir), Is.True);
+            Assert.That(_inventory.TryGetItemAt(2), Is.Null);
+        }
+
         [Test]
         public void Compact_WhenAllSlotsAreEmpty_DoesNothing()
         {
