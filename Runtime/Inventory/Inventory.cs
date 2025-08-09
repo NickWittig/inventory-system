@@ -31,7 +31,10 @@ namespace InventorySystem.Inventory
 
         /// <inheritdoc cref="IInventory.ItemsRemoved" />
         public event Action<IInventorySlot, int> ItemsRemoved;
-        
+
+        /// <inheritdoc cref="IInventory.ItemsMoved" />
+        public event Action<IInventorySlot, int> ItemsMoved;
+
         /// <inheritdoc cref="IInventory.CapacityChanged" />
         public event Action<int> CapacityChanged ;
 
@@ -64,6 +67,7 @@ namespace InventorySystem.Inventory
         {
             if (!IsValidSlotIndex(index)) return;
             _slots[index].Clear();
+            OnItemsRemoved(_slots[index], index);
         }
 
         /// <inheritdoc cref="IInventory.TryAddItem" />
@@ -125,7 +129,7 @@ namespace InventorySystem.Inventory
             {
                 if (slot.IsEmpty || !slot.Item.IsEquivalentTo(item)) continue;
 
-                ClearSlotWithEvent(slot);
+                ClearAllSlotsWithEvent(slot);
 
                 if (isRemovingFirstOccurenceOnly)
                     return;
@@ -136,7 +140,7 @@ namespace InventorySystem.Inventory
         /// <inheritdoc cref="IInventory.Clear" />
         public void Clear()
         {
-            foreach (InventorySlot slot in _slots) ClearSlotWithEvent(slot);
+            foreach (InventorySlot slot in _slots) ClearAllSlotsWithEvent(slot);
         }
 
         /// <inheritdoc cref="IInventory.TryIncreaseCapacity"/>
@@ -168,11 +172,14 @@ namespace InventorySystem.Inventory
             }
 
             (_slots[indexA], _slots[indexB]) = (_slots[indexB], _slots[indexA]);
+            OnItemsMoved(_slots[indexA], indexB);
+            OnItemsMoved(_slots[indexB], indexA);
         }
 
         /// <inheritdoc cref="IInventory.Compact" />
         public void Compact()
         {
+            
             int nextFree = 0;
             for (int i = 0; i < Capacity; i++)
             {
@@ -269,7 +276,7 @@ namespace InventorySystem.Inventory
         /// <remarks>
         ///     Wrapper for <see cref="InventorySlot.Clear" />
         /// </remarks>
-        private void ClearSlotWithEvent(InventorySlot slot)
+        private void ClearAllSlotsWithEvent(InventorySlot slot)
         {
             slot.Clear();
             OnItemsRemoved(slot, GetSlotIndex(slot));
@@ -306,6 +313,18 @@ namespace InventorySystem.Inventory
             if (slot is null) return;
             ItemsRemoved?.Invoke(slot, index);
         }
+
+        /// <summary>
+        ///     Trigger the <see cref="ItemsMoved" /> event.
+        /// </summary>
+        /// <param name="slot">The <see cref="IInventorySlot" /> was moved.</param>
+        /// <param name="index">The new index of the <see cref="IInventorySlot" />.</param>
+        private void OnItemsMoved(IInventorySlot slot, int index)
+        {
+            if (slot is null) return;
+            ItemsRemoved?.Invoke(slot, index);
+        }
+
 
         /// <summary>
         ///     Trigger the <see cref="CapacityChanged"/> event.

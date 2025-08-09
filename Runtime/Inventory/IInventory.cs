@@ -41,7 +41,17 @@ namespace InventorySystem.Inventory
         /// </remarks>
         public event Action<IInventorySlot, int> ItemsRemoved;
 
-        
+
+        /// <summary>
+        ///     Event invoked when the index of an <see cref="IInventorySlot"/>
+        ///     managed in <see cref="IInventory"/> was changed.
+        /// </summary>
+        /// <returns>
+        ///     Returns the <see cref="IInventorySlot"/> that was moved and its new index.
+        /// </returns>
+        public event Action<IInventorySlot, int> ItemsMoved;
+
+
         /// <summary>
         ///     Event invoked when the <see cref="Capacity"/> of this <see cref="IInventory"/> is changed.
         /// </summary>
