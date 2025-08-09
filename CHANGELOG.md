@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.6] - 2025-08-09
+### ItemMoved Event and TryGetIndexOf Method
+* feat: Added ItemsMoved event
+* feat: Added TryGetIndexOf method
+* Added docs and tests for TryGetIndexOf method
+* Bugfix: fixed items moved invocation
+* Added tests for items moved
+* Added NSubstitute framework in test assembly def
+* General refactor/style
+* Rebuild docs (docfx)
+
 ## [1.0.5] - 2025-08-07
 ### Complexity optimization of IncreaseCapacity() and Swap() and Compact() Methods
 * Improved space/time complexity of IncreaseCapacity, Swap, and Compact
