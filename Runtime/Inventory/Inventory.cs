@@ -7,8 +7,8 @@ using UnityEngine;
 namespace InventorySystem.Inventory
 {
     /// <summary>
-    /// The concrete implementation of the <see cref="IInventory"/>.
-    /// Manages several <see cref="IInventorySlot"/>s and the <see cref="IItem"/>s inside.
+    ///     The concrete implementation of the <see cref="IInventory" />.
+    ///     Manages several <see cref="IInventorySlot" />s and the <see cref="IItem" />s inside.
     /// </summary>
     [Serializable]
     internal class Inventory : IInventory
@@ -36,7 +36,7 @@ namespace InventorySystem.Inventory
         public event Action<IInventorySlot, int> ItemsMoved;
 
         /// <inheritdoc cref="IInventory.CapacityChanged" />
-        public event Action<int> CapacityChanged ;
+        public event Action<int> CapacityChanged;
 
         /// <inheritdoc cref="IInventory.Items" />
         public IReadOnlyList<IItem> Items => _slots.Select(slot => slot.Item).ToList();
@@ -50,7 +50,7 @@ namespace InventorySystem.Inventory
             _maxCapacity = maxCapacity;
             _handlesOverflow = handlesOverflow;
         }
-        
+
 
         /// <inheritdoc cref="IInventory.IsSlotAvailable" />
         public bool IsSlotAvailable(IItem item, out int addIndex)
@@ -136,63 +136,51 @@ namespace InventorySystem.Inventory
             }
         }
 
-
         /// <inheritdoc cref="IInventory.Clear" />
         public void Clear()
         {
             foreach (InventorySlot slot in _slots) ClearAllSlotsWithEvent(slot);
         }
 
-        /// <inheritdoc cref="IInventory.TryIncreaseCapacity"/>
+        /// <inheritdoc cref="IInventory.TryIncreaseCapacity" />
         public bool TryIncreaseCapacity(int addedCapacity)
         {
             if (addedCapacity <= 0 || Capacity >= _maxCapacity) return false;
 
-            int newCapacity = Mathf.Min(Capacity + addedCapacity, _maxCapacity);
+            var newCapacity = Mathf.Min(Capacity + addedCapacity, _maxCapacity);
 
             Array.Resize(ref _slots, newCapacity);
-            for (int i = Capacity; i < newCapacity; i++)
-            {
-                _slots[i] = new InventorySlot();
-            }
+            for (var i = Capacity; i < newCapacity; i++) _slots[i] = new InventorySlot();
 
             Capacity = newCapacity;
             OnCapacityIncreased(Capacity);
             return true;
         }
 
-        /// <inheritdoc cref="IInventory.Swap"/>
+        /// <inheritdoc cref="IInventory.Swap" />
         public void Swap(int indexA, int indexB)
         {
             if (indexA == indexB
                 || !IsValidSlotIndex(indexA)
                 || !IsValidSlotIndex(indexB))
-            {
                 return;
-            }
 
             (_slots[indexA], _slots[indexB]) = (_slots[indexB], _slots[indexA]);
-            OnItemsMoved(_slots[indexA], indexB);
-            OnItemsMoved(_slots[indexB], indexA);
+            OnItemsMoved(_slots[indexA], indexA);
+            OnItemsMoved(_slots[indexB], indexB);
         }
 
         /// <inheritdoc cref="IInventory.Compact" />
         public void Compact()
         {
-            
-            int nextFree = 0;
-            for (int i = 0; i < Capacity; i++)
-            {
+            var nextFree = 0;
+            for (var i = 0; i < Capacity; i++)
                 // whenever we hit a non-empty slot, move it to nextFree (if needed)
                 if (!_slots[i].IsEmpty)
                 {
-                    if (i != nextFree)
-                    {
-                        Swap(i, nextFree);
-                    }
+                    if (i != nextFree) Swap(i, nextFree);
                     nextFree++;
                 }
-            }
         }
 
         /// <inheritdoc cref="IInventory.TryInsertItemAtFront" />
@@ -279,17 +267,14 @@ namespace InventorySystem.Inventory
         private void ClearAllSlotsWithEvent(InventorySlot slot)
         {
             slot.Clear();
-            OnItemsRemoved(slot, GetSlotIndex(slot));
+            OnItemsRemoved(slot, TryGetIndexOf(slot));
         }
 
-        /// <summary>
-        ///     Get the index of the <see cref="IInventorySlot" /> in this.
-        /// </summary>
-        /// <param name="slot">The <see cref="IInventorySlot" /> for which the index is being looked for.</param>
-        /// <returns></returns>
-        private int GetSlotIndex(InventorySlot slot)
+        /// <inheritdoc cref="IInventory.TryGetIndexOf" />
+        public int TryGetIndexOf(IInventorySlot slot)
         {
-            return Array.IndexOf(_slots, slot);
+            if (slot is not InventorySlot inventorySlot) return -1;
+            return Array.IndexOf(_slots, inventorySlot);
         }
 
         /// <summary>
@@ -322,25 +307,26 @@ namespace InventorySystem.Inventory
         private void OnItemsMoved(IInventorySlot slot, int index)
         {
             if (slot is null) return;
-            ItemsRemoved?.Invoke(slot, index);
+            ItemsMoved?.Invoke(slot, index);
         }
 
 
         /// <summary>
-        ///     Trigger the <see cref="CapacityChanged"/> event.
+        ///     Trigger the <see cref="CapacityChanged" /> event.
         /// </summary>
         /// <param name="newCapacity">
-        ///     The new <see cref="Capacity"/> of this.
+        ///     The new <see cref="Capacity" /> of this.
         /// </param>
         private void OnCapacityIncreased(int newCapacity)
         {
             CapacityChanged?.Invoke(newCapacity);
         }
 
-        
+
         #region Builder
+
         /// <summary>
-        ///     A builder for creating a new <see cref="Inventory"/>.
+        ///     A builder for creating a new <see cref="Inventory" />.
         ///     Also, creates and assigns capacity amount of <see cref="InventorySlot" />s.
         ///     Can set maximum capacity.
         /// </summary>
@@ -349,18 +335,18 @@ namespace InventorySystem.Inventory
         /// </returns>
         internal class Builder
         {
-            int _startCapacity = 2;
-            int _maxCapacity = 2;
-            bool _handlesOverflow = true;
+            private int _startCapacity = 2;
+            private int _maxCapacity = 2;
+            private bool _handlesOverflow = true;
 
             /// <summary>
-            ///     Set the starting <see cref="Inventory.Capacity"/> of the <see cref="Inventory"/>. 
+            ///     Set the starting <see cref="Inventory.Capacity" /> of the <see cref="Inventory" />.
             /// </summary>
             /// <param name="startCapacity">
-            ///     Capacity of the new <see cref="Inventory"/>.
+            ///     Capacity of the new <see cref="Inventory" />.
             /// </param>
             /// <returns>
-            ///     This <see cref="Builder"/>.
+            ///     This <see cref="Builder" />.
             /// </returns>
             public Builder WithStartCapacity(int startCapacity)
             {
@@ -368,24 +354,44 @@ namespace InventorySystem.Inventory
                 return this;
             }
 
+            /// <summary>
+            ///     Set the maximum capacity of the <see cref="IInventory"/>.
+            ///     Defaults to 2.
+            /// </summary>
+            /// <param name="maxCapacity">
+            ///     The maximum capacity.
+            /// </param>
+            /// <returns>
+            ///     This <see cref="Builder"/>.
+            /// </returns>
             public Builder WithMaxCapacity(int maxCapacity)
             {
                 _maxCapacity = maxCapacity;
                 return this;
             }
-            
-            public Builder WithOverflow(bool  handlesOverflow)
+
+            /// <summary>
+            /// Whether any overflow is handled.
+            /// </summary>
+            /// <param name="handlesOverflow">
+            ///     Whether any overflow is handled.
+            /// </param>
+            /// <returns>
+            ///     This <see cref="Builder"/>.
+            /// </returns>
+            /// <seealso cref="IInventory.TryAddItemAt"/>
+            public Builder WithOverflow(bool handlesOverflow)
             {
                 _handlesOverflow = handlesOverflow;
                 return this;
             }
 
             /// <summary>
-            ///     Builds the new <see cref="Inventory"/> with
+            ///     Builds the new <see cref="Inventory" /> with
             ///     the values assigned in this.
             /// </summary>
             /// <returns>
-            ///     A new <see cref="Inventory"/>.
+            ///     A new <see cref="Inventory" />.
             /// </returns>
             public Inventory Build()
             {
@@ -398,6 +404,7 @@ namespace InventorySystem.Inventory
                 return inventory;
             }
         }
+
         #endregion
     }
 }
