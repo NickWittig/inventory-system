@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using InventorySystem.Inventory;
 using InventorySystem.Items;
+using NSubstitute;
 using NUnit.Framework;
+using UnityEngine;
 
 namespace InventorySystemTests
 {
@@ -410,7 +412,67 @@ namespace InventorySystemTests
 
             Assert.IsFalse(fired);
         }
+        
+        
+        [Test]
+        public void ItemsMoved_Event_FiresTwice_OnSwapItems()
+        {
+            // Arrange
+            _inventory.TryAddItem(_potion);
+            _inventory.TryAddItem(_elixir);
 
+            var captured = new List<(IItem Item, int NewIndex)>();
+            _inventory.ItemsMoved += (slot, index) => captured.Add((slot.Item, index));
+
+            // Act
+            _inventory.Swap(0, 1);
+
+            // Assert
+            Assert.That(captured, Is.Not.Empty, "ItemsMoved should fire for each swapped slot.");
+            Assert.AreEqual(2, captured.Count, "Swap should trigger exactly two events.");
+            Debug.Log(captured[0].Item.ItemData.ItemName);
+            Debug.Log(captured[0].NewIndex);
+            Debug.Log(captured[1].Item.ItemData.ItemName);
+            Debug.Log(captured[1].NewIndex);
+            Assert.That(captured.Any(c => c.Item.IsEquivalentTo(_potion) && c.NewIndex == 1), Is.True);
+            Assert.That(captured.Any(c => c.Item.IsEquivalentTo(_elixir) && c.NewIndex == 0), Is.True);
+        }
+
+        [Test]
+        public void ItemsMoved_Event_FiresPerItem_OnCompact()
+        {
+            _inventory.TryAddItemAt(_potion, 1);
+
+            var captured = new List<(IItem Item, int NewIndex)>();
+            _inventory.ItemsMoved += (slot, index) => captured.Add((slot.Item, index));
+
+            // Act
+            _inventory.Compact();
+
+            // Assert
+            Assert.That(captured, Is.Not.Empty, "ItemsMoved should fire when compacting items.");
+            Assert.AreEqual(2, captured.Count, "Should move the empty slot and the filled slot");
+            Assert.IsTrue(captured[1].Item.IsEquivalentTo(_potion), "Second moved slot should contain the potion.");
+        }
+
+        [Test]
+        public void ItemsMoved_Event_DoesNotFire_WhenCompactDoesNothing()
+        {
+            // Arrange
+            _inventory.TryAddItem(_potion);
+            _inventory.TryAddItem(_elixir);
+
+            bool fired = false;
+            _inventory.ItemsMoved += (_, _) => fired = true;
+
+            // Act
+            _inventory.Compact();
+
+            // Assert
+            Assert.IsFalse(fired, "ItemsMoved should not fire if compacting changes nothing.");
+        }
+
+    
         
         #endregion
         
@@ -681,6 +743,51 @@ namespace InventorySystemTests
             Assert.That(_inventory.TryGetItemAt(1).IsEquivalentTo(_potion), Is.True);
         }
 
+        #endregion
+
+        #region TryGetIndexOf
+
+        [Test]
+        public void TryGetIndexOf_WhenSlotExists_ReturnsCorrectIndex()
+        {
+            // Arrange
+            _inventory.TryAddItem(_potion);
+            var slot = _inventory.InventorySlots[0];
+
+            // Act
+            var index = _inventory.TryGetIndexOf(slot);
+
+            // Assert
+            Assert.AreEqual(0, index, "Should return the correct slot index.");
+        }
+
+        [Test]
+        public void TryGetIndexOf_WhenSlotDoesNotExist_ReturnsMinusOne()
+        {
+            // Arrange
+            var otherInventory = InventoryFactory.Create(1, true, MAX_STACK);
+            otherInventory.TryAddItem(_potion);
+            var foreignSlot = otherInventory.InventorySlots[0];
+
+            // Act
+            var index = _inventory.TryGetIndexOf(foreignSlot);
+
+            // Assert
+            Assert.AreEqual(-1, index, "Slot not belonging to this inventory should return -1.");
+        }
+
+        [Test]
+        public void TryGetIndexOf_WhenSlotIsNotInventorySlotImplementation_ReturnsMinusOne()
+        {
+            // Arrange
+            var fakeSlot = Substitute.For<IInventorySlot>(); // using NSubstitute or any other mock tool
+
+            // Act
+            var index = _inventory.TryGetIndexOf(fakeSlot);
+
+            // Assert
+            Assert.AreEqual(-1, index, "Non-InventorySlot implementation should return -1.");
+        }
         #endregion
 
     }

@@ -123,18 +123,18 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_Inventory_InventoryFactory_Create_System_Int32_System_Boolean_.md&amp;value=---%0Auid%3A%20InventorySystem.Inventory.InventoryFactory.Create(System.Int32%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/NickWittig/inventory-system/new/master/apiSpec/new?filename=InventorySystem_Inventory_InventoryFactory_Create_System_Int32_System_Boolean_System_Int32_.md&amp;value=---%0Auid%3A%20InventorySystem.Inventory.InventoryFactory.Create(System.Int32%2CSystem.Boolean%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/NickWittig/inventory-system/blob/master/Runtime/Inventory/InventoryFactory.cs/#L8">View Source</a>
   </span>
   <a id="InventorySystem_Inventory_InventoryFactory_Create_" data-uid="InventorySystem.Inventory.InventoryFactory.Create*"></a>
-  <h4 id="InventorySystem_Inventory_InventoryFactory_Create_System_Int32_System_Boolean_" data-uid="InventorySystem.Inventory.InventoryFactory.Create(System.Int32,System.Boolean)">Create(int, bool)</h4>
+  <h4 id="InventorySystem_Inventory_InventoryFactory_Create_System_Int32_System_Boolean_System_Int32_" data-uid="InventorySystem.Inventory.InventoryFactory.Create(System.Int32,System.Boolean,System.Int32)">Create(int, bool, int)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static IInventory Create(int capacity = 2, bool handlesOverflow = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static IInventory Create(int capacity = 2, bool handlesOverflow = true, int maxCapacity = 2)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -154,6 +154,11 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">handlesOverflow</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">maxCapacity</span></td>
         <td></td>
       </tr>
     </tbody>

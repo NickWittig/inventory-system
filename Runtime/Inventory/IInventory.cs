@@ -5,8 +5,8 @@ using InventorySystem.Items;
 namespace InventorySystem.Inventory
 {
     /// <summary>
-    ///     Interface for an Inventory managing <see cref="IInventorySlot"/>s and
-    ///     the <see cref="IItem"/>s inside.
+    ///     Interface for an Inventory managing <see cref="IInventorySlot" />s and
+    ///     the <see cref="IItem" />s inside.
     ///     Exposes methods for adding, removing, and getting items.
     /// </summary>
     public interface IInventory
@@ -41,25 +41,35 @@ namespace InventorySystem.Inventory
         /// </remarks>
         public event Action<IInventorySlot, int> ItemsRemoved;
 
-        
+
         /// <summary>
-        ///     Event invoked when the <see cref="Capacity"/> of this <see cref="IInventory"/> is changed.
+        ///     Event invoked when the index of an <see cref="IInventorySlot" />
+        ///     managed in <see cref="IInventory" /> was changed.
         /// </summary>
         /// <returns>
-        ///     Returns the new <see cref="Capacity"/> of this <see cref="IInventory"/>.
+        ///     Returns the <see cref="IInventorySlot" /> that was moved and its new index.
         /// </returns>
-        /// <seealso cref="TryIncreaseCapacity"/>
+        public event Action<IInventorySlot, int> ItemsMoved;
+
+
+        /// <summary>
+        ///     Event invoked when the <see cref="Capacity" /> of this <see cref="IInventory" /> is changed.
+        /// </summary>
+        /// <returns>
+        ///     Returns the new <see cref="Capacity" /> of this <see cref="IInventory" />.
+        /// </returns>
+        /// <seealso cref="TryIncreaseCapacity" />
         public event Action<int> CapacityChanged;
-        
+
         /// <summary>
         ///     Maximum amount of items that can be inside the <see cref="IInventory" />.
         /// </summary>
         int Capacity { get; }
-        
+
         /// <summary>
-        ///     Maximum capacity of this <see cref="IInventory"/>.
+        ///     Maximum capacity of this <see cref="IInventory" />.
         /// </summary>
-        /// <seealso cref="TryIncreaseCapacity"/>
+        /// <seealso cref="TryIncreaseCapacity" />
         int MaxCapacity { get; }
 
         /// <summary>
@@ -99,6 +109,16 @@ namespace InventorySystem.Inventory
         /// <param name="index">Index to look for the <see cref="IInventorySlot" /></param>
         /// <returns><see cref="IInventorySlot" /> or null, if the index is higher than the <see cref="IInventory.Capacity" />.</returns>
         public IInventorySlot TryGetSlotAt(int index);
+
+        /// <summary>
+        ///     Try to get the index of the <see cref="IInventorySlot" /> in this.
+        /// </summary>
+        /// <param name="slot">The <see cref="IInventorySlot" /> for which the index is being looked for.</param>
+        /// <returns>
+        ///     The index of the <see cref="IInventorySlot" /> slot in this <see cref="IInventory" />.
+        ///     Returns -1, if the slot is not in this.
+        /// </returns>
+        public int TryGetIndexOf(IInventorySlot slot);
 
         /// <summary>
         ///     Whether an <see cref="IItem" /> item can be added into an <see cref="IInventorySlot" />.
@@ -210,46 +230,43 @@ namespace InventorySystem.Inventory
         public void Clear();
 
         /// <summary>
-        ///     Increases the <see cref="Capacity"/> of this up to <see cref="MaxCapacity"/>.
+        ///     Increases the <see cref="Capacity" /> of this up to <see cref="MaxCapacity" />.
         /// </summary>
         /// <param name="addedCapacity">
         ///     The amount of capacity to be added.
         /// </param>
         /// <returns>
-        ///     Whether the <see cref="Capacity"/> was increased at all.
-        ///     Also returns true, if the <see cref="Capacity"/> was not increased by the full addedCapacity.
+        ///     Whether the <see cref="Capacity" /> was increased at all.
+        ///     Also returns true, if the <see cref="Capacity" /> was not increased by the full addedCapacity.
         /// </returns>
         /// <remarks>
-        ///     Discards negative numbers as this cannot decrease <see cref="Capacity"/>.
-        ///     If <see cref="Capacity"/> is already <see cref="MaxCapacity"/> or adding
-        ///     addedCapacity would increase <see cref="Capacity"/> to be higher than <see cref="MaxCapacity"/>
-        ///     <see cref="Capacity"/> gets set to <see cref="MaxCapacity"/>.
+        ///     Discards negative numbers as this cannot decrease <see cref="Capacity" />.
+        ///     If <see cref="Capacity" /> is already <see cref="MaxCapacity" /> or adding
+        ///     addedCapacity would increase <see cref="Capacity" /> to be higher than <see cref="MaxCapacity" />
+        ///     <see cref="Capacity" /> gets set to <see cref="MaxCapacity" />.
         /// </remarks>
         public bool TryIncreaseCapacity(int addedCapacity);
-        
-        
+
+
         /// <summary>
-        /// Swap the content of the <see cref="IInventorySlot"/> at indexA with
-        /// the content of the <see cref="IInventorySlot"/> at indexB.
+        ///     Swap the content of the <see cref="IInventorySlot" /> at indexA with
+        ///     the content of the <see cref="IInventorySlot" /> at indexB.
         /// </summary>
         /// <param name="indexA">The index of slot A.</param>
         /// <param name="indexB">The index of slot B.</param>
         public void Swap(int indexA, int indexB);
 
         /// <summary>
-        ///     Makes the <see cref="IInventory"/> compact meaning
-        ///     that all empty gaps between <see cref="IInventorySlot"/>s are
-        ///     filled with <see cref="IInventorySlot"/> after the gaps.
+        ///     Makes the <see cref="IInventory" /> compact meaning
+        ///     that all empty gaps between <see cref="IInventorySlot" />s are
+        ///     filled with <see cref="IInventorySlot" /> after the gaps.
         /// </summary>
         /// <remarks>
-        ///     Remains the order of <see cref="IInventorySlot"/>s
-        ///     meaning that the first <see cref="IInventorySlot"/>
+        ///     Remains the order of <see cref="IInventorySlot" />s
+        ///     meaning that the first <see cref="IInventorySlot" />
         ///     after a gap is also the first that fills out that slot
         ///     with the slots filling out empty slots from left to right.
         /// </remarks>
         public void Compact();
-
-
     }
-    
 }

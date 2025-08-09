@@ -158,6 +158,12 @@ references:
   isSpec: "True"
   fullName: InventorySystem.Inventory.IInventory.Capacity
   nameWithType: IInventory.Capacity
+- uid: InventorySystem.Inventory.IInventory.CapacityChanged
+  name: CapacityChanged
+  href: api/InventorySystem.Inventory.IInventory.html#InventorySystem_Inventory_IInventory_CapacityChanged
+  commentId: E:InventorySystem.Inventory.IInventory.CapacityChanged
+  fullName: InventorySystem.Inventory.IInventory.CapacityChanged
+  nameWithType: IInventory.CapacityChanged
 - uid: InventorySystem.Inventory.IInventory.Clear
   name: Clear()
   href: api/InventorySystem.Inventory.IInventory.html#InventorySystem_Inventory_IInventory_Clear
@@ -171,6 +177,19 @@ references:
   isSpec: "True"
   fullName: InventorySystem.Inventory.IInventory.Clear
   nameWithType: IInventory.Clear
+- uid: InventorySystem.Inventory.IInventory.Compact
+  name: Compact()
+  href: api/InventorySystem.Inventory.IInventory.html#InventorySystem_Inventory_IInventory_Compact
+  commentId: M:InventorySystem.Inventory.IInventory.Compact
+  fullName: InventorySystem.Inventory.IInventory.Compact()
+  nameWithType: IInventory.Compact()
+- uid: InventorySystem.Inventory.IInventory.Compact*
+  name: Compact
+  href: api/InventorySystem.Inventory.IInventory.html#InventorySystem_Inventory_IInventory_Compact_
+  commentId: Overload:InventorySystem.Inventory.IInventory.Compact
+  isSpec: "True"
+  fullName: InventorySystem.Inventory.IInventory.Compact
+  nameWithType: IInventory.Compact
 - uid: InventorySystem.Inventory.IInventory.InventorySlots
   name: InventorySlots
   href: api/InventorySystem.Inventory.IInventory.html#InventorySystem_Inventory_IInventory_InventorySlots
@@ -238,6 +257,19 @@ references:
   commentId: E:InventorySystem.Inventory.IInventory.ItemsRemoved
   fullName: InventorySystem.Inventory.IInventory.ItemsRemoved
   nameWithType: IInventory.ItemsRemoved
+- uid: InventorySystem.Inventory.IInventory.MaxCapacity
+  name: MaxCapacity
+  href: api/InventorySystem.Inventory.IInventory.html#InventorySystem_Inventory_IInventory_MaxCapacity
+  commentId: P:InventorySystem.Inventory.IInventory.MaxCapacity
+  fullName: InventorySystem.Inventory.IInventory.MaxCapacity
+  nameWithType: IInventory.MaxCapacity
+- uid: InventorySystem.Inventory.IInventory.MaxCapacity*
+  name: MaxCapacity
+  href: api/InventorySystem.Inventory.IInventory.html#InventorySystem_Inventory_IInventory_MaxCapacity_
+  commentId: Overload:InventorySystem.Inventory.IInventory.MaxCapacity
+  isSpec: "True"
+  fullName: InventorySystem.Inventory.IInventory.MaxCapacity
+  nameWithType: IInventory.MaxCapacity
 - uid: InventorySystem.Inventory.IInventory.RemoveItem(InventorySystem.Items.IItem,System.Boolean,System.Boolean)
   name: RemoveItem(IItem, bool, bool)
   href: api/InventorySystem.Inventory.IInventory.html#InventorySystem_Inventory_IInventory_RemoveItem_InventorySystem_Items_IItem_System_Boolean_System_Boolean_
@@ -254,6 +286,22 @@ references:
   isSpec: "True"
   fullName: InventorySystem.Inventory.IInventory.RemoveItem
   nameWithType: IInventory.RemoveItem
+- uid: InventorySystem.Inventory.IInventory.Swap(System.Int32,System.Int32)
+  name: Swap(int, int)
+  href: api/InventorySystem.Inventory.IInventory.html#InventorySystem_Inventory_IInventory_Swap_System_Int32_System_Int32_
+  commentId: M:InventorySystem.Inventory.IInventory.Swap(System.Int32,System.Int32)
+  name.vb: Swap(Integer, Integer)
+  fullName: InventorySystem.Inventory.IInventory.Swap(int, int)
+  fullName.vb: InventorySystem.Inventory.IInventory.Swap(Integer, Integer)
+  nameWithType: IInventory.Swap(int, int)
+  nameWithType.vb: IInventory.Swap(Integer, Integer)
+- uid: InventorySystem.Inventory.IInventory.Swap*
+  name: Swap
+  href: api/InventorySystem.Inventory.IInventory.html#InventorySystem_Inventory_IInventory_Swap_
+  commentId: Overload:InventorySystem.Inventory.IInventory.Swap
+  isSpec: "True"
+  fullName: InventorySystem.Inventory.IInventory.Swap
+  nameWithType: IInventory.Swap
 - uid: InventorySystem.Inventory.IInventory.TryAddItem(InventorySystem.Items.IItem,System.Int32)
   name: TryAddItem(IItem, int)
   href: api/InventorySystem.Inventory.IInventory.html#InventorySystem_Inventory_IInventory_TryAddItem_InventorySystem_Items_IItem_System_Int32_
@@ -334,6 +382,22 @@ references:
   isSpec: "True"
   fullName: InventorySystem.Inventory.IInventory.TryGetSlotAt
   nameWithType: IInventory.TryGetSlotAt
+- uid: InventorySystem.Inventory.IInventory.TryIncreaseCapacity(System.Int32)
+  name: TryIncreaseCapacity(int)
+  href: api/InventorySystem.Inventory.IInventory.html#InventorySystem_Inventory_IInventory_TryIncreaseCapacity_System_Int32_
+  commentId: M:InventorySystem.Inventory.IInventory.TryIncreaseCapacity(System.Int32)
+  name.vb: TryIncreaseCapacity(Integer)
+  fullName: InventorySystem.Inventory.IInventory.TryIncreaseCapacity(int)
+  fullName.vb: InventorySystem.Inventory.IInventory.TryIncreaseCapacity(Integer)
+  nameWithType: IInventory.TryIncreaseCapacity(int)
+  nameWithType.vb: IInventory.TryIncreaseCapacity(Integer)
+- uid: InventorySystem.Inventory.IInventory.TryIncreaseCapacity*
+  name: TryIncreaseCapacity
+  href: api/InventorySystem.Inventory.IInventory.html#InventorySystem_Inventory_IInventory_TryIncreaseCapacity_
+  commentId: Overload:InventorySystem.Inventory.IInventory.TryIncreaseCapacity
+  isSpec: "True"
+  fullName: InventorySystem.Inventory.IInventory.TryIncreaseCapacity
+  nameWithType: IInventory.TryIncreaseCapacity
 - uid: InventorySystem.Inventory.IInventory.TryInsertItemAtFront(InventorySystem.Items.IItem,System.Int32)
   name: TryInsertItemAtFront(IItem, int)
   href: api/InventorySystem.Inventory.IInventory.html#InventorySystem_Inventory_IInventory_TryInsertItemAtFront_InventorySystem_Items_IItem_System_Int32_
@@ -414,15 +478,15 @@ references:
   commentId: T:InventorySystem.Inventory.InventoryFactory
   fullName: InventorySystem.Inventory.InventoryFactory
   nameWithType: InventoryFactory
-- uid: InventorySystem.Inventory.InventoryFactory.Create(System.Int32,System.Boolean)
-  name: Create(int, bool)
-  href: api/InventorySystem.Inventory.InventoryFactory.html#InventorySystem_Inventory_InventoryFactory_Create_System_Int32_System_Boolean_
-  commentId: M:InventorySystem.Inventory.InventoryFactory.Create(System.Int32,System.Boolean)
-  name.vb: Create(Integer, Boolean)
-  fullName: InventorySystem.Inventory.InventoryFactory.Create(int, bool)
-  fullName.vb: InventorySystem.Inventory.InventoryFactory.Create(Integer, Boolean)
-  nameWithType: InventoryFactory.Create(int, bool)
-  nameWithType.vb: InventoryFactory.Create(Integer, Boolean)
+- uid: InventorySystem.Inventory.InventoryFactory.Create(System.Int32,System.Boolean,System.Int32)
+  name: Create(int, bool, int)
+  href: api/InventorySystem.Inventory.InventoryFactory.html#InventorySystem_Inventory_InventoryFactory_Create_System_Int32_System_Boolean_System_Int32_
+  commentId: M:InventorySystem.Inventory.InventoryFactory.Create(System.Int32,System.Boolean,System.Int32)
+  name.vb: Create(Integer, Boolean, Integer)
+  fullName: InventorySystem.Inventory.InventoryFactory.Create(int, bool, int)
+  fullName.vb: InventorySystem.Inventory.InventoryFactory.Create(Integer, Boolean, Integer)
+  nameWithType: InventoryFactory.Create(int, bool, int)
+  nameWithType.vb: InventoryFactory.Create(Integer, Boolean, Integer)
 - uid: InventorySystem.Inventory.InventoryFactory.Create*
   name: Create
   href: api/InventorySystem.Inventory.InventoryFactory.html#InventorySystem_Inventory_InventoryFactory_Create_
@@ -436,58 +500,6 @@ references:
   commentId: N:InventorySystem.Items
   fullName: InventorySystem.Items
   nameWithType: InventorySystem.Items
-- uid: InventorySystem.Items.ICopyable`1
-  name: ICopyable<T>
-  href: api/InventorySystem.Items.ICopyable-1.html
-  commentId: T:InventorySystem.Items.ICopyable`1
-  name.vb: ICopyable(Of T)
-  fullName: InventorySystem.Items.ICopyable<T>
-  fullName.vb: InventorySystem.Items.ICopyable(Of T)
-  nameWithType: ICopyable<T>
-  nameWithType.vb: ICopyable(Of T)
-- uid: InventorySystem.Items.ICopyable`1.DeepCopy
-  name: DeepCopy()
-  href: api/InventorySystem.Items.ICopyable-1.html#InventorySystem_Items_ICopyable_1_DeepCopy
-  commentId: M:InventorySystem.Items.ICopyable`1.DeepCopy
-  fullName: InventorySystem.Items.ICopyable<T>.DeepCopy()
-  fullName.vb: InventorySystem.Items.ICopyable(Of T).DeepCopy()
-  nameWithType: ICopyable<T>.DeepCopy()
-  nameWithType.vb: ICopyable(Of T).DeepCopy()
-- uid: InventorySystem.Items.ICopyable`1.DeepCopy*
-  name: DeepCopy
-  href: api/InventorySystem.Items.ICopyable-1.html#InventorySystem_Items_ICopyable_1_DeepCopy_
-  commentId: Overload:InventorySystem.Items.ICopyable`1.DeepCopy
-  isSpec: "True"
-  fullName: InventorySystem.Items.ICopyable<T>.DeepCopy
-  fullName.vb: InventorySystem.Items.ICopyable(Of T).DeepCopy
-  nameWithType: ICopyable<T>.DeepCopy
-  nameWithType.vb: ICopyable(Of T).DeepCopy
-- uid: InventorySystem.Items.IEquivalent`1
-  name: IEquivalent<T>
-  href: api/InventorySystem.Items.IEquivalent-1.html
-  commentId: T:InventorySystem.Items.IEquivalent`1
-  name.vb: IEquivalent(Of T)
-  fullName: InventorySystem.Items.IEquivalent<T>
-  fullName.vb: InventorySystem.Items.IEquivalent(Of T)
-  nameWithType: IEquivalent<T>
-  nameWithType.vb: IEquivalent(Of T)
-- uid: InventorySystem.Items.IEquivalent`1.IsEquivalentTo(`0)
-  name: IsEquivalentTo(T)
-  href: api/InventorySystem.Items.IEquivalent-1.html#InventorySystem_Items_IEquivalent_1_IsEquivalentTo__0_
-  commentId: M:InventorySystem.Items.IEquivalent`1.IsEquivalentTo(`0)
-  fullName: InventorySystem.Items.IEquivalent<T>.IsEquivalentTo(T)
-  fullName.vb: InventorySystem.Items.IEquivalent(Of T).IsEquivalentTo(T)
-  nameWithType: IEquivalent<T>.IsEquivalentTo(T)
-  nameWithType.vb: IEquivalent(Of T).IsEquivalentTo(T)
-- uid: InventorySystem.Items.IEquivalent`1.IsEquivalentTo*
-  name: IsEquivalentTo
-  href: api/InventorySystem.Items.IEquivalent-1.html#InventorySystem_Items_IEquivalent_1_IsEquivalentTo_
-  commentId: Overload:InventorySystem.Items.IEquivalent`1.IsEquivalentTo
-  isSpec: "True"
-  fullName: InventorySystem.Items.IEquivalent<T>.IsEquivalentTo
-  fullName.vb: InventorySystem.Items.IEquivalent(Of T).IsEquivalentTo
-  nameWithType: IEquivalent<T>.IsEquivalentTo
-  nameWithType.vb: IEquivalent(Of T).IsEquivalentTo
 - uid: InventorySystem.Items.IItem
   name: IItem
   href: api/InventorySystem.Items.IItem.html
